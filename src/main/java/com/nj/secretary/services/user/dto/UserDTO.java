@@ -4,5 +4,5 @@ import com.nj.secretary.services.user.domain.User;
 import lombok.Data;
 
 public class UserDTO {
-
+//dfdfdf
 }
