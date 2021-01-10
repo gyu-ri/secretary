@@ -5,7 +5,7 @@ public class User {
     private String userId;//사용자아이디
 
     public User(String userName,String userId){
-        this.userName = userName;
+        this.userName = userName;//주석
         this.userId = userId;
     }
 
