@@ -20,8 +20,7 @@ public class CalendarController {
 
     @GetMapping("mainCalendar")
     public String mainCalendarView(){
-        Calendar calendar = new Calendar();
-        calendarService.addCalendar(calendar);
+
 
         return "calendar/index";
     }

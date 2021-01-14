@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("calendarServiceImpl")
+@Service
 public class CalendarServiceImpl implements CalendarService {
 
     @Autowired
@@ -29,9 +29,9 @@ public class CalendarServiceImpl implements CalendarService {
     }
 
     @Override
-    public List<Calendar> getCalendarList(User userId) {
+    public List<Calendar> getCalendarList(Calendar calendar) {
 
-        return calendarDAO.getCalendarList(userId);
+        return calendarDAO.getCalendarList(calendar);
     }
 
     @Override

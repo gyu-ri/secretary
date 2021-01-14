@@ -37,16 +37,16 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
 
         var eventData = {
-            _id: '윤도영',
+            userId: '윤도영',
             calendarTitle: editTitle.val(),
-            start: editStart.val(),
-            end: editEnd.val(),
+            startDate: editStart.val(),
+            endDate: editEnd.val(),
             calendarDetail: editDesc.val(),
             type: editType.val(),
             userName: '도영',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
-            allDay: false
+            allDay: '0'
         };
 
         if (eventData.start > eventData.end) {
@@ -68,7 +68,7 @@ var newEvent = function (start, end, eventType) {
             //DB에 넣을때(선택)
             realEndDay = moment(eventData.end).format('YYYY-MM-DD');
 
-            eventData.allDay = true;
+            eventData.allDay = '1';
         }
 
         $("#calendar").fullCalendar('renderEvent', eventData, true);

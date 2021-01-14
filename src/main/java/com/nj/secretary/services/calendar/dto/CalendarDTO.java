@@ -10,11 +10,11 @@ public class CalendarDTO {
         private String userId;
         private String calendarTitle;
         private String calendarDetail;
-        private Date startDate;
-        private Date endDate;
+        private String startDate;
+        private String endDate;
         private String backgoundColor;
         private String type;
-        private Boolean allDay;
+        private String allDay;
 
         public Calendar addConvert(){
             return new Calendar(
@@ -27,6 +27,16 @@ public class CalendarDTO {
                     this.type,
                     this.allDay
             );
+        }
+    }
+
+    public static class getCalendarListDTO{
+        private String userId;
+        private String startDate;
+        private String endDate;
+
+        public Calendar getCalendarListDTO(){
+            return new Calendar(this.userId,this.startDate,this.endDate);
         }
     }
 }
