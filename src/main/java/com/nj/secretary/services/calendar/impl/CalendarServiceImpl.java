@@ -19,6 +19,7 @@ public class CalendarServiceImpl implements CalendarService {
 
     @Override
     public void addCalendar(Calendar calendar) {
+
         calendarDAO.addCalendar(calendar);
     }
 
