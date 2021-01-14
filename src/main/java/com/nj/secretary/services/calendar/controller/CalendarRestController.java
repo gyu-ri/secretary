@@ -22,14 +22,16 @@ public class CalendarRestController {
                                       @RequestParam("endDate") String end){
         System.out.println("getCalendarList Rest Start");
         Calendar calendar = new Calendar();
-        calendar.setStartDate(start);
-        calendar.setEndDate(end);
-        calendar.setUserId("윤도영");
+        calendar.setStart(start);
+        calendar.setEnd(end);
+        calendar.setUsername("윤도영");
         List<Calendar> list = calendarService.getCalendarList(calendar);
 
         for(Calendar test:list){
-            System.out.println(test);
+            JSONObject jsonObject = new JSONObject(test);
+            System.out.println(jsonObject);
         }
+
         JSONArray jsonArray = new JSONArray(list);
         System.out.println(jsonArray);
         return list;
@@ -37,8 +39,11 @@ public class CalendarRestController {
 
     @PostMapping("addCalendar")
     public String addCalendar(@RequestBody Calendar calendar){
-
+        System.out.println(calendar);
         System.out.println("REST까지 왔다.");
+        calendar.setStart(calendar.getStart().replace(" ","T"));
+        calendar.setEnd(calendar.getEnd().replace(" ","T"));
+        System.out.println(calendar);
         calendarService.addCalendar(calendar);
         return "obj";
 

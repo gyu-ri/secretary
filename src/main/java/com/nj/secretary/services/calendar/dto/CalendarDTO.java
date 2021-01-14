@@ -24,7 +24,6 @@ public class CalendarDTO {
                     this.startDate,
                     this.endDate,
                     this.backgoundColor,
-                    this.type,
                     this.allDay
             );
         }
