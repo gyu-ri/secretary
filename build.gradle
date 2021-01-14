@@ -34,7 +34,6 @@ dependencies {
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile group: 'org.json', name: 'json', version: '20180813'
-
 }
 
 test {
