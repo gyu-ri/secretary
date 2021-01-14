@@ -38,10 +38,10 @@ var newEvent = function (start, end, eventType) {
 
         var eventData = {
             userId: '윤도영',
-            calendarTitle: editTitle.val(),
-            startDate: editStart.val(),
-            endDate: editEnd.val(),
-            calendarDetail: editDesc.val(),
+            title: editTitle.val(),
+            start: editStart.val(),
+            end: editEnd.val(),
+            description: editDesc.val(),
             type: editType.val(),
             userName: '도영',
             backgroundColor: editColor.val(),

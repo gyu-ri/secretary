@@ -116,13 +116,16 @@ var calendar = $('#calendar').fullCalendar({
       success: function (response) {
           alert(response);
         var fixedDate = response.map(function (array) {
+
           if (array.allDay && array.startDate !== array.endDate) {
             array.endDate = moment(array.endDate).add(1, 'days'); // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
           }
           return array;
         });
-
+        alert(fixedDate);
+        console.log(fixedDate);
         callback(fixedDate);
+
       }
     });
   },
