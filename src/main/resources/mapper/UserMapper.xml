@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-</beans>
+<mapper namespace="UserMapper">
 
+    <resultMap id="userSelectMap" type="user">
+        <result property="userId" column="user_id" jdbcType="varchar"/>
+        <result property="withdrawalReasonId" column="withdrawal_reason_id" jdbcType="numeric"/>
+        <result property="motto" column="motto" jdbcType="varchar"/>
+        <result property="password" column=""/>
+
+    </resultMap>
+
+    <insert id="addUser" parameterType="com.nj.secretary.services.user.domain">
+
+        insert into USERS(user_name, user_Id, password, nickname , email)
+        values('${userName}','${userId}','${password}','${nickname}','${email}')
+
+    </insert>
+
+</mapper>
