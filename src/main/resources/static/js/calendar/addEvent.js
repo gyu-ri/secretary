@@ -37,13 +37,13 @@ var newEvent = function (start, end, eventType) {
     $('#save-event').on('click', function () {
 
         var eventData = {
-            _id: 'qkzld13',
-            title: editTitle.val(),
+            _id: '윤도영',
+            calendarTitle: editTitle.val(),
             start: editStart.val(),
             end: editEnd.val(),
-            description: editDesc.val(),
+            calendarDetail: editDesc.val(),
             type: editType.val(),
-            username: '도영',
+            userName: '도영',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: false

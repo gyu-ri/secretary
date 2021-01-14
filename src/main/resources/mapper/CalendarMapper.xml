@@ -9,5 +9,10 @@
 
     </resultMap>
 
+    <insert id="addCalendar" parameterType="com.nj.secretary.services.calendar.domain.Calendar">
+        INSERT INTO calendar()
+
+    </insert>
+
 
 </mapper>
