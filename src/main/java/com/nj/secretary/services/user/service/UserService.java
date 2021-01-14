@@ -15,7 +15,7 @@ Service Layer단에서 세분화된 비즈니스로직을 처리하는 객체
 public interface UserService{
 
     @Transactional
-    public void addUser(User user) throws Exception;
+    public void addUser(User user) throws Exception;//주석
 
     //Select One
     public User getUser(String userId) throws Exception;
