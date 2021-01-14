@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nj.secretary.services.calendar.service.CalendarService">
+
+    <resultMap id="calendarServiceMap" type="com.nj.secretary.services.calendar.domain.Calendar">
+        <result property="userId" column="userId" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <insert id="addCalendar" parameterType="com.nj.secretary.services.calendar.domain.Calendar">
+        INSERT INTO calendar()
+
+    </insert>
+
+
+</mapper>
