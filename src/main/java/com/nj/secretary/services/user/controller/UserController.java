@@ -17,16 +17,16 @@ public class UserController {
     @Qualifier("userServiceImpl")
     private UserService userService;
 
-    @GetMapping("/singUp")
+    @GetMapping("/signUp")
     public String signUp() throws Exception{
 
-        return "addUser";
+        return "user/addUser";
     }
 
-    @PostMapping("/singUp")
+    @PostMapping("/signUp")
     public String signUp01(User user) throws Exception{
         System.out.println(user);
         userService.addUser(user);
-        return "addUser";
+        return "user/addUser";
     }
 }
