@@ -25,6 +25,7 @@ public class CalendarRestController {
         calendar.setStart(start);
         calendar.setEnd(end);
         calendar.setUsername("윤도영");
+        System.out.println(calendar);
         List<Calendar> list = calendarService.getCalendarList(calendar);
 
         for(Calendar test:list){
