@@ -25,8 +25,14 @@
         select user_id,calendar_id,calendar_title, calendar_detail, start_date, end_date, background_color, all_day
         from calendar
         where start_date &gt;= '${start}' and end_date &lt;='${end}' and user_id='${username}'
-
     </select>
+
+    <update id="updateCalendar" parameterType="com.nj.secretary.services.calendar.domain.Calendar">
+        update calendar set (calendar_title, calendar_detail, start_date, end_date, background_color)
+                        = ('${title}','${description}','${start}','${end}','${backgroundColor')
+        where calendar_id = '${id}'
+
+    </update>
 
 
 </mapper>

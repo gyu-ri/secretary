@@ -15,7 +15,7 @@ public interface CalendarService {
 
     public List<Calendar> getCalendarList(Calendar calendar);
 
-    public Calendar updateCalendar(int calendaerId);
+    public void updateCalendar(Calendar calendar);
 
     public void deleteCalendar(int calendarId);
 }

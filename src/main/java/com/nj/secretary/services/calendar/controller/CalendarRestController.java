@@ -25,6 +25,7 @@ public class CalendarRestController {
         calendar.setStart(start);
         calendar.setEnd(end);
         calendar.setUsername("윤도영");
+        System.out.println(calendar);
         List<Calendar> list = calendarService.getCalendarList(calendar);
 
         for(Calendar test:list){
@@ -38,15 +39,24 @@ public class CalendarRestController {
     }
 
     @PostMapping("addCalendar")
-    public String addCalendar(@RequestBody Calendar calendar){
+    public void addCalendar(@RequestBody Calendar calendar){
         System.out.println(calendar);
-        System.out.println("REST까지 왔다.");
+        System.out.println("addCalendar Start.");
         calendar.setStart(calendar.getStart().replace(" ","T"));
         calendar.setEnd(calendar.getEnd().replace(" ","T"));
         System.out.println(calendar);
         calendarService.addCalendar(calendar);
-        return "obj";
 
+    }
+
+    @PostMapping("updateCalendar")
+    public void updateCalendar(@RequestBody Calendar calendar){
+        System.out.println(calendar);
+        System.out.println("updateCalendar Start");
+        calendar.setStart(calendar.getStart().replace(" ","T"));
+        calendar.setEnd(calendar.getEnd().replace(" ","T"));
+        System.out.println(calendar);
+        calendarService.updateCalendar(calendar);
     }
 
 }
