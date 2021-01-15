@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <title>signUp</title>
 </head>
+<style>
+    body {
+        background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
 <body>
 <h3>login</h3>
-
 <form action="login" method="post">
 
-    id       : <input type="text" name="userId" placeholder="아이디를 입력해주세요"/>  </br>
-    password : <input type="password" name="password" placeholder="비밀번호를 입력해주세요"/>  </br>
+    id       : <input type="text" name="userId" placeholder="아이디를 입력해주세요" required/>  </br>
+    password : <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required/>  </br>
 
     <input type="submit" value="로그인"/>
 
