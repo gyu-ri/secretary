@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="UserMapper">
+<mapper namespace="com.nj.secretary.services.user.service.UserService">
 
-    <resultMap id="userSelectMap" type="user">
+    <resultMap id="userSelectMap" type="com.nj.secretary.services.user.domain.User">
         <result property="userId" column="user_id" jdbcType="VARCHAR"/>
         <result property="withdrawalReasonId" column="withdrawal_reason_id" jdbcType="INTEGER"/>
         <result property="motto" column="motto" jdbcType="VARCHAR"/>
@@ -11,7 +11,7 @@
 
     </resultMap>
 
-    <insert id="addUser" parameterType="com.nj.secretary.services.user.domain">
+    <insert id="addUser" parameterType="com.nj.secretary.services.user.domain.User">
 
         insert into USERS(user_name, user_Id, password, nickname , email)
         values('${userName}','${userId}','${password}','${nickname}','${email}')
