@@ -36,9 +36,9 @@ public class CalendarServiceImpl implements CalendarService {
     }
 
     @Override
-    public Calendar updateCalendar(int calendarId) {
+    public void updateCalendar(Calendar calendar) {
+        calendarDAO.updateCalendar(calendar);
 
-        return calendarDAO.updateCalendar(calendarId);
     }
 
     @Override

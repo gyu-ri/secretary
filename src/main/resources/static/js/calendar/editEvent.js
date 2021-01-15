@@ -3,7 +3,7 @@
  * ************** */
 var editEvent = function (event, element, view) {
 
-    $('#deleteEvent').data('id', event._id); //클릭한 이벤트 ID
+    $('#deleteEvent').data('id', event.id); //클릭한 이벤트 ID
 
     $('.popover.fade.top').remove();
     $(element).popover("hide");
@@ -25,6 +25,7 @@ var editEvent = function (event, element, view) {
     }
 
     modalTitle.html('일정 수정');
+
     editTitle.val(event.title);
     editStart.val(event.start.format('YYYY-MM-DD HH:mm'));
     editType.val(event.type);
@@ -55,12 +56,12 @@ var editEvent = function (event, element, view) {
         var displayDate;
 
         if (editAllDay.is(':checked')) {
-            statusAllDay = true;
+            statusAllDay = '1';
             startDate = moment(editStart.val()).format('YYYY-MM-DD');
             endDate = moment(editEnd.val()).format('YYYY-MM-DD');
             displayDate = moment(editEnd.val()).add(1, 'days').format('YYYY-MM-DD');
         } else {
-            statusAllDay = false;
+            statusAllDay = '0';
             startDate = editStart.val();
             endDate = editEnd.val();
             displayDate = endDate;
@@ -77,13 +78,14 @@ var editEvent = function (event, element, view) {
         event.description = editDesc.val();
 
         $("#calendar").fullCalendar('updateEvent', event);
-
+        console.log(event);
         //일정 업데이트
         $.ajax({
-            type: "get",
-            url: "",
+            type: "POST",
+            contentType:"application/json",
+            url: "/restCalendar/updateCalendar",
             data: {
-                //...
+
             },
             success: function (response) {
                 alert('수정되었습니다.')
