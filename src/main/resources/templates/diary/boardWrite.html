@@ -1,8 +1,9 @@
 
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- include libraries(jQuery, bootstrap) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +18,7 @@
     <script src="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/summernote-lite.js"></script>
     <script src="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/summernote-lite.css">
+    <link type="text/css" rel="stylesheet" href="css/weather-icons.min.css">
     <title>글쓰기</title>
     <style>
         body {
@@ -27,7 +29,7 @@
             text-align: center;
         }
     </style>
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#summernote').summernote({
                 placeholder: 'content',
@@ -36,6 +38,7 @@
                 focus: true,
                 lang : 'ko-KR'
             });
+
         });
         function goWrite(frm){
             var title = frm.title.value;
@@ -49,28 +52,102 @@
                 alert("내용을 입력해주세요");
                 return false;
             }
-            frm.submit();
+            $("form").attr("method", "POST").attr("action", "/diary/addDiary").submit();
         }
-        $(function (){
-            $("input.subBtn").on("click", function (){
-                $("form").attr("method", "POST").attr("action", "/diary/addDiary").submit();
-            });
+
+
+        $(function geoFindMe() {
+
+            const status = document.querySelector('#status');
+            const mapLink = document.querySelector('#map-link');
+            const iconElement = document.querySelector(".weather-icon");
+
+            mapLink.href = '';
+            mapLink.textContent = '';
+
+            function success(position) {
+                var latitude  = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                const coordsObj = {
+                    latitude,
+                    longitude
+                };
+                var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon="+ longitude + "&appid=7d9ec3e89f78fa3eef02069216cce88c&units=metric";
+
+
+                //saveCoords(coordsObj);
+                getWeather(latitude, longitude);
+
+            }
+
+
+
+            function error() {
+                status.textContent = 'Unable to retrieve your location';
+            }
+
+            if(!navigator.geolocation) {
+                status.textContent = 'Geolocation is not supported by your browser';
+            } else {
+                status.textContent = '';
+                navigator.geolocation.getCurrentPosition(success, error);
+            }
+
+            function getWeather(lat, lon){
+                fetch(
+                    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7d9ec3e89f78fa3eef02069216cce88c&units=metric`
+                )
+                    .then(function(response){
+                        return response.json();
+                    })
+                    .then(function(json){
+                        console.log(json);
+                        const temparature = String(json.main.temp).substring(0,1);  //온도
+                        const place = json.name;   // 사용자 위치
+                        var icon = json.weather[0].icon;
+                        weather.innerText = `${temparature} `;
+                        $('#test').append(`${place}`)
+
+                        $(".pic").removeClass("pic").addClass(icon);
+                        var imgURL = "/images/weather/" + icon + ".png";
+                        $('#img').attr("src", imgURL);
+                    });
+
+
+            }
         });
+
+        document.querySelector('#find-me').addEventListener('click', geoFindMe);
+
     </script>
 </head>
 <body>
 <form name="writeDiary">
+
+    <p id = "status"></p>
+    <a id = "map-link" target="_blank"></a>
+    <div id="temp" style="float: right; padding-left: 10px; padding-right: 10px;">	&#8451;</div> &nbsp;
+    <div id="weather" style="float: right; padding-left: 20px"></div>
+    <img src="" id="img" width="20" height="20" style="float: right;"/>
+    <div id="test" style="float: right; padding-left: 10px; padding-right: 20px;">&#127759;          </div>
+
+    <br><br>
+
+
 <h2 style="text-align: center; margin-top: 50px">일기 작성</h2><br><br><br>
 
 <div style="width: 60%; margin: auto;">
     <form method="post" action="/write">
-        <input type="text" id="title" style="width: 40%;" placeholder="제목"/>
+        <input type="text" id="diaryTitle" name="diaryTitle" style="width: 40%;" placeholder="제목"/>
         <br><br>
-        <textarea id="summernote" name="content">
+        <textarea id="summernote" name="diaryText">
 
 
         </textarea>
         <input id="subBtn" class="subBtn" type="submit" value="작성완료" style="text-align: center" onclick="goWrite(this.form)"/>
+
+
+
     </form>
 </div>
 </form>

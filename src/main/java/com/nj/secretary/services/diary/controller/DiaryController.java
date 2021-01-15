@@ -6,16 +6,19 @@ import com.nj.secretary.services.diary.service.DiaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/diary/*")
 public class DiaryController {
+
     @Autowired
-    @Qualifier("diaryServiceImpl")
     DiaryService diaryService;
 
     @GetMapping("addDiary")
@@ -24,7 +27,7 @@ public class DiaryController {
     }
 
     @PostMapping("addDiary")
-    public String getDiary(@ModelAttribute("diary") Diary diary){
+    public String getDiary(@ModelAttribute("diary") Diary diary, Model model){
         diaryService.addDiary(diary);
         System.out.println("다이어리 추가 완료");
 
