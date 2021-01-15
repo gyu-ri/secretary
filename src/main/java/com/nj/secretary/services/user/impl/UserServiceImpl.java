@@ -1,6 +1,5 @@
 package com.nj.secretary.services.user.impl;
 
-import com.nj.secretary.services.user.dto.UserDTO;
 import com.nj.secretary.services.user.repository.UserDAO;
 import com.nj.secretary.services.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +14,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     @Qualifier("UserDAOImpl")
-    UserDAO userDAO;
+    private UserDAO userDAO;
 
+    //constructor
     public UserServiceImpl(){
     }
-
+    //method
     @Override
     public void addUser(User user) throws Exception {
         userDAO.addUser(user);

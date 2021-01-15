@@ -4,7 +4,6 @@ import com.nj.secretary.services.user.domain.User;
 import com.nj.secretary.services.user.repository.UserDAO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.List;
 public class UserDAOImpl implements UserDAO {
 
     @Autowired
-    SqlSession sqlSession;
+    private SqlSession sqlSession;
 
     @Override
     public void addUser(User user) throws Exception {
@@ -32,7 +31,6 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void updateUser() throws Exception {
-
     }
 
     @Override
