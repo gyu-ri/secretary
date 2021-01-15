@@ -69,24 +69,33 @@ var editEvent = function (event, element, view) {
 
         eventModal.modal('hide');
 
-        event.allDay = statusAllDay;
-        event.title = editTitle.val();
-        event.start = startDate;
-        event.end = displayDate;
-        event.type = editType.val();
-        event.backgroundColor = editColor.val();
-        event.description = editDesc.val();
-
-        $("#calendar").fullCalendar('updateEvent', event);
-        console.log(event);
+        // event.allDay = statusAllDay;
+        // event.title = editTitle.val();
+        // event.start = startDate;
+        // event.end = displayDate;
+        // event.type = editType.val();
+        // event.backgroundColor = editColor.val();
+        // event.description = editDesc.val();
+        var eventData = {
+            id: event.id.val(),
+            title: editTitle.val(),
+            start: startDate,
+            end: displayDate,
+            description: editDesc.val(),
+            type: editType.val(),
+            username: '윤도영',
+            backgroundColor: editColor.val(),
+            textColor: '#ffffff',
+            allDay: statusAllDay
+        };
+        $("#calendar").fullCalendar('updateEvent', eventData);
+        console.log(eventData);
         //일정 업데이트
         $.ajax({
             type: "POST",
             contentType:"application/json",
             url: "/restCalendar/updateCalendar",
-            data: {
-
-            },
+            data: JSON.stringify(eventData),
             success: function (response) {
                 alert('수정되었습니다.')
             }

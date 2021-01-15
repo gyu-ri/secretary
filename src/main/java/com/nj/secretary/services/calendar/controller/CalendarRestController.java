@@ -56,7 +56,7 @@ public class CalendarRestController {
         calendar.setStart(calendar.getStart().replace(" ","T"));
         calendar.setEnd(calendar.getEnd().replace(" ","T"));
         System.out.println(calendar);
-       // calendarService.updateCalendar(calendar);
+        calendarService.updateCalendar(calendar);
     }
 
 }
