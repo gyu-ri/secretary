@@ -26,8 +26,9 @@ public class DiaryController {
         return "diary/emotion";
     }
 
-    @PostMapping("addDiary")
-    public String getDiary(@ModelAttribute("diary") Diary diary, Model model){
+    @PostMapping("addDiarys")
+    public String addDiary(@ModelAttribute("diary") Diary diary, Model model){
+        System.out.println("diary : " + diary);
         diaryService.addDiary(diary);
         System.out.println("다이어리 추가 완료");
 
@@ -35,10 +36,10 @@ public class DiaryController {
     }
 
     @GetMapping("write")
-    public String writeDiary(){
+    public String writeDiary(Diary diary){
+        System.out.println("들어왔다 가야지");
         return "diary/boardWrite";
     }
-
 
 
 }
