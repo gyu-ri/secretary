@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,10 +25,17 @@ public class DiaryController {
     }
 
     @PostMapping("addDiary")
-    public void getDiary(Diary diary){
+    public String getDiary(@ModelAttribute("diary") Diary diary){
         diaryService.addDiary(diary);
         System.out.println("다이어리 추가 완료");
-        }
+
+        return "redirect:/diary/addDiaryView";
+    }
+
+    @GetMapping("write")
+    public String writeDiary(){
+        return "diary/boardWrite";
+    }
 
 
 
