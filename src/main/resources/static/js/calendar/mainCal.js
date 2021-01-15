@@ -128,8 +128,11 @@ var calendar = $('#calendar').fullCalendar({
     });
   },
 
-  eventAfterAllRender: function (view) {
+  eventAfterAllRender: function (event,eventElement,view) {
     if (view.name == "month") $(".fc-content").css('height', 'auto');
+    if (event.imageUrl){
+        eventElement.find("span.fc-title").prepend("<img src='" + event.imageurl + "'>");
+    }
   },
 
   //일정 리사이즈
