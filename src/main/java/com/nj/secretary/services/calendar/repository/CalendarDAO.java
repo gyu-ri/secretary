@@ -11,7 +11,7 @@ public interface CalendarDAO {
 
     public Calendar getCalendar(int calendarId);
 
-    public List<Calendar> getCalendarList(User userId);
+    public List<Calendar> getCalendarList(Calendar calendar);
 
     public Calendar updateCalendar(int calendaerId);
 

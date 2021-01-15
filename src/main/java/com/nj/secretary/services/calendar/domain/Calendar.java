@@ -1,35 +1,42 @@
 package com.nj.secretary.services.calendar.domain;
 
+import lombok.Data;
+
 import java.sql.Date;
 
+@Data
 public class Calendar {
 
-    private int calendarId;
-    private String userId;
-    private String calendarTitle;
-    private String calendarDetail;
-    private Date startDate;
-    private Date endDate;
-    private String startTime;
-    private String endTime;
+    private int id;
+    private String username;
+    private String title;
+    private String description;
+    private String start;
+    private String end;
     private String backgroundColor;
-    private String type;
-    private Boolean allDay;
+
+    private String allDay;
 
     //basic
     public Calendar(){}
 
     //addCalendar
-    public Calendar(String userId,String calendarTitle,String calendarDetail,Date startDate,Date endDate,String backgoundColor,String type,Boolean allDay) {
+    public Calendar(String userId,String title,String description,String start,String end,String backgoundColor,String allDay) {
 
-        this.userId = userId;
-        this.calendarTitle = calendarTitle;
-        this.calendarDetail = calendarDetail;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.username = userId;
+        this.title = title;
+        this.description = description;
+        this.start = start;
+        this.end = end;
         this.backgroundColor = backgoundColor;
-        this.type = type;
+
         this.allDay = allDay;
 
+    }
+
+    public Calendar(String userId, String start, String end) {
+        this.username = userId;
+        this.start = start;
+        this.end = end;
     }
 }

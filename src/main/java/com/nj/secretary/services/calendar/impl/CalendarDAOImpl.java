@@ -18,7 +18,7 @@ public class CalendarDAOImpl implements CalendarDAO {
     @Override
     public void addCalendar(Calendar calendar) {
         System.out.println("addCalendar DAO Impl Start");
-
+        sqlSession.insert("CalendarMapper.addCalendar",calendar);
     }
 
     @Override
@@ -27,8 +27,9 @@ public class CalendarDAOImpl implements CalendarDAO {
     }
 
     @Override
-    public List<Calendar> getCalendarList(User userId) {
-        return null;
+    public List<Calendar> getCalendarList(Calendar calendar) {
+
+        return sqlSession.selectList("CalendarMapper.getCalendarList",calendar);
     }
 
     @Override
