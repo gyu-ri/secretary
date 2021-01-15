@@ -1,4 +1,8 @@
 package com.nj.secretary.services.diary.service;
 
-public class DiaryService {
+import com.nj.secretary.services.diary.domain.Diary;
+
+public interface DiaryService {
+
+    public void addDiary(Diary diary);
 }

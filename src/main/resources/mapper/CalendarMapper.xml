@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nj.secretary.services.calendar.service.CalendarService">
+
+    <resultMap id="calendarServiceMap" type="com.nj.secretary.services.calendar.domain.Calendar">
+        <result property="username" column="USER_ID" jdbcType="VARCHAR"/>
+        <result property="id" column="CALENDAR_ID" jdbcType="INTEGER"/>
+        <result property="title" column="CALENDAR_TITLE" jdbcType="VARCHAR"/>
+        <result property="description" column="CALENDAR_DETAIL" jdbcType="VARCHAR"/>
+        <result property="start" column="START_DATE" jdbcType="VARCHAR"/>
+        <result property="end" column="END_DATE" jdbcType="VARCHAR"/>
+        <result property="backgroundColor" column="BACKGROUND_COLOR" jdbcType="VARCHAR"/>
+        <result property="allDay" column="ALL_DAY" jdbcType="VARCHAR"/>
+
+    </resultMap>
+
+    <insert id="addCalendar" parameterType="com.nj.secretary.services.calendar.domain.Calendar">
+        INSERT INTO calendar (CALENDAR_ID,USER_ID,CALENDAR_TITLE,CALENDAR_DETAIL,START_DATE,END_DATE,BACKGROUND_COLOR,ALL_DAY)
+        values (calendar_seq.nextval,'${username}','${title}','${description}','${start}','${end}','${backgroundColor}','${allDay}')
+
+    </insert>
+
+    <select id="getCalendarList" resultMap="calendarServiceMap">
+        select user_id,calendar_id,calendar_title, calendar_detail, start_date, end_date, background_color, all_day
+        from calendar
+        where start_date &gt;= '${start}' and end_date &lt;='${end}' and user_id='${username}'
+
+    </select>
+
+
+</mapper>
