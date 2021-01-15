@@ -19,6 +19,7 @@ public class UserServiceImpl implements UserService {
     //constructor
     public UserServiceImpl(){
     }
+
     //method
     @Override
     public void addUser(User user) throws Exception {
@@ -27,7 +28,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String userId) throws Exception {
-        return null;
+        return userDAO.getUser(userId);
     }
 
     @Override
