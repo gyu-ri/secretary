@@ -59,4 +59,16 @@ public class CalendarRestController {
         calendarService.updateCalendar(calendar);
     }
 
+    @PostMapping("moveCalendar")
+    public void moveCalendar(@RequestBody Calendar calendar){
+        System.out.println("TEST : "+calendar);
+        calendarService.moveCalendar(calendar);
+    }
+
+    @PostMapping("deleteCalendar")
+    public void deleteCalendar(@RequestBody Calendar calendar){
+        System.out.println(calendar);
+        calendarService.deleteCalendar(calendar.getId());
+    }
+
 }

@@ -174,16 +174,15 @@ var calendar = $('#calendar').fullCalendar({
 
     // 드랍시 수정된 날짜반영
     var newDates = calDateWhenDragnDrop(event);
-
+    console.log(newDates)
     //드롭한 일정 업데이트
     $.ajax({
-      type: "get",
-      url: "",
-      data: {
-        //...
-      },
+      type: "POST",
+      url: "/restCalendar/moveCalendar",
+      contentType:"application/json",
+      data:JSON.stringify(newDates) ,
       success: function (response) {
-        alert('수정: ' + newDates.startDate + ' ~ ' + newDates.endDate);
+        alert('수정: ' + newDates.start + ' ~ ' + newDates.end);
       }
     });
 
@@ -310,8 +309,9 @@ function calDateWhenResize(event) {
 function calDateWhenDragnDrop(event) {
   // 드랍시 수정된 날짜반영
   var newDates = {
-    startDate: '',
-    endDate: ''
+    start: '',
+    end: '',
+    id:event.id
   }
 
   // 날짜 & 시간이 모두 같은 경우
@@ -322,20 +322,20 @@ function calDateWhenDragnDrop(event) {
   //하루짜리 all day
   if (event.allDay && event.end === event.start) {
     console.log('1111')
-    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
-    newDates.endDate = newDates.startDate;
+    newDates.start = moment(event.start._d).format('YYYY-MM-DD');
+    newDates.end = newDates.start;
   }
 
   //2일이상 all day
   else if (event.allDay && event.end !== null) {
-    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD');
-    newDates.endDate = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
+    newDates.start = moment(event.start._d).format('YYYY-MM-DD');
+    newDates.end = moment(event.end._d).subtract(1, 'days').format('YYYY-MM-DD');
   }
 
   //all day가 아님
   else if (!event.allDay) {
-    newDates.startDate = moment(event.start._d).format('YYYY-MM-DD HH:mm');
-    newDates.endDate = moment(event.end._d).format('YYYY-MM-DD HH:mm');
+    newDates.start = moment(event.start._d).format('YYYY-MM-DD HH:mm');
+    newDates.end = moment(event.end._d).format('YYYY-MM-DD HH:mm');
   }
 
   return newDates;

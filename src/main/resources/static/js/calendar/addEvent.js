@@ -1,5 +1,5 @@
 var eventModal = $('#eventModal');
-
+var editId = $('#edit-id');
 var modalTitle = $('.modal-title');
 var editAllDay = $('#edit-allDay');
 var editTitle = $('#edit-title');
@@ -26,7 +26,7 @@ var newEvent = function (start, end, eventType) {
     editStart.val(start);
     editEnd.val(end);
     editDesc.val('');
-    
+    editId.val();
     addBtnContainer.show();
     modifyBtnContainer.hide();
     eventModal.modal('show');

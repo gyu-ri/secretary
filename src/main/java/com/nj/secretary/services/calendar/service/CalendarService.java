@@ -18,4 +18,6 @@ public interface CalendarService {
     public void updateCalendar(Calendar calendar);
 
     public void deleteCalendar(int calendarId);
+
+    public void moveCalendar(Calendar calendar);
 }

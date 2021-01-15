@@ -40,6 +40,11 @@ public class CalendarDAOImpl implements CalendarDAO {
 
     @Override
     public void deleteCalendar(int calendarId) {
+        sqlSession.delete("CalendarMapper.deleteCalendar",calendarId);
+    }
 
+    @Override
+    public void moveCalendar(Calendar calendar) {
+        sqlSession.update("CalendarMapper.moveCalendar",calendar);
     }
 }
