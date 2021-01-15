@@ -22,7 +22,7 @@ var calendar = $('#calendar').fullCalendar({
                               },
   eventLimitClick           : 'week', //popover
   navLinks                  : true,
-  defaultDate               : moment('2019-05'), //실제 사용시 현재 날짜로 수정
+  defaultDate               : moment().format("YYYY-MM-DD"), //실제 사용시 현재 날짜로 수정
   timeFormat                : 'HH:mm',
   defaultTimedEventDuration : '01:00:00',
   editable                  : true,
@@ -114,18 +114,16 @@ var calendar = $('#calendar').fullCalendar({
         endDate   : moment(end).format('YYYY-MM-DD')
       },
       success: function (response) {
-          alert(response);
-        var fixedDate = response.map(function (array) {
 
+        var fixedDate = response.map(function (array) {
           if (array.allDay && array.startDate !== array.endDate) {
             array.endDate = moment(array.endDate).add(1, 'days'); // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
           }
+
           return array;
         });
-        alert(fixedDate);
         console.log(fixedDate);
         callback(fixedDate);
-
       }
     });
   },
@@ -288,7 +286,7 @@ function filtering(event) {
     }
   }
 
-  return show_username && show_type;
+  return true;
 }
 
 function calDateWhenResize(event) {
