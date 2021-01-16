@@ -1,14 +1,22 @@
 package com.nj.secretary.services.user.controller;
 
+//import com.nj.secretary.services.user.domain.JavaMailSendar;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import com.nj.secretary.services.user.domain.User;
 import com.nj.secretary.services.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user/*")
@@ -16,6 +24,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private JavaMailSender mailSender;
 
     @GetMapping("/signUp")
     public String signUp() throws Exception{
@@ -58,8 +68,34 @@ public class UserController {
         return "home";
     }
 
-//    @GetMapping("/findId")
-//    public String findId(User user) throws Exception{
-//
-//    }
+    @GetMapping ("/email")
+    public String emailPage() throws Exception{
+        return "user/findId";
+    }
+
+    @PostMapping("/findId")
+    public ModelAndView sendEmailAction(@RequestParam Map<String,Object> paramMap, ModelMap model, ModelAndView mv) throws Exception{
+
+        String USERNAME = (String) paramMap.get("username");
+        String EMAIL = (String) paramMap.get("email");
+        String USERID = "1111";
+
+        try{
+            MimeMessage msg = mailSender.createMimeMessage();
+            MimeMessageHelper messageHelper = new MimeMessageHelper(msg,true,"UTF-8");
+
+            messageHelper.setSubject(USERNAME+"님 아이디찾기 메일입니다.");
+            messageHelper.setText("아이디는"+USERID+"입니다.");
+            messageHelper.setTo(EMAIL);
+            msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(EMAIL));
+            mailSender.send(msg);
+        }catch (MessagingException e){
+            System.out.println("MessagingException");
+            e.printStackTrace();
+        }
+        //mv.setViewName("redirect:/emailSuccess");
+        mv.setViewName("emailSuccess");
+        return mv;
+    }
+
 }

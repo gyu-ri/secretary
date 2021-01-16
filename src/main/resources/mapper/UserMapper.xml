@@ -48,4 +48,10 @@
 
     </select>
 
+    <select id="findId" parameterType="string" resultType="com.nj.secretary.services.user.domain.User">
+    select user_name, email
+    from users
+    where user_name=#{userName} and email=#{email}
+    </select>
+
 </mapper>
