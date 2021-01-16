@@ -45,4 +45,9 @@ public class UserServiceImpl implements UserService {
     public int deleteUser() throws Exception {
         return 0;
     }
+
+    @Override
+    public int idCheck(String userId) throws Exception {
+        return userDAO.idCheck(userId);
+    }
 }

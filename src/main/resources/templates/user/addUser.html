@@ -5,39 +5,40 @@
     <title>signUp</title>
     <meta charset="UTF-8">
     <script type="text/javascript">
+
         function idCheck() {
-
-            var memberId = $("#memberId").val();
-
-            if(memberId.search(/\s/) != -1) {
-                alert("아이디에는 공백이 들어갈 수 없습니다.");
-            } else {
-                if(memberId.trim().length != 0) {
-                    $.ajax({
-                        async : true,
-                        type : 'POST',
-                        data: memberId,
-                        url: "/idCheck",
-                        dataType: "json",
-                        contentType: "application/json; charset=UTF-8",
-                        success: function(count) {
-                            if(count > 0) {
-                                alert("해당 아이디 존재");
-                                $("#submit").attr("disabled", "disabled");
-                                window.location.reload();
-                            } else {
-                                alert("사용가능 아이디");
-                                $("#submit").removeAttr("disabled");
-                            }
-                        },
-                        error: function(error) {
-                            alert("아이디를 입력해주세요.");
-                        }
-                    });
-                } else {
-                    alert("아이디를 입력해주세요.");
-                }
-            }
+            alert("버튼 눌림");
+            // var userId = $("#userId").val();
+            //
+            // if(userId.search(/\s/) != -1) {
+            //     alert("아이디를 입력해주세요.");
+            // } else {
+            //     if(userId.trim().length != 0) {
+            //         $.ajax({
+            //             async : true, //비동기 방식을 사용하겠다는 의미
+            //             type : 'POST',
+            //             data: userId,
+            //             url: "/idCheck",//controller의  /idCheck로 갈것
+            //             dataType: "json",
+            //             contentType: "application/json; charset=UTF-8",
+            //             success: function(count) {
+            //                 if(count > 0) {
+            //                     alert("이미 존재하는 아이디입니다.");
+            //                     $("#submit").attr("disabled", "disabled");
+            //                     window.location.reload();
+            //                 } else {
+            //                     alert("사용가능한 아이디입니다.");
+            //                     $("#submit").removeAttr("disabled");
+            //                 }
+            //             },
+            //             error: function(error) {
+            //                 alert("아이디를 입력해주세요.");
+            //             }
+            //         });
+            //     } else {
+            //         alert("아이디를 입력해주세요.");
+            //     }
+            // }
         }
     </script>
 
@@ -49,22 +50,20 @@
             background-size: cover;
         }
     </style>
-
 </head>
 <body>
 <h3>signUp</h3>
 
 <form action="signUp" method="post">
-
     id       : <input type="text" name="userId" placeholder="아이디를 입력해주세요" required>
-    <button type="button" onclick="idCheck()">아이디 중복확인</button> </br>
-    name     : <input type="text" name="userName" placeholder="이름을 입력해주세요" required> </br>
-    password : <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required> </br>
-    nickname : <input type="text" name="nickname" placeholder="닉네임을 입력해주세요"> </br>
-    email    : <input type="email" name="email" placeholder="이메일을 입력해주세요" required> </br>
-
+    <button id="idCheck" onclick="idCheck();">아이디 중복확인</button></br>
+    name     : <input type="text" name="userName" placeholder="이름을 입력해주세요" required></br>
+    password : <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required></br>
+    nickname : <input type="text" name="nickname" placeholder="닉네임을 입력해주세요"></br>
+    email    : <input type="email" name="email" placeholder="이메일을 입력해주세요" required></br>
+    <input type="submit" value="회원가입">
 </form>
 
-<input type="submit" value="회원가입">
+
 </body>
 </html>
