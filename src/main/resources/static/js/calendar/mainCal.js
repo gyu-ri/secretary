@@ -128,10 +128,10 @@ var calendar = $('#calendar').fullCalendar({
     });
   },
 
-  eventAfterAllRender: function (event,eventElement,view) {
-    if (view.name == "month") $(".fc-content").css('height', 'auto');
-    if (event.imageUrl){
-        eventElement.find("span.fc-title").prepend("<img src='" + event.imageurl + "'>");
+  eventRender:function(event,eventElement) {
+    // if (view.name == "month") $(".fc-content").css('height', 'auto');
+    if (event.imageUrl!=null){
+        eventElement.find("span.fc-title").prepend("<img width='30px' height='30px' src='" + event.imageUrl + "'>");
     }
   },
 

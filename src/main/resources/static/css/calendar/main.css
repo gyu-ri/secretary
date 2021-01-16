@@ -717,7 +717,6 @@ A HORIZONTAL event
     }
 .fc .fc-daygrid-day-frame {
     position: relative;
-    min-height: 100%; /* seems to work better than `height` because sets height after rows/cells naturally do it */
   }
 .fc {
 

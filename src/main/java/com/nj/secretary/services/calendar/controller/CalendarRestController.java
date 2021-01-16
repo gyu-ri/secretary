@@ -71,7 +71,7 @@ public class CalendarRestController {
     @PostMapping("deleteCalendar")
     public void deleteCalendar(@RequestBody Calendar calendar){
         System.out.println(calendar);
-        calendarService.deleteCalendar(calendar.getId());
+        calendarService.deleteCalendar(calendar.getId()); //Delete Calendar
     }
 
 }

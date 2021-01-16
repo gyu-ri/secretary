@@ -14,7 +14,7 @@ public class Calendar {
     private String start;
     private String end;
     private String backgroundColor;
-
+    private String imageUrl;
     private String allDay;
 
     //basic
