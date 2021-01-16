@@ -21,7 +21,6 @@ public class CalendarController {
     @GetMapping("mainCalendar")
     public String mainCalendarView(){
 
-
         return "calendar/index";
     }
 

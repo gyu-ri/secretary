@@ -28,13 +28,16 @@ public class CalendarRestController {
         System.out.println(calendar);
         List<Calendar> list = calendarService.getCalendarList(calendar);
 
-        for(Calendar test:list){
-            JSONObject jsonObject = new JSONObject(test);
-            System.out.println(jsonObject);
-        }
+//        //JSONObject 만들기
+//        for(Calendar test:list){
+//            JSONObject jsonObject = new JSONObject(test);
+//            System.out.println(jsonObject);
+//        }
+//
+//        //JSONArray 만들기
+//        JSONArray jsonArray = new JSONArray(list);
+//        System.out.println(jsonArray);
 
-        JSONArray jsonArray = new JSONArray(list);
-        System.out.println(jsonArray);
         return list;
     }
 
@@ -42,8 +45,8 @@ public class CalendarRestController {
     public void addCalendar(@RequestBody Calendar calendar){
         System.out.println(calendar);
         System.out.println("addCalendar Start.");
-        calendar.setStart(calendar.getStart().replace(" ","T"));
-        calendar.setEnd(calendar.getEnd().replace(" ","T"));
+        calendar.setStart(calendar.getStart().replace(" ","T"));    //for FullCalendar format
+        calendar.setEnd(calendar.getEnd().replace(" ","T"));    //for FullCalendar format
         System.out.println(calendar);
         calendarService.addCalendar(calendar);
 
@@ -53,14 +56,14 @@ public class CalendarRestController {
     public void updateCalendar(@RequestBody Calendar calendar){
         System.out.println(calendar);
         System.out.println("updateCalendar Start");
-        calendar.setStart(calendar.getStart().replace(" ","T"));
-        calendar.setEnd(calendar.getEnd().replace(" ","T"));
+        calendar.setStart(calendar.getStart().replace(" ","T"));    //for FullCalendar format
+        calendar.setEnd(calendar.getEnd().replace(" ","T"));    //for FullCalendar format
         System.out.println(calendar);
         calendarService.updateCalendar(calendar);
     }
 
     @PostMapping("moveCalendar")
-    public void moveCalendar(@RequestBody Calendar calendar){
+    public void moveCalendar(@RequestBody Calendar calendar){   //Calendar move to other date
         System.out.println("TEST : "+calendar);
         calendarService.moveCalendar(calendar);
     }
@@ -68,7 +71,7 @@ public class CalendarRestController {
     @PostMapping("deleteCalendar")
     public void deleteCalendar(@RequestBody Calendar calendar){
         System.out.println(calendar);
-        calendarService.deleteCalendar(calendar.getId());
+        calendarService.deleteCalendar(calendar.getId()); //Delete Calendar
     }
 
 }

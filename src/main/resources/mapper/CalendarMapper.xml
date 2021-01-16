@@ -16,14 +16,14 @@
     </resultMap>
 
     <insert id="addCalendar" parameterType="com.nj.secretary.services.calendar.domain.Calendar">
-        INSERT INTO calendar (CALENDAR_ID,USER_ID,CALENDAR_TITLE,CALENDAR_DETAIL,START_DATE,END_DATE,BACKGROUND_COLOR,ALL_DAY)
-        values (calendar_seq.nextval,#{username},#{title},#{description},#{start},#{end},#{backgroundColor},#{allDay})
+        INSERT INTO calendar (CALENDAR_ID,USER_ID,CALENDAR_TITLE,CALENDAR_DETAIL,START_DATE,END_DATE,BACKGROUND_COLOR,ALL_DAY,image_url)
+        values (calendar_seq.nextval,#{username},#{title},#{description},#{start},#{end},#{backgroundColor},#{allDay},#{imageUrl})
 
 
     </insert>
 
     <select id="getCalendarList" resultMap="calendarServiceMap">
-        select user_id,calendar_id,calendar_title, calendar_detail, start_date, end_date, background_color, all_day
+        select user_id,calendar_id,calendar_title, calendar_detail, start_date, end_date, background_color, all_day,image_url
         from calendar
         where start_date &gt;= #{start} and end_date &lt;=#{end} and user_id=#{username}
 
