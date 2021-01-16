@@ -3,7 +3,7 @@
 
 <mapper namespace="com.nj.secretary.services.diary.service.DiaryService">
 
-    <resultMap id="calendarServiceMap" type="com.nj.secretary.services.diary.domain.Diary">
+    <resultMap id="diaryServiceMap" type="com.nj.secretary.services.diary.domain.Diary">
         <result property="diaryId" column="DIARY_ID" jdbcType="INTEGER"/>
         <result property="userId" column="USER_ID" jdbcType="VARCHAR"/>
         <result property="emotionNo" column="EMOTION_ID" jdbcType="INTEGER"/>
@@ -24,7 +24,8 @@
 
     <insert id="addDiary" parameterType="com.nj.secretary.services.diary.domain.Diary">
 
-        INSERT INTO DIARY VALUES()
+        INSERT INTO DIARY(diary_id, emotion_id, user_id, blind_status, delete_status, diary_title, diary_text, location, weather_id, like_count, delete_date, share_status, report_count, diary_date, sort_condition)
+        VALUES(diary_seq.nextval, 1, 'user02', default , default , #{diaryTitle}, #{diaryText}, 'bucheon', 1, default , null , default , 0, sysdate, 1)
 
     </insert>
 

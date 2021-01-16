@@ -14,7 +14,9 @@ public class DiaryDAOImpl implements DiaryDAO {
 
     @Override
     public void addDiary(Diary diary){
+
         System.out.println("addDiary in DiaryDAOImpl start");
+        sqlSession.insert("DiaryMapper.addDiary", diary);
     }
 
 }

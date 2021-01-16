@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-@Service("diaryServiceImpl")
+@Service
 public class DiaryServiceImpl implements DiaryService {
 
     @Autowired
@@ -16,6 +16,7 @@ public class DiaryServiceImpl implements DiaryService {
 
     @Override
     public void addDiary(Diary diary){
+
         diaryDAO.addDiary(diary);
     }
 

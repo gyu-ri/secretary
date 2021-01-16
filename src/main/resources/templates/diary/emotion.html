@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,18 +10,46 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
+            text-align: center;
+        }
+        div {
+            margin: 100px 360px 10px;
+            padding: 20px;
+            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.5)  ;
         }
     </style>
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript">
+        $(function (){
+            $('#submit').on("click", function (){
+                self.location = "/diary/write"
+            })
+        })
+    </script>
 </head>
 <body>
+<br><br>
+<h1 align="center">감정을 선택해보세요!</h1>
 
-    <p style="font-size: 100px">&#129409;</p>
-    <p>&#128512;</p>
 <div>
-    <input type="radio" id="좋아" name="감정" value="좋아"> <span style="font-size: 100px"> &#129409; </span>
-    <input type="radio" id="웃픔" name="감정" value="웃픔"> <span style="font-size: 100px"> &#128514; </span>
-    <input type="radio" id="미안" name="감정 " value="미안"> <span style="font-size: 100px"> &#128517; </span>
-
+    <input type="radio" id="기쁨" name="감정" value="기쁨"/> <span style="font-size: 50px"> &#128512; </span>
+    <input type="radio" id="슬픔" name="감정" value="슬픔"/> <span style="font-size: 50px"> &#128549; </span>
+    <input type="radio" id=화남 name="감정" value="화남"/> <span style="font-size: 50px"> &#128545; </span>
+    <input type="radio" id="무표정" name="감정" value="무표정"/> <span style="font-size: 50px"> &#128528; </span><br>
+    <input type="radio" id="심각" name="감정" value="심각"/> <span style="font-size: 50px"> &#129300; </span>
+    <input type="radio" id="힘듦" name="감정" value="힘듦"/> <span style="font-size: 50px"> &#128555; </span>
+    <input type="radio" id="짜증" name="감정" value="짜증"/> <span style="font-size: 50px"> &#128548; </span>
+    <input type="radio" id="신나" name="감정" value="신나"/> <span style="font-size: 50px"> &#128537; </span><br>
+    <input type="radio" id="멘붕" name="감정" value="멘붕"/> <span style="font-size: 50px"> &#128552; </span>
+    <input type="radio" id="설렘" name="감정" value="설렘"/> <span style="font-size: 50px"> &#128525; </span>
+    <input type="radio" id="좌절" name="감정" value="좌절"/> <span style="font-size: 50px"> &#128557; </span>
+    <input type="radio" id="공포" name="감정" value="공포"/> <span style="font-size: 50px"> &#128561; </span><br>
+    <input type="radio" id="놀람" name="감정" value="놀람"/> <span style="font-size: 50px"> &#128562; </span>
+    <input type="radio" id="당황" name="감정" value="당황"/> <span style="font-size: 50px"> &#128527; </span>
+    <input type="radio" id="민망" name="감정 " value="민망"/> <span style="font-size: 50px"> &#128517; </span>
+    <input type="radio" id="아픔" name="감정 " value="아픔"/> <span style="font-size: 50px"> &#129298; </span><br><br><br>
+    <input type="submit" id="submit" value="선택"/>
 
 </div>
 </body>
