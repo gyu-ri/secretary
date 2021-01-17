@@ -4,28 +4,28 @@
 <mapper namespace="com.nj.secretary.services.diary.service.DiaryService">
 
     <resultMap id="diaryServiceMap" type="com.nj.secretary.services.diary.domain.Diary">
-        <result property="diaryId" column="DIARY_ID" jdbcType="INTEGER"/>
+        <result property="diaryId" column="DIARY_ID" jdbcType="NUMERIC"/>
         <result property="userId" column="USER_ID" jdbcType="VARCHAR"/>
-        <result property="emotionNo" column="EMOTION_ID" jdbcType="INTEGER"/>
+        <result property="emotionNo" column="EMOTION_ID" jdbcType="NUMERIC"/>
         <result property="location" column="LOCATION" jdbcType="VARCHAR"/>
         <result property="weather" column="WEATHER_IMG" jdbcType="VARCHAR"/>
         <result property="blindStatus" column="BLIND_STATUS" jdbcType="CHAR"/>
         <result property="deleteStatus" column="DELETE_STATUS" jdbcType="CHAR"/>
         <result property="diaryTitle" column="DIARY_TITLE" jdbcType="VARCHAR"/>
         <result property="diaryText" column="DIARY_TEXT" jdbcType="VARCHAR"/>
-        <result property="likeCount" column="LIKE_COUNT" jdbcType="INTEGER"/>
+        <result property="likeCount" column="LIKE_COUNT" jdbcType="NUMERIC"/>
         <result property="deleteDate" column="DELETE_DATE" jdbcType="DATE"/>
         <result property="shareStatus" column="SHARE_STATUS" jdbcType="CHAR"/>
         <result property="diaryDate" column="DIARY_DATE" jdbcType="DATE"/>
-        <result property="reportCount" column="REPORT_COUNT" jdbcType="INTEGER"/>
-        <result property="sortCondition" column="SORT_CONDITION" jdbcType="INTEGER"/>
+        <result property="reportCount" column="REPORT_COUNT" jdbcType="NUMERIC"/>
+        <result property="sortCondition" column="SORT_CONDITION" jdbcType="NUMERIC"/>
 
     </resultMap>
 
     <insert id="addDiary" parameterType="com.nj.secretary.services.diary.domain.Diary">
 
-        INSERT INTO DIARY(diary_id, emotion_id, user_id, blind_status, delete_status, diary_title, diary_text, location, weather_id, like_count, delete_date, share_status, report_count, diary_date, sort_condition)
-        VALUES(diary_seq.nextval, 1, 'user02', default , default , #{diaryTitle}, #{diaryText}, 'bucheon', 1, default , null , default , 0, sysdate, 1)
+        INSERT INTO DIARY(diary_id, emotion_id, user_id, blind_status, delete_status, diary_title, diary_text, location, weather,  like_count, delete_date, share_status, report_count, diary_date, sort_condition)
+        VALUES(diary_seq.nextval, #{emotionNo}, 'user02', DEFAULT , DEFAULT , #{diaryTitle, jdbcType=VARCHAR}, #{diaryText, jdbcType=VARCHAR}, #{location}, #{weather}, DEFAULT, null, #{shareStatus}, DEFAULT, sysdate, 0)
 
     </insert>
 

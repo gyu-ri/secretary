@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8">
 
     <!-- include libraries(jQuery, bootstrap) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -98,131 +98,191 @@
         }
 
     </style>
-<!--    <script type="text/javascript">-->
-<!--        $(document).ready(function() {-->
-<!--            $('#summernote').summernote({-->
-<!--                placeholder: 'content',-->
-<!--                minHeight: 370,-->
-<!--                maxHeight: null,-->
-<!--                focus: true,-->
-<!--                lang : 'ko-KR'-->
-<!--            });-->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#summernote').summernote({
+                placeholder: 'content',
+                minHeight: 370,
+                maxHeight: null,
+                focus: true,
+                lang : 'ko-KR'
+                // callbacks: {
+                //     onImageUpload: function (files, editor, welEditable) {
+                //
+                //         console.log('image upload:', files);
+                //         alert("before sendfile");
+                //
+                //         sendFile(files[0], this);
+                         // for(var i = files.length - 1; i>=0; i--){
+                         //     sendFile(files[i], this);
+                         //}
+
+                    //}
+
+               // }
+            });
 
 
-<!--                var check = $("input[type='checkbox']");-->
-<!--                check.click(function(){-->
-<!--                $("p.toggle").toggle();-->
-<!--            });-->
-
-<!-- -->
-
-<!--        });-->
-<!--        function goWrite(frm){-->
-<!--            var title = frm.title.value;-->
-<!--            var content = frm.content.value;-->
-
-<!--            if(title.trim() == ''){-->
-<!--                alert("제목을 입력해주세요");-->
-<!--                return false;-->
-<!--            }-->
-<!--            if(content.trim() == ''){-->
-<!--                alert("내용을 입력해주세요");-->
-<!--                return false;-->
-<!--            }-->
-<!--            debugger;-->
-<!--            $("form").attr("method", "POST").attr("action", "/diary/addDiary").submit();-->
-<!--        }-->
-
-
-<!--        $(function geoFindMe() {-->
-
-<!--            const status = document.querySelector('#status');-->
-<!--            const mapLink = document.querySelector('#map-link');-->
-<!--            const iconElement = document.querySelector(".weather-icon");-->
-
-<!--            mapLink.href = '';-->
-<!--            mapLink.textContent = '';-->
-
-<!--            function success(position) {-->
-<!--                var latitude  = position.coords.latitude;-->
-<!--                var longitude = position.coords.longitude;-->
-<!--                const coordsObj = {-->
-<!--                    latitude,-->
-<!--                    longitude-->
-<!--                };-->
-<!--                var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon="+ longitude + "&appid=7d9ec3e89f78fa3eef02069216cce88c&units=metric";-->
-
-
-<!--                //saveCoords(coordsObj);-->
-<!--                getWeather(latitude, longitude);-->
-
-<!--            }-->
+            function sendFile(file,el) {
+                var data = new FormData();
+                data.append('file', file);
+                $.ajax({
+                    data: data,
+                    type: "POST",
+                    url: '/diary/fileUpload',
+                    cache: false,
+                    contentType: false,
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    success: function(data) {
+                        // var obj = JSON.parse(data);
+                        // if (obj.success){}
+                        // $(el).summernote('editor.insertImage', form_data.url , img_name);
+                        //  alert(url);
+                        // editor.insertImage(welEditable, data.url);
+                        // $note.summernote('insertImage', url);
+                        // alert(data);
+                        //  alert("Success");
+                        $(el).summernote('editor.insertImage', data.url);
+                        alert(data.url);
+                        $('#summernote').append('<li><img src="'+data.url+'" width="480" height="auto"/></li>');
+                    }
+                    ,error:function (request,status,error, form_data){
+                        alert("Error");
+                    }
+                });
+            }
 
 
 
-<!--            function error() {-->
-<!--                status.textContent = 'Unable to retrieve your location';-->
-<!--            }-->
+                var check = $("input[type='checkbox']");
+                check.click(function(){
+                $("p.toggle").toggle();
+                // $('#checkbox').is("checked").attr("value", 1);
 
-<!--            if(!navigator.geolocation) {-->
-<!--                status.textContent = 'Geolocation is not supported by your browser';-->
-<!--            } else {-->
-<!--                status.textContent = '';-->
-<!--                navigator.geolocation.getCurrentPosition(success, error);-->
-<!--            }-->
+            });
 
-<!--            function getWeather(lat, lon){-->
-<!--                fetch(-->
-<!--                    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7d9ec3e89f78fa3eef02069216cce88c&units=metric`-->
-<!--                )-->
-<!--                    .then(function(response){-->
-<!--                        return response.json();-->
-<!--                    })-->
-<!--                    .then(function(json){-->
-<!--                        console.log(json);-->
-<!--                        const temparature = String(json.main.temp).substring(0,2);  //온도-->
-<!--                        const place = json.name;   // 사용자 위치-->
-<!--                        var icon = json.weather[0].icon;-->
-
-<!--                        $('#weather').append(`${temparature}`)-->
-<!--                        $('#test').append(`${place}`)-->
-
-<!--                        $(".pic").removeClass("pic").addClass(icon);-->
-<!--                        var imgURL = "/images/weather/" + icon + ".png";-->
-<!--                        $('#img').attr("src", imgURL);-->
-<!--                    });-->
+                const emotion1 = location.href.split("?");
+                const emotion2 = emotion1[1].split("=");
+                const emotion = emotion2[1];
+                $('#emotionNo').attr("value", `${emotion}`);
 
 
-<!--            }-->
-<!--        });-->
+        });
 
-<!--        document.querySelector('#find-me').addEventListener('click', geoFindMe);-->
 
-<!--    </script>-->
+
+        function goWrite(frm){
+            var title = frm.title.value;
+            var content = frm.content.value;
+
+            if(title.trim() == ''){
+                alert("제목을 입력해주세요");
+                return false;
+            }
+            if(content.trim() == ''){
+                alert("내용을 입력해주세요");
+                return false;
+            }
+            debugger;
+            $("form").attr("method", "POST").attr("action", "/diary/addDiary").submit();
+        }
+
+
+        $(function geoFindMe() {
+
+            const status = document.querySelector('#status');
+            const mapLink = document.querySelector('#map-link');
+            const iconElement = document.querySelector(".weather-icon");
+
+            mapLink.href = '';
+            mapLink.textContent = '';
+
+            function success(position) {
+                var latitude  = position.coords.latitude;
+                var longitude = position.coords.longitude;
+                const coordsObj = {
+                    latitude,
+                    longitude
+                };
+                var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon="+ longitude + "&appid=7d9ec3e89f78fa3eef02069216cce88c&units=metric";
+
+
+                //saveCoords(coordsObj);
+                getWeather(latitude, longitude);
+
+            }
+
+
+
+            function error() {
+                status.textContent = 'Unable to retrieve your location';
+            }
+
+            if(!navigator.geolocation) {
+                status.textContent = 'Geolocation is not supported by your browser';
+            } else {
+                status.textContent = '';
+                navigator.geolocation.getCurrentPosition(success, error);
+            }
+
+            function getWeather(lat, lon){
+                fetch(
+                    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=7d9ec3e89f78fa3eef02069216cce88c&units=metric`
+                )
+                    .then(function(response){
+                        return response.json();
+                    })
+                    .then(function(json){
+                        console.log(json);
+                        const temparature = String(json.main.temp).substring(0,2);  //온도
+                        const place = json.name;   // 사용자 위치
+                        var icon = json.weather[0].icon;
+
+                        $('#temparature').append(`${temparature}`)
+                        $('#location').append(`${place}`)
+                        $('#location1').attr("value", `${place}`)
+
+                        $(".pic").removeClass("pic").addClass(icon);
+                        var imgURL = "/images/weather/" + icon + ".png";
+                        $('#img').attr("src", imgURL);
+                        $('#weather').attr("value", imgURL);
+                    });
+
+
+            }
+        });
+
+        document.querySelector('#find-me').addEventListener('click', geoFindMe);
+
+    </script>
 
 
 
 </head>
 <body>
 <!--<form name="writeDiary">-->
-
+<form method="post" action="/diary/addDiarys">
     <p id = "status"></p>
     <a id = "map-link" target="_blank"></a>
-    <div id="temp" style="float: right; padding-left: 10px; padding-right: 10px;">	&#8451;</div> &nbsp;
-    <div id="weather" style="float: right; padding-left: 20px"></div>
+    <div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px;">	&#8451;</div> &nbsp;
+    <div id="temparature" style="float: right; padding-left: 20px"></div>
     <img src="" id="img" width="20" height="20" style="float: right;"/>
-    <div id="test" style="float: right; padding-left: 10px; padding-right: 20px;">&#127759;          </div>
+    <div id="location" style="float: right; padding-left: 10px; padding-right: 20px;">&#127759;          </div>
 
     <br><br>
+<input type="hidden" name="emotionNo" id="emotionNo" value=""/>
+    <input type="hidden" name="location" id="location1" value=""/>
+    <input type="hidden" name="weather" id="weather" value=""/>
 
 
 <h2 style="text-align: center; margin-top: 50px">일기 작성</h2><br><br><br>
-
 <div style="width: 60%; margin: auto;">
-    <form method="post" action="/diary/addDiarys">
+
         <input type="text" id="diaryTitle" name="diaryTitle" style="width: 40%;" placeholder="제목"/>
         <br><br>
         <textarea id="summernote" name="diaryText">
+
 
 
         </textarea>
@@ -230,10 +290,10 @@
         <span style="float: right">
             <span style="color: white">&#9964; 일기공유</span> &nbsp;&nbsp;
         <label class="switch">
-            <input type="checkbox" class="checkbox" width="20" height="10">
+            <input type="checkbox" name="shareStatus" class="checkbox" width="20" height="10">
             <span class="slider round"></span>
         </label>
-        <p class="toggle">OFF</p><p class="toggle" style="display:none;">ON</p>
+        <p class="toggle" >OFF</p><p class="toggle" style="display:none;">ON</p>
         </span>
         <br><br>
         <input id="subBtn" class="subBtn" type="submit" value="작성완료" style="text-align: center" onclick="goWrite(this.form)"/>
@@ -241,7 +301,7 @@
         <br><br><br><br>
 
 
-    </form>
+
 </div>
 
 </form>
