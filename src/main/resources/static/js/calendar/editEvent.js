@@ -25,7 +25,7 @@ var editEvent = function (event, element, view) {
     }
 
     modalTitle.html('일정 수정');
-
+    editId.val(event.id);
     editTitle.val(event.title);
     editStart.val(event.start.format('YYYY-MM-DD HH:mm'));
     editType.val(event.type);
@@ -77,7 +77,7 @@ var editEvent = function (event, element, view) {
         // event.backgroundColor = editColor.val();
         // event.description = editDesc.val();
         var eventData = {
-            id: event.id.val(),
+            id: editId.val(),
             title: editTitle.val(),
             start: startDate,
             end: displayDate,
@@ -98,6 +98,8 @@ var editEvent = function (event, element, view) {
             data: JSON.stringify(eventData),
             success: function (response) {
                 alert('수정되었습니다.')
+                $('#calendar').fullCalendar('removeEvents');
+                $('#calendar').fullCalendar('refetchEvents');
             }
         });
 
@@ -105,21 +107,23 @@ var editEvent = function (event, element, view) {
 };
 
 // 삭제버튼
-$('#deleteEvent').on('click', function () {
+$('#deleteEvent').on('click', function (event) {
     
-    $('#deleteEvent').unbind();
+    //$('#deleteEvent').unbind();
     $("#calendar").fullCalendar('removeEvents', $(this).data('id'));
     eventModal.modal('hide');
-
+    var eventData = {
+        id: editId.val()
+    };
     //삭제시
     $.ajax({
-        type: "get",
-        url: "",
-        data: {
-            //...
-        },
+        type: "POST",
+        contentType:"application/json",
+        url: "/restCalendar/deleteCalendar",
+        data: JSON.stringify(eventData),
         success: function (response) {
             alert('삭제되었습니다.');
+
         }
     });
 

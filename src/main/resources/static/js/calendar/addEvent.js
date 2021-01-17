@@ -1,5 +1,5 @@
 var eventModal = $('#eventModal');
-
+var editId = $('#edit-id');
 var modalTitle = $('.modal-title');
 var editAllDay = $('#edit-allDay');
 var editTitle = $('#edit-title');
@@ -26,7 +26,7 @@ var newEvent = function (start, end, eventType) {
     editStart.val(start);
     editEnd.val(end);
     editDesc.val('');
-    
+    editId.val();
     addBtnContainer.show();
     modifyBtnContainer.hide();
     eventModal.modal('show');
@@ -46,7 +46,8 @@ var newEvent = function (start, end, eventType) {
             username: '윤도영',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
-            allDay: '0'
+            allDay: '0',
+            imageUrl:'../../images/background (1).jpg'
         };
 
         if (eventData.start > eventData.end) {

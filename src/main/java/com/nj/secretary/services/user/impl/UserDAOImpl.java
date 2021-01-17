@@ -16,12 +16,20 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void addUser(User user) throws Exception {
+        System.out.println("addUser UserDAOImpl start");
         sqlSession.insert("UserMapper.addUser",user);
     }
 
     @Override
     public User getUser(String userId) throws Exception {
+        sqlSession.selectOne("UserMapper.getUser",userId);
         return null;
+    }
+
+    @Override
+    public int idCheck(String userId) throws Exception {
+        sqlSession.selectOne("UserMapper.idCheck",userId);
+        return 0;
     }
 
     @Override

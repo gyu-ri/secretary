@@ -22,4 +22,7 @@ public interface UserDAO {
     //Delete
     public int deleteUser() throws Exception;
 
+    //idCheck
+    public int idCheck(String userId) throws Exception;
+
 }
