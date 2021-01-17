@@ -56,14 +56,24 @@
 
 <form action="signUp" method="post">
     id       : <input type="text" name="userId" placeholder="아이디를 입력해주세요" required>
-    <button id="idCheck" onclick="idCheck();">아이디 중복확인</button></br>
-    name     : <input type="text" name="userName" placeholder="이름을 입력해주세요" required></br>
+    <button id="idCheck"  onclick=javascript:idCheck()>아이디 중복확인</button></br>
     password : <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required></br>
+    name     : <input type="text" name="userName" placeholder="이름을 입력해주세요" required></br>
+    email    : <input type="email" name="email" placeholder="이메일을 입력해주세요" required>
+    <button id="checkEmail"  onclick=javascript:checkEmail()>이메일 인증</button></br>
+    certificationNo : <input type="text" name="certificationNo" placeholder="인증번호를 입력해주세요">
+    <button id="resend"  onclick=javascript:resend()>재전송</button>
+    <button id="checkCertificationNo"  onclick=javascript:checkCertificationNo()>인증확인</button></br>
     nickname : <input type="text" name="nickname" placeholder="닉네임을 입력해주세요"></br>
-    email    : <input type="email" name="email" placeholder="이메일을 입력해주세요" required></br>
     <input type="submit" value="회원가입">
 </form>
 
+<input type="button" id="button1" onclick="button1_click();" value="버튼1" />
+<script>
+    function button1_click() {
+        alert("버튼1을 누르셨습니다.");
+    }
+</script>
 
 </body>
 </html>
