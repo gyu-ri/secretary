@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("diaryDAOImpl")
 public class DiaryDAOImpl implements DiaryDAO {
 
@@ -19,4 +21,12 @@ public class DiaryDAOImpl implements DiaryDAO {
         sqlSession.insert("DiaryMapper.addDiary", diary);
     }
 
+    @Override
+    public List<Diary> getDiaryList(String userId) {
+
+        System.out.println("getDiaryList in DiaryDAOImpl start");
+
+        return sqlSession.selectList("DiaryMapper.getDiaryList",userId );
+
+    }
 }

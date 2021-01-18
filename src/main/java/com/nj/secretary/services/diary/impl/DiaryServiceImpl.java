@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class DiaryServiceImpl implements DiaryService {
 
@@ -20,5 +24,15 @@ public class DiaryServiceImpl implements DiaryService {
         diaryDAO.addDiary(diary);
     }
 
+    @Override
+    public Map<String, Object> getDiaryList(String userId) {
+        System.out.println("getDiaryList in DiaryServiceImpl start");
+        List<Diary> list = diaryDAO.getDiaryList(userId);
 
+        Map<String, Object> map = new HashMap<>();
+        map.put("list", list);
+
+        System.out.println("getDiaryList in DiaryServiceImpl finish");
+        return map;
+    }
 }

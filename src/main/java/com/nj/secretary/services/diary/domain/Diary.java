@@ -1,7 +1,10 @@
 package com.nj.secretary.services.diary.domain;
 
-import java.util.Date;
+import lombok.Data;
 
+import java.sql.Date;
+
+@Data
 public class Diary {
     private int diaryId;
     private String userId;
@@ -10,20 +13,20 @@ public class Diary {
     private int locationY;
     private String location;
     private String weather;
-    private boolean blindStatus;
-    private boolean deleteStatus;
+    private char blindStatus;
+    private char deleteStatus;
     private String diaryTitle;
     private String diaryText;
     private int likeCount;
     private Date deleteDate;
-    private boolean shareStatus;
+    private String shareStatus;
     private Date diaryDate;
     private int reportCount;
     private String sortCondition;
 
     public Diary() { }
 
-    public Diary(int diaryId, String userId, int emotionNo, int locationX, int locationY, String location, String weather, boolean blindStatus, boolean deleteStatus, String diaryTitle, String diaryText, int likeCount, Date deleteDate, boolean shareStatus, Date diaryDate, int reportCount, String sortCondition) {
+    public Diary(int diaryId, String userId, int emotionNo, int locationX, int locationY, String location, String weather, char blindStatus, char deleteStatus, String diaryTitle, String diaryText, int likeCount, Date deleteDate, String shareStatus, Date diaryDate, int reportCount, String sortCondition) {
         this.diaryId = diaryId;
         this.userId = userId;
         this.emotionNo = emotionNo;
