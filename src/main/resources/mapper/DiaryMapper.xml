@@ -25,9 +25,14 @@
     <insert id="addDiary" parameterType="com.nj.secretary.services.diary.domain.Diary">
 
         INSERT INTO DIARY(diary_id, emotion_id, user_id, blind_status, delete_status, diary_title, diary_text, location, weather,  like_count, delete_date, share_status, report_count, diary_date, sort_condition)
-        VALUES(diary_seq.nextval, #{emotionNo}, 'user02', DEFAULT , DEFAULT , #{diaryTitle, jdbcType=VARCHAR}, #{diaryText, jdbcType=VARCHAR}, #{location}, #{weather}, DEFAULT, null, #{shareStatus}, DEFAULT, sysdate, 0)
+        VALUES(diary_seq.nextval, #{emotionNo}, 'user02', DEFAULT , DEFAULT , #{diaryTitle, jdbcType=VARCHAR}, #{diaryText, jdbcType=VARCHAR}, #{location}, #{weather}, DEFAULT, null, #{shareStatus}, DEFAULT, #{diaryDate}, 0)
 
     </insert>
 
+    <select id="getDiaryList" parameterType="String">
+        SELECT * FROM DIARY
+        WHERE user_id = #{value}
+
+    </select>
 
 </mapper>

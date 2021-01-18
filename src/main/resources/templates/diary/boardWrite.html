@@ -158,9 +158,10 @@
                 var check = $("input[type='checkbox']");
                 check.click(function(){
                 $("p.toggle").toggle();
+
                 // $('#checkbox').is("checked").attr("value", 1);
 
-            });
+             });
 
                 const emotion1 = location.href.split("?");
                 const emotion2 = emotion1[1].split("=");
@@ -280,22 +281,43 @@
 <div style="width: 60%; margin: auto;">
 
         <input type="text" id="diaryTitle" name="diaryTitle" style="width: 40%;" placeholder="제목"/>
-        <br><br>
+        <p>
+           작성날짜 :  <input type="date" name="diaryDate" required pattern="\d{4}-\d{2}-\d{2}"/>
+        </p>
+            <br><br>
         <textarea id="summernote" name="diaryText">
 
 
 
         </textarea>
-
+    <input type="hidden" name="shareStatus" value="0">
         <span style="float: right">
             <span style="color: white">&#9964; 일기공유</span> &nbsp;&nbsp;
-        <label class="switch">
-            <input type="checkbox" name="shareStatus" class="checkbox" width="20" height="10">
-            <span class="slider round"></span>
-        </label>
-        <p class="toggle" >OFF</p><p class="toggle" style="display:none;">ON</p>
+
+            <label class="switch">
+                <input type="checkbox" name="shareStatus" class="checkbox" width="20" height="10"value="1">
+
+                <span class="slider round"></span>
+            </label>
+            <p class="toggle" value="0">OFF</p><p class="toggle" style="display:none;" value="1">ON</p>
+
+<!--                <label class="switch" >-->
+<!--                     <input type="checkbox" id="checkbox" onclick="toggle(this)" name="shareStatus"/>-->
+<!--                     <span class="slider round" ></span>-->
+<!--                </label>-->
+
         </span>
+<!--    <script>-->
+<!--        function toggle(element){-->
+<!--            console.log(element.checked);-->
+
+<!--        }-->
+
+
+<!--    </script>-->
+
         <br><br>
+
         <input id="subBtn" class="subBtn" type="submit" value="작성완료" style="text-align: center" onclick="goWrite(this.form)"/>
 
         <br><br><br><br>

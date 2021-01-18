@@ -5,17 +5,17 @@ import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.service.DiaryService;
 import com.google.gson.JsonObject;
 import org.apache.commons.io.FileUtils;
-import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -33,17 +33,16 @@ public class DiaryController {
     @PostMapping("addDiarys")
     public String addDiary(@ModelAttribute("diary") Diary diary, Model model){
         System.out.println("shareStatus : " + diary.getShareStatus());
-        if(diary.getShareStatus().equals("on")) {
+
+        if(diary.getShareStatus().trim().equals("0,1")) {
             diary.setShareStatus("1");
-        }else {
-            diary.setShareStatus("0");
         }
         System.out.println("diary : " + diary);
         System.out.println("다이어리 내용들 : " + diary.getDiaryTitle() + diary.getDiaryText());
         diaryService.addDiary(diary);
         System.out.println("다이어리 추가 완료");
 
-        return "redirect:/diary/addDiaryView";
+        return "diary/getDiary";
     }
 
     @GetMapping("write")
@@ -86,6 +85,21 @@ public class DiaryController {
         System.out.println("파일 업로드 끝" + jsonObject);
         return jsonObject;
 
+    }
+
+    @GetMapping(value = "getDiaryList")
+    public String listDiary(HttpSession session, Model model){
+
+        System.out.println("listDiary start in controller");
+        session.setAttribute("userId", "user02");
+
+        System.out.println("session 확인 : " + session.getAttribute("userId"));
+
+        Map<String, Object> map = diaryService.getDiaryList((session.getAttribute("userId")).toString());
+
+        model.addAttribute("list", map.get("list"));
+        System.out.println("listDiary controller 완료");
+        return "diary/getDiaryList";
     }
 
 
