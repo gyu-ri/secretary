@@ -11,8 +11,12 @@ public interface DiaryService {
 
     public void addDiary(Diary diary);
 
-    public Map<String, Object> getDiaryList(String userId);
+    public List<Diary> getDiaryList(String userId);
 
+    public List<Diary> getOthersDiaryList();
 
+    public List<Diary> getDiaryTagList(String userId);
+
+    public List<Diary> moveToBin();
 
 }

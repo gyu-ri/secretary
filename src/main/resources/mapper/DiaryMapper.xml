@@ -8,7 +8,7 @@
         <result property="userId" column="USER_ID" jdbcType="VARCHAR"/>
         <result property="emotionNo" column="EMOTION_ID" jdbcType="NUMERIC"/>
         <result property="location" column="LOCATION" jdbcType="VARCHAR"/>
-        <result property="weather" column="WEATHER_IMG" jdbcType="VARCHAR"/>
+        <result property="weather" column="WEATHER" jdbcType="VARCHAR"/>
         <result property="blindStatus" column="BLIND_STATUS" jdbcType="CHAR"/>
         <result property="deleteStatus" column="DELETE_STATUS" jdbcType="CHAR"/>
         <result property="diaryTitle" column="DIARY_TITLE" jdbcType="VARCHAR"/>
@@ -29,10 +29,10 @@
 
     </insert>
 
-    <select id="getDiaryList" parameterType="String">
+    <select id="getDiaryList" resultMap="diaryServiceMap">
         SELECT * FROM DIARY
         WHERE user_id = #{value}
-
+        ORDER BY diary_date
     </select>
 
 </mapper>

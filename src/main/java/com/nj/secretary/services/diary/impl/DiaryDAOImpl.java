@@ -26,7 +26,24 @@ public class DiaryDAOImpl implements DiaryDAO {
 
         System.out.println("getDiaryList in DiaryDAOImpl start");
 
-        return sqlSession.selectList("DiaryMapper.getDiaryList",userId );
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getDiaryList", userId);
 
+
+        return list;
+    }
+
+    @Override
+    public List<Diary> getDiaryTagList(String userId) {
+        return null;
+    }
+
+    @Override
+    public List<Diary> getOthersDiaryList() {
+        return null;
+    }
+
+    @Override
+    public List<Diary> moveToBin() {
+        return null;
     }
 }

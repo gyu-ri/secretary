@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -95,9 +96,9 @@ public class DiaryController {
 
         System.out.println("session 확인 : " + session.getAttribute("userId"));
 
-        Map<String, Object> map = diaryService.getDiaryList((session.getAttribute("userId")).toString());
-
-        model.addAttribute("list", map.get("list"));
+       List<Diary> list = diaryService.getDiaryList((session.getAttribute("userId")).toString());
+       System.out.println("list : " + list);
+        model.addAttribute("list", list);
         System.out.println("listDiary controller 완료");
         return "diary/getDiaryList";
     }
