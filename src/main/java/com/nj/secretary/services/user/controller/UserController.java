@@ -74,28 +74,34 @@ public class UserController {
     }
 
     @PostMapping("/findId")
-    public ModelAndView sendEmailAction(@RequestParam Map<String,Object> paramMap, ModelMap model, ModelAndView mv) throws Exception{
+    public String sendEmailAction(@RequestParam Map<String,Object> paramMap)
+            throws Exception{
 
-        String USERNAME = (String) paramMap.get("username");
-        String EMAIL = (String) paramMap.get("email");
-        String USERID = "1111";
+        String userName = (String) paramMap.get("userName");
+        String email = (String) paramMap.get("email");
+        System.out.println(userName);
+        User dbUser = userService.findUserId(userName);
+        System.out.println(dbUser);
+        if(email.equals(dbUser.getEmail())){
+            String userId = dbUser.getUserId();
+            System.out.println(userId);
+            try{
+                MimeMessage msg = mailSender.createMimeMessage();
+                MimeMessageHelper messageHelper = new MimeMessageHelper(msg,true,"UTF-8");
 
-        try{
-            MimeMessage msg = mailSender.createMimeMessage();
-            MimeMessageHelper messageHelper = new MimeMessageHelper(msg,true,"UTF-8");
-
-            messageHelper.setSubject(USERNAME+"님 아이디찾기 메일입니다.");
-            messageHelper.setText("아이디는"+USERID+"입니다.");
-            messageHelper.setTo(EMAIL);
-            msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(EMAIL));
-            mailSender.send(msg);
-        }catch (MessagingException e){
-            System.out.println("MessagingException");
-            e.printStackTrace();
+                messageHelper.setSubject(userName+"님 아이디찾기 메일입니다.");//메일 제목
+                messageHelper.setText("아이디는"+userId+"입니다.");//메일 내용
+                messageHelper.setTo(email);
+                msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email));
+                mailSender.send(msg);
+            }catch (MessagingException e){
+                System.out.println("MessagingException");
+                e.printStackTrace();
+            }
+        }else {
+            System.out.println("일치하는 정보 없음");
         }
-        //mv.setViewName("redirect:/emailSuccess");
-        mv.setViewName("emailSuccess");
-        return mv;
+        return "user/emailSuccess";
     }
 
 }
