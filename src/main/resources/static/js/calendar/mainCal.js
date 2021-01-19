@@ -131,7 +131,18 @@ var calendar = $('#calendar').fullCalendar({
   eventRender:function(event,eventElement) {
     // if (view.name == "month") $(".fc-content").css('height', 'auto');
     if (event.imageUrl!=null){
-        eventElement.find("span.fc-title").prepend("<img width='30px' height='30px' src='" + event.imageUrl + "'>");
+        console.log(event.start._i.substring(0,10));
+        var eD = event.start._i.substring(0,10);
+        // eventElement.find("span.fc-title").prepend("<img width='30px' height='30px' src='" + event.imageUrl + "'>");
+        // $("td [data-date='"+eD+"']").prepend("<img width=100% height=100% b src='" + event.imageUrl + "'>");
+        $("td [data-date='"+eD+"']").attr({
+            style:"background-image:url('"+event.imageUrl+"')",
+            width:"auto"
+
+        });
+        $("td [data-date='"+eD+"']").css({
+          margin:'1px'
+        });
     }
   },
 
@@ -343,3 +354,4 @@ function calDateWhenDragnDrop(event) {
 
   return newDates;
 }
+

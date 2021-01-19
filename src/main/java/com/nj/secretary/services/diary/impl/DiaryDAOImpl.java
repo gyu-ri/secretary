@@ -29,4 +29,14 @@ public class DiaryDAOImpl implements DiaryDAO {
         return sqlSession.selectList("DiaryMapper.getDiaryList",userId );
 
     }
+
+    @Override
+    public Diary getDiary(int diaryNumber) {
+        return sqlSession.selectOne("DiaryMapper.getDiary",diaryNumber);
+    }
+
+    @Override
+    public void updateDiary(Diary diary) {
+        sqlSession.update("DiaryMapper.updateDiary",diary);
+    }
 }
