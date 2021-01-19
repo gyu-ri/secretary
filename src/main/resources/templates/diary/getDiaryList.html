@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="js/jquery.hashtags.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <link rel="stylesheet" href="style.css">
     <title>Title</title>
@@ -103,6 +102,9 @@
 
     </style>
     <script>
+        $(document).ready(function(){
+
+        });
 
         $(function geoFindMe() {
 
@@ -208,6 +210,7 @@
 <br><br>
 <h1 class="pageTitle">일기 목록 보기</h1>
 <br><br>
+
 <div class="tabs">
     <ul class="tab-links">
         <li class="active"><a href="#tab1">&#128198;</a></li>
@@ -234,7 +237,8 @@
         </div>
     </article>
 </div>
-<input type="submit" id="deleteDiary" value="삭제" hidden/>
+<input type="button" id="deleteDiary" value="삭제" hidden/>
+<input type="hidden" id="userId" th:value="${user}" hidden/>
 </form>
 <script>
     $("#deleteBtn").on("click", function(){
@@ -247,39 +251,68 @@
         $('#deleteDiary').hide();
         $('.deleteUnactive').hide();
     })
+    $(".active").click(function(){
+
+        $.ajax({
+            url : "/restDiary/getDiaryList",
+            type : "GET",
+            data :{userId:$("#userId").val()},
+            success: function (list){
+                console.log(list);
+                $(".block").remove();
+                $.each(list,function(i,item){
+                    console.log(item);
+                    $("#for").prepend(
+                        "<div class='block' style='float: left'> " +
+                        "<p>" +
+                        "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
+                        "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "제목 : <span >"+item.diaryTitle+"</span><br>" +
+                        "날짜 : <span>"+item.diaryDate+"</span><br>" +
+                        "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
+                        "위치 : <span>"+item.location+"</span>" +
+                        "</p>"+
+                        "</div>"
+                    )
+
+                })
+            }
+        });
+    })
 
     $('#deleteDiary').click(function (){
         var confirm_val = confirm("정말 삭제하시겠습니까?");
 
         if(confirm_val){
+
             var checkArr = [];
             $("input[name=deleteActive]:checked").each(function (i){
                 checkArr.push($(this).val());
             });
-
             $.ajax({
                 url : "/restDiary/moveToBin",
-                type : "post",
-                data : {'deleteActive' : checkArr},
+                type : "POST",
+                data : JSON.stringify(checkArr),
                 contentType : "application/json",
-                cache : false,
-                success : function (data){
-                    console.log(data);
-                    var displayValue = "<div class=\"block\" th:each=\"diary : JSONData\" style=\"float: left\">\n" +
-                        "    <p>\n" +
-                        "        <input type=\"checkbox\" class=\"deleteActive\" name=\"deleteActive\" id=\"deleteActive\" th:value=\"${diary.diaryId}\" style=\"float: left\" hidden/>\n" +
-                        "        <input type=\"hidden\" name=\"diaryId\" th:value=\"${diary.diaryId}\" hidden/>\n" +
-                        "        제목 : <span th:text=\"${diary.diaryTitle}\">제목</span><br>\n" +
-                        "        날짜 : <span th:text=\"${diary.diaryDate}\">날짜</span><br>\n" +
-                        "        날씨 :  <img th:src=\"${diary.weather}\" width=\"20\" height=\"20\"/><br>\n" +
-                        "        위치 : <span th:text=\"${diary.location}\">위치</span>\n" +
-                        "    </p>\n" +
-                        "        </div>"
-
+                success: function (list){
+                    console.log(list);
                     $(".block").remove();
-                    console.log($(".block"));
-                    $("#block").html(displayValue);
-                    console.log($("#block"));
+                    $.each(list,function(i,item){
+                        console.log(item);
+                        $("#for").prepend(
+                            "<div class='block' style='float: left'> " +
+                            "<p>" +
+                            "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
+                            "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                            "제목 : <span >"+item.diaryTitle+"</span><br>" +
+                            "날짜 : <span>"+item.diaryDate+"</span><br>" +
+                            "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
+                            "위치 : <span>"+item.location+"</span>" +
+                            "</p>"+
+                            "</div>"
+                        )
+
+                    })
                 }
             });
         }
@@ -297,13 +330,38 @@
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
-            success: function (list) {
-                alert("success");
+            success: function (list){
                 console.log(list);
                 $(".block").remove();
-               // $(".block").replaceWith("<div class=\"block\" th:each=\"diary : " + list + "\" style=\"float: left\">")
+                $.each(list,function(i,item){
+                    console.log(item);
+                    $("#for").prepend(
+                        "<div class='block' style='float: left'> " +
+                        "<p>" +
+                        "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
+                        "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "제목 : <span >"+item.diaryTitle+"</span><br>" +
+                        "날짜 : <span>"+item.diaryDate+"</span><br>" +
+                        "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
+                        "위치 : <span>"+item.location+"</span>" +
+                        "</p>"+
+                        "</div>"
+                    )
 
+                })
             }
+            //     )$("#for").prepend(
+            //         "<div class='block' th:each='"+list+"' style='float: left'> " +
+            //         "<p>" +
+            //         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' th:value='${diary.diaryId}' style='float: left' hidden/>" +
+            //         "<input type='hidden' name='diaryId' th:value='${diary.diaryId}'/>" +
+            //         "제목 : <span th:text='${diary.diaryTitle}'>제목</span><br>" +
+            //         "날짜 : <span th:text='${diary.diaryDate}'>날짜</span><br>" +
+            //         "날씨 :  <img th:src='${diary.weather}' width='20' height='20'/><br>" +
+            //         "위치 : <span th:text='${diary.location}'>위치</span>" +
+            //         "</p>" +
+            //         "</div>"
+            // }
         });
         return list;
     });

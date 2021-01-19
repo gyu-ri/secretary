@@ -13,7 +13,15 @@ public interface DiaryService {
 
     public List<Diary> getDiaryList(String userId);
 
+
     public List<Diary> getOthersDiaryList();
+
+    public Diary getDiary(int diaryNumber);
+
+    public void updateDiary(Diary diary);
+
+
+
 
     public List<Diary> getDiaryTagList(String userId);
 

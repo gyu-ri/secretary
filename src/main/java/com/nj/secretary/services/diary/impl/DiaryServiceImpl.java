@@ -63,4 +63,16 @@ public class DiaryServiceImpl implements DiaryService {
 
         return null;
     }
+
+    @Override
+    public Diary getDiary(int diaryNumber) {
+
+        return diaryDAO.getDiary(diaryNumber);
+    }
+
+    @Override
+    public void updateDiary(Diary diary) {
+
+        diaryDAO.updateDiary(diary);
+    }
 }

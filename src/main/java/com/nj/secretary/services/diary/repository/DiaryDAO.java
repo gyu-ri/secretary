@@ -10,9 +10,15 @@ public interface DiaryDAO {
 
     public List<Diary> getDiaryList(String userId) ;
 
+
     public  List<Diary> getDiaryTagList(String userId);
 
     public List<Diary> getOthersDiaryList();
 
     public  List<Diary> moveToBin(int diaryId);
+
+    public Diary getDiary(int DiaryNumber);
+
+    public void updateDiary(Diary diary);
+
 }
