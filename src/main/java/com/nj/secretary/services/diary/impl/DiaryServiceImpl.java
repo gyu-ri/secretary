@@ -25,7 +25,7 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
-    public Map<String, Object> getDiaryList(String userId) {
+    public List<Diary> getDiaryList(String userId) {
         System.out.println("getDiaryList in DiaryServiceImpl start");
         List<Diary> list = diaryDAO.getDiaryList(userId);
 
@@ -33,7 +33,35 @@ public class DiaryServiceImpl implements DiaryService {
         map.put("list", list);
 
         System.out.println("getDiaryList in DiaryServiceImpl finish");
-        return map;
+        return list;
+    }
+
+
+
+    @Override
+    public List<Diary> getDiaryTagList(String userId) {
+
+        List<Diary> list = diaryDAO.getDiaryTagList(userId);
+
+
+        return null;
+    }
+
+
+    @Override
+    public List<Diary> getOthersDiaryList() {
+
+        List<Diary> list = diaryDAO.getOthersDiaryList();
+        return null;
+    }
+
+
+    @Override
+    public List<Diary> moveToBin(int diaryId) {
+
+        List<Diary> list = diaryDAO.moveToBin(diaryId);
+
+        return null;
     }
 
     @Override

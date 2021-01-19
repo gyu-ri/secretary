@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8">
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+    <link rel="stylesheet" href="style.css">
     <title>Title</title>
     <style>
         body {
@@ -16,21 +17,95 @@
             text-align: center;
         }
 
-        div {
-            margin: 100px 360px 10px;
+        .text {
+            margin: 0px 360px 10px;
             padding: 20px;
             background-color: #ffffff;
             background-color: rgba(255, 255, 255, 0.5)  ;
         }
 
-        .pageTitle {position: fixed; left: 0; top: 0; width: 100%; height: 52px; line-height: 52px; color: #fff; text-align: center; background: #111;}
-        article {padding: 52px 3% 0;}
-        article .block {padding: 20px; min-height: 500px;}
+        .pageTitle {position: fixed; left: 0; top: 0; width: 100%; height: 52px; line-height: 52px; text-align: center;}
+        article {padding: 52px 3% 0;  column-count: 3; padding: 20px; column-gap: 10px;}
+        article .block {padding: 20px; min-height: 100px;padding: 20px; border: 20px;}
         article .block p {line-height: 22px; color: #fff; font-size: 16px; font-weight: 600;}
         article .block:nth-child(2n+1) {background: #999;}
         article .block:nth-child(2n) {background: #222;}
+
+        /*----- Tabs -----*/
+        .tabs {
+            width:100%;
+            display:inline-block;
+            align-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 90px;
+        }
+
+        /*----- Tab Links -----*/
+        /* Clearfix */
+        .tab-links:after {
+            display:block;
+            clear:both;
+            content:'';
+            text-align: center;
+            align-content: center;
+        }
+
+        .tab-links li {
+            margin:0px 0px;
+
+            display:inline-block;
+            list-style:none;
+            align-content: center;
+        }
+
+        .tab-links a {
+            padding:9px 15px;
+            display:inline-block;
+            border-radius:3px 3px 3px 3px;
+            background:#C2C2C2;
+            font-size:16px;
+            font-weight:600;
+            color:#4C4C4C;
+            transition:all linear 0.15s;
+        }
+
+        .tab-links a:hover {
+            background:#a7cce5;
+            text-decoration:none;
+        }
+
+        li.active a, li.active a:hover {
+            background-color: rgba(255,255,255,0.5);
+            color:#4c4c4c;
+        }
+
+        /*----- Content of Tabs -----*/
+        .tab-content {
+            padding:15px;
+            border-radius:3px;
+            box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+            background:#fff;
+        }
+
+        .tab {
+            display:none;
+        }
+
+        .tab.active {
+            display:block;
+        }
+
+
+
+
+
     </style>
     <script>
+        $(document).ready(function(){
+
+        });
+
         $(function geoFindMe() {
 
             function success(position) {
@@ -105,9 +180,28 @@
             }
         };
 
+
+        $(document).ready(function() {
+            $('.tabs .tab-links a').on('click', function(e) {
+                var currentAttrValue = jQuery(this).attr('href');
+
+                // Show/Hide Tabs
+                $('.tabs ' + currentAttrValue).show().siblings().hide();
+
+                // Change/remove current tab to active
+                $(this).parent('li').addClass('active').siblings().removeClass('active');
+
+                e.preventDefault();
+            });
+        });
+
+
+
+
     </script>
 </head>
 <body>
+<form method="get" action="">
 <div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px;">	&#8451;</div> &nbsp;
 <div id="temparature" style="float: right; padding-left: 20px"></div>
 <img src="" id="img" width="20" height="20" style="float: right;"/>
@@ -116,19 +210,162 @@
 <br><br>
 <h1 class="pageTitle">일기 목록 보기</h1>
 <br><br>
+
+<div class="tabs">
+    <ul class="tab-links">
+        <li class="active"><a href="#tab1">&#128198;</a></li>
+        <li><a href="#" >&#128172;</a></li>
+        <li><a href="#" id="getOthersDiaryList">&#128107;</a></li>
+        <li id="deleteBtn"><a href="#">&#128163; &#128228; &#128194; &#128465; &#9989;</a></li>
+        <li><input type="text"><input type="submit" id="search" formmethod="get" formaction="/restDiary/searchDiary" value="&#128270;"> </li>
+    </ul>
+</div>
+
 <div class="text">
-    <article>
-        <div class="block" th:each="diary : ${list}">
+    <a href="#" style="float: right" class="deleteUnactive" hidden>&#10006;</a>
+    <article id="for">
+
+        <div class="block" th:each="diary : ${list}" style="float: left">
     <p>
-        제목 : ${diary.diaryTitle}
-        날짜 : ${diary.diaryDate}
-        날씨 :  <img src="${diary.weather}" width="20" height="20" style="float: right;"/>
-        위치 : ${diary.location}
+        <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style="float: left" hidden/>
+        <input type="hidden" name="diaryId" th:value="${diary.diaryId}"/>
+        제목 : <span th:text="${diary.diaryTitle}">제목</span><br>
+        날짜 : <span th:text="${diary.diaryDate}">날짜</span><br>
+        날씨 :  <img th:src="${diary.weather}" width="20" height="20"/><br>
+        위치 : <span th:text="${diary.location}">위치</span>
     </p>
         </div>
     </article>
 </div>
+<input type="button" id="deleteDiary" value="삭제" hidden/>
+<input type="hidden" id="userId" th:value="${user}" hidden/>
+</form>
+<script>
+    $("#deleteBtn").on("click", function(){
+       $('.deleteActive').show();
+       $('#deleteDiary').show();
+       $('.deleteUnactive').show();
+    });
+    $(".deleteUnactive").on("click", function (){
+        $('.deleteActive').hide();
+        $('#deleteDiary').hide();
+        $('.deleteUnactive').hide();
+    })
+    $(".active").click(function(){
 
+        $.ajax({
+            url : "/restDiary/getDiaryList",
+            type : "GET",
+            data :{userId:$("#userId").val()},
+            success: function (list){
+                console.log(list);
+                $(".block").remove();
+                $.each(list,function(i,item){
+                    console.log(item);
+                    $("#for").prepend(
+                        "<div class='block' style='float: left'> " +
+                        "<p>" +
+                        "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
+                        "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "제목 : <span >"+item.diaryTitle+"</span><br>" +
+                        "날짜 : <span>"+item.diaryDate+"</span><br>" +
+                        "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
+                        "위치 : <span>"+item.location+"</span>" +
+                        "</p>"+
+                        "</div>"
+                    )
+
+                })
+            }
+        });
+    })
+
+    $('#deleteDiary').click(function (){
+        var confirm_val = confirm("정말 삭제하시겠습니까?");
+
+        if(confirm_val){
+
+            var checkArr = [];
+            $("input[name=deleteActive]:checked").each(function (i){
+                checkArr.push($(this).val());
+            });
+            $.ajax({
+                url : "/restDiary/moveToBin",
+                type : "POST",
+                data : JSON.stringify(checkArr),
+                contentType : "application/json",
+                success: function (list){
+                    console.log(list);
+                    $(".block").remove();
+                    $.each(list,function(i,item){
+                        console.log(item);
+                        $("#for").prepend(
+                            "<div class='block' style='float: left'> " +
+                            "<p>" +
+                            "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
+                            "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                            "제목 : <span >"+item.diaryTitle+"</span><br>" +
+                            "날짜 : <span>"+item.diaryDate+"</span><br>" +
+                            "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
+                            "위치 : <span>"+item.location+"</span>" +
+                            "</p>"+
+                            "</div>"
+                        )
+
+                    })
+                }
+            });
+        }
+    });
+
+    $("#getOthersDiaryList").on("click", function () {
+        var list = [];
+
+        $.ajax({
+            url: "/restDiary/getOthersDiaryList",
+            method: "get",
+            dataType: "json",
+            data : {shareStatus:"1",userId:"user02"},
+            headers: { //excess 제어요청 헤더, n : v 형식으로 헤더 추가하면 url의 request header에서 해당 헤더로 값을 얻어올 수 있다.
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            success: function (list){
+                console.log(list);
+                $(".block").remove();
+                $.each(list,function(i,item){
+                    console.log(item);
+                    $("#for").prepend(
+                        "<div class='block' style='float: left'> " +
+                        "<p>" +
+                        "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
+                        "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "제목 : <span >"+item.diaryTitle+"</span><br>" +
+                        "날짜 : <span>"+item.diaryDate+"</span><br>" +
+                        "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
+                        "위치 : <span>"+item.location+"</span>" +
+                        "</p>"+
+                        "</div>"
+                    )
+
+                })
+            }
+            //     )$("#for").prepend(
+            //         "<div class='block' th:each='"+list+"' style='float: left'> " +
+            //         "<p>" +
+            //         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' th:value='${diary.diaryId}' style='float: left' hidden/>" +
+            //         "<input type='hidden' name='diaryId' th:value='${diary.diaryId}'/>" +
+            //         "제목 : <span th:text='${diary.diaryTitle}'>제목</span><br>" +
+            //         "날짜 : <span th:text='${diary.diaryDate}'>날짜</span><br>" +
+            //         "날씨 :  <img th:src='${diary.weather}' width='20' height='20'/><br>" +
+            //         "위치 : <span th:text='${diary.location}'>위치</span>" +
+            //         "</p>" +
+            //         "</div>"
+            // }
+        });
+        return list;
+    });
+</script>
 
 </body>
 </html>

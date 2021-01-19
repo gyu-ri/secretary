@@ -162,6 +162,23 @@ CREATE TABLE EMOTIONS
     EMOTION_IMG	VARCHAR2(100) NOT NULL
 );
 
+INSERT INTO emotions VALUES(1, '기쁨', '&#128512;');
+INSERT INTO emotions VALUES(2, '슬픔', '&#128549;');
+INSERT INTO emotions VALUES(3, '화남', '&#128545;');
+INSERT INTO emotions VALUES(4, '무표정', '&#128528;');
+INSERT INTO emotions VALUES(5, '심각', '&#128512;');
+INSERT INTO emotions VALUES(6, '힘듦', '&#128555;');
+INSERT INTO emotions VALUES(7, '짜증', '&#128548;');
+INSERT INTO emotions VALUES(8, '신나', '&#128537;');
+INSERT INTO emotions VALUES(9, '멘붕', '&#128552;');
+INSERT INTO emotions VALUES(10, '설렘', '&#128525;');
+INSERT INTO emotions VALUES(11, '좌절', '&#128557;');
+INSERT INTO emotions VALUES(12, '공포', '&#128561;');
+INSERT INTO emotions VALUES(13, '놀람', '&#128562;');
+INSERT INTO emotions VALUES(14, '당황', '&#128527;');
+INSERT INTO emotions VALUES(15, '민망', '&#128517;');
+INSERT INTO emotions VALUES(16, '아픔', '&#129298;');
+
 
 CREATE TABLE REPORT
 (
