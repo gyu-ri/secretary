@@ -99,6 +99,7 @@ public class DiaryController {
        List<Diary> list = diaryService.getDiaryList((session.getAttribute("userId")).toString());
        System.out.println("list : " + list);
         model.addAttribute("list", list);
+        model.addAttribute("user",session.getAttribute("userId"));
         System.out.println("listDiary controller 완료");
         return "diary/getDiaryList";
     }

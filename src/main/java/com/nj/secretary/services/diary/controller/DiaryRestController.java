@@ -3,6 +3,7 @@ package com.nj.secretary.services.diary.controller;
 
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.service.DiaryService;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -44,7 +45,7 @@ public class DiaryRestController {
         String userId = (String) session.getAttribute("userId");
 
 
-        System.out.println("확인 : " + id);
+        System.out.println("Move to Bin 확인 : " + id);
 //       for(String diary : id){
 //
 //           int diaryId = Integer.parseInt(diary);
@@ -54,6 +55,15 @@ public class DiaryRestController {
 
         List<Diary> list = diaryService.getDiaryList(userId);
 
+        return list;
+    }
+    @GetMapping(value = "getDiaryList")
+    public List<Diary> listDiary(@RequestParam("userId") String user){
+
+        System.out.println("listDiary start in  Rest Controller");
+        List<Diary> list = diaryService.getDiaryList(user);
+        System.out.println("list : " + list);
+        System.out.println("listDiary Rest Controller 완료");
         return list;
     }
 
