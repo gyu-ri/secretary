@@ -35,4 +35,17 @@
 
     </select>
 
+    <select id="getDiary" parameterType="integer" resultType="com.nj.secretary.services.diary.domain.Diary">
+        SELECT * FROM DIARY
+        WHERE DIARY_ID=${diaryNo}
+
+    </select>
+
+    <update id="updateDiary">
+        update DIARY set DIARY_TITLE=#{diaryTitle}
+                          ,DIARY_TEXT=#{diaryText}
+                          ,SHARE_STATUS=#{shareStatus}
+        where DIARY_ID = #{diaryId}
+    </update>
+
 </mapper>

@@ -35,4 +35,16 @@ public class DiaryServiceImpl implements DiaryService {
         System.out.println("getDiaryList in DiaryServiceImpl finish");
         return map;
     }
+
+    @Override
+    public Diary getDiary(int diaryNumber) {
+
+        return diaryDAO.getDiary(diaryNumber);
+    }
+
+    @Override
+    public void updateDiary(Diary diary) {
+
+        diaryDAO.updateDiary(diary);
+    }
 }

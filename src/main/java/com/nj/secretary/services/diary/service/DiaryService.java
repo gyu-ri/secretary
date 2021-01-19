@@ -13,6 +13,11 @@ public interface DiaryService {
 
     public Map<String, Object> getDiaryList(String userId);
 
+    public Diary getDiary(int diaryNumber);
+
+    public void updateDiary(Diary diary);
+
+
 
 
 }

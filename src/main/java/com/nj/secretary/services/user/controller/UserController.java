@@ -1,7 +1,6 @@
 package com.nj.secretary.services.user.controller;
 
 //import com.nj.secretary.services.user.domain.JavaMailSendar;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import com.nj.secretary.services.user.domain.User;
@@ -65,7 +64,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(HttpSession session) throws Exception{
         session.invalidate();
-        return "home";
+        return "index";
     }
 
     @GetMapping ("/email")

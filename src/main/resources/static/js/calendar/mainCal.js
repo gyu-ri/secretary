@@ -135,7 +135,14 @@ var calendar = $('#calendar').fullCalendar({
         var eD = event.start._i.substring(0,10);
         // eventElement.find("span.fc-title").prepend("<img width='30px' height='30px' src='" + event.imageUrl + "'>");
         // $("td [data-date='"+eD+"']").prepend("<img width=100% height=100% b src='" + event.imageUrl + "'>");
-        $("td [data-date='"+eD+"']").attr("background-image");
+        $("td [data-date='"+eD+"']").attr({
+            style:"background-image:url('"+event.imageUrl+"')",
+            width:"auto"
+
+        });
+        $("td [data-date='"+eD+"']").css({
+          margin:'1px'
+        });
     }
   },
 
