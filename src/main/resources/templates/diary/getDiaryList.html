@@ -201,6 +201,7 @@
     </script>
 </head>
 <body>
+<form method="get" action="">
 <div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px;">	&#8451;</div> &nbsp;
 <div id="temparature" style="float: right; padding-left: 20px"></div>
 <img src="" id="img" width="20" height="20" style="float: right;"/>
@@ -213,20 +214,21 @@
 <div class="tabs">
     <ul class="tab-links">
         <li class="active"><a href="#tab1">&#128198;</a></li>
-        <li><a href="/diary/addDiary">&#128172;</a></li>
-        <li><a href="/diary/write">&#128107;</a></li>
-        <li id="deleteBtn"><a href="#">&#128163; &#128228; &#128194; 	&#128465; &#9989;</a></li>
-        <li><input type="text"><input type="submit" value="&#128270;"> </li>
+        <li><a href="#" >&#128172;</a></li>
+        <li><a href="#" id="getOthersDiaryList">&#128107;</a></li>
+        <li id="deleteBtn"><a href="#">&#128163; &#128228; &#128194; &#128465; &#9989;</a></li>
+        <li><input type="text"><input type="submit" id="search" formmethod="get" formaction="/restDiary/searchDiary" value="&#128270;"> </li>
     </ul>
 </div>
 
 <div class="text">
     <a href="#" style="float: right" class="deleteUnactive" hidden>&#10006;</a>
-    <article>
+    <article id="for">
 
         <div class="block" th:each="diary : ${list}" style="float: left">
     <p>
-        <input type="checkbox" class="deleteActive" id="deleteActive" style="float: left" hidden/>
+        <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style="float: left" hidden/>
+        <input type="hidden" name="diaryId" th:value="${diary.diaryId}"/>
         제목 : <span th:text="${diary.diaryTitle}">제목</span><br>
         날짜 : <span th:text="${diary.diaryDate}">날짜</span><br>
         날씨 :  <img th:src="${diary.weather}" width="20" height="20"/><br>
@@ -235,7 +237,8 @@
         </div>
     </article>
 </div>
-<input type="submit" id="deleteDiary" value="삭제" hidden>
+<input type="submit" id="deleteDiary" value="삭제" hidden/>
+</form>
 <script>
     $("#deleteBtn").on("click", function(){
        $('.deleteActive').show();
@@ -247,6 +250,63 @@
         $('#deleteDiary').hide();
         $('.deleteUnactive').hide();
     })
+
+    $('#deleteDiary').click(function (){
+        var confirm_val = confirm("정말 삭제하시겠습니까?");
+
+        if(confirm_val){
+            var checkArr = [];
+            $("input[name=deleteActive]:checked").each(function (i){
+                checkArr.push($(this).val());
+            });
+
+            $.ajax({
+                url : "/restDiary/moveToBin",
+                type : "post",
+                data : {'deleteActive' : checkArr},
+                contentType : "application/json",
+                cache : false,
+                success : function (data){
+                    var displayValue = "<div class=\"block\" th:each=\"diary : JSONData\" style=\"float: left\">\n" +
+                        "    <p>\n" +
+                        "        <input type=\"checkbox\" class=\"deleteActive\" name=\"deleteActive\" id=\"deleteActive\" th:value=\"${diary.diaryId}\" style=\"float: left\" hidden/>\n" +
+                        "        <input type=\"hidden\" name=\"diaryId\" th:value=\"${diary.diaryId}\" hidden/>\n" +
+                        "        제목 : <span th:text=\"${diary.diaryTitle}\">제목</span><br>\n" +
+                        "        날짜 : <span th:text=\"${diary.diaryDate}\">날짜</span><br>\n" +
+                        "        날씨 :  <img th:src=\"${diary.weather}\" width=\"20\" height=\"20\"/><br>\n" +
+                        "        위치 : <span th:text=\"${diary.location}\">위치</span>\n" +
+                        "    </p>\n" +
+                        "        </div>"
+
+                    $(".block").remove();
+                    $("#block").html(displayValue);
+                }
+            });
+        }
+    });
+
+    $("#getOthersDiaryList").on("click", function () {
+        var list = [];
+
+        $.ajax({
+            url: "/restDiary/getOthersDiaryList",
+            method: "get",
+            dataType: "json",
+            data : {shareStatus:"1",userId:"user02"},
+            headers: { //excess 제어요청 헤더, n : v 형식으로 헤더 추가하면 url의 request header에서 해당 헤더로 값을 얻어올 수 있다.
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            success: function (list) {
+                alert("success");
+                console.log(list);
+                $(".block").remove();
+                $(".block").replaceWith("<div class=\"block\" th:each=\"diary : " + list + "\" style=\"float: left\">")
+
+            }
+        });
+        return list;
+    });
 </script>
 
 </body>

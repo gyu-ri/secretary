@@ -17,6 +17,6 @@ public interface DiaryService {
 
     public List<Diary> getDiaryTagList(String userId);
 
-    public List<Diary> moveToBin();
+    public List<Diary> moveToBin(int diaryId);
 
 }

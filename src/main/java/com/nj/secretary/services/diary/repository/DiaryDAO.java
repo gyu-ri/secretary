@@ -14,5 +14,5 @@ public interface DiaryDAO {
 
     public List<Diary> getOthersDiaryList();
 
-    public  List<Diary> moveToBin();
+    public  List<Diary> moveToBin(int diaryId);
 }

@@ -31,8 +31,13 @@
 
     <select id="getDiaryList" resultMap="diaryServiceMap">
         SELECT * FROM DIARY
-        WHERE user_id = #{value}
+        WHERE user_id = #{value} AND delete_status = 0
         ORDER BY diary_date
+    </select>
+
+    <select id="getOthersDiaryList" resultMap="diaryServiceMap">
+        SELECT * FROM DIARY
+        WHERE delete_status = 0 AND share_status = 1
     </select>
 
 </mapper>

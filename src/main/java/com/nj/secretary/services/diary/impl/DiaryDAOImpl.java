@@ -34,16 +34,21 @@ public class DiaryDAOImpl implements DiaryDAO {
 
     @Override
     public List<Diary> getDiaryTagList(String userId) {
+
+
         return null;
     }
 
     @Override
     public List<Diary> getOthersDiaryList() {
-        return null;
+
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getOthersDiaryList");
+
+        return list;
     }
 
     @Override
-    public List<Diary> moveToBin() {
+    public List<Diary> moveToBin(int diaryId) {
         return null;
     }
 }
