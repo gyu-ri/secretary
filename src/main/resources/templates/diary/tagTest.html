@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        ul {
+            padding: 16px 0;
+        }
+
+        ul li {
+            display: inline-block;
+            margin: 0 5px;
+            font-size: 14px;
+            letter-spacing: -.5px;
+        }
+
+        form {
+            padding-top: 16px;
+        }
+
+        ul li.tag-item {
+            padding: 4px 8px;
+            background-color: #777;
+            color: #000;
+        }
+
+        .tag-item:hover {
+            background-color: #262626;
+            color: #fff;
+        }
+
+        .del-btn {
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+
+            $("#tag").onclick(function (){
+               $("#tag-list").append()
+            });
+        })
+    </script>
+
+
+</head>
+<body>
+<div class="content">
+
+        <input type="hidden" value="" name="tag" id="rdTag" />
+        <button type="button" id="tag">태그등록</button>
+
+
+    <ul id="tag-list">
+    </ul>
+
+    <div>
+        <input type="text" id="tag" size="7" placeholder="태그입력" />
+    </div>
+
+</div>
+</body>
+</html>

@@ -19,6 +19,9 @@
     <script src="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/summernote-lite.css">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
     <title>글쓰기</title>
@@ -254,7 +257,10 @@
             }
         });
 
-        document.querySelector('#find-me').addEventListener('click', geoFindMe);
+        $("#tag").onclick(function () {
+            $("#tag").prepend("<input type=\"text\" name=\"tag_text\">");
+        });
+
 
     </script>
 
@@ -284,7 +290,14 @@
         <p>
            작성날짜 :  <input type="date" name="diaryDate" required pattern="\d{4}-\d{2}-\d{2}"/>
         </p>
-            <br><br>
+
+
+        <a href="#" name="tag_text" id="tag" style="float: right">+</a>
+
+
+
+
+    <br><br>
         <textarea id="summernote" name="diaryText">
 
 

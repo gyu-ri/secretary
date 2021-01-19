@@ -32,7 +32,7 @@ public class DiaryController {
     }
 
     @PostMapping("addDiarys")
-    public String addDiary(@ModelAttribute("diary") Diary diary, Model model){
+    public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam("tag") String tag_text){
         System.out.println("shareStatus : " + diary.getShareStatus());
 
         if(diary.getShareStatus().trim().equals("0,1")) {
