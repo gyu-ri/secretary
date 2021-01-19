@@ -10,8 +10,11 @@ public interface UserDAO {
     //Insert
     public void addUser(User user) throws Exception;
 
-    //Select One
+    //Select One : 로그인, 내정보보기
     public User getUser(String userId) throws Exception;
+
+    //Select One : 아이디 찾기
+    public User findUserId(String userName) throws Exception;
 
     //Select List
     public List<User> getUserList() throws Exception;

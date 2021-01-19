@@ -40,6 +40,7 @@
         WHERE delete_status = 0 AND share_status = 1
     </select>
 
+
     <update id="moveToBinDiary">
         update diary set calendar_title=#{title}
                           ,calendar_detail=#{description}
@@ -47,6 +48,19 @@
                           ,end_date=#{end}
                           ,background_color=#{backgroundColor}
         where calendar_id = #{id}
+
+    <select id="getDiary" parameterType="integer" resultType="com.nj.secretary.services.diary.domain.Diary">
+        SELECT * FROM DIARY
+        WHERE DIARY_ID=${diaryNo}
+
+    </select>
+
+    <update id="updateDiary">
+        update DIARY set DIARY_TITLE=#{diaryTitle}
+                          ,DIARY_TEXT=#{diaryText}
+                          ,SHARE_STATUS=#{shareStatus}
+        where DIARY_ID = #{diaryId}
+
     </update>
 
 </mapper>
