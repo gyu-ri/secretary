@@ -30,14 +30,14 @@ public class DiaryRestController {
     }
 
     @GetMapping("getOthersDiaryList")
-    public String getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model){
+    public List<Diary> getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model){
         System.out.println("getOthersDiaryList start in controller");
         System.out.println("test : " + shareStatus + userId);
         List<Diary> list = diaryService.getOthersDiaryList();
         System.out.println("parse test : " + list);
         System.out.println("getOthersDiaryList finish in controller");
         model.addAttribute("list", list);
-        return "diary/getDiaryList";
+        return list;
     }
 
     @PostMapping("moveToBin")
@@ -53,7 +53,9 @@ public class DiaryRestController {
 //           diaryService.moveToBin(diaryId);
 //       }
         System.out.println("삭제하기 위한 diary 객체 리스트 : " + id);
-
+        for(int i = 0; i<id.size(); i++){
+            diaryService.moveToBin(Integer.parseInt(id.get(i)));
+        }
         List<Diary> list = diaryService.getDiaryList(userId);
 
         return list;
