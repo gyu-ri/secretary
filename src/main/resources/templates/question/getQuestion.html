@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+<meta charset="UTF-8">
+<title>getQuestion</title>
+
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<style type="text/css">
+body{
+     background-image:url("/images/0101.jpg");
+     background-repeat:no-repeat;
+     background-size:auto;
+     background-position:center;
+     background-color:#b194e0;
+     background-attachment: fixed;
+}
+
+</style>
+
+
+
+
+
+</head>
+<body>
+
+<h1>여기는 1문 list 보기</h1>
+
+<div th:each="question : ${questionList}">
+
+<form action="deleteQuestionId" method="post">
+
+<input type="hidden" th:value=${question.questionId} name="questionId"/>
+
+<span th:text=${question.questionId}/>
+<span th:text=${question.questionText}/>
+
+<span>
+ <input type="submit" name="deleteQuestionId" value="삭제하기">
+ 
+</form>
+
+
+
+
+</div>
+
+
+
+
+</body>
+</html>
