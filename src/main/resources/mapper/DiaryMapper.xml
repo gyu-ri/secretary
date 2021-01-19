@@ -19,6 +19,11 @@
         <result property="diaryDate" column="DIARY_DATE" jdbcType="DATE"/>
         <result property="reportCount" column="REPORT_COUNT" jdbcType="NUMERIC"/>
         <result property="sortCondition" column="SORT_CONDITION" jdbcType="NUMERIC"/>
+        <result property="emotionName" column="EMOTION_NAME" jdbcType="VARCHAR"/>
+        <result property="emotionImg" column="EMOTION_IMG" jdbcType="VARCHAR"/>
+        <result property="fileId" column="FILE_ID" jdbcType="NUMERIC"/>
+        <result property="fileName" column="FILE_NAME" jdbcType="VARCHAR"/>
+        <result property="fileStatus" column="FILE_STATUS" jdbcType="VARCHAR"/>
 
     </resultMap>
 
@@ -48,6 +53,7 @@
                           ,end_date=#{end}
                           ,background_color=#{backgroundColor}
         where calendar_id = #{id}
+    </update>
 
     <select id="getDiary" parameterType="integer" resultType="com.nj.secretary.services.diary.domain.Diary">
         SELECT * FROM DIARY
@@ -63,4 +69,16 @@
 
     </update>
 
+    <insert id="addFiles" parameterType="String">
+        INSERT INTO AttachFile(file_id, diary_id, file_name, file_status)
+        VALUES(attachfile_seq.nextval, diary_seq.currval, #{value}, '0')
+    </insert>
+
+    <select id="getTagDiaryList" parameterType="String" resultMap="diaryServiceMap">
+        SELECT
+            DISTINCT a.file_name AS file_name
+        FROM DIARY d, ATTACHFILE a
+        WHERE d.diary_id=a.diary_id AND d.user_id = #{value}
+        ORDER BY file_name
+    </select>
 </mapper>

@@ -32,7 +32,8 @@ public class DiaryController {
     }
 
     @PostMapping("addDiarys")
-    public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam("tag") String tag_text){
+    public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam("tag_text" +
+            "") String tag_text){
         System.out.println("shareStatus : " + diary.getShareStatus());
 
         if(diary.getShareStatus().trim().equals("0,1")) {
@@ -40,7 +41,13 @@ public class DiaryController {
         }
         System.out.println("diary : " + diary);
         System.out.println("다이어리 내용들 : " + diary.getDiaryTitle() + diary.getDiaryText());
+        System.out.println("tag : " + tag_text);
+        String[] tags = tag_text.split(",");
+
         diaryService.addDiary(diary);
+        for(String tag : tags){
+            diaryService.addFiles(tag);
+        }
         System.out.println("다이어리 추가 완료");
 
         return "diary/getDiary";
@@ -103,6 +110,7 @@ public class DiaryController {
         System.out.println("listDiary controller 완료");
         return "diary/getDiaryList";
     }
+
 
     @GetMapping("getDiary")
     public String getDiary(@RequestParam("diaryNo") int diaryNo,Model model){

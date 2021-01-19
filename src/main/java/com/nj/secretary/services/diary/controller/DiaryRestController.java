@@ -21,23 +21,15 @@ public class DiaryRestController {
     @Autowired
     DiaryService diaryService;
 
-    @GetMapping("getDiaryTagList")
-    public List<Diary> getDiaryTagList(String userId){
-        System.out.println("getDiaryTagList start!!!");
-        List<Diary> list = diaryService.getDiaryTagList(userId);
-
-        return list;
-    }
-
     @GetMapping("getOthersDiaryList")
-    public String getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model){
+    public List<Diary> getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model){
         System.out.println("getOthersDiaryList start in controller");
         System.out.println("test : " + shareStatus + userId);
         List<Diary> list = diaryService.getOthersDiaryList();
         System.out.println("parse test : " + list);
         System.out.println("getOthersDiaryList finish in controller");
         model.addAttribute("list", list);
-        return "diary/getDiaryList";
+        return list;
     }
 
     @PostMapping("moveToBin")
@@ -67,5 +59,19 @@ public class DiaryRestController {
         System.out.println("listDiary Rest Controller 완료");
         return list;
     }
+
+    @GetMapping("getTagDiaryList")
+    public List<Diary> getTagDiaryList(@RequestParam("userId") String userId, Model model){
+
+        System.out.println("getTagDiaryList start");
+        System.out.println("parameter : " + userId);
+        List<Diary> list = diaryService.getTagDiaryList(userId);
+
+        model.addAttribute("list", list);
+        System.out.println("list? : " + list);
+        System.out.println("getTagDiaryList end");
+        return list;
+    }
+
 
 }

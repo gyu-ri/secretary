@@ -214,12 +214,32 @@
 <div class="tabs">
     <ul class="tab-links">
         <li class="active"><a href="#tab1">&#128198;</a></li>
-        <li><a href="#" >&#128172;</a></li>
+        <li><a href="#" id="getTagDiaryList">&#128172;</a></li>
         <li><a href="#" id="getOthersDiaryList">&#128107;</a></li>
         <li id="deleteBtn"><a href="#">&#128163; &#128228; &#128194; &#128465; &#9989;</a></li>
-        <li><input type="text"><input type="submit" id="search" formmethod="get" formaction="/restDiary/searchDiary" value="&#128270;"> </li>
+        <li><div class="searchbox"> <input type="text" onkeyup="filter()" name="searchKeyword" id="value" placeholder="&#128270;"> </div></li>
     </ul>
 </div>
+
+    <script>
+        function filter(){
+            var value, name, item, i;
+            value = document.getElementById("value").value.toUpperCase();
+            item = document.getElementsByClassName("block");
+            console.log(value);
+            console.log(item);
+
+            for(i=0; i< item.length; i++){
+                name = item[i].getElementsByClassName("diaryText");
+                console.log(name);
+                if(name[0].value.toUpperCase().indexOf(value) > -1){
+                    item[i].style.display = "flex";
+                }else{
+                    item[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 
 <div class="text">
     <a href="#" style="float: right" class="deleteUnactive" hidden>&#10006;</a>
@@ -229,6 +249,7 @@
     <p>
         <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style="float: left" hidden/>
         <input type="hidden" name="diaryId" th:value="${diary.diaryId}"/>
+        <input type="hidden" class="diaryText" th:value="${diary.diaryText}">
         제목 : <span th:text="${diary.diaryTitle}">제목</span><br>
         날짜 : <span th:text="${diary.diaryDate}">날짜</span><br>
         날씨 :  <img th:src="${diary.weather}" width="20" height="20"/><br>
@@ -365,6 +386,93 @@
         });
         return list;
     });
+
+
+    $('#deleteDiary').click(function (){
+        var confirm_val = confirm("정말 삭제하시겠습니까?");
+
+        if(confirm_val){
+
+            var checkArr = [];
+            $("input[name=deleteActive]:checked").each(function (i){
+                checkArr.push($(this).val());
+            });
+            $.ajax({
+                url : "/restDiary/moveToBin",
+                type : "POST",
+                data : JSON.stringify(checkArr),
+                contentType : "application/json",
+                success: function (list){
+                    console.log(list);
+                    $(".block").remove();
+                    $.each(list,function(i,item){
+                        console.log(item);
+                        $("#for").prepend(
+                            "<div class='block' style='float: left'> " +
+                            "<p>" +
+                            "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
+                            "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                            "제목 : <span >"+item.diaryTitle+"</span><br>" +
+                            "날짜 : <span>"+item.diaryDate+"</span><br>" +
+                            "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
+                            "위치 : <span>"+item.location+"</span>" +
+                            "</p>"+
+                            "</div>"
+                        )
+
+                    })
+                }
+            });
+        }
+    });
+
+
+
+    $("#getTagDiaryList").on("click", function () {
+        var list = [];
+
+        $.ajax({
+            url: "/restDiary/getTagDiaryList",
+            method: "get",
+            dataType: "json",
+            data : {userId:"user02"},
+            headers: { //excess 제어요청 헤더, n : v 형식으로 헤더 추가하면 url의 request header에서 해당 헤더로 값을 얻어올 수 있다.
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            success: function (list){
+                console.log(list);
+                $(".block").remove();
+                $.each(list,function(i,item){
+                    console.log(item);
+                    $("#for").prepend(
+                        "<div class='block' style='float: left'> " +
+                        "<p>" +
+                        "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
+                        "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "태그 : <span>"+item.fileName+"</span><br>" +
+                        "</p>"+
+                        "</div>"
+                    )
+
+                })
+            }
+            //     )$("#for").prepend(
+            //         "<div class='block' th:each='"+list+"' style='float: left'> " +
+            //         "<p>" +
+            //         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' th:value='${diary.diaryId}' style='float: left' hidden/>" +
+            //         "<input type='hidden' name='diaryId' th:value='${diary.diaryId}'/>" +
+            //         "제목 : <span th:text='${diary.diaryTitle}'>제목</span><br>" +
+            //         "날짜 : <span th:text='${diary.diaryDate}'>날짜</span><br>" +
+            //         "날씨 :  <img th:src='${diary.weather}' width='20' height='20'/><br>" +
+            //         "위치 : <span th:text='${diary.location}'>위치</span>" +
+            //         "</p>" +
+            //         "</div>"
+            // }
+        });
+        return list;
+    });
+
 </script>
 
 </body>
