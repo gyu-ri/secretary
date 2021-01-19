@@ -102,5 +102,37 @@ public class DiaryController {
         return "diary/getDiaryList";
     }
 
+    @GetMapping("getDiary")
+    public String getDiary(@RequestParam("diaryNo") int diaryNo,Model model){
+        System.out.println(diaryNo);
+        System.out.println(diaryService.getDiary(diaryNo));
+        model.addAttribute("diary",diaryService.getDiary(diaryNo));
+        return "diary/getDiary";
+    }
+    @GetMapping("updateDiary")
+    public String updateDiary(@RequestParam("diaryId") int diaryNo, Model model){
+        System.out.println(diaryNo);
+        System.out.println("update Diary");
+
+        model.addAttribute("diary",diaryService.getDiary(diaryNo));
+        return "diary/updateDiary";
+    }
+    @PostMapping("updateDiary")
+    public String updateDiary(@ModelAttribute("diary") Diary diary, Model model){
+        System.out.println("shareStatus : " + diary.getShareStatus());
+
+        if(diary.getShareStatus().trim().equals("0,1")) {
+            diary.setShareStatus("1");
+        }
+        System.out.println("diary : " + diary);
+        System.out.println("다이어리 내용들 : " + diary.getDiaryTitle() + diary.getDiaryText());
+        diaryService.updateDiary(diary);
+        System.out.println("다이어리 추가 완료");
+
+        return "diary/getDiary";
+    }
+
+
+
 
 }

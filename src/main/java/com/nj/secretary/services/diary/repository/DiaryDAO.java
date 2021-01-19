@@ -9,4 +9,8 @@ public interface DiaryDAO {
     public void addDiary(Diary diary);
 
     public List<Diary> getDiaryList(String userId) ;
+
+    public Diary getDiary(int DiaryNumber);
+
+    public void updateDiary(Diary diary);
 }
