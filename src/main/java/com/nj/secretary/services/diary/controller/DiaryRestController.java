@@ -30,13 +30,14 @@ public class DiaryRestController {
     }
 
     @GetMapping("getOthersDiaryList")
-    public List<Diary> getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId){
+    public String getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model){
         System.out.println("getOthersDiaryList start in controller");
         System.out.println("test : " + shareStatus + userId);
         List<Diary> list = diaryService.getOthersDiaryList();
         System.out.println("parse test : " + list);
         System.out.println("getOthersDiaryList finish in controller");
-        return list;
+        model.addAttribute("list", list);
+        return "diary/getDiaryList";
     }
 
     @PostMapping("moveToBin")
