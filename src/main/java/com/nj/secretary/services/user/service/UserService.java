@@ -20,6 +20,9 @@ public interface UserService{
     //Select One
     public User getUser(String userId) throws Exception;
 
+
+    public User findUserId(String userName) throws Exception;
+
     //Select List
     public List<User> getUserList() throws Exception;
 
