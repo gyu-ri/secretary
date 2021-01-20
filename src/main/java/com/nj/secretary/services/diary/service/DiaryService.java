@@ -19,7 +19,12 @@ public interface DiaryService {
 
     public void updateDiary(Diary diary);
 
-    public List<Diary> getDiaryTagList(String userId);
+
+    public void addFiles(String file);
+
+
+    public List<Diary> getTagDiaryList(String userId);
+
 
     public void moveToBin(int diaryId);
 

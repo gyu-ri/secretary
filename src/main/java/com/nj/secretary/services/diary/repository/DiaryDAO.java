@@ -11,7 +11,7 @@ public interface DiaryDAO {
     public List<Diary> getDiaryList(String userId) ;
 
 
-    public  List<Diary> getDiaryTagList(String userId);
+    public  List<Diary> getTagDiaryList(String userId);
 
     public List<Diary> getOthersDiaryList();
 
@@ -21,4 +21,5 @@ public interface DiaryDAO {
 
     public void updateDiary(Diary diary);
 
+    public void addFiles(String file);
 }

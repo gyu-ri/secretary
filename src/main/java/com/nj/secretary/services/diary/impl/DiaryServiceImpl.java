@@ -39,9 +39,9 @@ public class DiaryServiceImpl implements DiaryService {
 
 
     @Override
-    public List<Diary> getDiaryTagList(String userId) {
+    public List<Diary> getTagDiaryList(String userId) {
 
-        List<Diary> list = diaryDAO.getDiaryTagList(userId);
+        List<Diary> list = diaryDAO.getTagDiaryList(userId);
 
 
         return null;
@@ -73,5 +73,11 @@ public class DiaryServiceImpl implements DiaryService {
     public void updateDiary(Diary diary) {
 
         diaryDAO.updateDiary(diary);
+    }
+
+    @Override
+    public void addFiles(String file) {
+
+        diaryDAO.addFiles(file);
     }
 }

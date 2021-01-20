@@ -33,10 +33,11 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public List<Diary> getDiaryTagList(String userId) {
+    public List<Diary> getTagDiaryList(String userId) {
 
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getTagDiaryList", userId);
 
-        return null;
+        return list;
     }
 
     @Override
@@ -60,5 +61,10 @@ public class DiaryDAOImpl implements DiaryDAO {
     @Override
     public void updateDiary(Diary diary) {
         sqlSession.update("DiaryMapper.updateDiary",diary);
+    }
+
+    @Override
+    public void addFiles(String file) {
+        sqlSession.insert("DiaryMapper.addFiles", file);
     }
 }
