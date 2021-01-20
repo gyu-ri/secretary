@@ -26,7 +26,7 @@ public interface MonologueService {
 	
 	
 	//Monologue
-	public void addMonologueText(String monologueText) throws Exception;
+	public void addMonologueText(Monologue monologue) throws Exception;
 	
 	public void updateMonologuText(String monologueText) throws Exception;
 	

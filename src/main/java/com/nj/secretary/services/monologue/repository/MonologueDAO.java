@@ -24,7 +24,7 @@ public interface MonologueDAO {
 	
 	//monologue
 	
-	public void addMonologueText(String monologueText) throws Exception;
+	public void addMonologueText(Monologue monologue) throws Exception;
 	
 	public void updateMonologueText(String monologueText) throws Exception;
 	

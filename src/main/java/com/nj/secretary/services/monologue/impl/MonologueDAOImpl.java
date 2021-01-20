@@ -74,9 +74,9 @@ public class MonologueDAOImpl implements MonologueDAO{
 	//==============================Monologue===============================
 	
 	@Override
-	public void addMonologueText(String monologueText) throws Exception {
+	public void addMonologueText(Monologue monologue) throws Exception {
 		System.out.println("monologueDAOImpl  addMonologueText~~~");
-		sqlsession.insert("MonologueMapper.addMonologueText", monologueText);
+		sqlsession.insert("MonologueMapper.addMonologueText", monologue);
 		// TODO Auto-generated method stub
 		
 	}

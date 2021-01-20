@@ -69,10 +69,10 @@ public class MonologueServiceImpl implements MonologueService {
 
 	
 	@Override
-	public void addMonologueText(String monologueText) throws Exception{
+	public void addMonologueText(Monologue monologue) throws Exception{
 		// TODO Auto-generated method stub
 		System.out.println("monologueServiceImpl   addMonologueText@@");
-		monologueDAO.addMonologueText(monologueText);
+		monologueDAO.addMonologueText(monologue);
 		
 	}
 	

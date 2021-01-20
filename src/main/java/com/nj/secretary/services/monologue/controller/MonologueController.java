@@ -112,15 +112,29 @@ public class MonologueController {
 	}
 	
 	@PostMapping("addMonologueText")
-	public String addMonologueText(String monologueText) throws Exception{
+	public String addMonologueText(String monologueText, HttpSession session) throws Exception{
+		System.out.println("monologueController postMapping 시작하니??");
+		
+		Monologue monologue=new Monologue();
+		monologue.setMonologueText(monologueText);
+        
+		session.setAttribute("userId", "hyoeun");
+		
+		String user=(String)session.getAttribute("userId");
+		
+		monologue.setUserId(user);
+		
+		System.out.println("monologueController postMapping 시작하니??");
 		
 		
-		monologueService.addMonologueText(monologueText);
-
 		
+		monologueService.addMonologueText(monologue);
+		System.out.println("monologueController postMapping 시작하니??");
+			
 		System.out.println("monologueController   addMonologueText:::::    " +monologueText);
 		
-		
+		System.out.println("monologueController   user:::::    " +user);
+
 		return "monologue/addMonologue";
 		
 	}
