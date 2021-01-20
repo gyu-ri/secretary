@@ -149,15 +149,18 @@ public class MonologueController {
 	}
 	
 	@GetMapping("getMonologueText")
-	public String getMonologueText() throws Exception{
+	public String getMonologueText(@ModelAttribute int questionId, Model model) throws Exception{
 		
 		System.out.println("getMonologueText 시작합니다잉");
+		
+		monologueService.getQuestionId(questionId);
+		
+		model.addAttribute("monologue", questionId);
+		
 		
 //		int questionId=monologueService.getQuestionId(questionId);
 		
 	//	model.addAttribute("questionId", questionId);
-		
-		
 		
 		return "monologue/getMonologue";
 		

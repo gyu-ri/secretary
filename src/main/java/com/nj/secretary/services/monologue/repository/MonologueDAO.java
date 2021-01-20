@@ -30,7 +30,7 @@ public interface MonologueDAO {
 	
 	public void deleteMonologueId(int monologueId) throws Exception;
 	
-	public String getMonologueText(String monologueText) throws Exception;
+	public Monologue getMonologueText(int questionId) throws Exception;
 	
 	
 	

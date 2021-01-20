@@ -96,9 +96,9 @@ public class MonologueServiceImpl implements MonologueService {
 
 
 	@Override
-	public String getMonologueText(String monologueText) throws Exception {
+	public Monologue getMonologueText(int questionId) throws Exception {
 		// TODO Auto-generated method stub
-		return monologueDAO.getMonologueText(monologueText);
+		return monologueDAO.getMonologueText(questionId);
 	}
 
 
