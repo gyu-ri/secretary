@@ -89,9 +89,7 @@
         .tab.active {
             display:block;
         }
-
-
-        </style>
+    </style>
     <script>
 
         $(function geoFindMe() {
@@ -167,9 +165,9 @@
         //     }
         // });
 
-        $("#getReportedDiaryList").on("click",function (){
-            alert("getReportDiaryList")
-           var diaryList = [];
+        $(".getReportedDiaryList").click(function (){
+            alert("getReportedDiaryList")
+            var diaryList = [];
             console.log(this);
             $.ajax({
                 url : "/restDiary/getReportedDiaryList",
@@ -200,9 +198,10 @@
                         )
                     })
                 }
-            });
+            })
             return diaryList;
         });
+
 
 
     </script>
@@ -221,7 +220,7 @@
 
         <div class="tabs">
             <ul class="tab-links">
-                <li><a href="#" id="getReportedDiaryList" style="text-decoration: none">&#128198;</a></li>
+                <li><a href="#" id="getReportedDiaryList" class="getReportedDiaryList" style="text-decoration: none">&#128198;</a></li>
                 <li><a href="#" id="getReportedMonoList" style="text-decoration: none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &#128172; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
             </ul>
         </div>

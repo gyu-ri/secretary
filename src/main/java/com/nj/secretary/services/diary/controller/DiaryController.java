@@ -168,7 +168,7 @@ public class DiaryController {
         model.addAttribute("diaryList", diaryList);
         model.addAttribute("monoList", monoList);
 
-        return "admin/adminPost";
+        return "diary/adminPost";
     }
 
 }
