@@ -75,9 +75,9 @@
     
 	<insert id="addMonologueText" parameterType="com.nj.secretary.services.monologue.domain.Monologue">
  	   INSERT INTO monologue (user_id,monologue_text,monologue_id,report_count,share_status,blind_status,monologue_date,question_id)
-       VALUES (#{userId},#{monologueText},monologue_seq.NEXTVAL,0,0,0,SYSDATE,  (SELECT question_id
-                                                                                  FROM questions
-                                                                                  WHERE question_id=#{questionId}))
+       VALUES (#{userId},#{monologueText},monologue_seq.NEXTVAL,0,0,0,SYSDATE, (SELECT question_id
+                                                                                FROM questions
+                                                                                WHERE question_id=#{questionId}))
 	                
    </insert>
    

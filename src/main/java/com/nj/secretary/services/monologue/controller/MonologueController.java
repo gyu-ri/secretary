@@ -65,7 +65,7 @@ public class MonologueController {
 	@GetMapping("getQuestionList")
 	public String getquestionList(Model model, HttpSession session) throws Exception{
 		
-		session.setAttribute("role", "gyuri");
+		session.setAttribute("role", "hyoeun");
 		
 		String role=(String)session.getAttribute("role");
 		
@@ -101,15 +101,7 @@ public class MonologueController {
 		return "question/getQuestion";
 	}
 	
-//	
-//	@PostMapping("getQuestionId")
-//	public String getQuestionId(int questionId) throws Exception{
-//		System.out.println("getQuestionId 시작 합니다잉");
-//		monologueService.getQuestionId(questionId);
-//		System.out.println("questionId 잘가지고 오니??" + questionId);
-//		
-//		return "monologue/addMonologue";
-//	}
+
 
 	
 	
@@ -123,25 +115,24 @@ public class MonologueController {
 	}
 	
 	@PostMapping("addMonologueText")
-	public String addMonologueText(String monologueText, @RequestParam("questionId") int questionId, HttpSession session, Model model) throws Exception{
+	public String addMonologueText(@ModelAttribute Monologue monologue, HttpSession session, Model model) throws Exception{
 		System.out.println("monologueController postMapping 시작하니1??");
 		
-		monologueService.getQuestionId(questionId);
 		
 		
-		List<Question> questionList = monologueService.getQuestionList();
+		
+//		List<Question> questionList = monologueService.getQuestionList();
+//
+//		Random random=new Random();
+//		random.nextInt(questionList.size());
+//		
+//		model.addAttribute("randomQuestionId", random);
+		
+		
+    // 	System.out.println("랜덤으로 뿌려준 questionId 확인"+random);			
+		
 
-		Random random=new Random();
-		random.nextInt(questionList.size());
-		
-		model.addAttribute("randomQuestionId", random);
-		
-		
-     	System.out.println("랜덤으로 뿌려준 questionId 확인"+random);			
-		
-		Monologue monologue=new Monologue();
-
-		monologue.setMonologueText(monologueText);
+		monologue.setMonologueText(monologue.getMonologueText());
 		
 		System.out.println("monologueController postMapping 시작하니2??");
 
@@ -155,6 +146,7 @@ public class MonologueController {
 		
 		monologueService.addMonologueText(monologue);
 		
+		System.out.println("monologueController postMapping 시작하니4??");
 		
 			
 		System.out.println("monologueController   addMonologueText:::::    " +monologue);

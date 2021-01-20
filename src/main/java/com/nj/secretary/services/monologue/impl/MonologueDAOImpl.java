@@ -47,7 +47,7 @@ public class MonologueDAOImpl implements MonologueDAO{
 	public int getQeustionId(int questionId) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("monologueDAOImpi  getQuestionId~~");
-		return sqlsession.selectOne("MonologueMapper.addQuestionText", questionId);
+		return sqlsession.selectOne("MonologueMapper.getQuestionId", questionId);
 		
 	}
 	

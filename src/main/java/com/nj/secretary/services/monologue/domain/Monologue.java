@@ -8,7 +8,7 @@ public class Monologue{
 	private String userId;           //����� ���̵�:�ߺ�X
 //	private String questionText;     //1������
 	private String monologueText;    //1�䳻��
-//	private int questionId;          //1��������ȣ
+	private int questionId;          //1��������ȣ
 	private int monologueId;         //1�������ȣ
 	private int reportCount;         //�Ű��
 	private boolean shareStatus;     //�������� 0:default:false
@@ -20,8 +20,6 @@ public class Monologue{
 	public Monologue() {
 		
 	}
-	
-
 
 
 
@@ -101,12 +99,30 @@ public class Monologue{
 
 	
 
+	public int getQuestionId() {
+		return questionId;
+	}
+
+
+
+
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
+
+
+
+
 	@Override
 	public String toString() {
-		return "Monologue [userId=" + userId + ", monologueText=" + monologueText + ", monologueId=" + monologueId
-				+ ", reportCount=" + reportCount + ", shareStatus=" + shareStatus + ", blindStatus=" + blindStatus
-				+ ", monologueDate=" + monologueDate + "]";
+		return "Monologue [userId=" + userId + ", monologueText=" + monologueText + ", questionId=" + questionId
+				+ ", monologueId=" + monologueId + ", reportCount=" + reportCount + ", shareStatus=" + shareStatus
+				+ ", blindStatus=" + blindStatus + ", monologueDate=" + monologueDate + "]";
 	}
+
+
 
 
 
