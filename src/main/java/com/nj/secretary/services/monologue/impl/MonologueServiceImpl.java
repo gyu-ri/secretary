@@ -2,6 +2,7 @@ package com.nj.secretary.services.monologue.impl;
 
 import java.util.List;
 
+import com.nj.secretary.services.monologue.domain.Monologue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -93,9 +94,10 @@ public class MonologueServiceImpl implements MonologueService {
 		
 	}
 
+	@Override
+	public List<Monologue> getReportedMonoList() {
 
-	
-	
-	
-
+		List<Monologue> list = monologueDAO.getReportedMonoList();
+		return list;
+	}
 }

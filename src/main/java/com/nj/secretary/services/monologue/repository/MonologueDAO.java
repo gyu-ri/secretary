@@ -2,6 +2,7 @@ package com.nj.secretary.services.monologue.repository;
 
 import java.util.List;
 
+import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.domain.Question;
 
 public interface MonologueDAO {
@@ -29,7 +30,7 @@ public interface MonologueDAO {
 	
 	public void deleteMonologueId(int monologueId) throws Exception;
 	
-	
+	public List<Monologue> getReportedMonoList();
 	
 	
 	

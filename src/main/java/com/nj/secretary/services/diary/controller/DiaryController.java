@@ -4,6 +4,8 @@ package com.nj.secretary.services.diary.controller;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.service.DiaryService;
 import com.google.gson.JsonObject;
+import com.nj.secretary.services.monologue.domain.Monologue;
+import com.nj.secretary.services.monologue.service.MonologueService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,11 +27,15 @@ public class DiaryController {
 
     @Autowired
     DiaryService diaryService;
+    @Autowired
+    MonologueService monologueService;
+
 
     @GetMapping("addDiary")
     public String addDiary(){
         return "diary/emotion";
     }
+
 
     @PostMapping("addDiarys")
     public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam("tag_text" +
@@ -53,12 +59,14 @@ public class DiaryController {
         return "diary/getDiary";
     }
 
+
     @GetMapping("write")
     public String writeDiary(Diary diary){
         System.out.println("들어왔다 가야지");
 
         return "diary/boardWrite";
     }
+
 
     @PostMapping(value = "fileUpload", produces = "application/json")
     @ResponseBody
@@ -95,6 +103,7 @@ public class DiaryController {
 
     }
 
+
     @GetMapping(value = "getDiaryList")
     public String listDiary(HttpSession session, Model model){
 
@@ -119,6 +128,8 @@ public class DiaryController {
         model.addAttribute("diary",diaryService.getDiary(diaryNo));
         return "diary/getDiary";
     }
+
+
     @GetMapping("updateDiary")
     public String updateDiary(@RequestParam("diaryId") int diaryNo, Model model){
         System.out.println(diaryNo);
@@ -127,6 +138,8 @@ public class DiaryController {
         model.addAttribute("diary",diaryService.getDiary(diaryNo));
         return "diary/updateDiary";
     }
+
+
     @PostMapping("updateDiary")
     public String updateDiary(@ModelAttribute("diary") Diary diary, Model model){
         System.out.println("shareStatus : " + diary.getShareStatus());
@@ -143,6 +156,19 @@ public class DiaryController {
     }
 
 
+    @GetMapping("adminPost")
+    public String adminPost(Model model){
+        System.out.println("admin Post start");
+            List<Diary> diaryList = diaryService.getReportedDiaryList();
+        System.out.println("diaryList get finish");
+            List<Monologue> monoList = monologueService.getReportedMonoList();
+        System.out.println("diaryList : " + diaryList);
+        System.out.println("monoList : " + monoList);
 
+        model.addAttribute("diaryList", diaryList);
+        model.addAttribute("monoList", monoList);
+
+        return "admin/adminPost";
+    }
 
 }

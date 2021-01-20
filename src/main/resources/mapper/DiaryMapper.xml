@@ -24,6 +24,10 @@
         <result property="fileId" column="FILE_ID" jdbcType="NUMERIC"/>
         <result property="fileName" column="FILE_NAME" jdbcType="VARCHAR"/>
         <result property="fileStatus" column="FILE_STATUS" jdbcType="VARCHAR"/>
+        <result property="reportReasonId" column="report_reason_id" jdbcType="CHAR"/>
+        <result property="reporterId" column="reporter_id" jdbcType="VARCHAR"/>
+        <result property="reportDate" column="report_date" jdbcType="DATE"/>
+        <result property="reportText" column="report_text" jdbcType="VARCHAR"/>
 
     </resultMap>
 
@@ -77,4 +81,11 @@
         WHERE d.diary_id=a.diary_id AND d.user_id = #{value}
         ORDER BY file_name
     </select>
+
+    <select id="getReportedDiaryList" resultMap="diaryServiceMap">
+        select DISTINCT diary_id, user_id, diary_title, report_count, blind_status
+        from diary
+        where report_count >= 3
+    </select>
+
 </mapper>

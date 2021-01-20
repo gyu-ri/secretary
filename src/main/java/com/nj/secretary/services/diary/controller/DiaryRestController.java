@@ -3,6 +3,7 @@ package com.nj.secretary.services.diary.controller;
 
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.service.DiaryService;
+import com.nj.secretary.services.monologue.domain.Monologue;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,5 +76,13 @@ public class DiaryRestController {
         return list;
     }
 
+    @GetMapping("getReportedDiaryList")
+    public List<Diary> adminPost(Model model){
+        System.out.println("admin Post start");
+        List<Diary> diaryList = diaryService.getReportedDiaryList();
 
+        model.addAttribute("diaryList", diaryList);
+
+        return diaryList;
+    }
 }

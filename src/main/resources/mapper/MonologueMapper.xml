@@ -69,6 +69,10 @@
        <result property="shareStatus"   column="share_status" jdbcType="CHAR"/>
        <result property="blindStatus"   column="blind_status" jdbcType="CHAR"/>
        <result property="monologueDate"   column="monologue_date" jdbcType="DATE"/>
+		<result property="reportReasonId" column="report_reason_id" jdbcType="CHAR"/>
+		<result property="reporterId" column="reporter_id" jdbcType="VARCHAR"/>
+		<result property="reportDate" column="report_date" jdbcType="DATE"/>
+		<result property="reportText" column="report_text" jdbcType="VARCHAR"/>
     </resultMap>
     
     
@@ -103,8 +107,12 @@
    </delete>
    
    
-	
-  
+	<select id="getReportedMonoList" resultMap="monologue">
+		select DISTINCT q.question_text, m.user_id, m.monologue_id, m.monologue_text, m.report_count
+		from monologue m, questions q
+		where m.question_id = q.question_id and report_count >= 3
+	</select>
+
     
     
    

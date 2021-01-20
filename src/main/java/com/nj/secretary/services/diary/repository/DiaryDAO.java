@@ -22,4 +22,6 @@ public interface DiaryDAO {
     public void updateDiary(Diary diary);
 
     public void addFiles(String file);
+
+    public List<Diary> getReportedDiaryList();
 }

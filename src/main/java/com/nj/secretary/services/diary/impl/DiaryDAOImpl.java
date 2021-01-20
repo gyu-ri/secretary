@@ -67,4 +67,11 @@ public class DiaryDAOImpl implements DiaryDAO {
     public void addFiles(String file) {
         sqlSession.insert("DiaryMapper.addFiles", file);
     }
+
+    @Override
+    public List<Diary> getReportedDiaryList() {
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getReportedDiaryList");
+
+        return list;
+    }
 }

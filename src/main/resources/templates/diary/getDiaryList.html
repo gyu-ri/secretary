@@ -202,24 +202,24 @@
 </head>
 <body>
 <form method="get" action="">
-<div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px;">	&#8451;</div> &nbsp;
-<div id="temparature" style="float: right; padding-left: 20px"></div>
-<img src="" id="img" width="20" height="20" style="float: right;"/>
-<div id="location" style="float: right; padding-left: 10px; padding-right: 20px;">&#127759;          </div>
+    <div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px;">	&#8451;</div> &nbsp;
+    <div id="temparature" style="float: right; padding-left: 20px"></div>
+    <img src="" id="img" width="20" height="20" style="float: right;"/>
+    <div id="location" style="float: right; padding-left: 10px; padding-right: 20px;">&#127759;          </div>
 
-<br><br>
-<h1 class="pageTitle">일기 목록 보기</h1>
-<br><br>
+    <br><br>
+    <h1 class="pageTitle">일기 목록 보기</h1>
+    <br><br>
 
-<div class="tabs">
-    <ul class="tab-links">
-        <li class="active"><a href="#tab1">&#128198;</a></li>
-        <li><a href="#" id="getTagDiaryList">&#128172;</a></li>
-        <li><a href="#" id="getOthersDiaryList">&#128107;</a></li>
-        <li id="deleteBtn"><a href="#">&#128163; &#128228; &#128194; &#128465; &#9989;</a></li>
-        <li><div class="searchbox"> <input type="text" onkeyup="filter()" name="searchKeyword" id="value" placeholder="&#128270;"> </div></li>
-    </ul>
-</div>
+    <div class="tabs">
+        <ul class="tab-links">
+            <li class="active"><a href="#tab1">&#128198;</a></li>
+            <li><a href="#" id="getTagDiaryList">&#128172;</a></li>
+            <li><a href="#" id="getOthersDiaryList">&#128107;</a></li>
+            <li id="deleteBtn"><a href="#">&#128163; &#128228; &#128194; &#128465; &#9989;</a></li>
+            <li><div class="searchbox"> <input type="text" onkeyup="filter()" name="searchKeyword" id="value" placeholder="&#128270;"> </div></li>
+        </ul>
+    </div>
 
     <script>
         function filter(){
@@ -241,31 +241,31 @@
         }
     </script>
 
-<div class="text">
-    <a href="#" style="float: right" class="deleteUnactive" hidden>&#10006;</a>
-    <article id="for">
+    <div class="text">
+        <a href="#" style="float: right" class="deleteUnactive" hidden>&#10006;</a>
+        <article id="for">
 
-        <div class="block" th:each="diary : ${list}" style="float: left">
-    <p>
-        <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style="float: left" hidden/>
-        <input type="hidden" name="diaryId" th:value="${diary.diaryId}"/>
-        <input type="hidden" class="diaryText" th:value="${diary.diaryText}">
-        제목 : <span th:text="${diary.diaryTitle}">제목</span><br>
-        날짜 : <span th:text="${diary.diaryDate}">날짜</span><br>
-        날씨 :  <img th:src="${diary.weather}" width="20" height="20"/><br>
-        위치 : <span th:text="${diary.location}">위치</span>
-    </p>
-        </div>
-    </article>
-</div>
-<input type="button" id="deleteDiary" value="삭제" hidden/>
-<input type="hidden" id="userId" th:value="${user}" hidden/>
+            <div class="block" th:each="diary : ${list}" style="float: left">
+                <p>
+                    <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style="float: left" hidden/>
+                    <input type="hidden" name="diaryId" th:value="${diary.diaryId}"/>
+                    <input type="hidden" class="diaryText" th:value="${diary.diaryText}">
+                    제목 : <span th:text="${diary.diaryTitle}">제목</span><br>
+                    날짜 : <span th:text="${diary.diaryDate}">날짜</span><br>
+                    날씨 :  <img th:src="${diary.weather}" width="20" height="20"/><br>
+                    위치 : <span th:text="${diary.location}">위치</span>
+                </p>
+            </div>
+        </article>
+    </div>
+    <input type="button" id="deleteDiary" value="삭제" hidden/>
+    <input type="hidden" id="userId" th:value="${user}" hidden/>
 </form>
 <script>
     $("#deleteBtn").on("click", function(){
-       $('.deleteActive').show();
-       $('#deleteDiary').show();
-       $('.deleteUnactive').show();
+        $('.deleteActive').show();
+        $('#deleteDiary').show();
+        $('.deleteUnactive').show();
     });
     $(".deleteUnactive").on("click", function (){
         $('.deleteActive').hide();
@@ -288,6 +288,7 @@
                         "<p>" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
                         "제목 : <span >"+item.diaryTitle+"</span><br>" +
                         "날짜 : <span>"+item.diaryDate+"</span><br>" +
                         "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
@@ -325,6 +326,7 @@
                             "<p>" +
                             "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                             "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                            "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
                             "제목 : <span >"+item.diaryTitle+"</span><br>" +
                             "날짜 : <span>"+item.diaryDate+"</span><br>" +
                             "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
@@ -361,6 +363,7 @@
                         "<p>" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
                         "제목 : <span >"+item.diaryTitle+"</span><br>" +
                         "날짜 : <span>"+item.diaryDate+"</span><br>" +
                         "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
@@ -412,6 +415,7 @@
                             "<p>" +
                             "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                             "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                            "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
                             "제목 : <span >"+item.diaryTitle+"</span><br>" +
                             "날짜 : <span>"+item.diaryDate+"</span><br>" +
                             "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
@@ -450,6 +454,7 @@
                         "<p>" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "<input type='hidden' class='diaryText' value='" + item.fileName + "'/>" +
                         "태그 : <span>"+item.fileName+"</span><br>" +
                         "</p>"+
                         "</div>"

@@ -21,9 +21,10 @@ public interface DiaryService {
 
     public void addFiles(String file);
 
-
     public List<Diary> getTagDiaryList(String userId);
 
     public void moveToBin(int diaryId);
+
+    public List<Diary> getReportedDiaryList();
 
 }
