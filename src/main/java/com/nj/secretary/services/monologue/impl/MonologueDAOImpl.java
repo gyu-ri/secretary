@@ -101,12 +101,10 @@ public class MonologueDAOImpl implements MonologueDAO{
 	}
 
 	@Override
-	public List<Monologue> getMonologue() throws Exception {
+	public String getMonologueText(String monologueText) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectList("Monologue.getMonologue");
+		return sqlsession.selectOne("Monologue.getMonologueText", monologueText);
 	}
-
-
 
 
 		

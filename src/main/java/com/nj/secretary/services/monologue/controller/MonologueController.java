@@ -117,20 +117,11 @@ public class MonologueController {
 	@PostMapping("addMonologueText")
 	public String addMonologueText(@ModelAttribute Monologue monologue, HttpSession session, Model model) throws Exception{
 		System.out.println("monologueController postMapping 시작하니1??");
-		
-		
-		
-		
 //		List<Question> questionList = monologueService.getQuestionList();
-//
 //		Random random=new Random();
 //		random.nextInt(questionList.size());
-//		
 //		model.addAttribute("randomQuestionId", random);
-		
-		
     // 	System.out.println("랜덤으로 뿌려준 questionId 확인"+random);			
-		
 
 		monologue.setMonologueText(monologue.getMonologueText());
 		
@@ -157,6 +148,19 @@ public class MonologueController {
 		
 	}
 	
-
+	@GetMapping("getMonologueText")
+	public String getMonologueText() throws Exception{
+		
+		System.out.println("getMonologueText 시작합니다잉");
+		
+//		int questionId=monologueService.getQuestionId(questionId);
+		
+	//	model.addAttribute("questionId", questionId);
+		
+		
+		
+		return "monologue/getMonologue";
+		
+	}
 
 }

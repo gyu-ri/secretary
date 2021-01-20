@@ -96,10 +96,11 @@ public class MonologueServiceImpl implements MonologueService {
 
 
 	@Override
-	public List<Monologue> getMonologue() throws Exception {
-		// TODOAuto-generated method stub
-		return monologueDAO.getMonologue();
+	public String getMonologueText(String monologueText) throws Exception {
+		// TODO Auto-generated method stub
+		return monologueDAO.getMonologueText(monologueText);
 	}
+
 
 
 	

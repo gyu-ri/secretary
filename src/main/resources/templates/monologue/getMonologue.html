@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+  
 <head>
 <meta charset="UTF-8">
-<title>MONOLOGUE LIST</title>
+<title>GET MONOLOGUE</title>
 
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -26,19 +27,10 @@ body{
 </head>
 <body>
 
-<h1>여기는 모노로그그으으으으으 목록 보기이이이이</h1>
-
-<div th:each="question : ${questionList}">
-
-<input type="hidden" th:value=${question.questionId} name="questionId"/>
-<a href="./getMonologueText"/>
-<span th:text=${question.questionText}/>
+<h1>여기는 모노로그으으으으으으 상세보기이이이이이이이</h1>
 
 
-
-</div>
-
-
+<!-- <input type="text" name="monologueText"> -->
 
 
 
@@ -46,4 +38,5 @@ body{
 
 
 </body>
+</html>
 </html>
