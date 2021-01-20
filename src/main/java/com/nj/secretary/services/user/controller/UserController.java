@@ -39,13 +39,13 @@ public class UserController {
         return "user/addUser";
     }
 
-    @ResponseBody//서버로 보낸 json데이터를 자바 객체로 매핑
-    @PostMapping
-    public int IdCheck(@RequestBody String userId) throws Exception{
-        int count = 0;
-        if(userId != null) count = userService.idCheck(userId);
-        return count;
-    }
+//    @ResponseBody//서버로 보낸 json데이터를 자바 객체로 매핑
+//    @GetMapping
+//    public int idCheck(@RequestParam("userId") String userId) throws Exception{
+//        int count = 0;
+//        if(userId != null) count = userService.idCheck(userId);
+//        return count;
+//    }
 
     @GetMapping("/login")
     public String login() throws Exception{

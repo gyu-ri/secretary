@@ -33,8 +33,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public int idCheck(String userId) throws Exception {
-        sqlSession.selectOne("UserMapper.idCheck",userId);
-        return 0;
+        return sqlSession.selectOne("UserMapper.idCheck",userId);
     }
 
     @Override

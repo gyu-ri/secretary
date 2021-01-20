@@ -1,45 +1,57 @@
 <!DOCTYPE html>
-<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>signUp</title>
     <meta charset="UTF-8">
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
     <script type="text/javascript">
 
+        //아이디 유효성 검사
         function idCheck() {
-            alert("버튼 눌림");
-            // var userId = $("#userId").val();
-            //
-            // if(userId.search(/\s/) != -1) {
-            //     alert("아이디를 입력해주세요.");
-            // } else {
-            //     if(userId.trim().length != 0) {
-            //         $.ajax({
-            //             async : true, //비동기 방식을 사용하겠다는 의미
-            //             type : 'POST',
-            //             data: userId,
-            //             url: "/idCheck",//controller의  /idCheck로 갈것
-            //             dataType: "json",
-            //             contentType: "application/json; charset=UTF-8",
-            //             success: function(count) {
-            //                 if(count > 0) {
-            //                     alert("이미 존재하는 아이디입니다.");
-            //                     $("#submit").attr("disabled", "disabled");
-            //                     window.location.reload();
-            //                 } else {
-            //                     alert("사용가능한 아이디입니다.");
-            //                     $("#submit").removeAttr("disabled");
-            //                 }
-            //             },
-            //             error: function(error) {
-            //                 alert("아이디를 입력해주세요.");
-            //             }
-            //         });
-            //     } else {
-            //         alert("아이디를 입력해주세요.");
-            //     }
-            // }
-        }
+            var userId = $('#userId').val();
+            $.ajax({
+                url: '/restUser/idCheck',
+                type : 'get',
+                data : {userId:userId},
+                contentType : "application/json",
+                success : function (data) {
+                    console.log("1=중복/0=중복아님"+data);
+
+                    if (data==1){
+                        $("#idCheck").text("이미 존재하는 아이디입니다.");
+                        $("#idCheck").css("color","red");
+                        $("#submit").attr("disabled", true);
+                    }else {
+                        $("#idCheck").text("사용가능한 아이디입니다.");
+                        $("#idCheck").css("color","blue");
+                        $("#submit").attr("disabled", true);
+                    }
+                }, error : function () {
+                    console.log("실패");
+                }
+            });
+        };
+
+        // $(".sendMail").click(function() {// 메일 입력 유효성 검사
+        //     var mail = $(".mail").val(); //사용자의 이메일 입력값.
+        //
+        //     if (mail == "") {
+        //         alert("메일 주소가 입력되지 않았습니다.");
+        //     } else {
+        //         mail = mail+"@"+$(".domain").val(); //셀렉트 박스에 @뒤 값들을 더함.
+        //         $.ajax({
+        //             type : 'post',
+        //             url : '/CheckMail',
+        //             data : {
+        //                 mail:mail
+        //             },
+        //             dataType :'json',
+        //
+        //         });
+        //         alert("인증번호가 전송되었습니다.")
+        //         isCertification=true; //추후 인증 여부를 알기위한 값
+        //     }
+        // });
     </script>
 
     <style>
@@ -55,25 +67,21 @@
 <h3>signUp</h3>
 
 <form action="signUp" method="post">
-    id       : <input type="text" name="userId" placeholder="아이디를 입력해주세요" required>
-    <button id="idCheck"  onclick=javascript:idCheck()>아이디 중복확인</button></br>
+    <div class="form-group">
+    <label for="userId"></label>
+    id       : <input type="text" onkeyup="idCheck()" class="form-control" id="userId" name="userId" placeholder="아이디를 입력해주세요" required>
+    <div class="check_font" id="idCheck"></div><!--경고문이 들어갈 공간 -->
+    </div>
     password : <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required></br>
     name     : <input type="text" name="userName" placeholder="이름을 입력해주세요" required></br>
     email    : <input type="email" name="email" placeholder="이메일을 입력해주세요" required>
-    <button id="checkEmail"  onclick=javascript:checkEmail()>이메일 인증</button></br>
+    <button id="checkEmail"  onclick=javascript:sendMail()>이메일 인증</button></br>
     certificationNo : <input type="text" name="certificationNo" placeholder="인증번호를 입력해주세요">
     <button id="resend"  onclick=javascript:resend()>재전송</button>
     <button id="checkCertificationNo"  onclick=javascript:checkCertificationNo()>인증확인</button></br>
     nickname : <input type="text" name="nickname" placeholder="닉네임을 입력해주세요"></br>
     <input type="submit" value="회원가입">
 </form>
-
-<input type="button" id="button1" onclick="button1_click();" value="버튼1" />
-<script>
-    function button1_click() {
-        alert("버튼1을 누르셨습니다.");
-    }
-</script>
 
 </body>
 </html>
