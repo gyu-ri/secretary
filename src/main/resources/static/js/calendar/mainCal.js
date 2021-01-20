@@ -104,11 +104,14 @@ var calendar = $('#calendar').fullCalendar({
           // $("td [data-date='"+eD+"']").prepend("<img width=100% height=100% b src='" + event.imageUrl + "'>");
           $("td [data-date='"+eD+"']").attr({
               style:"background-image:url('"+event.imageUrl+"')",
-              width:"auto"
+
 
           });
           $("td [data-date='"+eD+"']").css({
-              margin:'1px'
+              margin:'1px',
+              backgroundSize:70,
+              backgroundRepeat:'no-repeat'
+
 
           });
 
