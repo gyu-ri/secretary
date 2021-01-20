@@ -1,11 +1,41 @@
 package com.nj.secretary.services.monologue.repository;
 
-import com.nj.secretary.services.monologue.domain.Monologue;
+import java.util.List;
 
-public class MonologueDAO {
+import com.nj.secretary.services.monologue.domain.Question;
+
+public interface MonologueDAO {
 	
-	public void addQuestionText(String questionText) throws Exception {
-	}
+	
+	//Question
+	
+	public void addQuestionText(String questionText) throws Exception;
+	
+	public String getQuestionText(String questionText) throws Exception;
+
+	public void deleteQuestionId(int questionId) throws Exception;
+
+	public int getQeustionId(int questionId) throws Exception;
+	
+	public List<Question> getQuestionList() throws Exception;
+	
+	
+	
+	//monologue
+	
+	public void addMonologueText(String monologueText) throws Exception;
+	
+	public void updateMonologueText(String monologueText) throws Exception;
+	
+	public void deleteMonologueId(int monologueId) throws Exception;
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 		

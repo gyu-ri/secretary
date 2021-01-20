@@ -49,8 +49,8 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public List<Diary> moveToBin(int diaryId) {
-        return null;
+    public void moveToBin(int diaryId) {
+        sqlSession.update("DiaryMapper.moveToBin",diaryId);
     }
 
     @Override

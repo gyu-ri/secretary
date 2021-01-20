@@ -13,6 +13,7 @@ public interface DiaryService {
 
     public List<Diary> getDiaryList(String userId);
 
+
     public List<Diary> getOthersDiaryList();
 
     public Diary getDiary(int diaryNumber);
@@ -24,6 +25,6 @@ public interface DiaryService {
 
     public List<Diary> getTagDiaryList(String userId);
 
-    public List<Diary> moveToBin(int diaryId);
+    public void moveToBin(int diaryId);
 
 }

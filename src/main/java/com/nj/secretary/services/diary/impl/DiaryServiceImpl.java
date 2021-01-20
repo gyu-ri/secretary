@@ -52,16 +52,15 @@ public class DiaryServiceImpl implements DiaryService {
     public List<Diary> getOthersDiaryList() {
 
         List<Diary> list = diaryDAO.getOthersDiaryList();
-        return null;
+        return list;
     }
 
 
     @Override
-    public List<Diary> moveToBin(int diaryId) {
+    public void moveToBin(int diaryId) {
 
-        List<Diary> list = diaryDAO.moveToBin(diaryId);
+        diaryDAO.moveToBin(diaryId);
 
-        return null;
     }
 
     @Override

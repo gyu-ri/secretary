@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nj.secretary.services.monologue.service.MonologueService">
+
+<!--    type=vo,dto,domain 파일명      id=내가 사용ㅇ할 이름 임의로 정하면 됨 -->
+    <resultMap type="com.nj.secretary.services.monologue.domain.Question" id="question">
+<!--        property=필드 변수명      column=칼럼에 넣어준 칼럼명 -->
+              
+       <result property="questionText"   column="question_text" jdbcType="VARCHAR"/>
+       <result property="questionId"   column="question_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+	<insert id="addQuestionText"
+		parameterType="com.nj.secretary.services.monologue.domain.Question">
+
+		INSERT INTO questions (question_id,question_text)
+		VALUES (question_seq.NEXTVAL,#{questionText})
+
+	</insert> 
+	
+	
+	<select id="getQuestionId" parameterType="integer" resultMap="question">
+
+	   SELECT question_id
+       FROM questions
+	   WHERE question_id=#{questionId}
+	
+	</select>
+	
+	
+	<select id="getQuestionText" parameterType="String" resultMap="question">
+   
+     SELECT question_text
+   	 FROM questions
+   	 WHERE question_text=#{questionText}
+	
+	</select>
+	
+	
+	<delete id="deleteQuestionId"  parameterType="com.nj.secretary.services.monologue.domain.Question" >
+
+	DELETE
+	FROM questions
+	WHERE question_id=#{questionId}
+	
+	</delete>
+	
+	
+	<select id="getQuestionList"  parameterType="com.nj.secretary.services.monologue.domain.Question" resultMap="question">
+	  SELECT * FROM questions
+	  ORDER BY  question_id ASC
+		
+	 
+     </select>
+
+
+
+<!--    type=vo,dto,domain 파일명      id=내가 사용ㅇ할 이름 임의로 정하면 됨 -->
+    <resultMap type="com.nj.secretary.services.monologue.domain.Monologue" id="monologue">
+<!--        property=필드 변수명      column=칼럼에 넣어준 칼럼명 -->
+              
+       <result property="userId"       column="user_id" jdbcType="VARCHAR"/>
+       <result property="monologueText"   column="monologue_text" jdbcType="VARCHAR"/>
+       <result property="monologueId"   column="monologue_id" jdbcType="INTEGER"/>
+       <result property="reportCount"   column="report_count" jdbcType="INTEGER"/>
+       <result property="shareStatus"   column="share_status" jdbcType="CHAR"/>
+       <result property="blindStatus"   column="blind_status" jdbcType="CHAR"/>
+       <result property="monologueDate"   column="monologue_date" jdbcType="DATE"/>
+    </resultMap>
+    
+    
+    
+	<insert id="addMonologueText" parameterType="com.nj.secretary.services.monologue.domain.Monologue">
+
+	INSERT INTO monologue (monologue_id, question_id, monologue_text, monologue_date,user_id)
+	VALUES (monologue_seq.NEXTVAL, #{questionId}, #{monologueText},SYSDATE,'gyuri')
+	                 
+                     
+               
+                     
+   </insert>
+   
+   
+   <update id="updateMonologueText" parameterType="com.nj.secretary.services.monologue.domain.Monologue">
+
+	UPDATE monologue
+	SET monologue_text=#{monologueText}
+	WHERE monologue_id=#{monologueId}
+   
+   </update>                      
+   
+   
+   
+   <delete id="deleteMonologueId"  parameterType="com.nj.secretary.services.monologue.domain.Monologue" >
+
+	DELETE
+	FROM monologue
+	WHERE monologue_id=#{monologueId}
+   
+   </delete>
+   
+   
+	
+  
+    
+    
+   
+   
+
+                                                  
+
+
+</mapper>
+
+
+
+
+

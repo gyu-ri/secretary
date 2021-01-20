@@ -46,13 +46,9 @@
     </select>
 
 
-    <update id="moveToBinDiary">
-        update diary set calendar_title=#{title}
-                          ,calendar_detail=#{description}
-                          ,start_date=#{start}
-                          ,end_date=#{end}
-                          ,background_color=#{backgroundColor}
-        where calendar_id = #{id}
+    <update id="moveToBin" parameterType="integer">
+        update DIARY set DELETE_STATUS = 1
+        where DIARY_ID = #{diaryId}
     </update>
 
     <select id="getDiary" parameterType="integer" resultType="com.nj.secretary.services.diary.domain.Diary">
@@ -61,7 +57,7 @@
 
     </select>
 
-    <update id="updateDiary">
+    <update id="updateDiary" parameterType="com.nj.secretary.services.diary.domain.Diary">
         update DIARY set DIARY_TITLE=#{diaryTitle}
                           ,DIARY_TEXT=#{diaryText}
                           ,SHARE_STATUS=#{shareStatus}
