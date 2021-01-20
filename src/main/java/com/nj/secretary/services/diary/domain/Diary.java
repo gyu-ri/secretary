@@ -27,7 +27,7 @@ public class Diary {
     private int likeCount;
     private Date deleteDate;
     private String shareStatus;
-    private String diaryDate;
+    private Date diaryDate;
     private int reportCount;
     private String sortCondition;
 
