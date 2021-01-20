@@ -5,15 +5,15 @@ import java.util.Date;
 public class Monologue{
 	
 	//field
-	private String userId;           //사용자 아이디:중복X
-//	private String questionText;     //1문내용
-	private String monologueText;    //1답내용
-//	private int questionId;          //1문고유번호
-	private int monologueId;         //1답고유번호
-	private int reportCount;         //신고수
-	private boolean shareStatus;     //공유상태 0:default:false
-	private boolean blindStatus;     //블라인드상태 0:default:false
-	private Date monologueDate;      //1답작성일
+	private String userId;           //????? ?????:???X
+//	private String questionText;     //1??????
+	private String monologueText;    //1????
+//	private int questionId;          //1?????????
+	private int monologueId;         //1????????
+	private int reportCount;         //????
+	private boolean shareStatus;     //???????? 0:default:false
+	private boolean blindStatus;     //????ε???? 0:default:false
+	private Date monologueDate;      //1???????
 	
 	
 	//constructor
@@ -123,15 +123,15 @@ public class Monologue{
 //@Data
 //public class Monologue implements Serializable {
 //	
-//	private String userId;           //사용자 아이디:중복X
-//	private String questionText;     //1문내용
-//	private String monologueText;    //1답내용
-//	private int questionId;          //1문고유번호
-//	private int monologueId;         //1답고유번호
-//	private int reportCount;         //신고수
-//	private boolean shareStatus;     //공유상태 0:default:false
-//	private boolean blindStatus;     //블라인드상태 0:default:false
-//	private Date monologueDate;      //1답작성일
+//	private String userId;           //????? ?????:???X
+//	private String questionText;     //1??????
+//	private String monologueText;    //1????
+//	private int questionId;          //1?????????
+//	private int monologueId;         //1????????
+//	private int reportCount;         //????
+//	private boolean shareStatus;     //???????? 0:default:false
+//	private boolean blindStatus;     //????ε???? 0:default:false
+//	private Date monologueDate;      //1???????
 //	
 //	
 //	

@@ -1,5 +1,7 @@
 package com.nj.secretary.services.diary.impl;
 
+import com.nj.secretary.services.calendar.domain.Calendar;
+import com.nj.secretary.services.calendar.domain.IsDiary;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.repository.DiaryDAO;
 import org.apache.ibatis.session.SqlSession;
@@ -66,5 +68,10 @@ public class DiaryDAOImpl implements DiaryDAO {
     @Override
     public void addFiles(String file) {
         sqlSession.insert("DiaryMapper.addFiles", file);
+    }
+
+    @Override
+    public List<IsDiary> getDiaryEmotion(Calendar calendar) {
+        return sqlSession.selectList("DiaryMapper.getDiaryEmotion",calendar);
     }
 }
