@@ -19,11 +19,13 @@ public interface DiaryService {
 
     public void updateDiary(Diary diary);
 
+
     public void addFiles(String file);
 
 
     public List<Diary> getTagDiaryList(String userId);
 
-    public List<Diary> moveToBin(int diaryId);
+
+    public void moveToBin(int diaryId);
 
 }
