@@ -13,7 +13,6 @@ public interface DiaryService {
 
     public List<Diary> getDiaryList(String userId);
 
-
     public List<Diary> getOthersDiaryList();
 
     public Diary getDiary(int diaryNumber);

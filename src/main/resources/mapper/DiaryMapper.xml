@@ -46,6 +46,7 @@
     </select>
 
 
+
     <update id="moveToBin" parameterType="integer">
         update DIARY set DELETE_STATUS = 1
         where DIARY_ID = #{diaryId}
@@ -62,7 +63,6 @@
                           ,DIARY_TEXT=#{diaryText}
                           ,SHARE_STATUS=#{shareStatus}
         where DIARY_ID = #{diaryId}
-
     </update>
 
     <insert id="addFiles" parameterType="String">
