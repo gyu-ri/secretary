@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.domain.Question;
 import com.nj.secretary.services.monologue.repository.MonologueDAO;
 
@@ -97,6 +98,12 @@ public class MonologueDAOImpl implements MonologueDAO{
 		sqlsession.delete("Monologue.deleteMonologue", monologueId);
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Monologue> getMonologue() throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("Monologue.getMonologue");
 	}
 
 

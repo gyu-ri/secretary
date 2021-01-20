@@ -35,7 +35,7 @@ public class MonologueController {
 	public String addQuestionText(HttpSession session) throws Exception {
 		System.out.println("monologueController addQuestionText 시작");
 		
-		session.setAttribute("role", "admin");
+		session.setAttribute("role", "gyuri");
 		
 		String role=(String)session.getAttribute("role");
 		
@@ -112,22 +112,13 @@ public class MonologueController {
 	}
 	
 	@PostMapping("addMonologueText")
-	public String addMonologueText(String monologueText, int questionId, HttpSession session) throws Exception{
-		System.out.println("monologueController   addMonologueText:::::    " +monologueText);
+	public String addMonologueText(String monologueText) throws Exception{
+		
 		
 		monologueService.addMonologueText(monologueText);
-		monologueService.getQuestionId(questionId);
+
 		
-		System.out.println("monologueCotroller에서 addMonologueText에서 userId   확인   :::  "+questionId);
-		
-		
-		session.setAttribute("userId", "gyuri");
-		
-		
-		String userId=(String)session.getAttribute("userId");
-		
-		System.out.println("monologueCotroller에서 addMonologueText에서 userId   확인   :::  "+userId);
-		
+		System.out.println("monologueController   addMonologueText:::::    " +monologueText);
 		
 		
 		return "monologue/addMonologue";
