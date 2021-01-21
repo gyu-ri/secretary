@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Monologue{
 	
-	//field
+
 	private String userId;           //����� ���̵�:�ߺ�X
 //	private String questionText;     //1������
 	private String monologueText;    //1�䳻��
@@ -14,6 +14,7 @@ public class Monologue{
 	private boolean shareStatus;     //�������� 0:default:false
 	private boolean blindStatus;     //����ε���� 0:default:false
 	private Date monologueDate;      //1���ۼ���
+
 
 	
 	//constructor

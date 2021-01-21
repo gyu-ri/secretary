@@ -5,8 +5,12 @@ import java.util.Date;
 public class Question{
 	
 	//field
+	private String questionText;
+	private int questionId;
+
 	private String questionText;     //1문내용
 	private int questionId;          //1문 고유번호
+
 	
 	//constructor
 	public Question() {

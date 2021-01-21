@@ -30,6 +30,10 @@ public interface DiaryService {
 
     public void moveToBin(int diaryId);
 
+    public List<Diary> getBinList(String userId);
+
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
+
+
 
 }

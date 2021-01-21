@@ -142,6 +142,14 @@ public class DiaryController {
         return "diary/getDiary";
     }
 
+    @GetMapping("binDiaryList")
+    public String binDiaryList(HttpSession session,Model model){
+        session.setAttribute("user","윤도영");
+
+        model.addAttribute("diaryList",diaryService.getBinList((String) session.getAttribute("user")));
+        return "diary/binDiary";
+    }
+
 
 
 

@@ -56,14 +56,13 @@
 
 
     <update id="moveToBin" parameterType="integer">
-        update DIARY set DELETE_STATUS = 1
+        update DIARY set DELETE_STATUS = 1, DELETE_DATE = SYSDATE
         where DIARY_ID = #{diaryId}
     </update>
 
     <select id="getDiary" parameterType="integer" resultType="com.nj.secretary.services.diary.domain.Diary">
         SELECT * FROM DIARY
         WHERE DIARY_ID=${diaryNo}
-
     </select>
 
     <update id="updateDiary" parameterType="com.nj.secretary.services.diary.domain.Diary">
@@ -90,5 +89,11 @@
         SELECT to_char(DIARY_DATE,'yyyy-mm-dd') DIARY_DATE, DIARY_ID, WEATHER
         FROM DIARY
         WHERE USER_ID = #{username} and DIARY_DATE &gt;= #{start} and DIARY_DATE &lt;=#{end}
+    </select>
+
+    <select id="getBinList" parameterType="String" resultMap="diaryServiceMap">
+        SELECT DIARY_ID, DIARY_TITLE, DELETE_DATE, DIARY_DATE
+        FROM DIARY
+        WHERE USER_ID = #{userId} and DELETE_STATUS = '1'
     </select>
 </mapper>

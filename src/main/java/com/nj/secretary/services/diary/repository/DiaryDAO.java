@@ -19,6 +19,8 @@ public interface DiaryDAO {
 
     public void moveToBin(int diaryId);
 
+    public List<Diary> getBinList(String userId);
+
     public Diary getDiary(int DiaryNumber);
 
     public void updateDiary(Diary diary);
