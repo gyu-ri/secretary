@@ -95,7 +95,7 @@ public class DiaryRestController {
     }
 
     @PostMapping("setBlindDiary")
-    public int setBlindDiary(@RequestBody String id){
+    public int setBlindDiary(@RequestBody String id) {
         System.out.println("diary check : " + id);
         int num = Integer.parseInt(id.split("=")[1]);
         System.out.println(num);
@@ -104,6 +104,7 @@ public class DiaryRestController {
         System.out.println("setBlindDiary from DiaryRestController finish");
 
         return 1;
+    }
 
     @PostMapping("translateDiary")
     public String translateDiary(@RequestBody Translate translate){
