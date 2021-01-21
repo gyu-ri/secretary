@@ -2,6 +2,7 @@ package com.nj.secretary.services.monologue.impl;
 
 import java.util.List;
 
+import com.nj.secretary.services.monologue.domain.Monologue;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -95,11 +96,19 @@ public class MonologueDAOImpl implements MonologueDAO{
 	@Override
 	public void deleteMonologue(int questionId) throws Exception {
 		
+
 		sqlsession.delete("MonologueMapper.deleteMonologue", questionId);
+
 		// TODO Auto-generated method stub
 		
 	}
 
+
+
+	@Override
+	public List<Monologue> getReportedMonoList() {
+  }
+  
 	@Override
 	public Monologue getMonologueText(int questionId) throws Exception {
 		// TODO Auto-generated method stub
@@ -107,8 +116,16 @@ public class MonologueDAOImpl implements MonologueDAO{
 	}
 
 
-		
-	
-	
-	
+		List<Monologue> list = sqlsession.selectList("MonologueMapper.getReportedMonoList");
+
+		return list;
+	}
+
+	@Override
+	public int setBlindMonologue(int num) {
+
+		sqlsession.update("MonologueMapper.setBlindMonologue", num);
+
+		return 1;
+	}
 }

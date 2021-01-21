@@ -19,11 +19,19 @@ public interface DiaryDAO {
 
     public void moveToBin(int diaryId);
 
+    public List<Diary> getBinList(String userId);
+
     public Diary getDiary(int DiaryNumber);
 
     public void updateDiary(Diary diary);
 
     public void addFiles(String file);
 
+
+    public List<Diary> getReportedDiaryList();
+
+    public int setBlindDiary(int num);
+
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
+
 }

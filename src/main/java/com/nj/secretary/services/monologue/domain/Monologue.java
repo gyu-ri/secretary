@@ -4,16 +4,25 @@ import java.util.Date;
 
 public class Monologue{
 	
-	//field
+
+
 	private String userId;           //����� ���̵�:�ߺ�X
 //	private String questionText;     //1������
 	private String monologueText;    //1�䳻��
 	private int questionId;          //1��������ȣ
+
 	private int monologueId;         //1�������ȣ
 	private int reportCount;         //�Ű��
 	private boolean shareStatus;     //�������� 0:default:false
 	private boolean blindStatus;     //����ε���� 0:default:false
 	private Date monologueDate;      //1���ۼ���
+
+	private String postGroup = "monologue";
+	private String reportReasonId;
+	private String reporterId;
+	private Date reportDate;
+	private String reportText;
+	
 
 	
 	//constructor
@@ -34,6 +43,13 @@ public class Monologue{
 	}
 
 
+	public String getQuestionText() {
+		return questionText;
+	}
+
+	public void setQuestionText(String questionText) {
+		this.questionText = questionText;
+	}
 
 	public String getMonologueText() {
 		return monologueText;
@@ -96,6 +112,37 @@ public class Monologue{
 		this.monologueDate = monologueDate;
 	}
 
+	public String getReportReasonId() {
+		return reportReasonId;
+	}
+
+	public void setReportReasonId(String reportReasonId) {
+		this.reportReasonId = reportReasonId;
+	}
+
+	public String getReporterId() {
+		return reporterId;
+	}
+
+	public void setReporterId(String reporterId) {
+		this.reporterId = reporterId;
+	}
+
+	public Date getReportDate() {
+		return reportDate;
+	}
+
+	public void setReportDate(Date reportDate) {
+		this.reportDate = reportDate;
+	}
+
+	public String getReportText() {
+		return reportText;
+	}
+
+	public void setReportText(String reportText) {
+		this.reportText = reportText;
+	}
 
 	
 
@@ -133,4 +180,31 @@ public class Monologue{
 
 
 
+
+//
+//
+//import java.io.Serializable;
+//import java.util.Date;
+//
+//import lombok.Data;
+//
+//@Data
+//public class Monologue implements Serializable {
+//	
+//	private String userId;           //����� ���̵�:�ߺ�X
+//	private String questionText;     //1������
+//	private String monologueText;    //1�䳻��
+//	private int questionId;          //1��������ȣ
+//	private int monologueId;         //1�������ȣ
+//	private int reportCount;         //�Ű��
+//	private boolean shareStatus;     //�������� 0:default:false
+//	private boolean blindStatus;     //����ε���� 0:default:false
+//	private Date monologueDate;      //1���ۼ���
+//	
+//	
+//	
+//	
+//	
+//	
+//}
 

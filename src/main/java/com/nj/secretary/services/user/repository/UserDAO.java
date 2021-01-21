@@ -16,6 +16,9 @@ public interface UserDAO {
     //Select One : 아이디 찾기
     public User findUserId(String userName) throws Exception;
 
+    //Select One : 비밀번호 찾기
+   // public User findUserPassword() throws Exception;
+
     //Select List
     public List<User> getUserList() throws Exception;
 
@@ -28,4 +31,6 @@ public interface UserDAO {
     //idCheck
     public int idCheck(String userId) throws Exception;
 
+    //adminUser
+    public List<User> getBlindedUserList();
 }

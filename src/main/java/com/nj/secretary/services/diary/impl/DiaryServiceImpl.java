@@ -66,6 +66,12 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
+    public List<Diary> getBinList(String userId) {
+
+        return diaryDAO.getBinList(userId);
+    }
+
+    @Override
     public List<IsDiary> getDiaryEmotion(Calendar calendar) {
         return diaryDAO.getDiaryEmotion(calendar);
     }
@@ -86,5 +92,18 @@ public class DiaryServiceImpl implements DiaryService {
     public void addFiles(String file) {
 
         diaryDAO.addFiles(file);
+    }
+
+    @Override
+    public List<Diary> getReportedDiaryList() {
+
+        List<Diary> list =  diaryDAO.getReportedDiaryList();
+        return list;
+    }
+
+    @Override
+    public int setBlindDiary(int num) {
+        diaryDAO.setBlindDiary(num);
+        return 1;
     }
 }

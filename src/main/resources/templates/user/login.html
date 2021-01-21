@@ -1,5 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<script>
+    // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('b924b1b6cefccb2c71d88231552b32a8');
+
+    // SDK 초기화 여부를 판단합니다.
+    console.log(Kakao.isInitialized());
+</script>
+
+<script th:inline="javascript">
+    function loginWithKakao() {
+        Kakao.Auth.authorize({
+            redirectUri: 'http://localhost:9090/user/kakaologin' //토큰지고 가는 경로
+        })
+    }
+
+    function userInfo(){
+        alert("test");
+        /*<![CDATA[*/
+        const token = [[${accessToken}]];
+        /*]]>*/
+        Kakao.Auth.setAccessToken(token)
+        Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(response) {
+                console.log(response);
+            },
+            fail: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+</script>
 <head>
     <meta charset="UTF-8">
     <title>signUp</title>
@@ -22,5 +58,26 @@
     <input type="submit" value="로그인"/>
 
 </form>
+
+<!--<form action="/kakaoLogin">-->
+
+<!--    <input type="submit" name="buttonTest">-->
+
+<!--</form>-->
+
+<p id="token-result"></p>
+
+<a id="custom-login-btn" href="javascript:loginWithKakao()">
+    <img
+            src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+            width="222"
+    />
+</a>
+
+<a id="testUserInfo" href="javascript:userInfo()">test</a>
+
+<span th:text="${code}"></span>
+
+<a id="kakao-login-btn"></a>
 </body>
 </html>

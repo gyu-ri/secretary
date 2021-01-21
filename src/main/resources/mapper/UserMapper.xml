@@ -54,4 +54,10 @@
     where user_name=#{userName}
     </select>
 
+    <select id="getBlindedUserList" resultMap="userSelectMap">
+        SELECT *
+        FROM users
+        WHERE blind_count >= 1
+    </select>
+
 </mapper>

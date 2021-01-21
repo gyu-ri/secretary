@@ -30,7 +30,11 @@ public class Diary {
     private Date diaryDate;
     private int reportCount;
     private String sortCondition;
-
+    private String postGroup = "diary";
+    private String reportReasonId;
+    private String reporterId;
+    private java.util.Date reportDate;
+    private String reportText;
 
     public Diary() { }
 

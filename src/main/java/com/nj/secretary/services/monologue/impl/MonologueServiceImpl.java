@@ -1,3 +1,4 @@
+
 package com.nj.secretary.services.monologue.impl;
 
 import java.util.List;
@@ -94,17 +95,25 @@ public class MonologueServiceImpl implements MonologueService {
 		
 	}
 
-
 	@Override
 	public Monologue getMonologueText(int questionId) throws Exception {
 		// TODO Auto-generated method stub
 		return monologueDAO.getMonologueText(questionId);
 	}
+  
+  @Override
+	public List<Monologue> getReportedMonoList() {
 
+		List<Monologue> list = monologueDAO.getReportedMonoList();
+		return list;
+	}
+  @Override
+	public int setBlindMonologue(int num){
 
+		monologueDAO.setBlindMonologue(num);
 
-	
-	
-	
+		return 1;
+	}
 
 }
+

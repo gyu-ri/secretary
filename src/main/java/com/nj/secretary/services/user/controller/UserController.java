@@ -1,20 +1,22 @@
 package com.nj.secretary.services.user.controller;
 
-//import com.nj.secretary.services.user.domain.JavaMailSendar;
+import org.json.JSONObject;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import com.nj.secretary.services.user.domain.User;
 import com.nj.secretary.services.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Map;
 
 @Controller
@@ -38,14 +40,6 @@ public class UserController {
         userService.addUser(user);
         return "user/addUser";
     }
-
-//    @ResponseBody//서버로 보낸 json데이터를 자바 객체로 매핑
-//    @GetMapping
-//    public int idCheck(@RequestParam("userId") String userId) throws Exception{
-//        int count = 0;
-//        if(userId != null) count = userService.idCheck(userId);
-//        return count;
-//    }
 
     @GetMapping("/login")
     public String login() throws Exception{
@@ -101,6 +95,66 @@ public class UserController {
             System.out.println("일치하는 정보 없음");
         }
         return "user/emailSuccess";
+    }
+
+
+    @GetMapping("/kakaologin")
+    public String kakaoGetToken(@RequestParam("code") String code, Model model) throws IOException {
+        String access_Token = "";
+        String refresh_Token = "";
+        String reqURL = "https://kauth.kakao.com/oauth/token";
+        System.out.println(code);
+
+        try {
+            URL url = new URL(reqURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+            //    POST 요청을 위해 기본값이 false인 setDoOutput을 true로
+            conn.setRequestMethod("POST");
+            conn.setDoOutput(true);
+
+            //    POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+            StringBuilder sb = new StringBuilder();
+            sb.append("grant_type=authorization_code");
+            sb.append("&client_id=aceb8c76e94a93fae1034661828f1e34");
+            sb.append("&redirect_uri=http://localhost:9090/user/login");
+            sb.append("&code=" + code);
+            bw.write(sb.toString());
+            bw.flush();
+
+            //    결과 코드가 200이라면 성공
+            int responseCode = conn.getResponseCode();
+            System.out.println("responseCode : " + responseCode);
+
+            //    요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line = "";
+            String result = "";
+
+            while ((line = br.readLine()) != null) {
+                result += line;
+            }
+            System.out.println("response body : " + result);
+
+            //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
+
+            JSONObject jsonObject = new JSONObject(result);
+
+            System.out.println(jsonObject);
+            System.out.println(jsonObject.get("access_token"));
+            System.out.println(jsonObject.get("refresh_token"));
+            model.addAttribute("accessToken",jsonObject.get("access_token"));
+
+
+            br.close();
+            bw.close();
+        } catch (IOException e) {
+            System.out.println("변환에 실패");
+            e.printStackTrace();
+        }
+
+        return "/user/login";
     }
 
 }

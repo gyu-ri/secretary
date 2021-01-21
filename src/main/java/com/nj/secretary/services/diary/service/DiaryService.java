@@ -21,15 +21,22 @@ public interface DiaryService {
 
     public void updateDiary(Diary diary);
 
-
     public void addFiles(String file);
-
 
     public List<Diary> getTagDiaryList(String userId);
 
-
     public void moveToBin(int diaryId);
 
+
+    public List<Diary> getReportedDiaryList();
+
+    public int setBlindDiary(int num);
+
+    public List<Diary> getBinList(String userId);
+
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
+
+
+
 
 }
