@@ -14,7 +14,7 @@ public class Monologue{
 	private boolean shareStatus;     //�������� 0:default:false
 	private boolean blindStatus;     //����ε���� 0:default:false
 	private Date monologueDate;      //1���ۼ���
-	
+
 	
 	//constructor
 	public Monologue() {
@@ -133,29 +133,4 @@ public class Monologue{
 
 
 
-//
-//
-//import java.io.Serializable;
-//import java.util.Date;
-//
-//import lombok.Data;
-//
-//@Data
-//public class Monologue implements Serializable {
-//	
-//	private String userId;           //����� ���̵�:�ߺ�X
-//	private String questionText;     //1������
-//	private String monologueText;    //1�䳻��
-//	private int questionId;          //1��������ȣ
-//	private int monologueId;         //1�������ȣ
-//	private int reportCount;         //�Ű��
-//	private boolean shareStatus;     //�������� 0:default:false
-//	private boolean blindStatus;     //����ε���� 0:default:false
-//	private Date monologueDate;      //1���ۼ���
-//	
-//	
-//	
-//	
-//	
-//	
-//}
+
