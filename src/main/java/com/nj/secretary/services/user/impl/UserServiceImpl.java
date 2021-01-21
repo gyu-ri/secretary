@@ -55,4 +55,12 @@ public class UserServiceImpl implements UserService {
     public int idCheck(String userId) throws Exception {
         return userDAO.idCheck(userId);
     }
+
+    @Override
+    public List<User> getBlindedUserList() {
+
+        List<User> list = userDAO.getBlindedUserList();
+
+        return list;
+    }
 }

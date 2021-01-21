@@ -1,5 +1,7 @@
 package com.nj.secretary.services.diary.impl;
 
+import com.nj.secretary.services.calendar.domain.Calendar;
+import com.nj.secretary.services.calendar.domain.IsDiary;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.repository.DiaryDAO;
 import org.apache.ibatis.session.SqlSession;
@@ -54,6 +56,12 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
+    public List<Diary> getBinList(String userId) {
+
+        return sqlSession.selectList("DiaryMapper.getBinList",userId);
+    }
+
+    @Override
     public Diary getDiary(int diaryNumber) {
         return sqlSession.selectOne("DiaryMapper.getDiary",diaryNumber);
     }
@@ -66,5 +74,24 @@ public class DiaryDAOImpl implements DiaryDAO {
     @Override
     public void addFiles(String file) {
         sqlSession.insert("DiaryMapper.addFiles", file);
+    }
+
+    @Override
+
+    public List<Diary> getReportedDiaryList() {
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getReportedDiaryList");
+
+        return list;
+    }
+
+    @Override
+    public int setBlindDiary(int num) {
+        sqlSession.update("DiaryMapper.setBlindDiary", num);
+        return 1;
+
+    @Override
+    public List<IsDiary> getDiaryEmotion(Calendar calendar) {
+        return sqlSession.selectList("DiaryMapper.getDiaryEmotion",calendar);
+
     }
 }

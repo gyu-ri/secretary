@@ -4,22 +4,32 @@ import java.util.Date;
 
 public class Monologue{
 	
-	//field
-	private String userId;
-//	private String questionText;
-	private String monologueText;
-//	private int questionId;
-	private int monologueId;
-	private int reportCount;
-	private boolean shareStatus;
-	private boolean blindStatus;
-	private Date monologueDate;
+
+
+	private String userId;           //����� ���̵�:�ߺ�X
+//	private String questionText;     //1������
+	private String monologueText;    //1�䳻��
+	private int questionId;          //1��������ȣ
+
+	private int monologueId;         //1�������ȣ
+	private int reportCount;         //�Ű��
+	private boolean shareStatus;     //�������� 0:default:false
+	private boolean blindStatus;     //����ε���� 0:default:false
+	private Date monologueDate;      //1���ۼ���
+
+	private String postGroup = "monologue";
+	private String reportReasonId;
+	private String reporterId;
+	private Date reportDate;
+	private String reportText;
 	
+
 	
 	//constructor
 	public Monologue() {
 		
 	}
+
 
 
 	//Method
@@ -33,6 +43,13 @@ public class Monologue{
 	}
 
 
+	public String getQuestionText() {
+		return questionText;
+	}
+
+	public void setQuestionText(String questionText) {
+		this.questionText = questionText;
+	}
 
 	public String getMonologueText() {
 		return monologueText;
@@ -95,21 +112,72 @@ public class Monologue{
 		this.monologueDate = monologueDate;
 	}
 
+	public String getReportReasonId() {
+		return reportReasonId;
+	}
 
-	@Override
-	public String toString() {
-		return "Monologue [userId=" + userId + ", monologueText=" + monologueText + ", monologueId=" + monologueId
-				+ ", reportCount=" + reportCount + ", shareStatus=" + shareStatus + ", blindStatus=" + blindStatus
-				+ ", monologueDate=" + monologueDate + "]";
+	public void setReportReasonId(String reportReasonId) {
+		this.reportReasonId = reportReasonId;
+	}
+
+	public String getReporterId() {
+		return reporterId;
+	}
+
+	public void setReporterId(String reporterId) {
+		this.reporterId = reporterId;
+	}
+
+	public Date getReportDate() {
+		return reportDate;
+	}
+
+	public void setReportDate(Date reportDate) {
+		this.reportDate = reportDate;
+	}
+
+	public String getReportText() {
+		return reportText;
+	}
+
+	public void setReportText(String reportText) {
+		this.reportText = reportText;
+	}
+
+	
+
+	public int getQuestionId() {
+		return questionId;
 	}
 
 
-	
-	
+
+
+
+	public void setQuestionId(int questionId) {
+		this.questionId = questionId;
+	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "Monologue [userId=" + userId + ", monologueText=" + monologueText + ", questionId=" + questionId
+				+ ", monologueId=" + monologueId + ", reportCount=" + reportCount + ", shareStatus=" + shareStatus
+				+ ", blindStatus=" + blindStatus + ", monologueDate=" + monologueDate + "]";
+	}
+
+
+
+
+
 	
 	
 	
 }
+
 
 
 
@@ -139,3 +207,4 @@ public class Monologue{
 //	
 //	
 //}
+

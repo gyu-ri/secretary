@@ -69,18 +69,21 @@
        <result property="shareStatus"   column="share_status" jdbcType="CHAR"/>
        <result property="blindStatus"   column="blind_status" jdbcType="CHAR"/>
        <result property="monologueDate"   column="monologue_date" jdbcType="DATE"/>
+		<result property="reportReasonId" column="report_reason_id" jdbcType="CHAR"/>
+		<result property="reporterId" column="reporter_id" jdbcType="VARCHAR"/>
+		<result property="reportDate" column="report_date" jdbcType="DATE"/>
+		<result property="reportText" column="report_text" jdbcType="VARCHAR"/>
+		<result property="questionText" column="question_text" jdbcType="VARCHAR"/>
     </resultMap>
     
     
     
 	<insert id="addMonologueText" parameterType="com.nj.secretary.services.monologue.domain.Monologue">
-
-	INSERT INTO monologue (monologue_id, question_id, monologue_text, monologue_date,user_id)
-	VALUES (monologue_seq.NEXTVAL, #{questionId}, #{monologueText},SYSDATE,'gyuri')
-	                 
-                     
-               
-                     
+ 	   INSERT INTO monologue (user_id,monologue_text,monologue_id,report_count,share_status,blind_status,monologue_date,question_id)
+       VALUES (#{userId},#{monologueText},monologue_seq.NEXTVAL,0,0,0,SYSDATE, (SELECT question_id
+                                                                                FROM questions
+                                                                                WHERE question_id=#{questionId}))
+	                
    </insert>
    
    
@@ -103,15 +106,40 @@
    </delete>
    
    
+
+	<select id="getReportedMonoList" resultMap="monologue">
+		select DISTINCT q.question_text, m.user_id, m.monologue_id, m.monologue_text, m.report_count, m.blind_status
+		from monologue m, questions q
+		where m.question_id = q.question_id and report_count >= 3
+	</select>
+
+
+   <select id="getMonologueText"  parameterType="com.nj.secretary.services.monologue.domain.Monologue" resultMap="monologue">
 	
-  
-    
-    
-   
-   
+	SELECT user_id, question_id, monologue_id, monologue_text, share_status
+	FROM monologue
+	WHERE question_id=#{questionId}
 
-                                                  
+    </select>
 
+   <update id="setBlindMonologue" parameterType="Integer">
+	   {
+		CALL
+	       BEGIN
+			UPDATE (
+	   		select u.user_id AS user_id, u.blind_count AS blind_count, m.monologue_id AS monologue_id, m.blind_status AS blind_status
+	  		from monologue m, users u where m.user_id = u.user_id and m.monologue_id=#{value}) m
+	   		SET m.blind_status='1';
+		   MERGE INTO users u
+		   USING	(select u.user_id AS user_id, u.blind_count AS blind_count, m.monologue_id AS monologue_id, m.blind_status AS blind_status
+		   from monologue m, users u where m.user_id = u.user_id and m.monologue_id=#{value}) m
+		   ON (u.user_id = m.user_id)
+		   WHEN MATCHED THEN
+			   UPDATE SET u.blind_count = m.blind_count + 1;
+	       END
+		   }
+
+   </update>
 
 </mapper>
 

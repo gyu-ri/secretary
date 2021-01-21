@@ -50,4 +50,9 @@ public class UserDAOImpl implements UserDAO {
         return 0;
     }
 
+    @Override
+    public List<User> getBlindedUserList() {
+
+        return sqlSession.selectList("UserMapper.getBlindedUserList");
+    }
 }

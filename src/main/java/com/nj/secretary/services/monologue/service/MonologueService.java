@@ -2,9 +2,11 @@ package com.nj.secretary.services.monologue.service;
 
 import java.util.List;
 
+import com.nj.secretary.services.monologue.domain.Monologue;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
+import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.domain.Question;
 
 @Mapper
@@ -25,11 +27,18 @@ public interface MonologueService {
 	
 	
 	//Monologue
-	public void addMonologueText(String monologueText) throws Exception;
+	public void addMonologueText(Monologue monologue) throws Exception;
 	
 	public void updateMonologuText(String monologueText) throws Exception;
 	
 	public void deleteMonologueId(int monologueId) throws Exception;
+
+	public List<Monologue> getReportedMonoList();
+
+	public int setBlindMonologue(int num);
+
+	
+	public Monologue getMonologueText(int questionId) throws Exception;
 	
 	
 }
