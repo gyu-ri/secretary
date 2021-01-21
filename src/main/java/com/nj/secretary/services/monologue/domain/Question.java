@@ -5,8 +5,8 @@ import java.util.Date;
 public class Question{
 	
 	//field
-	private String questionText;     //1¹®³»¿ë
-	private int questionId;          //1¹®°íÀ¯¹øÈ£
+	private String questionText;     //1ë¬¸ë‚´ìš©
+	private int questionId;          //1ë¬¸ ê³ ìœ ë²ˆí˜¸
 	
 	//constructor
 	public Question() {
