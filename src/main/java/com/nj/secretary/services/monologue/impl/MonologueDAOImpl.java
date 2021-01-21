@@ -107,7 +107,10 @@ public class MonologueDAOImpl implements MonologueDAO{
 
 	@Override
 	public List<Monologue> getReportedMonoList() {
-  }
+		List<Monologue> list = sqlsession.selectList("MonologueMapper.getReportedMonoList");
+
+		return list;
+  	}
   
 	@Override
 	public Monologue getMonologueText(int questionId) throws Exception {
@@ -115,11 +118,6 @@ public class MonologueDAOImpl implements MonologueDAO{
 		return sqlsession.selectOne("MonologueMapper.getMonologueText", questionId);
 	}
 
-
-		List<Monologue> list = sqlsession.selectList("MonologueMapper.getReportedMonoList");
-
-		return list;
-	}
 
 	@Override
 	public int setBlindMonologue(int num) {
