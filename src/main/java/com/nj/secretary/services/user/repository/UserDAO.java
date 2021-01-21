@@ -28,4 +28,6 @@ public interface UserDAO {
     //idCheck
     public int idCheck(String userId) throws Exception;
 
+    //adminUser
+    public List<User> getBlindedUserList();
 }

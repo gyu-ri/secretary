@@ -6,26 +6,58 @@
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
-    <link rel="stylesheet" href="style.css">
     <title>Title</title>
     <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
         body {
             background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
             background-repeat: no-repeat;
-            background-attachment: fixed;
             background-size: cover;
             text-align: center;
+            position: relative;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li{
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+            padding-inline-start: 0;
         }
 
         .text {
-            margin: 0px 360px 10px;
+            width: 50%;
+            margin: 0 auto;
             padding: 20px;
             background-color: #ffffff;
             background-color: rgba(255, 255, 255, 0.5)  ;
+            box-sizing: border-box;
         }
 
-        .pageTitle {position: fixed; left: 0; top: 0; width: 100%; height: 52px; line-height: 52px; text-align: center;}
-        article {padding: 52px 3% 0;  column-count: 3; padding: 20px; column-gap: 10px;}
+        .pageTitle {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 52px;
+            line-height: 52px;
+            text-align: center;
+        }
+        article {
+            padding: 52px 3% 0;
+            column-count: 3;
+            padding: 20px;
+            column-gap: 10px;
+        }
         article .block {padding: 20px; min-height: 100px;padding: 20px; border: 20px;}
         article .block p {line-height: 22px; color: #fff; font-size: 16px; font-weight: 600;}
         article .block:nth-child(2n+1) {background: #999;}
@@ -33,41 +65,54 @@
 
         /*----- Tabs -----*/
         .tabs {
-            width:100%;
-            display:inline-block;
-            align-content: center;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 90px;
+            width: 50%;
+            display: block;
+            margin: 90px auto 0;
+            position: relative;
         }
 
         /*----- Tab Links -----*/
-        /* Clearfix */
-        .tab-links:after {
-            display:block;
-            clear:both;
-            content:'';
-            text-align: center;
-            align-content: center;
+
+        .tab-links{
+            width: 100%;
+            height: 44px;
+            display: block;
+            margin: 0;
+            padding: 0;
         }
 
         .tab-links li {
+            width: 25%;
             margin:0px 0px;
-
-            display:inline-block;
-            list-style:none;
+            float: left;
             align-content: center;
         }
 
+        .tab-links li:last-child{
+            position: absolute;
+            width: 21%;
+            top: -25px;
+            right: 0px;
+        }
+
         .tab-links a {
-            padding:9px 15px;
-            display:inline-block;
+            width: 100%;
+            padding:9px 0;
+            display:block;
             border-radius:3px 3px 3px 3px;
             background:#C2C2C2;
             font-size:16px;
-            font-weight:600;
             color:#4C4C4C;
             transition:all linear 0.15s;
+            box-sizing: border-box;
+        }
+
+        .searchbox input{
+            border: 0;
+        }
+
+        .searchbox input:focus{
+            outline: none;
         }
 
         .tab-links a:hover {
@@ -202,24 +247,24 @@
 </head>
 <body>
 <form method="get" action="">
-<div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px;">	&#8451;</div> &nbsp;
-<div id="temparature" style="float: right; padding-left: 20px"></div>
-<img src="" id="img" width="20" height="20" style="float: right;"/>
-<div id="location" style="float: right; padding-left: 10px; padding-right: 20px;">&#127759;          </div>
+    <div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px;">   &#8451;</div> &nbsp;
+    <div id="temparature" style="float: right; padding-left: 20px"></div>
+    <img src="" id="img" width="20" height="20" style="float: right;"/>
+    <div id="location" style="float: right; padding-left: 10px; padding-right: 20px;">&#127759;          </div>
 
-<br><br>
-<h1 class="pageTitle">일기 목록 보기</h1>
-<br><br>
+    <br><br>
+    <h1 class="pageTitle">일기 목록 보기</h1>
+    <br><br>
 
-<div class="tabs">
-    <ul class="tab-links">
-        <li class="active"><a href="#tab1">&#128198;</a></li>
-        <li><a href="#" id="getTagDiaryList">&#128172;</a></li>
-        <li><a href="#" id="getOthersDiaryList">&#128107;</a></li>
-        <li id="deleteBtn"><a href="#">&#128163; &#128228; &#128194; &#128465; &#9989;</a></li>
-        <li><div class="searchbox"> <input type="text" onkeyup="filter()" name="searchKeyword" id="value" placeholder="&#128270;"> </div></li>
-    </ul>
-</div>
+    <div class="tabs">
+        <ul class="tab-links">
+            <li class="active"><a href="#tab1">&#128198;</a></li>
+            <li><a href="#" id="getTagDiaryList">&#128172;</a></li>
+            <li><a href="#" id="getOthersDiaryList">&#128107;</a></li>
+            <li id="deleteBtn"><a href="#">&#128163; &#128228; &#128194; &#128465; &#9989;</a></li>
+            <li><div class="searchbox"> <input type="text" onkeyup="filter()" name="searchKeyword" id="value" placeholder="&#128270;"> </div></li>
+        </ul>
+    </div>
 
     <script>
         function filter(){
@@ -241,31 +286,31 @@
         }
     </script>
 
-<div class="text">
-    <a href="#" style="float: right" class="deleteUnactive" hidden>&#10006;</a>
-    <article id="for">
+    <div class="text">
+        <a href="#" style="float: right" class="deleteUnactive" hidden>&#10006;</a>
+        <article id="for">
 
-        <div class="block" th:each="diary : ${list}" style="float: left">
-    <p>
-        <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style="float: left" hidden/>
-        <input type="hidden" name="diaryId" th:value="${diary.diaryId}"/>
-        <input type="hidden" class="diaryText" th:value="${diary.diaryText}">
-        제목 : <span th:text="${diary.diaryTitle}">제목</span><br>
-        날짜 : <span th:text="${diary.diaryDate}">날짜</span><br>
-        날씨 :  <img th:src="${diary.weather}" width="20" height="20"/><br>
-        위치 : <span th:text="${diary.location}">위치</span>
-    </p>
-        </div>
-    </article>
-</div>
-<input type="button" id="deleteDiary" value="삭제" hidden/>
-<input type="hidden" id="userId" th:value="${user}" hidden/>
+            <div class="block" th:each="diary : ${list}" style="float: left">
+                <p>
+                    <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style="float: left" hidden/>
+                    <input type="hidden" name="diaryId" th:value="${diary.diaryId}"/>
+                    <input type="hidden" class="diaryText" th:value="${diary.diaryText}">
+                    제목 : <span th:text="${diary.diaryTitle}">제목</span><br>
+                    날짜 : <span th:text="${diary.diaryDate}">날짜</span><br>
+                    날씨 :  <img th:src="${diary.weather}" width="20" height="20"/><br>
+                    위치 : <span th:text="${diary.location}">위치</span>
+                </p>
+            </div>
+        </article>
+    </div>
+    <input type="button" id="deleteDiary" value="삭제" hidden/>
+    <input type="hidden" id="userId" th:value="${user}" hidden/>
 </form>
 <script>
     $("#deleteBtn").on("click", function(){
-       $('.deleteActive').show();
-       $('#deleteDiary').show();
-       $('.deleteUnactive').show();
+        $('.deleteActive').show();
+        $('#deleteDiary').show();
+        $('.deleteUnactive').show();
     });
     $(".deleteUnactive").on("click", function (){
         $('.deleteActive').hide();
@@ -288,6 +333,7 @@
                         "<p>" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
                         "제목 : <span >"+item.diaryTitle+"</span><br>" +
                         "날짜 : <span>"+item.diaryDate+"</span><br>" +
                         "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
@@ -325,6 +371,7 @@
                             "<p>" +
                             "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                             "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                            "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
                             "제목 : <span >"+item.diaryTitle+"</span><br>" +
                             "날짜 : <span>"+item.diaryDate+"</span><br>" +
                             "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
@@ -361,6 +408,7 @@
                         "<p>" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
                         "제목 : <span >"+item.diaryTitle+"</span><br>" +
                         "날짜 : <span>"+item.diaryDate+"</span><br>" +
                         "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
@@ -412,6 +460,7 @@
                             "<p>" +
                             "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                             "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                            "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
                             "제목 : <span >"+item.diaryTitle+"</span><br>" +
                             "날짜 : <span>"+item.diaryDate+"</span><br>" +
                             "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
@@ -450,6 +499,7 @@
                         "<p>" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "<input type='hidden' class='diaryText' value='" + item.fileName + "'/>" +
                         "태그 : <span>"+item.fileName+"</span><br>" +
                         "</p>"+
                         "</div>"

@@ -24,6 +24,12 @@
         <result property="fileId" column="FILE_ID" jdbcType="NUMERIC"/>
         <result property="fileName" column="FILE_NAME" jdbcType="VARCHAR"/>
         <result property="fileStatus" column="FILE_STATUS" jdbcType="VARCHAR"/>
+
+        <result property="reportReasonId" column="report_reason_id" jdbcType="CHAR"/>
+        <result property="reporterId" column="reporter_id" jdbcType="VARCHAR"/>
+        <result property="reportDate" column="report_date" jdbcType="DATE"/>
+        <result property="reportText" column="report_text" jdbcType="VARCHAR"/>
+
     </resultMap>
 
     <resultMap id="diaryCalendar" type="com.nj.secretary.services.calendar.domain.IsDiary">
@@ -32,7 +38,6 @@
         <result property="emotionNo" column="EMOTION_ID" jdbcType="NUMERIC"/>
         <result property="imageUrl" column="WEATHER" jdbcType="VARCHAR"/>
         <result property="start" column="DIARY_DATE" jdbcType="DATE"/>
-
     </resultMap>
 
     <insert id="addDiary" parameterType="com.nj.secretary.services.diary.domain.Diary">
@@ -85,6 +90,32 @@
         ORDER BY file_name
     </select>
 
+
+    <select id="getReportedDiaryList" resultMap="diaryServiceMap">
+        select DISTINCT diary_id, user_id, diary_title, report_count, blind_status
+        from diary
+        where report_count >= 3
+    </select>
+
+    <update id="setBlindDiary" parameterType="integer">
+        {
+            CALL
+            BEGIN
+            UPDATE (SELECT d.diary_id AS diary_id, u.user_id AS user_id, u.blind_count AS blind_count, d.blind_status AS blind_status
+            FROM diary d, users u
+            WHERE d.user_id = u.user_id AND d.diary_id = #{value}) d
+            SET d.blind_status = '1';
+            MERGE INTO users u
+            USING (SELECT d.diary_id AS diary_id, u.user_id AS user_id, u.blind_count AS blind_count, d.blind_status AS blind_status
+            FROM diary d, users u
+            WHERE d.user_id = u.user_id AND d.diary_id = #{value}) d
+            ON (u.user_id = d.user_id)
+            WHEN MATCHED THEN
+                UPDATE SET u.blind_count = d.blind_count + 1;
+            END
+            }
+    </update>
+
     <select id="getDiaryEmotion" parameterType="com.nj.secretary.services.calendar.domain.Calendar" resultMap="diaryCalendar">
         SELECT to_char(DIARY_DATE,'yyyy-mm-dd') DIARY_DATE, DIARY_ID, WEATHER
         FROM DIARY
@@ -97,3 +128,4 @@
         WHERE USER_ID = #{userId} and DELETE_STATUS = '1'
     </select>
 </mapper>
+

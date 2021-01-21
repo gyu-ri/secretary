@@ -93,4 +93,17 @@ public class DiaryServiceImpl implements DiaryService {
 
         diaryDAO.addFiles(file);
     }
+
+    @Override
+    public List<Diary> getReportedDiaryList() {
+
+        List<Diary> list =  diaryDAO.getReportedDiaryList();
+        return list;
+    }
+
+    @Override
+    public int setBlindDiary(int num) {
+        diaryDAO.setBlindDiary(num);
+        return 1;
+    }
 }

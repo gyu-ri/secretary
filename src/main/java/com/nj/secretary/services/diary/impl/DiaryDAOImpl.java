@@ -77,7 +77,21 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
+
+    public List<Diary> getReportedDiaryList() {
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getReportedDiaryList");
+
+        return list;
+    }
+
+    @Override
+    public int setBlindDiary(int num) {
+        sqlSession.update("DiaryMapper.setBlindDiary", num);
+        return 1;
+
+    @Override
     public List<IsDiary> getDiaryEmotion(Calendar calendar) {
         return sqlSession.selectList("DiaryMapper.getDiaryEmotion",calendar);
+
     }
 }

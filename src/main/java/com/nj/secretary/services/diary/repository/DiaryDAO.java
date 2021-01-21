@@ -27,5 +27,11 @@ public interface DiaryDAO {
 
     public void addFiles(String file);
 
+
+    public List<Diary> getReportedDiaryList();
+
+    public int setBlindDiary(int num);
+
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
+
 }

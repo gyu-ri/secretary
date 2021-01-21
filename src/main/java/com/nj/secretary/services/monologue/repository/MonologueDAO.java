@@ -30,6 +30,11 @@ public interface MonologueDAO {
 	
 	public void deleteMonologueId(int monologueId) throws Exception;
 	
+
+	public List<Monologue> getReportedMonoList();
+
+	public int setBlindMonologue(int num);
+
 	public Monologue getMonologueText(int questionId) throws Exception;
 	
 	
