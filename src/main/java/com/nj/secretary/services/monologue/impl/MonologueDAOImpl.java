@@ -28,10 +28,10 @@ public class MonologueDAOImpl implements MonologueDAO{
 	
 	
 	@Override
-	public void addQuestionText(String questionText) throws Exception {
+	public void addQuestion(String questionText) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("monologueDAOImpi  addQuestionText~~");
-		sqlsession.insert("MonologueMapper.addQuestionText", questionText);
+		sqlsession.insert("MonologueMapper.addQuestion", questionText);
 	}
 	
 	
@@ -62,7 +62,7 @@ public class MonologueDAOImpl implements MonologueDAO{
 	
 	
 	@Override
-	public void deleteQuestionId(int questionId) throws Exception {
+	public void deleteQuestion(int questionId) throws Exception {
 		
 		sqlsession.delete("MonologueMapper.deleteQuestion", questionId); 
 		
@@ -74,9 +74,9 @@ public class MonologueDAOImpl implements MonologueDAO{
 	//==============================Monologue===============================
 	
 	@Override
-	public void addMonologueText(Monologue monologue) throws Exception {
+	public void addMonologue(Monologue monologue) throws Exception {
 		System.out.println("monologueDAOImpl  addMonologueText~~~");
-		sqlsession.insert("MonologueMapper.addMonologueText", monologue);
+		sqlsession.insert("MonologueMapper.addMonologue", monologue);
 		// TODO Auto-generated method stub
 		
 	}
@@ -93,9 +93,9 @@ public class MonologueDAOImpl implements MonologueDAO{
 
 
 	@Override
-	public void deleteMonologueId(int monologueId) throws Exception {
+	public void deleteMonologue(int questionId) throws Exception {
 		
-		sqlsession.delete("Monologue.deleteMonologue", monologueId);
+		sqlsession.delete("Monologue.deleteMonologue", questionId);
 		// TODO Auto-generated method stub
 		
 	}

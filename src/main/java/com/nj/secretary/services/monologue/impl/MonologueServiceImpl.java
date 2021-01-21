@@ -23,10 +23,10 @@ public class MonologueServiceImpl implements MonologueService {
 	
 	//=============================Question============================
 	@Override
-	public void addQuestionText(String questionText) throws Exception {
+	public void addQuestion(String questionText) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("monologueServiceImpl   addQuestionText@@");
-		monologueDAO.addQuestionText(questionText);
+		System.out.println("monologueServiceImpl   addQuestion@@");
+		monologueDAO.addQuestion(questionText);
 		
 	}
 	
@@ -47,9 +47,9 @@ public class MonologueServiceImpl implements MonologueService {
 	
 	
 	@Override
-	public void deleteQuestionId(int questionId) throws Exception {
+	public void deleteQuestion(int questionId) throws Exception {
 		
-    	monologueDAO.deleteQuestionId(questionId);
+    	monologueDAO.deleteQuestion(questionId);
 		
 		
 	}
@@ -69,10 +69,10 @@ public class MonologueServiceImpl implements MonologueService {
 
 	
 	@Override
-	public void addMonologueText(Monologue monologue) throws Exception{
+	public void addMonologue(Monologue monologue) throws Exception{
 		// TODO Auto-generated method stub
-		System.out.println("monologueServiceImpl   addMonologueText@@");
-		monologueDAO.addMonologueText(monologue);
+		System.out.println("monologueServiceImpl   addMonologueT@@");
+		monologueDAO.addMonologue(monologue);
 		
 	}
 	
@@ -87,9 +87,9 @@ public class MonologueServiceImpl implements MonologueService {
 
 
 	@Override
-	public void deleteMonologueId(int monologueId) throws Exception {
+	public void deleteMonologue(int questionId) throws Exception {
 		
-		monologueDAO.deleteMonologueId(monologueId);
+		monologueDAO.deleteMonologue(questionId);
 		// TODO Auto-generated method stub
 		
 	}
