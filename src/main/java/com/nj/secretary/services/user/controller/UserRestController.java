@@ -1,12 +1,16 @@
 package com.nj.secretary.services.user.controller;
 
 import com.nj.secretary.services.user.service.UserService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Random;
 
 @RestController//반환 값이 단순 문자열과 Json이다.
@@ -21,11 +25,11 @@ public class UserRestController {
     @ResponseBody//서버로 보낸 json데이터를 자바 객체로 매핑
     @GetMapping("/idCheck")
     public int idCheck(@RequestParam("userId") String userId) throws Exception{
-        System.out.println(userId);
+        //System.out.println(userId);
         int count = userService.idCheck(userId);
-        System.out.println(userId);
+        //System.out.println(userId);
         //if(userId != null) count = ;
-        System.out.println(count);
+       // System.out.println(count);
         return userService.idCheck(userId);
     }
 
@@ -50,5 +54,6 @@ public class UserRestController {
         mailSender.send(message);
         return key;
     }
+
 
 }

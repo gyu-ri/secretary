@@ -5,15 +5,15 @@ import java.util.Date;
 public class Monologue{
 	
 	//field
-	private String userId;           //»ç¿ëÀÚ ¾ÆÀÌµð:Áßº¹X
-//	private String questionText;     //1¹®³»¿ë
-	private String monologueText;    //1´ä³»¿ë
-//	private int questionId;          //1¹®°íÀ¯¹øÈ£
-	private int monologueId;         //1´ä°íÀ¯¹øÈ£
-	private int reportCount;         //½Å°í¼ö
-	private boolean shareStatus;     //°øÀ¯»óÅÂ 0:default:false
-	private boolean blindStatus;     //ºí¶óÀÎµå»óÅÂ 0:default:false
-	private Date monologueDate;      //1´äÀÛ¼ºÀÏ
+	private String userId;
+//	private String questionText;
+	private String monologueText;
+//	private int questionId;
+	private int monologueId;
+	private int reportCount;
+	private boolean shareStatus;
+	private boolean blindStatus;
+	private Date monologueDate;
 	
 	
 	//constructor
@@ -123,15 +123,15 @@ public class Monologue{
 //@Data
 //public class Monologue implements Serializable {
 //	
-//	private String userId;           //»ç¿ëÀÚ ¾ÆÀÌµð:Áßº¹X
-//	private String questionText;     //1¹®³»¿ë
-//	private String monologueText;    //1´ä³»¿ë
-//	private int questionId;          //1¹®°íÀ¯¹øÈ£
-//	private int monologueId;         //1´ä°íÀ¯¹øÈ£
-//	private int reportCount;         //½Å°í¼ö
-//	private boolean shareStatus;     //°øÀ¯»óÅÂ 0:default:false
-//	private boolean blindStatus;     //ºí¶óÀÎµå»óÅÂ 0:default:false
-//	private Date monologueDate;      //1´äÀÛ¼ºÀÏ
+//	private String userId;           //ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½:ï¿½ßºï¿½X
+//	private String questionText;     //1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+//	private String monologueText;    //1ï¿½ä³»ï¿½ï¿½
+//	private int questionId;          //1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+//	private int monologueId;         //1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È£
+//	private int reportCount;         //ï¿½Å°ï¿½ï¿½
+//	private boolean shareStatus;     //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0:default:false
+//	private boolean blindStatus;     //ï¿½ï¿½ï¿½ï¿½Îµï¿½ï¿½ï¿½ï¿½ 0:default:false
+//	private Date monologueDate;      //1ï¿½ï¿½ï¿½Û¼ï¿½ï¿½ï¿½
 //	
 //	
 //	
