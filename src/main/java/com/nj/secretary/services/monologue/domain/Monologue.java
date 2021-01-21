@@ -5,6 +5,7 @@ import java.util.Date;
 public class Monologue{
 	
 
+
 	private String userId;           //����� ���̵�:�ߺ�X
 //	private String questionText;     //1������
 	private String monologueText;    //1�䳻��
