@@ -112,7 +112,7 @@ public class DiaryController {
     public String listDiary(HttpSession session, Model model){
 
         System.out.println("listDiary start in controller");
-        session.setAttribute("userId", "user02");
+        session.setAttribute("userId", "윤도영");
 
         System.out.println("session 확인 : " + session.getAttribute("userId"));
 
@@ -157,6 +157,14 @@ public class DiaryController {
         System.out.println("다이어리 추가 완료");
 
         return "diary/getDiary";
+    }
+
+    @GetMapping("binDiaryList")
+    public String binDiaryList(HttpSession session,Model model){
+        session.setAttribute("user","윤도영");
+
+        model.addAttribute("diaryList",diaryService.getBinList((String) session.getAttribute("user")));
+        return "diary/binDiary";
     }
 
 

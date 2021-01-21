@@ -24,15 +24,20 @@ public interface MonologueDAO {
 	
 	//monologue
 	
-	public void addMonologueText(String monologueText) throws Exception;
+	public void addMonologueText(Monologue monologue) throws Exception;
 	
 	public void updateMonologueText(String monologueText) throws Exception;
 	
 	public void deleteMonologueId(int monologueId) throws Exception;
 	
+
 	public List<Monologue> getReportedMonoList();
 
 	public int setBlindMonologue(int num);
+
+	public Monologue getMonologueText(int questionId) throws Exception;
+	
+	
 	
 	
 	

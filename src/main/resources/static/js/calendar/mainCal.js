@@ -96,6 +96,29 @@ var calendar = $('#calendar').fullCalendar({
       html: true,
       container: 'body'
     });
+      if (event.display){
+          console.log(event.start);
+          // console.log(event.start._i.substring(0,10));
+          var eD = event.start._i;
+          // eventElement.find("span.fc-title").prepend("<img width='30px' height='30px' src='" + event.imageUrl + "'>");
+          // $("td [data-date='"+eD+"']").prepend("<img width=100% height=100% b src='" + event.imageUrl + "'>");
+          $("td [data-date='"+eD+"']").attr({
+              style:"background-image:url('"+event.imageUrl+"')",
+
+
+          });
+          $("td [data-date='"+eD+"']").css({
+              margin:'1px',
+              backgroundSize:70,
+              backgroundRepeat:'no-repeat'
+
+
+          });
+
+          element.find(".fc-content").remove();
+
+      }
+
 
     return filtering(event);
 
@@ -119,32 +142,20 @@ var calendar = $('#calendar').fullCalendar({
           if (array.allDay && array.startDate !== array.endDate) {
             array.endDate = moment(array.endDate).add(1, 'days'); // 이틀 이상 AllDay 일정인 경우 달력에 표기시 하루를 더해야 정상출력
           }
-
           return array;
         });
+          // var diaryList = response.diary.map(function (array) {
+          //     console.log(array.diaryDate);
+          //     return array;
+          // });
         console.log(fixedDate);
+
         callback(fixedDate);
+
       }
     });
   },
 
-  eventRender:function(event,eventElement) {
-    // if (view.name == "month") $(".fc-content").css('height', 'auto');
-    if (event.imageUrl!=null){
-        console.log(event.start._i.substring(0,10));
-        var eD = event.start._i.substring(0,10);
-        // eventElement.find("span.fc-title").prepend("<img width='30px' height='30px' src='" + event.imageUrl + "'>");
-        // $("td [data-date='"+eD+"']").prepend("<img width=100% height=100% b src='" + event.imageUrl + "'>");
-        $("td [data-date='"+eD+"']").attr({
-            style:"background-image:url('"+event.imageUrl+"')",
-            width:"auto"
-
-        });
-        $("td [data-date='"+eD+"']").css({
-          margin:'1px'
-        });
-    }
-  },
 
   //일정 리사이즈
   eventResize: function (event, delta, revertFunc, jsEvent, ui, view) {
@@ -196,7 +207,22 @@ var calendar = $('#calendar').fullCalendar({
       contentType:"application/json",
       data:JSON.stringify(newDates) ,
       success: function (response) {
-        alert('수정: ' + newDates.start + ' ~ ' + newDates.end);
+          if (event.imageUrl!=null){
+              // console.log(event.start._i.substring(0,10));
+              var eD = event.start._i;
+              // eventElement.find("span.fc-title").prepend("<img width='30px' height='30px' src='" + event.imageUrl + "'>");
+              // $("td [data-date='"+eD+"']").prepend("<img width=100% height=100% b src='" + event.imageUrl + "'>");
+              $("td [data-date='"+eD+"']").attr({
+                  style:"",
+                  width:""
+
+              });
+              $("td [data-date='"+eD+"']").css({
+                  margin:'1px'
+              });
+          }
+        // $('#calendar').fullCalendar('removeEvents');
+        $('#calendar').fullCalendar('refetchEvents');
       }
     });
 

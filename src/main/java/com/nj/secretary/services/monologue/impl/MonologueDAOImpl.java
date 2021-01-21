@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.domain.Question;
 import com.nj.secretary.services.monologue.repository.MonologueDAO;
 
@@ -47,7 +48,7 @@ public class MonologueDAOImpl implements MonologueDAO{
 	public int getQeustionId(int questionId) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("monologueDAOImpi  getQuestionId~~");
-		return sqlsession.selectOne("MonologueMapper.addQuestionText", questionId);
+		return sqlsession.selectOne("MonologueMapper.getQuestionId", questionId);
 		
 	}
 	
@@ -74,9 +75,9 @@ public class MonologueDAOImpl implements MonologueDAO{
 	//==============================Monologue===============================
 	
 	@Override
-	public void addMonologueText(String monologueText) throws Exception {
+	public void addMonologueText(Monologue monologue) throws Exception {
 		System.out.println("monologueDAOImpl  addMonologueText~~~");
-		sqlsession.insert("MonologueMapper.addMonologueText", monologueText);
+		sqlsession.insert("MonologueMapper.addMonologueText", monologue);
 		// TODO Auto-generated method stub
 		
 	}
@@ -101,8 +102,17 @@ public class MonologueDAOImpl implements MonologueDAO{
 	}
 
 
+
 	@Override
 	public List<Monologue> getReportedMonoList() {
+  }
+  
+	@Override
+	public Monologue getMonologueText(int questionId) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectOne("Monologue.getMonologueText", questionId);
+	}
+
 
 		List<Monologue> list = sqlsession.selectList("MonologueMapper.getReportedMonoList");
 
