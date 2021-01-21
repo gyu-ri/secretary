@@ -66,6 +66,12 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
+    public List<Diary> getBinList(String userId) {
+
+        return diaryDAO.getBinList(userId);
+    }
+
+    @Override
     public List<IsDiary> getDiaryEmotion(Calendar calendar) {
         return diaryDAO.getDiaryEmotion(calendar);
     }

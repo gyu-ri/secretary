@@ -56,6 +56,12 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
+    public List<Diary> getBinList(String userId) {
+
+        return sqlSession.selectList("DiaryMapper.getBinList",userId);
+    }
+
+    @Override
     public Diary getDiary(int diaryNumber) {
         return sqlSession.selectOne("DiaryMapper.getDiary",diaryNumber);
     }

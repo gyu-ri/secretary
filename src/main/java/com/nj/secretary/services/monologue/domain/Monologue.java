@@ -5,15 +5,15 @@ import java.util.Date;
 public class Monologue{
 	
 	//field
-	private String userId;           //????? ?????:???X
-//	private String questionText;     //1??????
-	private String monologueText;    //1????
-//	private int questionId;          //1?????????
-	private int monologueId;         //1????????
-	private int reportCount;         //????
-	private boolean shareStatus;     //???????? 0:default:false
-	private boolean blindStatus;     //????ех???? 0:default:false
-	private Date monologueDate;      //1???????
+	private String userId;
+//	private String questionText;
+	private String monologueText;
+//	private int questionId;
+	private int monologueId;
+	private int reportCount;
+	private boolean shareStatus;
+	private boolean blindStatus;
+	private Date monologueDate;
 	
 	
 	//constructor
@@ -113,29 +113,4 @@ public class Monologue{
 
 
 
-//
-//
-//import java.io.Serializable;
-//import java.util.Date;
-//
-//import lombok.Data;
-//
-//@Data
-//public class Monologue implements Serializable {
-//	
-//	private String userId;           //????? ?????:???X
-//	private String questionText;     //1??????
-//	private String monologueText;    //1????
-//	private int questionId;          //1?????????
-//	private int monologueId;         //1????????
-//	private int reportCount;         //????
-//	private boolean shareStatus;     //???????? 0:default:false
-//	private boolean blindStatus;     //????ех???? 0:default:false
-//	private Date monologueDate;      //1???????
-//	
-//	
-//	
-//	
-//	
-//	
-//}
+
