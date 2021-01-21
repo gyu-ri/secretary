@@ -95,7 +95,7 @@ public class MonologueDAOImpl implements MonologueDAO{
 	@Override
 	public void deleteMonologue(int questionId) throws Exception {
 		
-		sqlsession.delete("Monologue.deleteMonologue", questionId);
+		sqlsession.delete("MonologueMapper.deleteMonologue", questionId);
 		// TODO Auto-generated method stub
 		
 	}
@@ -103,7 +103,7 @@ public class MonologueDAOImpl implements MonologueDAO{
 	@Override
 	public Monologue getMonologueText(int questionId) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne("Monologue.getMonologueText", questionId);
+		return sqlsession.selectOne("MonologueMapper.getMonologueText", questionId);
 	}
 
 
