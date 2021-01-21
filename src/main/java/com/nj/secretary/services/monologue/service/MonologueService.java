@@ -33,4 +33,6 @@ public interface MonologueService {
 	public void deleteMonologueId(int monologueId) throws Exception;
 
 	public List<Monologue> getReportedMonoList();
+
+	public int setBlindMonologue(int num);
 }

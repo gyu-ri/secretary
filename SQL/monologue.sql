@@ -100,3 +100,15 @@ INSERT INTO QUESTIONS VALUES(questions_seq.nextval,'나와 닮은 동물은 어�
 INSERT INTO QUESTIONS VALUES(questions_seq.nextval,'고치고 싶은 식습관이 있나요?');
 INSERT INTO QUESTIONS VALUES(questions_seq.nextval,'만약 부모님이 연애하던 시절로 돌아가서 부모님을 만날 수 있다면 어떤 말을 해주고 싶나요?');
 INSERT INTO QUESTIONS VALUES(questions_seq.nextval,'나에게 운동이란 무엇인가요?');
+
+
+
+
+
+
+MERGE INTO users u
+    USING	(select u.user_id AS user_id, u.blind_count AS blind_count, m.monologue_id AS monologue_id, m.blind_status AS blind_status
+              from monologue m, users u where m.user_id = u.user_id and m.monologue_id=3) m
+    ON (u.user_id = m.user_id)
+    WHEN MATCHED THEN
+        UPDATE SET u.blind_count = m.blind_count + 1;

@@ -27,4 +27,8 @@ public interface DiaryService {
 
     public List<Diary> getReportedDiaryList();
 
+    public int setBlindDiary(int num);
+
+
+
 }

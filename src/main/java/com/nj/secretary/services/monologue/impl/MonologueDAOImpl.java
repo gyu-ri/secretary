@@ -108,4 +108,12 @@ public class MonologueDAOImpl implements MonologueDAO{
 
 		return list;
 	}
+
+	@Override
+	public int setBlindMonologue(int num) {
+
+		sqlsession.update("MonologueMapper.setBlindMonologue", num);
+
+		return 1;
+	}
 }

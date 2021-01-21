@@ -88,4 +88,22 @@
         where report_count >= 3
     </select>
 
+    <update id="setBlindDiary" parameterType="integer">
+        {
+            CALL
+            BEGIN
+            UPDATE (SELECT d.diary_id AS diary_id, u.user_id AS user_id, u.blind_count AS blind_count, d.blind_status AS blind_status
+            FROM diary d, users u
+            WHERE d.user_id = u.user_id AND d.diary_id = #{value}) d
+            SET d.blind_status = '1';
+            MERGE INTO users u
+            USING (SELECT d.diary_id AS diary_id, u.user_id AS user_id, u.blind_count AS blind_count, d.blind_status AS blind_status
+            FROM diary d, users u
+            WHERE d.user_id = u.user_id AND d.diary_id = #{value}) d
+            ON (u.user_id = d.user_id)
+            WHEN MATCHED THEN
+                UPDATE SET u.blind_count = d.blind_count + 1;
+            END
+            }
+    </update>
 </mapper>

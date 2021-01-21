@@ -87,4 +87,10 @@ public class DiaryServiceImpl implements DiaryService {
         List<Diary> list =  diaryDAO.getReportedDiaryList();
         return list;
     }
+
+    @Override
+    public int setBlindDiary(int num) {
+        diaryDAO.setBlindDiary(num);
+        return 1;
+    }
 }

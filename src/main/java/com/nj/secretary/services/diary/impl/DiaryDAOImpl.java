@@ -74,4 +74,10 @@ public class DiaryDAOImpl implements DiaryDAO {
 
         return list;
     }
+
+    @Override
+    public int setBlindDiary(int num) {
+        sqlSession.update("DiaryMapper.setBlindDiary", num);
+        return 1;
+    }
 }

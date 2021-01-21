@@ -100,4 +100,11 @@ public class MonologueServiceImpl implements MonologueService {
 		List<Monologue> list = monologueDAO.getReportedMonoList();
 		return list;
 	}
+
+	public int setBlindMonologue(int num){
+
+		monologueDAO.setBlindMonologue(num);
+
+		return 1;
+	}
 }

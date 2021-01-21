@@ -6,6 +6,8 @@ import com.nj.secretary.services.diary.service.DiaryService;
 import com.google.gson.JsonObject;
 import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.service.MonologueService;
+import com.nj.secretary.services.user.domain.User;
+import com.nj.secretary.services.user.service.UserService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,8 @@ public class DiaryController {
     DiaryService diaryService;
     @Autowired
     MonologueService monologueService;
+    @Autowired
+    UserService userService;
 
 
     @GetMapping("addDiary")
@@ -171,4 +175,14 @@ public class DiaryController {
         return "diary/adminPost";
     }
 
+    @GetMapping("adminUser")
+    public String adminUser(Model model){
+        System.out.println("admin User start in controller");
+        List<User> list = userService.getBlindedUserList();
+        System.out.println("blindedUserList : " + list);
+
+        model.addAttribute("blindedUserLIst : " + list);
+
+        return "diary/adminUser";
+    }
 }

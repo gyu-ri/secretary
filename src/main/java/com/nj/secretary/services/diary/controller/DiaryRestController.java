@@ -78,11 +78,25 @@ public class DiaryRestController {
 
     @GetMapping("getReportedDiaryList")
     public List<Diary> adminPost(Model model){
-        System.out.println("admin Post start");
+        System.out.println("admin Post in DiaryRestController start");
         List<Diary> diaryList = diaryService.getReportedDiaryList();
 
         model.addAttribute("diaryList", diaryList);
 
         return diaryList;
     }
+
+    @PostMapping("setBlindDiary")
+    public int setBlindDiary(@RequestBody String id){
+        System.out.println("diary check : " + id);
+        int num = Integer.parseInt(id.split("=")[1]);
+        System.out.println(num);
+
+        diaryService.setBlindDiary(num);
+        System.out.println("setBlindDiary from DiaryRestController finish");
+
+        return 1;
+    }
+
+
 }
