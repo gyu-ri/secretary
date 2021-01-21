@@ -106,18 +106,13 @@
     <p id="postList">
     <table id="table" border="1">
         <th> 작성자ID </th>
-        <th>게시물 고유번호</th>
-        <th>게시물 신고횟수</th>
+        <th>블라인드된 게시물 수</th>
         <th>처리</th>
-        <p id="block" th:each="diary : ${diaryList}" style="float: left">
+        <p id="block" th:each="user : ${blindedUserList}" style="float: left">
             <tr>
-                <td th:text="${diary.userId}"></td>
-                <td th:text="${diary.diaryId}"></td>
-                <td th:text="${diary.reportCount}"></td>
-                <td th:if="${diary.blindStatus} == '0'" id="setDiaryBlind2"><a href='#' id='setDiaryBlind' th:class="${diary.diaryId}" th:value="${diary.diaryId}">블라인드처리</a> </td>
-                <td th:unless="${diary.blindStatus} == '0'">처리완료</td>
-
-
+                <td th:text="${user.userId}"></td>
+                <td th:text="${user.blindCound}"></td>
+                <td th:text="${user.nickname}"></td>
             </tr>
         </p>
     </table>

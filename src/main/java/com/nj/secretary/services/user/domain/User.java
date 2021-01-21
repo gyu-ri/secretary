@@ -22,5 +22,10 @@ public class User {
     private boolean isDisplayTime;//레이아웃 설정
     private boolean isDisplayWeather;//레이아웃 설정
     private boolean isDisplayLocation;//레이아웃 설정
+    private int withdrawalReasonId;
+    private String motto;
+    private String isAlarmDiary;
+    private String isAlarmMonologue;
+
 
 }

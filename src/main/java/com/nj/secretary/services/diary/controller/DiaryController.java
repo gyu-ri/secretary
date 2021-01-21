@@ -181,7 +181,7 @@ public class DiaryController {
         List<User> list = userService.getBlindedUserList();
         System.out.println("blindedUserList : " + list);
 
-        model.addAttribute("blindedUserLIst : " + list);
+        model.addAttribute("blindedUserList" + list);
 
         return "diary/adminUser";
     }
