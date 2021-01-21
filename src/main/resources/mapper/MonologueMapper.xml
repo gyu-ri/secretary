@@ -74,13 +74,11 @@
     
     
 	<insert id="addMonologueText" parameterType="com.nj.secretary.services.monologue.domain.Monologue">
-
-	INSERT INTO monologue (monologue_id, question_id, monologue_text, monologue_date,user_id)
-	VALUES (monologue_seq.NEXTVAL, #{questionId}, #{monologueText},SYSDATE,'gyuri')
-	                 
-                     
-               
-                     
+ 	   INSERT INTO monologue (user_id,monologue_text,monologue_id,report_count,share_status,blind_status,monologue_date,question_id)
+       VALUES (#{userId},#{monologueText},monologue_seq.NEXTVAL,0,0,0,SYSDATE, (SELECT question_id
+                                                                                FROM questions
+                                                                                WHERE question_id=#{questionId}))
+	                
    </insert>
    
    
@@ -103,6 +101,14 @@
    </delete>
    
    
+   <select id="getMonologueText"  parameterType="com.nj.secretary.services.monologue.domain.Monologue" resultMap="monologue">
+	
+	SELECT user_id, question_id, monologue_id, monologue_text, share_status
+	FROM monologue
+	WHERE question_id=#{questionId}
+		
+	 
+    </select>
 	
   
     
