@@ -88,6 +88,7 @@ public class DiaryDAOImpl implements DiaryDAO {
     public int setBlindDiary(int num) {
         sqlSession.update("DiaryMapper.setBlindDiary", num);
         return 1;
+    }
 
     @Override
     public List<IsDiary> getDiaryEmotion(Calendar calendar) {
