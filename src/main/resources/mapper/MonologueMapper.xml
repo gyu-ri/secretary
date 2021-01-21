@@ -13,7 +13,7 @@
     </resultMap>
 
 
-	<insert id="addQuestionText"
+	<insert id="addQuestion"
 		parameterType="com.nj.secretary.services.monologue.domain.Question">
 
 		INSERT INTO questions (question_id,question_text)
@@ -40,7 +40,7 @@
 	</select>
 	
 	
-	<delete id="deleteQuestionId"  parameterType="com.nj.secretary.services.monologue.domain.Question" >
+	<delete id="deleteQuestion"  parameterType="com.nj.secretary.services.monologue.domain.Question" >
 
 	DELETE
 	FROM questions
@@ -69,23 +69,25 @@
        <result property="shareStatus"   column="share_status" jdbcType="CHAR"/>
        <result property="blindStatus"   column="blind_status" jdbcType="CHAR"/>
        <result property="monologueDate"   column="monologue_date" jdbcType="DATE"/>
-		<result property="reportReasonId" column="report_reason_id" jdbcType="CHAR"/>
-		<result property="reporterId" column="reporter_id" jdbcType="VARCHAR"/>
-		<result property="reportDate" column="report_date" jdbcType="DATE"/>
-		<result property="reportText" column="report_text" jdbcType="VARCHAR"/>
-		<result property="questionText" column="question_text" jdbcType="VARCHAR"/>
+
+       <result property="questionId"   column="question_id" jdbcType="INTEGER"/>
+
+      <result property="reportReasonId" column="report_reason_id" jdbcType="CHAR"/>
+      <result property="reporterId" column="reporter_id" jdbcType="VARCHAR"/>
+      <result property="reportDate" column="report_date" jdbcType="DATE"/>
+      <result property="reportText" column="report_text" jdbcType="VARCHAR"/>
+      <result property="questionText" column="question_text" jdbcType="VARCHAR"/>
+
     </resultMap>
     
     
     
-	<insert id="addMonologueText" parameterType="com.nj.secretary.services.monologue.domain.Monologue">
-
-	INSERT INTO monologue (monologue_id, question_id, monologue_text, monologue_date,user_id)
-	VALUES (monologue_seq.NEXTVAL, #{questionId}, #{monologueText},SYSDATE,'gyuri')
-	                 
-                     
-               
-                     
+	<insert id="addMonologue" parameterType="com.nj.secretary.services.monologue.domain.Monologue">
+ 	   INSERT INTO monologue (user_id,monologue_text,monologue_id,report_count,share_status,blind_status,monologue_date,question_id)
+       VALUES (#{userId},#{monologueText},monologue_seq.NEXTVAL,0,0,0,SYSDATE, (SELECT question_id
+                                                                                FROM questions
+                                                                                WHERE question_id=#{questionId}))
+	                
    </insert>
    
    
@@ -99,23 +101,30 @@
    
    
    
-   <delete id="deleteMonologueId"  parameterType="com.nj.secretary.services.monologue.domain.Monologue" >
+   <delete id="deleteMonologue"  parameterType="com.nj.secretary.services.monologue.domain.Monologue" >
 
 	DELETE
 	FROM monologue
-	WHERE monologue_id=#{monologueId}
+	WHERE question_id=#{questionId}
    
    </delete>
-   
-   
-	<select id="getReportedMonoList" resultMap="monologue">
+  
+  <select id="getReportedMonoList" resultMap="monologue">
 		select DISTINCT q.question_text, m.user_id, m.monologue_id, m.monologue_text, m.report_count, m.blind_status
 		from monologue m, questions q
 		where m.question_id = q.question_id and report_count >= 3
 	</select>
+   
+   
 
-    
-    
+   <select id="getMonologue"  parameterType="com.nj.secretary.services.monologue.domain.Monologue" resultMap="monologue">
+	
+    SELECT user_id, question_id, monologue_id, monologue_text, share_status
+    FROM monologue
+    WHERE question_id=#{questionId}
+
+    </select>
+
    <update id="setBlindMonologue" parameterType="Integer">
 	   {
 		CALL
@@ -134,11 +143,6 @@
 		   }
 
    </update>
-
-   
-
-                                                  
-
 
 </mapper>
 

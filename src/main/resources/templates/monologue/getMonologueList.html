@@ -30,8 +30,9 @@ body{
 
 <div th:each="question : ${questionList}">
 
-<!-- <input type="hidden" th:value=${question.questionId} name="questionId"/>
- --><span th:text=${question.questionText}/>
+<input type="hidden" th:value=${question.questionId} name="questionId"/>
+<a href="./getMonologueText"/>
+<span th:text=${question.questionText}/>
 
 
 

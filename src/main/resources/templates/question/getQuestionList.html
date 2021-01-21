@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
 <head>
 <meta charset="UTF-8">
-<title>deleteMonologue</title>
+<title>getQuestion</title>
 
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -23,26 +24,30 @@ body{
 
 
 
+
 </head>
 <body>
 
-<h1>여기는 모노로그그그그그그그 삭제에에에에엥에에ㅔㅇ</h1>
+<h1>여기는 1문 list 보기</h1>
 
-<!--아래에 있는 question은 mapper에 getQuestionList의 resultMap을 적어주면 된다    ${questionList} ==> 이거는 컨트롤러에서 addAttribute로 담아준 키값을 적어주면 된다-->
 <div th:each="question : ${questionList}">
 
-<form action="deleteMonologueId" method="post">
+<form action="deleteQuestion" method="post">
+
 <input type="hidden" th:value=${question.questionId} name="questionId"/>
 
 <span th:text=${question.questionId}/>
 <span th:text=${question.questionText}/>
 
-<span><input type="submit" name="deleteMonologue" value="삭제하기">
-
+<span><input type="submit" name="deleteQuestion" value="삭제하기">
+ 
 </form>
 
 
+
+
 </div>
+
 
 
 

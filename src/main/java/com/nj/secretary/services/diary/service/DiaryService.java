@@ -1,5 +1,7 @@
 package com.nj.secretary.services.diary.service;
 
+import com.nj.secretary.services.calendar.domain.Calendar;
+import com.nj.secretary.services.calendar.domain.IsDiary;
 import com.nj.secretary.services.diary.domain.Diary;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -25,9 +27,15 @@ public interface DiaryService {
 
     public void moveToBin(int diaryId);
 
+
     public List<Diary> getReportedDiaryList();
 
     public int setBlindDiary(int num);
+
+    public List<Diary> getBinList(String userId);
+
+    public List<IsDiary> getDiaryEmotion(Calendar calendar);
+
 
 
 

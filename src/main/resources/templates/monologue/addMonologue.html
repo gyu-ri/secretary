@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
-<!-- <xmlns:th="http://www.thymeleaf.org"> -->
+<html xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+  
 <head>
 <meta charset="UTF-8">
-<title>monologue</title>
+<title>ADD MONOLOGUE</title>
 
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -26,12 +27,15 @@ body{
 </head>
 <body>
 
-<h1>여기는 모노로그그그그그그그 추가아아아아아</h1>
+<h1>여기는 모노로그으으으으으으 추가아아아아아</h1>
+
+<!-- <h2 th:text="${randomQuestionId}"/> -->
 
 
 
      
-<form action="addMonologueText"  method="post">
+<form action="addMonologue"  method="post">
+     <input type="hidden" name="questionId" value="37">
      monologue <input type="text" name="monologueText"> </br>
      <input type="submit" value="저장~☆">
 </form>

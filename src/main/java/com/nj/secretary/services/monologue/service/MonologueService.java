@@ -6,6 +6,7 @@ import com.nj.secretary.services.monologue.domain.Monologue;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Service;
 
+import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.domain.Question;
 
 @Mapper
@@ -14,25 +15,30 @@ public interface MonologueService {
 	
 	//Question
 	
-	public void addQuestionText(String questionText) throws Exception;
+	public void addQuestion(String questionText) throws Exception;
 	
 	public int getQuestionId(int questionId) throws Exception;
 	
 	public String getQuestionText(String questionText) throws Exception;
 	
-	public void deleteQuestionId(int questionId) throws Exception;
+	public void deleteQuestion(int questionId) throws Exception;
 	
 	public List<Question> getQuestionList() throws Exception;
 	
 	
 	//Monologue
-	public void addMonologueText(String monologueText) throws Exception;
+	public void addMonologue(Monologue monologue) throws Exception;
 	
 	public void updateMonologuText(String monologueText) throws Exception;
 	
-	public void deleteMonologueId(int monologueId) throws Exception;
+
+	public void deleteMonologue(int questionId) throws Exception;
 
 	public List<Monologue> getReportedMonoList();
 
 	public int setBlindMonologue(int num);
+	
+	public Monologue getMonologueText(int questionId) throws Exception;
+	
+	
 }

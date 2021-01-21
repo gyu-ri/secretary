@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-
+  
 <head>
 <meta charset="UTF-8">
-<title>getQuestion</title>
+<title>GET MONOLOGUE</title>
 
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -24,33 +24,19 @@ body{
 
 
 
-
 </head>
 <body>
 
-<h1>여기는 1문 list 보기</h1>
-
-<div th:each="question : ${questionList}">
-
-<form action="deleteQuestionId" method="post">
-
-<input type="hidden" th:value=${question.questionId} name="questionId"/>
-
-<span th:text=${question.questionId}/>
-<span th:text=${question.questionText}/>
-
-<span>
- <input type="submit" name="deleteQuestionId" value="삭제하기">
- 
-</form>
+<h1>여기는 모노로그으으으으으으 상세보기이이이이이이이</h1>
 
 
+<!-- <input type="text" name="questionId" th:value="${monologue.questionId}"/> -->
 
 
-</div>
 
 
 
 
 </body>
+</html>
 </html>

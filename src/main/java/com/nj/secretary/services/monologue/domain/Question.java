@@ -7,6 +7,7 @@ public class Question{
 	//field
 	private String questionText;
 	private int questionId;
+
 	
 	//constructor
 	public Question() {
