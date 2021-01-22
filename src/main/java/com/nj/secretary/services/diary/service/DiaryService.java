@@ -27,7 +27,6 @@ public interface DiaryService {
 
     public void moveToBin(int diaryId);
 
-
     public List<Diary> getReportedDiaryList();
 
     public int setBlindDiary(int num);
@@ -36,6 +35,23 @@ public interface DiaryService {
 
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public int deleteDiary(String diaryId);
+
+    public int recoverDiary(String diaryId);
 
 
 

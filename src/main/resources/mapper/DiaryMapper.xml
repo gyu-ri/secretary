@@ -119,7 +119,7 @@
     <select id="getDiaryEmotion" parameterType="com.nj.secretary.services.calendar.domain.Calendar" resultMap="diaryCalendar">
         SELECT to_char(DIARY_DATE,'yyyy-mm-dd') DIARY_DATE, DIARY_ID, WEATHER
         FROM DIARY
-        WHERE USER_ID = #{username} and DIARY_DATE &gt;= #{start} and DIARY_DATE &lt;=#{end}
+        WHERE USER_ID = #{username} and DIARY_DATE &gt;= #{start} and DIARY_DATE &lt;=#{end} and DELETE_STATUS = '0'
     </select>
 
     <select id="getBinList" parameterType="String" resultMap="diaryServiceMap">
@@ -127,5 +127,43 @@
         FROM DIARY
         WHERE USER_ID = #{userId} and DELETE_STATUS = '1'
     </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <delete id="deleteDiary" parameterType="String">
+        DELETE FROM DIARY
+        WHERE DIARY_ID = #{diaryId}
+    </delete>
+
+    <update id="recoverDiary" parameterType="String">
+        update DIARY set DELETE_STATUS = '0'
+        where DIARY_ID = #{diaryId}
+    </update>
 </mapper>
 
