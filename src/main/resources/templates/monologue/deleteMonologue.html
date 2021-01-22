@@ -31,7 +31,7 @@ body{
 <!--아래에 있는 question은 mapper에 getQuestionList의 resultMap을 적어주면 된다    ${questionList} ==> 이거는 컨트롤러에서 addAttribute로 담아준 키값을 적어주면 된다-->
 <div th:each="question : ${questionList}">
 
-<form action="deleteMonologueId" method="post">
+<form action="deleteMonologue" method="post">
 <input type="hidden" th:value=${question.questionId} name="questionId"/>
 
 <span th:text=${question.questionId}/>

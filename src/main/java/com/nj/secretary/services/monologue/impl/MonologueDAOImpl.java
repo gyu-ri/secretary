@@ -45,15 +45,6 @@ public class MonologueDAOImpl implements MonologueDAO{
 	
 	
 	@Override
-	public int getQeustionId(int questionId) throws Exception {
-		// TODO Auto-generated method stub
-		System.out.println("monologueDAOImpi  getQuestionId~~");
-		return sqlsession.selectOne("MonologueMapper.getQuestionId", questionId);
-		
-	}
-	
-	
-	@Override
 	public String getQuestionText(String questionText) throws Exception {
 		
 		return sqlsession.selectOne("MonologueMapper.getQuestionText", questionText);
@@ -84,9 +75,9 @@ public class MonologueDAOImpl implements MonologueDAO{
 
 
 	@Override
-	public void updateMonologueText(String monologueText) throws Exception {
+	public void updateMonologue(String monologueText) throws Exception {
 		
-		sqlsession.update("MonologueMapper.updateMonologueText", monologueText);
+		sqlsession.update("MonologueMapper.updateMonologue", monologueText);
 		
 		// TODO Auto-generated method stub
 		
@@ -94,15 +85,20 @@ public class MonologueDAOImpl implements MonologueDAO{
 
 
 	@Override
-	public void deleteMonologue(int questionId) throws Exception {
+	public void deleteMonologue(int monologueId) throws Exception {
 		
 
-		sqlsession.delete("MonologueMapper.deleteMonologue", questionId);
+		sqlsession.delete("MonologueMapper.deleteMonologue", monologueId);
 
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	@Override
+	public List<Monologue> getMonologueList(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("MonologueMapper.getMonologueList", userId);
+	}
 
 
 	@Override
@@ -113,9 +109,9 @@ public class MonologueDAOImpl implements MonologueDAO{
   	}
   
 	@Override
-	public Monologue getMonologueText(int questionId) throws Exception {
+	public Monologue getMonologue(int monologueId) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlsession.selectOne("MonologueMapper.getMonologueText", questionId);
+		return sqlsession.selectOne("MonologueMapper.getMonologue", monologueId);
 	}
 
 
@@ -126,4 +122,7 @@ public class MonologueDAOImpl implements MonologueDAO{
 
 		return 1;
 	}
+
+
+
 }

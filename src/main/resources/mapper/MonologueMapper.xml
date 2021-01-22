@@ -91,7 +91,7 @@
    </insert>
    
    
-   <update id="updateMonologueText" parameterType="com.nj.secretary.services.monologue.domain.Monologue">
+   <update id="updateMonologue" parameterType="com.nj.secretary.services.monologue.domain.Monologue">
 
 	UPDATE monologue
 	SET monologue_text=#{monologueText}
@@ -105,7 +105,7 @@
 
 	DELETE
 	FROM monologue
-	WHERE question_id=#{questionId}
+	WHERE monologue_id=#{monologueId}
    
    </delete>
   
@@ -119,10 +119,16 @@
 
    <select id="getMonologue"  parameterType="com.nj.secretary.services.monologue.domain.Monologue" resultMap="monologue">
 	
-    SELECT user_id, question_id, monologue_id, monologue_text, share_status
-    FROM monologue
-    WHERE question_id=#{questionId}
+    SELECT * FROM monologue
+    WHERE monologue_id=#{monologueId}
 
+    </select>
+    
+    <select id="getMonologueList" parameterType="com.nj.secretary.services.monologue.domain.Monologue" resultMap="monologue">
+    SELECT * FROM monologue
+    WHERE user_id=#{userId}
+    ORDER BY monologue_date ASC
+    
     </select>
 
    <update id="setBlindMonologue" parameterType="Integer">
