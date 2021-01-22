@@ -32,9 +32,10 @@ body{
 <div th:each="monologue : ${monologueList}">
 
 <form action="deleteMonologue" method="post">
-<input type="hidden" th:value=${monologue.monologueId}/>
 
-<!-- <span th:text=${monologue.monologueId}/> -->
+<input type="hidden" th:value=${monologue.monologueId} name="monologueId"/>
+
+<span th:text=${monologue.monologueId}/>
 <span th:text=${monologue.monologueText}/>
 
 <span><input type="submit" name="deleteMonologue" value="삭제하기">
