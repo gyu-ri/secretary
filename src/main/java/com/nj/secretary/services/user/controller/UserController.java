@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -28,25 +29,25 @@ public class UserController {
     @Autowired
     private JavaMailSender mailSender;
 
-    @GetMapping("/signUp")
+    @GetMapping("signUp")
     public String signUp() throws Exception{
 
         return "user/addUser";
     }
 
-    @PostMapping("/signUp")
+    @PostMapping("signUp")
     public String signUp01(User user) throws Exception{
         System.out.println(user);
         userService.addUser(user);
         return "user/addUser";
     }
 
-    @GetMapping("/login")
+    @GetMapping("login")
     public String login() throws Exception{
         return "user/login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public String login01(User user, HttpSession session) throws Exception{
         User dbUser = userService.getUser(user.getUserId());
         if(user.getPassword().equals(dbUser.getPassword())){
@@ -55,18 +56,18 @@ public class UserController {
         return "user/afterLogin";
     }
 
-    @GetMapping("/logout")
+    @GetMapping("logout")
     public String logout(HttpSession session) throws Exception{
         session.invalidate();
         return "index";
     }
 
-    @GetMapping ("/email")
+    @GetMapping ("email")
     public String emailPage() throws Exception{
         return "user/findId";
     }
 
-    @PostMapping("/findId")
+    @PostMapping("findId")
     public String sendEmailAction(@RequestParam Map<String,Object> paramMap)
             throws Exception{
 
@@ -98,7 +99,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/kakaologin")
+    @GetMapping("kakaologin")
     public String kakaoGetToken(@RequestParam("code") String code, Model model) throws IOException {
         String access_Token = "";
         String refresh_Token = "";
@@ -154,7 +155,18 @@ public class UserController {
             e.printStackTrace();
         }
 
-        return "/user/login";
+        return "user/login";
+    }
+
+    @GetMapping("adminUser")
+    public String adminUser(Model model) throws Exception{
+        System.out.println("admin User start in controller");
+        List<User> blindedUserList = userService.getBlindedUserList();
+        System.out.println("blindedUserList : " + blindedUserList);
+
+        model.addAttribute("blindedUserList", blindedUserList);
+
+        return "user/adminUser";
     }
 
 }

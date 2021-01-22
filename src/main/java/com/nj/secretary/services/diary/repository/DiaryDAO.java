@@ -34,4 +34,19 @@ public interface DiaryDAO {
 
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
 
+
+
+
+
+
+
+
+
+
+
+
+    public int deleteDiary(String diaryId);
+
+    public int recoverDiary(String diaryId);
+
 }

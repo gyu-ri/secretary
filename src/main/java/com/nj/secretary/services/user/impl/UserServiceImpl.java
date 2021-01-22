@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.nj.secretary.services.user.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService {
@@ -57,10 +58,36 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getBlindedUserList() {
+    public List<User> getBlindedUserList(){
 
         List<User> list = userDAO.getBlindedUserList();
 
         return list;
+    }
+
+    @Override
+    public List<User> getLimitedUserList(){
+
+        List<User> list = userDAO.getLimitedUserList();
+
+        return list;
+    }
+
+    @Override
+    public List<User> getLimitDateOverUser(){
+        return userDAO.getLimitDateOverUser();
+    }
+
+
+    @Override
+    public int setLimit(Map map){
+        userDAO.setLimit(map);
+        return 1;
+    }
+
+    @Override
+    public int releaseShareLimit(String userId) {
+        userDAO.releaseShareLimit(userId);
+        return 1;
     }
 }

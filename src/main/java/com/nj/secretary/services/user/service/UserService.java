@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /*
 Service Layer단에서 세분화된 비즈니스로직을 처리하는 객체
@@ -38,4 +39,11 @@ public interface UserService{
     //adminUser
     public List<User> getBlindedUserList();
 
+    public List<User> getLimitedUserList();
+
+    public List<User> getLimitDateOverUser();
+
+    public int setLimit(Map map);
+
+    public int releaseShareLimit(String userId);
 }

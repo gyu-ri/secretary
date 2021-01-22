@@ -77,6 +77,43 @@
         }
     </style>
     <script type="text/javascript">
+        function deleteDiary(diaryId){
+
+            $.ajax({
+                url: "/restDiary/deleteDiary",
+                method: "get",
+                dataType: "json",
+                data : {diaryId:diaryId},
+                headers: { //excess 제어요청 헤더, n : v 형식으로 헤더 추가하면 url의 request header에서 해당 헤더로 값을 얻어올 수 있다.
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                success: function (response){
+                    alert(response);
+                    location.reload();
+                }
+
+            });
+        }
+        function recoverDiary(diaryId){
+
+            $.ajax({
+                url: "/restDiary/recoverDiary",
+                method: "get",
+                dataType: "json",
+                data : {diaryId:diaryId},
+                headers: { //excess 제어요청 헤더, n : v 형식으로 헤더 추가하면 url의 request header에서 해당 헤더로 값을 얻어올 수 있다.
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                success: function (response){
+                    alert(response);
+                    location.reload();
+                }
+
+            });
+        }
+
         $(function geoFindMe() {
 
             const status = document.querySelector('#status');
@@ -137,7 +174,6 @@
 </head>
 <body>
 <!--<form name="writeDiary">-->
-<form method="get" action="updateDiary">
     <p id = "status"></p>
     <a id = "map-link" target="_blank"></a>
     <img src="" id="img" width="20" height="20" style="float: right;"/>
@@ -146,26 +182,27 @@
     <h2 style="text-align: center; margin-top: 50px">휴지통</h2><br><br><br>
     <div style="width: 60%; margin: auto;">
         <table class="table table-hover">
-            <thead>
+            <thead align="center">
                 <th>일기고유번호</th>
                 <th>제목</th>
                 <th>작성한날짜</th>
                 <th>삭제한날짜</th>
-                <th>처리</th>
+                <th></th>
+                <th></th>
             <thead>
-            <tbody th:each="diary:${diaryList}" >
-                <tr>
-                    <td th:text="${diary.diaryId}"></td>
-                    <td th:text="${diary.diaryTitle}"></td>
-                    <td th:text="${diary.diaryDate}"></td>
-                    <td th:text="${diary.deleteDate}"></td>
-                    <td th:text="삭제"></td>
+            <tbody th:align="center" th:each="diary:${diaryList}" >
+                <tr th:class="${diary.diaryId}">
+                    <td  th:text="${diary.diaryId}"></td>
+                    <td  th:text="${diary.diaryTitle}"></td>
+                    <td  th:text="${diary.diaryDate}"></td>
+                    <td  th:text="${diary.deleteDate}"></td>
+                    <td  th:onclick="deleteDiary([[${diary.diaryId}]])" th:text="삭제" th:value="${diary.diaryId}"></td>
+                    <td  th:onclick="recoverDiary([[${diary.diaryId}]])" th:text="복원" th:value="${diary.diaryId}"></td>
                 </tr>
             </tbody>
         </table>
         <br><br><br><br>
     </div>
-</form>
 </body>
 
 

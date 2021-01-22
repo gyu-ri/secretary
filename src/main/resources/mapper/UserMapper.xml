@@ -55,9 +55,32 @@
     </select>
 
     <select id="getBlindedUserList" resultMap="userSelectMap">
-        SELECT *
+        SELECT user_id, blind_count, limit_start_date, limit_end_date
         FROM users
-        WHERE blind_count >= 1
+        WHERE blind_count >= 1 AND limit_end_date IS NULL
     </select>
 
+    <select id="getLimitedUserList" resultMap="userSelectMap">
+        SELECT user_id, blind_count, limit_start_date, limit_end_date
+        FROM users
+        WHERE blind_count >= 1 AND limit_start_date IS NOT NULL AND limit_end_date > sysdate
+    </select>
+
+    <select id="getLimitDateOverUser" resultMap="userSelectMap">
+        SELECT user_id, blind_count, limit_start_date, limit_end_date
+        FROM users
+        WHERE blind_count >= 1 AND limit_start_date IS NOT NULL AND sysdate > limit_end_date
+    </select>
+
+    <update id="setLimit" parameterType="hashMap">
+        UPDATE users
+        SET limit_start_date = TO_DATE(TO_CHAR(sysdate, 'YYYY/MM/DD')), limit_end_date = TO_DATE(TO_CHAR(sysdate + #{period}, 'YYYY/MM/DD'))
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="releaseShareLimit" parameterType="String">
+        UPDATE users
+        SET limit_start_date = null
+        WHERE user_id = #{value}
+    </update>
 </mapper>

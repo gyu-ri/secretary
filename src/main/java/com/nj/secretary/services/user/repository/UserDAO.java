@@ -3,6 +3,7 @@ package com.nj.secretary.services.user.repository;
 import com.nj.secretary.services.user.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 //회원관리 CRUD 추상화/캡슐화한 DAO Interface Definition
 public interface UserDAO {
@@ -33,4 +34,12 @@ public interface UserDAO {
 
     //adminUser
     public List<User> getBlindedUserList();
+
+    public List<User> getLimitedUserList();
+
+    public List<User> getLimitDateOverUser();
+
+    public int setLimit(Map map);
+
+    public int releaseShareLimit(String userId);
 }
