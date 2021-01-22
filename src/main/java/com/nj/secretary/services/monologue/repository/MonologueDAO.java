@@ -16,8 +16,6 @@ public interface MonologueDAO {
 
 	public void deleteQuestion(int questionId) throws Exception;
 
-	public int getQeustionId(int questionId) throws Exception;
-	
 	public List<Question> getQuestionList() throws Exception;
 	
 	
@@ -26,17 +24,17 @@ public interface MonologueDAO {
 	
 	public void addMonologue(Monologue monologue) throws Exception;
 	
-	public void updateMonologueText(String monologueText) throws Exception;
-	
 	public void deleteMonologue(int monologueId) throws Exception;
 	
 	public List<Monologue> getMonologueList(String userId) throws Exception;
+	
+	public void updateMonologue(String monologueText) throws Exception;
 	
 	public List<Monologue> getReportedMonoList();
 
 	public int setBlindMonologue(int num);
 
-	public Monologue getMonologueText(int questionId) throws Exception;
+	public Monologue getMonologue(int monologueId) throws Exception;
 	
 	
 	

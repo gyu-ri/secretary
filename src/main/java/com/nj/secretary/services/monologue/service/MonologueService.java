@@ -17,8 +17,6 @@ public interface MonologueService {
 	
 	public void addQuestion(String questionText) throws Exception;
 	
-	public int getQuestionId(int questionId) throws Exception;
-	
 	public String getQuestionText(String questionText) throws Exception;
 	
 	public void deleteQuestion(int monologueId) throws Exception;
@@ -29,7 +27,7 @@ public interface MonologueService {
 	//Monologue
 	public void addMonologue(Monologue monologue) throws Exception;
 	
-	public void updateMonologuText(String monologueText) throws Exception;
+	public void updateMonologu(String monologueText) throws Exception;
 
 	public void deleteMonologue(int questionId) throws Exception;
 	
@@ -39,7 +37,7 @@ public interface MonologueService {
 
 	public int setBlindMonologue(int num);
 	
-	public Monologue getMonologueText(int questionId) throws Exception;
+	public Monologue getMonologue(int monologueId) throws Exception;
 	
 	
 }

@@ -65,7 +65,7 @@ public class MonologueController {
 	@GetMapping("getQuestionList")
 	public String getQuestionList(Model model, HttpSession session) throws Exception{
 		
-		session.setAttribute("role", "admin");
+		session.setAttribute("role", "gyuri");
 		
 		String role=(String)session.getAttribute("role");
 		
@@ -77,12 +77,8 @@ public class MonologueController {
 		
 		System.out.println("monologueController getQuestionList  ::  "+questionList);
 		
-		if(role.equals("admin")) {
-			
+
 			return "question/getQuestionList";
-		}else {
-			return "monologue/getMonologueList";
-		}
 		
 	}
 		
@@ -140,26 +136,7 @@ public class MonologueController {
 		return "monologue/addMonologue";
 		
 	}
-	
-	
-	@GetMapping("getMonologue")
-	public String getMonologueText(@RequestParam("questionId") int questionId, Model model) throws Exception{
-		
-		System.out.println("getMonologueText 시작합니다잉");
-		
-		monologueService.getQuestionId(questionId);
-		
-		model.addAttribute("monologue", questionId);
-		
-		System.out.println("getMonologueText에서 questionId 확인 :::  "+questionId);
-		
-//		int questionId=monologueService.getQuestionId(questionId);
-		
-	//	model.addAttribute("questionId", questionId);
-		
-		return "monologue/getMonologue";
-		
-	}
+
 	
 	@GetMapping("getMonologueList")
 	public String getMonologueList(Model model, HttpSession session) throws Exception{
@@ -183,9 +160,26 @@ public class MonologueController {
 	}
 	
 	
+	@GetMapping("getMonologue")
+	public String getMonologueText(@RequestParam("monologueId") int monologueId, Model model) throws Exception{
+		
+		System.out.println("getMonologueText 시작합니다잉");
+		
+		Monologue monologue=monologueService.getMonologue(monologueId);
+		
+		model.addAttribute("monologue", monologue);
+		
+		System.out.println("getMonologue에서 monologueId 확인 :::  "+monologueId);
+		System.out.println("getMonologue  확인 :::  "+monologue);
+		
+		
+		return "monologue/getMonologue";
+		
+	}
+	
 	@PostMapping("updateMonologueText")
 	public String updateMonologueText(String monologueText) throws Exception{
-		monologueService.updateMonologuText(monologueText); 
+		monologueService.updateMonologu(monologueText); 
 		
 		
 		return "monologue/updateMonologue";
