@@ -80,9 +80,9 @@ public class MonologueServiceImpl implements MonologueService {
 
 
 	@Override
-	public void deleteMonologue(int questionId) throws Exception {
+	public void deleteMonologue(int monologueId) throws Exception {
 		
-		monologueDAO.deleteMonologue(questionId);
+		monologueDAO.deleteMonologue(monologueId);
 		// TODO Auto-generated method stub
 		
 	}

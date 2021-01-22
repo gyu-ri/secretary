@@ -29,7 +29,7 @@ public interface MonologueService {
 	
 	public void updateMonologu(String monologueText) throws Exception;
 
-	public void deleteMonologue(int questionId) throws Exception;
+	public void deleteMonologue(int monologueId) throws Exception;
 	
 	public List<Monologue> getMonologueList(String userId) throws Exception;
 

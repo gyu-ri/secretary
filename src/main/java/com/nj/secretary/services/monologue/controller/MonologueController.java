@@ -146,7 +146,7 @@ public class MonologueController {
 		
 		String userId=(String)session.getAttribute("userId");
 		
-		System.out.println("getMonologueList에서 role 확인이니이이이잉 :::"+userId);
+		System.out.println("getMonologueList에서 userId 확인이니이이이잉 :::"+userId);
 		
 		List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
 		
@@ -188,24 +188,45 @@ public class MonologueController {
 	
 	
 	@GetMapping("deleteMonologue")
-	public String deleteMonologue(int monologueId, Model model) throws Exception{
-		
+	public String deleteMonologue(Model model, HttpSession session) throws Exception{
 		System.out.println("deleteMonologue GepMapping 시작 합니다잉~~");
 		
-		monologueService.deleteMonologue(monologueId);
+		session.setAttribute("userId", "gyuri");
 		
-				
+		String userId=(String)session.getAttribute("userId");
+		
+		System.out.println("deleteMonologue에서 userId 확인이니이이이잉 :::"+userId);
+		
+	    List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
+		
+		model.addAttribute("monologueList", monologueList);
+		
+		System.out.println("monologueController deleteMonologue  ::  "+monologueList);
+		
 		
 		return "monologue/deleteMonologue";
 	}
 	
 	
 	@PostMapping("deleteMonologue")
-	public String deleteMonologue(int monologueId) throws Exception{
+	public String deleteMonologue(@RequestParam int monologueId, Model model, HttpSession session) throws Exception{
+		System.out.println("deleteMonologue PostMapping 시작 합니다잉~~");
+		
 		monologueService.deleteMonologue(monologueId);
 		
-		
 		System.out.println("deleteMonologue monologueId 확인 ::::  "+monologueId);
+		
+	    session.setAttribute("userId", "gyuri");
+		
+		String userId=(String)session.getAttribute("userId");
+		
+		System.out.println("deleteMonologue에서 userId 확인이니이이이잉 :::"+userId);
+		
+	    List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
+		
+		model.addAttribute("monologueList", monologueList);
+		
+		System.out.println("monologueController deleteMonologue  ::  "+monologueList);
 		
 		return "monologue/deleteMonologue";
 	}
