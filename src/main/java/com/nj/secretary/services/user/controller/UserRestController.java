@@ -113,7 +113,7 @@ public class UserRestController {
             map.put("period", 365);
         }else if(blindStatus >= 5){
             map.put("userId", userId);
-            map.put("period", 2912313);
+            map.put("period", 3650);
         }
         userService.setLimit(map);
        //int i = userService.setShareLimit(userId);
