@@ -21,7 +21,7 @@ public interface MonologueService {
 	
 	public String getQuestionText(String questionText) throws Exception;
 	
-	public void deleteQuestion(int questionId) throws Exception;
+	public void deleteQuestion(int monologueId) throws Exception;
 	
 	public List<Question> getQuestionList() throws Exception;
 	
@@ -30,9 +30,10 @@ public interface MonologueService {
 	public void addMonologue(Monologue monologue) throws Exception;
 	
 	public void updateMonologuText(String monologueText) throws Exception;
-	
 
 	public void deleteMonologue(int questionId) throws Exception;
+	
+	public List<Monologue> getMonologueList(String userId) throws Exception;
 
 	public List<Monologue> getReportedMonoList();
 

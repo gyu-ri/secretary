@@ -28,11 +28,11 @@ body{
 
 <h1>여기는 모노로그그으으으으으 목록 보기이이이이</h1>
 
-<div th:each="question : ${questionList}">
+<div th:each="monologue : ${monologueList}">
 
-<input type="hidden" th:value=${question.questionId} name="questionId"/>
-<a href="./getMonologueText"/>
-<span th:text=${question.questionText}/>
+<input type="hidden" th:value=${monologue.monologueId} name="monologueId"/>
+<a href="./getMonologue"/>
+<span th:text=${monologue.monologueText}/>
 
 
 

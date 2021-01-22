@@ -28,9 +28,10 @@ public interface MonologueDAO {
 	
 	public void updateMonologueText(String monologueText) throws Exception;
 	
-	public void deleteMonologue(int questionId) throws Exception;
+	public void deleteMonologue(int monologueId) throws Exception;
 	
-
+	public List<Monologue> getMonologueList(String userId) throws Exception;
+	
 	public List<Monologue> getReportedMonoList();
 
 	public int setBlindMonologue(int num);

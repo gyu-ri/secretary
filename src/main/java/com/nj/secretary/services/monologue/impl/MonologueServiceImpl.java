@@ -48,9 +48,9 @@ public class MonologueServiceImpl implements MonologueService {
 	
 	
 	@Override
-	public void deleteQuestion(int questionId) throws Exception {
+	public void deleteQuestion(int monologueId) throws Exception {
 		
-    	monologueDAO.deleteQuestion(questionId);
+    	monologueDAO.deleteQuestion(monologueId);
 		
 		
 	}
@@ -101,6 +101,13 @@ public class MonologueServiceImpl implements MonologueService {
 		return monologueDAO.getMonologueText(questionId);
 	}
   
+	@Override
+	public List<Monologue> getMonologueList(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return monologueDAO.getMonologueList(userId);
+	}
+	
+	
   @Override
 	public List<Monologue> getReportedMonoList() {
 
@@ -114,6 +121,8 @@ public class MonologueServiceImpl implements MonologueService {
 
 		return 1;
 	}
+
+
 
 }
 

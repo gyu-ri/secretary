@@ -105,7 +105,7 @@
 
 	DELETE
 	FROM monologue
-	WHERE question_id=#{questionId}
+	WHERE monologue_id=#{monologueId}
    
    </delete>
   
@@ -123,6 +123,13 @@
     FROM monologue
     WHERE question_id=#{questionId}
 
+    </select>
+    
+    <select id="getMonologueList" parameterType="com.nj.secretary.services.monologue.domain.Monologue" resultMap="monologue">
+    SELECT * FROM monologue
+    WHERE user_id=#{userId}
+    ORDER BY monologue_date ASC
+    
     </select>
 
    <update id="setBlindMonologue" parameterType="Integer">
