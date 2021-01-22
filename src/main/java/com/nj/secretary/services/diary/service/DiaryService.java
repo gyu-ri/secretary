@@ -27,7 +27,6 @@ public interface DiaryService {
 
     public void moveToBin(int diaryId);
 
-
     public List<Diary> getReportedDiaryList();
 
     public int setBlindDiary(int num);

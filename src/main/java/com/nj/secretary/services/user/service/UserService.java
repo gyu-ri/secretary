@@ -36,6 +36,6 @@ public interface UserService{
     public int idCheck(String userId) throws Exception;
 
     //adminUser
-    public List<User> getBlindedUserList();
+    public List<User> getBlindedUserList() throws Exception;
 
 }

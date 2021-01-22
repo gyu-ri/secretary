@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -155,6 +156,17 @@ public class UserController {
         }
 
         return "/user/login";
+    }
+
+    @GetMapping("adminUser")
+    public String adminUser(Model model) throws Exception{
+        System.out.println("admin User start in controller");
+        List<User> blindedUserList = userService.getBlindedUserList();
+        System.out.println("blindedUserList : " + blindedUserList);
+
+        model.addAttribute("blindedUserList", blindedUserList);
+
+        return "user/adminUser";
     }
 
 }

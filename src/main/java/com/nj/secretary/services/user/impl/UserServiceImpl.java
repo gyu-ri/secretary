@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getBlindedUserList() {
+    public List<User> getBlindedUserList() throws Exception {
 
         List<User> list = userDAO.getBlindedUserList();
 

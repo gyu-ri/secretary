@@ -103,7 +103,7 @@
 
 <div class="text">
 
-    <p id="postList">
+    <p id="UserList">
     <table id="table" border="1">
         <th> 작성자ID </th>
         <th>블라인드된 게시물 수</th>
@@ -111,13 +111,42 @@
         <p id="block" th:each="user : ${blindedUserList}" style="float: left">
             <tr>
                 <td th:text="${user.userId}"></td>
-                <td th:text="${user.blindCound}"></td>
-                <td th:text="${user.nickname}"></td>
+                <td th:text="${user.blindCount}"></td>
+                <td><a href="#" class="setUserShareStatus" th:if="${user.limitStartDate} == null" th:value="${user.userId}" th:class="${user.userId}">처리</a></td>
+                <td><a href="#" class="setUserShareStatus" th:if="${user.limitEndDate} <= ${#calendars.format(#calendars.createNow())}" th:value="${user.userId}" th:class="${user.userId}">제한 해제</a></td>
+                <td><a href="#" class="setUserShareStatus" th:if="${user.limitStartDate} == null" th:value="${user.userId}" th:class="${user.userId}">처리</a></td>
+
             </tr>
         </p>
     </table>
     </p>
 
+
 </div>
+<script>
+    function adminUser(){
+        alert("getAdminUser")
+        console.log(this);
+        $.ajax({
+            url : "/restUser/adminUser",
+            type : "GET",
+            cache : false,
+            contentType : "application/json",
+            success : function (userList){
+                console.log(userList);
+                $("#table").remove();
+                $("#UserList").append("<table id=\"table\" border=\"1\">\n" +
+                    "        <th> 작성자ID </th>\n" +
+                    "        <th>블라인드된 게시물 수</th>\n" +
+                    "        <th>처리</th>\n" +
+                    "    </table>")
+                $.each(userList, function (i, item){
+                    console.log(item);
+
+                })
+            }
+        })
+    }
+</script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.nj.secretary.services.user.controller;
 
+import com.nj.secretary.services.user.domain.User;
 import com.nj.secretary.services.user.service.UserService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Random;
 
 @RestController//반환 값이 단순 문자열과 Json이다.
@@ -53,6 +55,18 @@ public class UserRestController {
         message.setText("인증번호 : "+key);
         mailSender.send(message);
         return key;
+    }
+
+
+    @GetMapping("adminUser")
+    public List<User> adminUser(Model model) throws Exception{
+        System.out.println("admin User start in Restcontroller");
+        List<User> blindedUserList = userService.getBlindedUserList();
+        System.out.println("blindedUserList : " + blindedUserList);
+
+        model.addAttribute("blindedUserList", blindedUserList);
+
+        return blindedUserList;
     }
 
 
