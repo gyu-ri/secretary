@@ -149,5 +149,35 @@ public class DiaryRestController {
 
     }
 
+    @GetMapping("deleteDiary")
+    public String deleteDiary(@RequestParam("diaryId") String diaryId){
+        System.out.println(diaryId);
+
+        if(diaryService.deleteDiary(diaryId)==0){
+            return "삭제불가능합니다.";
+        }else{
+            return "삭제되었습니다.";
+        }
+    }
+
+    @GetMapping("recoverDiary")
+    public String recoverDiary(@RequestParam("diaryId") String diaryId){
+        System.out.println(diaryId);
+
+        if(diaryService.recoverDiary(diaryId)==0){
+            return "복원불가능합니다.";
+        }else{
+            return "복원되었습니다.";
+        }
+    }
+
+    @PostMapping("reportDiary")
+    public String reportDiary(){
+
+
+        return "nothing";
+    }
+
+
 
 }

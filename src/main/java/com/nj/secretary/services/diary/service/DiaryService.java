@@ -38,4 +38,21 @@ public interface DiaryService {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    public int deleteDiary(String diaryId);
+
+    public int recoverDiary(String diaryId);
+
+
+
 }

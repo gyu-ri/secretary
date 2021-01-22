@@ -166,6 +166,24 @@
     </script>
     <script>
         $(function(){
+            $("#report").on("click",function(){
+                $("#eventModal").modal("show");
+            })
+
+            $("#sendReport").on("click",function(){
+                let text = $("#textArea").val();
+                let reason = $("")
+                $.ajax({
+                    url : "/restDiary/reportDiary",
+                    type : "POST",
+                    data :JSON.stringify(text),
+                    contentType: "application/json",
+                    success: function (response){
+                        alert(response);
+                    }
+                });
+            })
+
             $(".translate").on("click",function(){
                 let text = {text : $("#text").text(),
                     source:$("#source option:selected").val(),
@@ -244,6 +262,7 @@
         <br><br>
 
         <input type="submit" id="modifyDiary" value="수정">
+    <div id="report">신고하기</div>
 
 
         <br><br><br><br>
@@ -267,6 +286,39 @@
 </select>
 <img class="translate" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
 </body>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">신고하기
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <label class="cdl-xs-12">신고</label>
+                        <label class="col-xs-4">
+                            1 <input type="checkbox" value="1"></br>
+                            2 <input type="checkbox" value="2"></br>
+                            3 <input type="checkbox" value="3"></br>
+                        </label>
+                        <textarea id="textArea" class="col-xs-8" rows="8" cols="100"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer modalBtnContainer-addEvent">
+                <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" id="sendReport">신고</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 </html>

@@ -32,7 +32,7 @@ CREATE SEQUENCE monologue_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE calendar_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE goal_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE alarm_seq START WITH 1 INCREMENT BY 1;
-CREATE SEQUENCE questions_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE question_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE todolist_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE withdrawalreasons_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE emotion_seq START WITH 1 INCREMENT BY 1;
@@ -94,17 +94,22 @@ CREATE TABLE DIARY
 );
 
 
-CREATE TABLE Calendar
+create table CALENDAR
 (
-    calendar_id NUMBER(8) PRIMARY KEY,
-    user_id VARCHAR2(30) NOT NULL,
-    calendar_title VARCHAR2(50) NOT NULL,
-    calendar_detail VARCHAR2(200),
-    start_date DATE NOT NULL,
-    end_date DATE,
-    start_time VARCHAR2(10),
-    end_time VARCHAR2(10)
-);
+    CALENDAR_ID      NUMBER(8)    not null
+        constraint CALENDAR_PK
+        primary key,
+    USER_ID          VARCHAR2(30) not null,
+    CALENDAR_TITLE   VARCHAR2(50) not null,
+    CALENDAR_DETAIL  VARCHAR2(200),
+    START_DATE       VARCHAR2(20) not null,
+    END_DATE         VARCHAR2(20),
+    START_TIME       VARCHAR2(10),
+    END_TIME         VARCHAR2(10),
+    BACKGROUND_COLOR VARCHAR2(10),
+    ALL_DAY          CHAR default null,
+    IMAGE_URL        VARCHAR2(50)
+)
 
 
 CREATE TABLE MONOLOGUE
