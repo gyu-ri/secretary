@@ -182,15 +182,5 @@ public class DiaryController {
 
         return "diary/adminPost";
     }
-
-    @GetMapping("adminUser")
-    public String adminUser(Model model){
-        System.out.println("admin User start in controller");
-        List<User> list = userService.getBlindedUserList();
-        System.out.println("blindedUserList : " + list);
-
-        model.addAttribute("blindedUserLIst : " + list);
-
-        return "diary/adminUser";
-    }
+    
 }
