@@ -95,4 +95,14 @@ public class DiaryDAOImpl implements DiaryDAO {
         return sqlSession.selectList("DiaryMapper.getDiaryEmotion",calendar);
 
     }
+
+    @Override
+    public int deleteDiary(String diaryId) {
+        return sqlSession.delete("DiaryMapper.deleteDiary",diaryId);
+    }
+
+    @Override
+    public int recoverDiary(String diaryId) {
+        return sqlSession.update("DiaryMapper.recoverDiary",diaryId);
+    }
 }

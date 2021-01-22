@@ -77,6 +77,17 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
+    public int deleteDiary(String diaryId) {
+
+        return diaryDAO.deleteDiary(diaryId);
+    }
+
+    @Override
+    public int recoverDiary(String diaryId) {
+        return diaryDAO.recoverDiary(diaryId);
+    }
+
+    @Override
     public Diary getDiary(int diaryNumber) {
 
         return diaryDAO.getDiary(diaryNumber);
