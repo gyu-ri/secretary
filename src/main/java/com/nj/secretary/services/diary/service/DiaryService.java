@@ -35,6 +35,8 @@ public interface DiaryService {
 
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
 
+    public List<Diary> getDiaryReportReason(int diaryId);
+
 
 
 

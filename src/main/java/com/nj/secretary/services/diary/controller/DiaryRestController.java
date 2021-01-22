@@ -178,6 +178,17 @@ public class DiaryRestController {
         return "nothing";
     }
 
+    @GetMapping("getDiaryReportReason")
+    public List<Diary> getDiaryReportReason(@RequestParam("diaryId") int diaryId){
+        System.out.println("getDiaryReportReason in diaryrestcontroller start");
+        System.out.println("diaryId : " + diaryId);
+
+        List<Diary> list = diaryService.getDiaryReportReason(diaryId);
+        System.out.println("getDiaryReportReason finish : " + list);
+
+        return list;
+    }
+
 
 
 }

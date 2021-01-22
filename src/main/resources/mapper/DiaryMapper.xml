@@ -128,6 +128,12 @@
         WHERE USER_ID = #{userId} and DELETE_STATUS = '1'
     </select>
 
+    <select id="getDiaryReportReason" parameterType="integer" resultMap="diaryServiceMap">
+        SELECT report_reason_id, reporter_id, report_date, report_text
+        FROM report
+        WHERE diary_id = #{value}
+    </select>
+
 
 
 

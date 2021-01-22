@@ -130,6 +130,7 @@ public class DiaryController {
         System.out.println(diaryNo);
         System.out.println(diaryService.getDiary(diaryNo));
         model.addAttribute("diary",diaryService.getDiary(diaryNo));
+        model.addAttribute("role", "admin");
         return "diary/getDiary";
     }
 
@@ -182,5 +183,7 @@ public class DiaryController {
 
         return "diary/adminPost";
     }
+
+
     
 }

@@ -150,6 +150,12 @@
 
    </update>
 
+	<select id="getMonologueReportReason" parameterType="integer" resultMap="monologue">
+		SELECT report_reason_id, reporter_id, report_date, report_text
+		FROM report
+		WHERE monologue_id = #{value}
+	</select>
+
 </mapper>
 
 

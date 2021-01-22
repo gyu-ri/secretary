@@ -88,6 +88,24 @@
         .tab.active {
             display:block;
         }
+
+
+        #my_modal {
+            display: none;
+            width: 300px;
+            padding: 20px 60px;
+            background-color: #fefefe;
+            border: 1px solid #888;
+            border-radius: 3px;
+        }
+
+        #my_modal .modal_close_btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+
     </style>
 
 
@@ -148,8 +166,6 @@
 
             }
         });
-
-//        document.querySelector('#find-me').addEventListener('click', geoFindMe);
     </script>
     <title>Title</title>
 
@@ -180,12 +196,14 @@
         <th> 작성자ID </th>
         <th>게시물 고유번호</th>
         <th>게시물 신고횟수</th>
+        <th>신고사유</th>
         <th>처리</th>
         <p id="block" th:each="diary : ${diaryList}" style="float: left">
             <tr>
                 <td th:text="${diary.userId}"></td>
-                <td th:text="${diary.diaryId}"></td>
+                <td><a href="#"  id="navigateDiary" th:text="${diary.diaryId}" th:class="${diary.diaryId}"></a></td>
                 <td th:text="${diary.reportCount}"></td>
+                <td><a href='#' id='getDiaryReportReason' th:class="${diary.diaryId}" th:value="${diary.diaryId}">신고사유보기</a> </td>
                 <td th:if="${diary.blindStatus} == '0'" id="setDiaryBlind2"><a href='#' id='setDiaryBlind' th:class="${diary.diaryId}" th:value="${diary.diaryId}">블라인드처리</a> </td>
                 <td th:unless="${diary.blindStatus} == '0'">처리완료</td>
 
@@ -218,6 +236,7 @@
                     "        <th> 작성자ID </th>\n" +
                     "        <th>게시물 고유번호</th>\n" +
                     "        <th>게시물 신고횟수</th>\n" +
+                    "        <th>신고사유</th>\n" +
                     "        <th>처리</th>\n" +
                     "    </table>")
                 $.each(diaryList, function (i,item){
@@ -227,8 +246,9 @@
                         $("#table").append(
                             "                               <tr>\n" +
                             "                                   <td>" + item.userId + "</td>\n" +
-                            "                                   <td id='i'>" + item.diaryId + "</td>\n" +
+                            "                                   <td><a href='/diary/getDiary?diaryNo=" + item.diaryId + "'  th:class='" + item.diaryId +"'>" + item.diaryId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
+                            "                                   <td><a href='#' id='getDiaryReportReason' class='" + item.diaryId + "' value='" + item.diaryId + "'>신고사유보기</a> </td>" +
                             "                                   <td id='setDiaryBlind2'><a href='#' id='setDiaryBlind' class='"+item.diaryId+"'>블라인드처리2</a> </td>\n" +
                             "                               </tr>\n"
                         )
@@ -236,8 +256,9 @@
                         $("#table").append(
                             "                               <tr>\n" +
                             "                                   <td>" + item.userId + "</td>\n" +
-                            "                                   <td>" + item.diaryId + "</td>\n" +
+                            "                                   <td><a href='/diary/getDiary?diaryNo=" + item.diaryId + "' th:class='" + item.diaryId +"'>" + item.diaryId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
+                            "                                   <td><a href='#' id='getDiaryReportReason' class='" + item.diaryId + "' value='" + item.diaryId + "'>신고사유보기</a> </td>" +
                             "                                   <td>처리완료2</td>\n" +
                             "                               </tr>\n"
                         )
@@ -290,6 +311,7 @@
                     "        <th> 작성자ID </th>\n" +
                     "        <th>게시물 고유번호</th>\n" +
                     "        <th>게시물 신고횟수</th>\n" +
+                    "        <th>신고사유보기</th>\n" +
                     "        <th>처리</th>\n" +
                     "    </table>")
                 $.each(MonologueList, function (i,item){
@@ -299,8 +321,9 @@
                         $("#table").append(
                             "                               <tr>\n" +
                             "                                   <td>" + item.userId + "</td>\n" +
-                            "                                   <td id='i'>" + item.monologueId + "</td>\n" +
+                            "                                   <td><a href='/monologue/getMonologue?monologueId=" + item.monologueId + "'  th:class='" + item.monologueId +"'>" + item.monologueId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
+                            "                                   <td><a href='#' id='getMonologueReportReason' class='" + item.monologueId + "' value='" + item.monologueId + "'>신고사유보기</a> </td>" +
                             "                                   <td id='setMonologueBlind2'><a href='#' id='setMonologueBlind' value='"+item.monologueId+"'>블라인드처리3</a> </td>\n" +
                             "                               </tr>\n"
                         )
@@ -308,8 +331,9 @@
                         $("#table").append(
                             "                               <tr>\n" +
                             "                                   <td>" + item.userId + "</td>\n" +
-                            "                                   <td>" + item.monologueId + "</td>\n" +
+                            "                                   <td><a href='/monologue/getMonologue?monologueId=" + item.monologueId + "' th:class='" + item.monologueId +"'>" + item.monologueId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
+                            "                                   <td><a href='#' id='getMonologueReportReason' class='" + item.monologueId + "' value='" + item.monologueId + "'>신고사유보기</a> </td>" +
                             "                                   <td>처리완료3</td>\n" +
                             "                               </tr>\n"
                         )
@@ -340,6 +364,149 @@
 
     });
 
+    $(document).on("click", "#navigateDiary", function (){
+        alert("다이어리 상세보기로 간드아~");
+        self.location="/diary/getDiary?diaryNo="+$(this).attr("class");
+    });
+
+    // $(document).on("click", "#getDiaryReportReason", function (){
+    //     alert("다이어리 신고사유로 간다~!");
+    //     self.location = "/diary/getDiaryReportReason"
+    // })
+
 </script>
+
+
+<div id="my_modal">
+    <a class="modal_close_btn">닫기</a>
+
+</div>
+
+<script>
+    function modal(id) {
+        var zIndex = 9999;
+        var modal = document.getElementById(id);
+
+        // 모달 div 뒤에 희끄무레한 레이어
+        var bg = document.createElement('div');
+        bg.setStyle({
+            position: 'fixed',
+            zIndex: zIndex,
+            left: '0px',
+            top: '0px',
+            width: '100%',
+            height: '100%',
+            overflow: 'auto',
+            // 레이어 색갈은 여기서 바꾸면 됨
+            backgroundColor: 'rgba(0,0,0,0.4)'
+        });
+        document.body.append(bg);
+
+        // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+        modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+            bg.remove();
+            modal.style.display = 'none';
+        });
+
+        modal.setStyle({
+            position: 'fixed',
+            display: 'block',
+            boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+
+            // 시꺼먼 레이어 보다 한칸 위에 보이기
+            zIndex: zIndex + 1,
+
+            // div center 정렬
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            msTransform: 'translate(-50%, -50%)',
+            webkitTransform: 'translate(-50%, -50%)'
+        });
+    }
+
+    // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
+    Element.prototype.setStyle = function(styles) {
+        for (var k in styles) this.style[k] = styles[k];
+        return this;
+    };
+
+    $(document).on("click", "#getDiaryReportReason", function(){
+        // 모달창 띄우기
+        $.ajax({
+            url : "/restDiary/getDiaryReportReason",
+            type : "GET",
+            dataType : "json",
+            data : {diaryId: $(this).attr("class")},
+            headers: { //excess 제어요청 헤더, n : v 형식으로 헤더 추가하면 url의 request header에서 해당 헤더로 값을 얻어올 수 있다.
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            success : function (reportList){
+                console.log(reportList);
+                $("#modalTable").remove();
+                $("#my_modal").append("<table id='modalTable' border='1'>\n" +
+                    "    <th>신고자ID</th>\n" +
+                    "    <th>사유번호</th>\n" +
+                    "    <th>신고날짜</th>\n" +
+                    "    <th>신고사유</th>\n" +
+                    "</table>")
+                $.each(reportList, function (i,item){
+                    console.log(item);
+                        $("#modalTable").append(
+                            "<tr>\n" +
+                            "        <td>" + item.reporterId + "</td>\n" +
+                            "        <td>" + item.reportReasonId + "</td>\n" +
+                            "        <td>" + item.reportDate + "</td>\n" +
+                            "        <td>" + item.reportText + "</td>\n" +
+                            "    </tr>"
+                    )
+                })
+            }
+        })
+        modal('my_modal');
+    });
+
+    $(document).on("click", "#getMonologueReportReason", function(){
+        // 모달창 띄우기
+        $.ajax({
+            url : "/restMonologue/getMonologueReportReason",
+            type : "GET",
+            dataType : "json",
+            data : {monologueId: $(this).attr("class")},
+            headers: { //excess 제어요청 헤더, n : v 형식으로 헤더 추가하면 url의 request header에서 해당 헤더로 값을 얻어올 수 있다.
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            success : function (reportList){
+                console.log(reportList);
+                $("#modalTable").remove();
+                $("#my_modal").append("<table id='modalTable' border='1'>\n" +
+                    "    <th>신고자ID</th>\n" +
+                    "    <th>사유번호</th>\n" +
+                    "    <th>신고날짜</th>\n" +
+                    "    <th>신고사유</th>\n" +
+                    "</table>")
+                $.each(reportList, function (i,item){
+                    console.log(item);
+                    $("#modalTable").append(
+                        "<tr>\n" +
+                        "        <td>" + item.reporterId + "</td>\n" +
+                        "        <td>" + item.reportReasonId + "</td>\n" +
+                        "        <td>" + item.reportDate + "</td>\n" +
+                        "        <td>" + item.reportText + "</td>\n" +
+                        "    </tr>"
+                    )
+                })
+            }
+        })
+        modal('my_modal');
+    });
+
+
+</script>
+
+
+
 </body>
 </html>

@@ -36,4 +36,15 @@ public class MonologueRestController {
         System.out.println("setBlindMonologue from MonologueRestController finish");
         return 1;
     }
+
+    @GetMapping("getMonologueReportReason")
+    public List<Monologue> getMonologueReportReason(@RequestParam("monologueId") int monologueId){
+        System.out.println("getMonologueReportReason in monologueRestController start");
+        System.out.println("parameter check : " + monologueId);
+
+        List<Monologue> list = monologueService.getMonologueReportReason(monologueId);
+        System.out.println("getMonologueReportReason in monologueRestController Finish");
+
+        return list;
+    }
 }
