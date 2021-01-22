@@ -161,7 +161,7 @@ public class MonologueController {
 	
 	
 	@GetMapping("getMonologue")
-	public String getMonologueText(@RequestParam("monologueId") int monologueId, Model model) throws Exception{
+	public String getMonologueText(int monologueId, Model model) throws Exception{
 		
 		System.out.println("getMonologueText 시작합니다잉");
 		
