@@ -90,4 +90,9 @@ public class UserServiceImpl implements UserService {
         userDAO.releaseShareLimit(userId);
         return 1;
     }
+
+    @Override
+    public List<User> getWithdrawalReasonList() {
+        return userDAO.getWithdrawalReasonList();
+    }
 }

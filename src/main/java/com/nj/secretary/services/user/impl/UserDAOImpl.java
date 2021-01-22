@@ -82,4 +82,10 @@ public class UserDAOImpl implements UserDAO {
         sqlSession.update("UserMapper.releaseShareLimit", userId);
         return 1;
     }
+
+
+    @Override
+    public List<User> getWithdrawalReasonList() {
+        return sqlSession.selectList("UserMapper.getWithdrawalReasonList");
+    }
 }

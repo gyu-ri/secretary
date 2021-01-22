@@ -26,6 +26,8 @@ public class User {
     private String motto;
     private String isAlarmDiary;
     private String isAlarmMonologue;
+    private String withdrawalReasonType;
+    private String withdrawalReasonText;
 
 
 }
