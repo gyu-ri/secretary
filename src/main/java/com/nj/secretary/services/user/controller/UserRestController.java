@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 @RestController//반환 값이 단순 문자열과 Json이다.
 @RequestMapping("/restUser/*")
@@ -58,8 +57,8 @@ public class UserRestController {
     }
 
 
-    @GetMapping("adminUser")
-    public List<User> adminUser(Model model) throws Exception{
+    @GetMapping("limitUser")
+    public List<User> limitUser(Model model){
         System.out.println("admin User start in Restcontroller");
         List<User> blindedUserList = userService.getBlindedUserList();
         System.out.println("blindedUserList : " + blindedUserList);
@@ -69,5 +68,70 @@ public class UserRestController {
         return blindedUserList;
     }
 
+    @GetMapping("getLimitedUser")
+    public List<User> getLimitedUser(Model model){
+        System.out.println("getLimitedUser start in Restcontroller");
+        List<User> getLimitedUserList = userService.getLimitedUserList();
+        System.out.println("getLimitedUserList : " + getLimitedUserList);
+
+        model.addAttribute("getLimitedUserList", getLimitedUserList);
+
+        return getLimitedUserList;
+    }
+
+    @GetMapping("getLimitDateOverUser")
+    public List<User> getLimitDateOverUser(Model model){
+        System.out.println("getLimitDateOverUser start in Restcontroller");
+        List<User> getLimitDateOverUser = userService.getLimitDateOverUser();
+        System.out.println("getLimitDateOverUser : " + getLimitDateOverUser);
+
+        model.addAttribute("getLimitDateOverUser", getLimitDateOverUser);
+
+        return getLimitDateOverUser;
+    }
+
+    @PostMapping("setShareLimit")
+    public int setShareLimit(@RequestBody String id){
+        System.out.println("user limit set check : " + id);
+        String[] text = id.split("&");
+        String userId = text[0].split("=")[1];
+        int blindStatus = Integer.parseInt(text[1].split("=")[1]);
+
+        System.out.println("userId : " + userId + "blindStatus : " + blindStatus);
+
+        Map map = new HashMap();
+
+        if(blindStatus == 2){
+             map.put("userId", userId);
+             map.put("period", 7);
+
+        }else if(blindStatus == 3){
+            map.put("userId", userId);
+            map.put("period", 30);
+        }else if(blindStatus == 4){
+            map.put("userId", userId);
+            map.put("period", 365);
+        }else if(blindStatus >= 5){
+            map.put("userId", userId);
+            map.put("period", 2912313);
+        }
+        userService.setLimit(map);
+       //int i = userService.setShareLimit(userId);
+        System.out.println("setShareLimit from UserRestController finish");
+
+        return 1;
+    }
+
+    @PostMapping("releaseShareLimit")
+    public int releaseShareLimit(@RequestBody String id) {
+        System.out.println("user limit release check : " + id);
+        String userId = id.split("=")[1];
+        System.out.println(userId);
+
+        userService.releaseShareLimit(userId);
+        System.out.println("releaseShareLimit from UserRestController finish");
+
+        return 1;
+    }
 
 }

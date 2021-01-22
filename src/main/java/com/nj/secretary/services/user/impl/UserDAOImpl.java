@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository("UserDAOImpl")
 public class UserDAOImpl implements UserDAO {
@@ -54,5 +55,31 @@ public class UserDAOImpl implements UserDAO {
     public List<User> getBlindedUserList() {
 
         return sqlSession.selectList("UserMapper.getBlindedUserList");
+    }
+
+
+    @Override
+    public List<User> getLimitedUserList() {
+        return sqlSession.selectList("UserMapper.getLimitedUserList");
+    }
+
+    @Override
+    public List<User> getLimitDateOverUser() {
+        return sqlSession.selectList("UserMapper.getLimitDateOverUser");
+    }
+
+
+    @Override
+    public int setLimit(Map map) {
+
+        sqlSession.update("UserMapper.setLimit", map);
+        return 1;
+    }
+
+    @Override
+    public int releaseShareLimit(String userId) {
+
+        sqlSession.update("UserMapper.releaseShareLimit", userId);
+        return 1;
     }
 }

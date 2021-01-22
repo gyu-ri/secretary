@@ -111,7 +111,7 @@
             WHERE d.user_id = u.user_id AND d.diary_id = #{value}) d
             ON (u.user_id = d.user_id)
             WHEN MATCHED THEN
-                UPDATE SET u.blind_count = d.blind_count + 1;
+                UPDATE SET u.blind_count = d.blind_count + 1, u.limit_end_date = null;
             END
         }
     </update>

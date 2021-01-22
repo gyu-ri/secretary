@@ -24,6 +24,55 @@
             background-color: rgba(255, 255, 255, 0.5)  ;
         }
 
+        /*----- Tabs -----*/
+        .tabs {
+            width:100%;
+            display:inline-block;
+            align-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 90px;
+        }
+
+        /*----- Tab Links -----*/
+        /* Clearfix */
+        .tab-links:after {
+            display:block;
+            clear:both;
+            content:'';
+            text-align: center;
+            align-content: center;
+        }
+
+        .tab-links li {
+            margin:0px 0px;
+
+            display:inline-block;
+            list-style:none;
+            align-content: center;
+        }
+
+        .tab-links a {
+            padding:9px 15px;
+            display:inline-block;
+            border-radius:3px 3px 3px 3px;
+            background:#C2C2C2;
+            font-size:16px;
+            font-weight:600;
+            color:#4C4C4C;
+            transition:all linear 0.15s;
+        }
+
+        .tab-links a:hover {
+            background:#a7cce5;
+            text-decoration:none;
+        }
+
+        li.active a, li.active a:hover {
+            background-color: rgba(255,255,255,0.5);
+            color:#4c4c4c;
+        }
+
     </style>
     <script>
         $(function geoFindMe() {
@@ -101,6 +150,14 @@
 <h1 class="pageTitle">회원 관리 목록</h1>
 <br><br>
 
+<div class="tabs">
+    <ul class="tab-links">
+        <li><a href="#" id="limitUser"  onclick="limitUser()" style="text-decoration: none">공유제한대상</a></li>
+        <li><a href="#" id="limitedUser" onclick="limitedUser()" style="text-decoration: none">공유제한유저</a></li>
+        <li><a href="#" id="limitDateOver" onclick="limitDateOver()" style="text-decoration: none">공유제한해제대상</a></li>
+    </ul>
+</div>
+
 <div class="text">
 
     <p id="UserList">
@@ -112,10 +169,7 @@
             <tr>
                 <td th:text="${user.userId}"></td>
                 <td th:text="${user.blindCount}"></td>
-                <td><a href="#" class="setUserShareStatus" th:if="${user.limitStartDate} == null" th:value="${user.userId}" th:class="${user.userId}">처리</a></td>
-                <td><a href="#" class="setUserShareStatus" th:if="${user.limitEndDate} <= ${#calendars.format(#calendars.createNow())}" th:value="${user.userId}" th:class="${user.userId}">제한 해제</a></td>
-                <td><a href="#" class="setUserShareStatus" th:if="${user.limitStartDate} == null" th:value="${user.userId}" th:class="${user.userId}">처리</a></td>
-
+                <td><a href="#" id="setUserShareStatus" th:value="${user.blindCount}" th:class="${user.userId}">처리</a></td>
             </tr>
         </p>
     </table>
@@ -124,29 +178,133 @@
 
 </div>
 <script>
-    function adminUser(){
+    function limitUser(){
         alert("getAdminUser")
         console.log(this);
         $.ajax({
-            url : "/restUser/adminUser",
+            url : "/restUser/limitUser",
             type : "GET",
             cache : false,
             contentType : "application/json",
             success : function (userList){
                 console.log(userList);
                 $("#table").remove();
-                $("#UserList").append("<table id=\"table\" border=\"1\">\n" +
+                $("#UserList").append("<table id='table' border='1'>\n" +
                     "        <th> 작성자ID </th>\n" +
                     "        <th>블라인드된 게시물 수</th>\n" +
                     "        <th>처리</th>\n" +
                     "    </table>")
                 $.each(userList, function (i, item){
                     console.log(item);
-
+                    $("#table").append(
+                        "                               <tr>\n" +
+                        "                                   <td>" + item.userId + "</td>\n" +
+                        "                                   <td>" + item.blindCount + "</td>\n" +
+                        "                                   <td><a href='#' id='setUserShareStatus' value='"+item.blindCount + "' class='"+item.userId+"'>처리1</a> </td>\n" +
+                        "                               </tr>\n"
+                    )
                 })
             }
         })
     }
+
+    $(document).on("click", "#setUserShareStatus", function () {
+        alert("공유제한 처리 하시겠습니까?");
+
+        $.ajax({
+            url : "/restUser/setShareLimit",
+            method : "POST",
+            dataType : "json",
+            cache : false,
+            data : {userId:$(this).attr('class'),
+                    blindStatus:$(this).attr('value')},
+            success : function (data){
+                alert("성공" + data);
+                limitUser();
+
+            }
+        });
+
+    });
+
+    function limitedUser(){
+        alert("getLimitedUser")
+        console.log(this);
+        $.ajax({
+            url : "/restUser/getLimitedUser",
+            type : "GET",
+            cache : false,
+            contentType : "application/json",
+            success : function (userList){
+                console.log(userList);
+                $("#table").remove();
+                $("#UserList").append("<table id='table' border='1'>\n" +
+                    "        <th> 작성자ID </th>\n" +
+                    "        <th>블라인드된 게시물 수</th>\n" +
+                    "        <th>공유제한종료날짜</th>\n" +
+                    "    </table>")
+                $.each(userList, function (i, item){
+                    console.log(item);
+                    $("#table").append(
+                        "                               <tr>\n" +
+                        "                                   <td>" + item.userId + "</td>\n" +
+                        "                                   <td>" + item.blindCount + "</td>\n" +
+                        "                                   <td>" + item.limitEndDate + "</td>\n" +
+                        "                               </tr>\n"
+                    )
+                })
+            }
+        })
+    }
+
+
+    function limitDateOver(){
+        alert("getLimitDateOverUser")
+        console.log(this);
+        $.ajax({
+            url : "/restUser/getLimitDateOverUser",
+            type : "GET",
+            cache : false,
+            contentType : "application/json",
+            success : function (userList){
+                console.log(userList);
+                $("#table").remove();
+                $("#UserList").append("<table id='table' border='1'>\n" +
+                    "        <th> 작성자ID </th>\n" +
+                    "        <th>블라인드된 게시물 수</th>\n" +
+                    "        <th>처리</th>\n" +
+                    "    </table>")
+                $.each(userList, function (i, item){
+                    console.log(item);
+                    $("#table").append(
+                        "                               <tr>\n" +
+                        "                                   <td>" + item.userId + "</td>\n" +
+                        "                                   <td>" + item.blindCount + "</td>\n" +
+                        "                                   <td><a href='#' id='finishUserShareStatus' value='"+item.userId + "' class='"+item.userId+"'>공유제한해제</a></td>\n" +
+                        "                               </tr>\n"
+                    )
+                })
+            }
+        })
+    }
+
+    $(document).on("click", "#finishUserShareStatus", function () {
+        alert("공유제한해제 처리 하시겠습니까?");
+
+        $.ajax({
+            url : "/restUser/releaseShareLimit",
+            method : "POST",
+            dataType : "json",
+            cache : false,
+            data : {userId:$(this).attr('class')},
+            success : function (data){
+                alert("성공" + data);
+                limitDateOver();
+
+            }
+        });
+
+    });
 </script>
 </body>
 </html>

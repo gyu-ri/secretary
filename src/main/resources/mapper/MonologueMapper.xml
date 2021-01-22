@@ -17,7 +17,7 @@
 		parameterType="com.nj.secretary.services.monologue.domain.Question">
 
 		INSERT INTO questions (question_id,question_text)
-		VALUES (question_seq.NEXTVAL,#{questionText})
+		VALUES (questions_seq.NEXTVAL,#{questionText})
 
 	</insert> 
 	
