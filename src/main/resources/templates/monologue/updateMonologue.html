@@ -29,7 +29,12 @@ body{
 
 <h1>여기는 모노로그으으으으으으 수저어어어어어어어어어엉</h1>
 
+<form action="updateMonologue" method="post">
+<input type="hidden" th:value="${monologue.monologueId}" name="monologueId"/>
+<input type="text" th:value="${monologue.monologueText}" name="monologueText"/>
+<input type="submit" value="수정하기">
 
+</form>
 
 
 

@@ -164,6 +164,7 @@ public class MonologueController {
 		
 		Monologue monologue=monologueService.getMonologue(monologueId);
 		
+		
 		model.addAttribute("monologue", monologue);
 		
 		System.out.println("getMonologue에서 monologueId 확인 :::  "+monologueId);
@@ -214,7 +215,7 @@ public class MonologueController {
 
 	
 	@GetMapping("updateMonologue")
-	public String updateMonologue(int monologueId, Model model) throws Exception{
+	public String updateMonologue(@RequestParam("monologueId") int monologueId, Model model) throws Exception{
 		System.out.println("updateMonologue 시작 합니다!");
 		
         Monologue monologue=monologueService.getMonologue(monologueId);
@@ -229,11 +230,16 @@ public class MonologueController {
 	}
 	
 	@PostMapping("updateMonologue")
-	public String updateMonologue(Monologue monologue) throws Exception{
-		monologueService.updateMonologue(monologue); 
+	public String updateMonologue(@ModelAttribute("monologue") Monologue monologue, Model model) throws Exception{
 		
+		//model.addAttribute("monologue", monologue);
+		//monologue.getMonologueId();
+		//monologue.getMonologueText();
+		monologueService.updateMonologue(monologue);
 		
-		return "monologue/updateMonologue";
+		System.out.println("updateMonologue 확인합니다" +monologue);
+		
+		return "monologue/getMonologue";
 		
 	}
 	
