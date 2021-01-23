@@ -2,36 +2,36 @@ package com.nj.secretary.services.todolist.impl;
 
 import com.nj.secretary.services.todolist.domain.Todolist;
 import com.nj.secretary.services.todolist.repository.TodolistDAO;
-import com.nj.secretary.services.todolist.service.TodolistService;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
-@Service("todolistServiceImpl")
-public class TodolistServiceImpl implements TodolistService {
+@Repository("TodolistDAOImpl")
+public class TodolistDAOImpl implements TodolistDAO {
 
     @Autowired
-    @Qualifier("TodolistDAOImpl")
-    private TodolistDAO todolistDAO;
+    private SqlSession sqlSession;
 
     @Override
     public void addTodolist(Todolist todolist) throws Exception {
-        todolistDAO.addTodolist(todolist);
+        System.out.println("addTodolist TodolistDAOImpl start");
+        sqlSession.insert("TodolistMapper.addTodolist", todolist);
     }
 
     @Override
     public Todolist getTodoList(String userId) throws Exception {
-        return todolistDAO.getTodoList(userId);
+        return sqlSession.selectOne("TodolistMapper.getTodolist",userId);
     }
 
     @Override
     public void updateTodolist(String todolistId) throws Exception {
-        todolistDAO.updateTodolist(todolistId);
+        System.out.println("updateTodolist TodolistDAOImpl start");
+        sqlSession.update("TodolistMapper.updateTodolist",todolistId);
     }
 
     @Override
     public int deleteTodolist(String todolistId) throws Exception {
-        return todolistDAO.deleteTodolist(todolistId);
+        return sqlSession.delete("TodolistMapper.deleteTodolist",todolistId);
     }
 
     @Override

@@ -1,10 +1,8 @@
-package com.nj.secretary.services.todolist.service;
+package com.nj.secretary.services.todolist.repository;
 
 import com.nj.secretary.services.todolist.domain.Todolist;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
-public interface TodolistService {
+public interface TodolistDAO {
 
     public void addTodolist(Todolist todolist) throws Exception;
 
