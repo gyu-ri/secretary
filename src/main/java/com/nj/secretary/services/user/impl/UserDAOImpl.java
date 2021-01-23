@@ -33,6 +33,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public User findUserPwd(String userName) throws Exception {
+        return sqlSession.selectOne("UserMapper.findUserId", userName);
+    }
+
+    @Override
     public int idCheck(String userId) throws Exception {
         return sqlSession.selectOne("UserMapper.idCheck",userId);
     }

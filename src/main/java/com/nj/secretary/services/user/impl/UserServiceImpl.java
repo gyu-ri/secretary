@@ -38,6 +38,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserPwd(String userName) throws Exception {
+        return userDAO.findUserPwd(userName);
+    }
+
+    @Override
     public List<User> getUserList() throws Exception {
         return null;
     }

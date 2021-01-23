@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script type="text/javascript">
+
+        //비밀번호 찾기 본인인증
+        function sendMail() {// 메일 입력 유효성 검사
+            alert("인증요청이 되는건가요?")
+            let mail = $("#email").val(); //사용자의 이메일 입력값.
+            if (mail == "") {
+                alert("메일 주소가 입력되지 않았습니다.");
+            } else {
+                $.ajax({
+                    type : 'post',
+                    url : '/restUser/CheckCertification',
+                    data : {
+                        mail:mail
+                    },
+                    dataType :'json',
+                    success : function (key){
+                        alert("인증번호가 전송되었습니다.")
+                        $('#check').attr("value", key);
+                    }
+                });
+
+                isCertification=true; //추후 인증 여부를 알기위한 값
+            }
+        };
+
+        function checkCertificationNo(){
+            alert("인증번호 맞는지 확인할게욥")
+
+            let checkKey = $('#check').val();
+            if($("#certificationNo").val()==checkKey){ //인증 키 값의 비교를 위해 텍스트인풋과 벨류를 비교
+                console.log("key"+checkKey);
+                $("#certificationNo").text("인증완료").css("color","blue");
+                alert("인증이 완료되었습니다.")
+                isCertification = true; //인증성공여부 check
+            }else {
+                $("#certificationNo").text("불일치").css("color","red");
+                isCertification = false; //인증실패
+                alert("인증이 실패했습니다.")
+            }
+        };
+
+    </script>
+    <title>비밀번호 찾기</title>
+</head>
+<style>
+    body {
+        background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+<body>
+<h3>비밀번호 찾기</h3>
+<form action="findPwd" method="post">
+
+    name  : <input type="text" name="userName" placeholder="이름을 입력해주세요" required/>  </br>
+    email : <input type="email" name="email" placeholder="이메일을 입력해주세요" required/>
+    <a id="checkEmail" value="email" href="#" onclick=javascript:sendMail()>인증요청</a> </br>
+    certificationNo  : <input type="text" name="certificationNo" placeholder="인증번호를 입력해주세요" required/> </br>
+
+    <input type="submit" value="인증확인">
+</form>
+<input type="hidden" id="check" value="">
+</body>
+</html>
