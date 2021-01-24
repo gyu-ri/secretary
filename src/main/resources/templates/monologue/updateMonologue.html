@@ -9,6 +9,7 @@
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+
 <style type="text/css">
 body{
      background-image:url("/images/0101.jpg");
@@ -22,6 +23,75 @@ body{
 </style>
 
 
+<style type="text/css">
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+	vertical-align: middle;
+}
+
+.switch input {
+	display: none;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: 1s;
+	transition: 1s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .3s;
+	transition: .3s;
+}
+
+input:checked+.slider {
+	background-color: #2196F3;
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+
+p {
+	margin: 0px;
+	display: inline-block;
+	font-size: 15px;
+	font-weight: bold;
+}
+</style>
+
+
+
 
 
 </head>
@@ -31,11 +101,28 @@ body{
 
 <form action="updateMonologue" method="post">
 <input type="hidden" th:value="${monologue.monologueId}" name="monologueId"/>
+<input type="hidden" th:value="${monologue.questionId}" name="questionId"/>
+<input type="hidden" th:value="${monologue.userId}" name="userId"/>
+<input type="hidden" th:value="${monologue.shareStatus}" name="shareStatus" >
 <input type="text" th:value="${monologue.monologueText}" name="monologueText"/>
 <input type="submit" value="수정하기">
 
+<label class="switch">
+  <input type="checkbox" name="shareStatus" class="checkbox" value="1"/>
+  <span class="slider round"/>
+</label>
+<p class="toggle" value="0">OFF</p><p class="toggle" style="display:none;" value="1">ON</p>
+
 </form>
 
+<script type="text/javascript">
+const check=$("input[type='checkbox']");
+check.click(function(){
+	$("p.toggle").toggle();
+	
+});
+
+</script>
 
 
 

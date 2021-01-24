@@ -35,6 +35,7 @@ body{
 
 <form action="updateMonologue" method="get">
 <input type="hidden" th:value="${monologue.monologueId}" name="monologueId"/>
+<input type="hidden" th:value="${monologue.questionId}" name="questionId"/>
 <h2  th:text="${monologue.monologueText}"/>
 <input type="submit" value="수정~★">
 </form>

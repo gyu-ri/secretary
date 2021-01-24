@@ -110,13 +110,22 @@ public class MonologueController {
 	
 	@PostMapping("addMonologue")
 	public String addMonologue(@ModelAttribute Monologue monologue, HttpSession session, Model model) throws Exception{
-		System.out.println("monologueController postMapping 시작하니1??");
+		System.out.println("monologueController addMonologue  postMapping 시작하니1??");
 //		List<Question> questionList = monologueService.getQuestionList();
 //		Random random=new Random();
 //		random.nextInt(questionList.size());
 //		model.addAttribute("randomQuestionId", random);
     // 	System.out.println("랜덤으로 뿌려준 questionId 확인"+random);			
-
+		
+		
+		monologue.getShareStatus();
+		
+		if(monologue.getShareStatus().trim().equals("0,1")) {
+			monologue.setShareStatus("1");
+		}
+		
+		System.out.println("확인::"+monologue.getShareStatus());
+    
 		monologue.setMonologueText(monologue.getMonologueText());
 		
 		session.setAttribute("userId", "hyoeun");
@@ -157,13 +166,14 @@ public class MonologueController {
 	}
 	
 	
+	
+	
 	@GetMapping("getMonologue")
 	public String getMonologueText(int monologueId, Model model) throws Exception{
 		
 		System.out.println("getMonologueText 시작합니다잉");
 		
 		Monologue monologue=monologueService.getMonologue(monologueId);
-		
 		
 		model.addAttribute("monologue", monologue);
 		
@@ -219,7 +229,7 @@ public class MonologueController {
 		System.out.println("updateMonologue 시작 합니다!");
 		
         Monologue monologue=monologueService.getMonologue(monologueId);
-		
+        
 		model.addAttribute("monologue", monologue);
 		
 		System.out.println("updateMonologue에서 monologueId 확인 :::  "+monologueId);
@@ -230,11 +240,14 @@ public class MonologueController {
 	}
 	
 	@PostMapping("updateMonologue")
-	public String updateMonologue(@ModelAttribute("monologue") Monologue monologue, Model model) throws Exception{
+	public String updateMonologue(Monologue monologue, Model model) throws Exception{
 		
-		//model.addAttribute("monologue", monologue);
-		//monologue.getMonologueId();
-		//monologue.getMonologueText();
+		monologue.getShareStatus();
+		
+		if(monologue.getShareStatus().trim().equals("0,1")) {
+			monologue.setShareStatus("1");
+		}
+		
 		monologueService.updateMonologue(monologue);
 		
 		System.out.println("updateMonologue 확인합니다" +monologue);
