@@ -109,7 +109,7 @@ public class MonologueController {
 	}
 	
 	@PostMapping("addMonologue")
-	public String addMonologue(@ModelAttribute Monologue monologue, HttpSession session, Model model) throws Exception{
+	public String addMonologue(@ModelAttribute Monologue monologue, HttpSession session, Model model, String questionText) throws Exception{
 		System.out.println("monologueController addMonologue  postMapping 시작하니1??");
 //		List<Question> questionList = monologueService.getQuestionList();
 //		Random random=new Random();
@@ -123,6 +123,8 @@ public class MonologueController {
 		if(monologue.getShareStatus().trim().equals("0,1")) {
 			monologue.setShareStatus("1");
 		}
+	//	monologue.getQuestionText();
+	//	System.out.println("확인해요 ~~~@@@@@:::" +monologue.getQuestionText());
 		
 		System.out.println("확인::"+monologue.getShareStatus());
     
@@ -136,7 +138,7 @@ public class MonologueController {
 
 		monologueService.addMonologue(monologue);
 		
-		System.out.println("monologueController   addMonologue:::::    " +monologue);
+		System.out.println("monologueController   addMonologue:::::   " +monologue);
 		
 		System.out.println("monologueController   user:::::    " +user);
 
@@ -165,7 +167,25 @@ public class MonologueController {
 		
 	}
 	
-	
+	@GetMapping("getShareMonologueList")
+	public String getShareMonologueList(Model model, HttpSession session) throws Exception{
+		System.out.println("getShareMonologueList 시작해유");
+		
+		session.setAttribute("userId", "hyoeun");
+		
+		String userId=(String)session.getAttribute("userId");
+		
+		System.out.println("getShareMonologueList에서 userId 확인이니이이이잉 :::"+userId);
+		
+		List<Monologue> shareMonologueList=monologueService.getShareMonologueList((session.getAttribute("userId")).toString());
+		
+		model.addAttribute("shareMonologueList", shareMonologueList);
+		
+		System.out.println("monologueController getShareMonologueList  ::  "+shareMonologueList);
+		
+		return "monologue/getShareMonologueList";
+		
+	}
 	
 	
 	@GetMapping("getMonologue")

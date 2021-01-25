@@ -33,6 +33,8 @@ public interface MonologueService {
 	
 	public List<Monologue> getMonologueList(String userId) throws Exception;
 
+	public List<Monologue> getShareMonologueList(String userId) throws Exception;
+
 	public List<Monologue> getReportedMonoList();
 
 	public int setBlindMonologue(int num);
