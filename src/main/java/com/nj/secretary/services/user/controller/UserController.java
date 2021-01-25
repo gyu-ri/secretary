@@ -147,7 +147,6 @@ public class UserController {
             System.out.println(jsonObject.get("refresh_token"));
             model.addAttribute("accessToken",jsonObject.get("access_token"));
 
-
             br.close();
             bw.close();
         } catch (IOException e) {
