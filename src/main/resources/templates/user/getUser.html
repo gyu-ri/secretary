@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <title>내 정보보기</title>
+</head>
+<body>
+
+<h1> 내 정보보기</h1>
+<form action="getUser" method="get">
+<input type="hidden" name="password" th:value="${user.password}">
+
+이름 : <div th:text = "${user.userName}"/>
+닉네임 : <div th:text = "${user.nickname}"/>
+이메일 : <div th:text = "${user.email}"/>
+아이디 : <div th:text = "${user.userId}"/>
+좌우명 : <div th:text = "${user.motto}"/>
+
+</form>
+
+</body>
+
+</html>
