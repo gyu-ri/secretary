@@ -28,7 +28,7 @@ public interface MonologueDAO {
 	
 	public List<Monologue> getMonologueList(String userId) throws Exception;
 	
-	public void updateMonologue(String monologueText) throws Exception;
+	public void updateMonologue(Monologue monologue) throws Exception;
 	
 	public List<Monologue> getReportedMonoList();
 

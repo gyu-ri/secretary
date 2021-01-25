@@ -75,9 +75,9 @@ public class MonologueDAOImpl implements MonologueDAO{
 
 
 	@Override
-	public void updateMonologue(String monologueText) throws Exception {
+	public void updateMonologue(Monologue monologue) throws Exception {
 		
-		sqlsession.update("MonologueMapper.updateMonologue", monologueText);
+		sqlsession.update("MonologueMapper.updateMonologue", monologue);
 		
 		// TODO Auto-generated method stub
 		

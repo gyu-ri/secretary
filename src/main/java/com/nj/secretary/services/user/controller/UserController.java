@@ -98,13 +98,24 @@ public class UserController {
         return "user/emailSuccess";
     }
 
+    @GetMapping ("/findPwd")
+    public String findPwd() throws Exception{
+        return "user/findPwd";
+    }
+
+    @PostMapping("/findPwd")
+    public String findPwd01(String userName) throws Exception{
+        userService.findUserPwd(userName);
+        return "user/changePwd";
+    }
+
 
     @GetMapping("kakaologin")
     public String kakaoGetToken(@RequestParam("code") String code, Model model) throws IOException {
-        String access_Token = "";
-        String refresh_Token = "";
+        //String access_Token = "";
+        //String refresh_Token = "";
         String reqURL = "https://kauth.kakao.com/oauth/token";
-        System.out.println(code);
+        System.out.println("code"+code);
 
         try {
             URL url = new URL(reqURL);
@@ -119,12 +130,13 @@ public class UserController {
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=aceb8c76e94a93fae1034661828f1e34");
-            sb.append("&redirect_uri=http://localhost:9090/user/login");
+            sb.append("&redirect_uri=http://localhost:9090/user/kakaologin");
             sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();
 
             //    결과 코드가 200이라면 성공
+            //    결과 코드가 401일시 에러 :
             int responseCode = conn.getResponseCode();
             System.out.println("responseCode : " + responseCode);
 

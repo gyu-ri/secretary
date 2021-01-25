@@ -18,7 +18,7 @@ public interface UserDAO {
     public User findUserId(String userName) throws Exception;
 
     //Select One : 비밀번호 찾기
-   // public User findUserPassword() throws Exception;
+    public User findUserPwd(String userName) throws Exception;
 
     //Select List
     public List<User> getUserList() throws Exception;

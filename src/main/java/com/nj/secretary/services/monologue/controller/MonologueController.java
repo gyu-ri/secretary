@@ -41,7 +41,6 @@ public class MonologueController {
 		
 		//System.out.println("addQuestionText 확인합니다아아아아아 :::  "+role);
 		
-		
 		return "question/addQuestion";
 	}
 	
@@ -76,9 +75,8 @@ public class MonologueController {
 		model.addAttribute("questionList", questionList);
 		
 		System.out.println("monologueController getQuestionList  ::  "+questionList);
-		
 
-			return "question/getQuestionList";
+		return "question/getQuestionList";
 		
 	}
 		
@@ -112,13 +110,22 @@ public class MonologueController {
 	
 	@PostMapping("addMonologue")
 	public String addMonologue(@ModelAttribute Monologue monologue, HttpSession session, Model model) throws Exception{
-		System.out.println("monologueController postMapping 시작하니1??");
+		System.out.println("monologueController addMonologue  postMapping 시작하니1??");
 //		List<Question> questionList = monologueService.getQuestionList();
 //		Random random=new Random();
 //		random.nextInt(questionList.size());
 //		model.addAttribute("randomQuestionId", random);
     // 	System.out.println("랜덤으로 뿌려준 questionId 확인"+random);			
-
+		
+		
+		monologue.getShareStatus();
+		
+		if(monologue.getShareStatus().trim().equals("0,1")) {
+			monologue.setShareStatus("1");
+		}
+		
+		System.out.println("확인::"+monologue.getShareStatus());
+    
 		monologue.setMonologueText(monologue.getMonologueText());
 		
 		session.setAttribute("userId", "hyoeun");
@@ -146,7 +153,7 @@ public class MonologueController {
 		
 		String userId=(String)session.getAttribute("userId");
 		
-		System.out.println("getMonologueList에서 role 확인이니이이이잉 :::"+userId);
+		System.out.println("getMonologueList에서 userId 확인이니이이이잉 :::"+userId);
 		
 		List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
 		
@@ -154,10 +161,11 @@ public class MonologueController {
 		
 		System.out.println("monologueController getMonologueList  ::  "+monologueList);
 		
-			
-			return "monologue/getMonologueList";
+		return "monologue/getMonologueList";
 		
 	}
+	
+	
 	
 	
 	@GetMapping("getMonologue")
@@ -170,49 +178,83 @@ public class MonologueController {
 		model.addAttribute("monologue", monologue);
 		
 		System.out.println("getMonologue에서 monologueId 확인 :::  "+monologueId);
-		System.out.println("getMonologue  확인 :::  "+monologue);
 		
+		System.out.println("getMonologue  확인 :::  "+monologue);
 		
 		return "monologue/getMonologue";
 		
 	}
 	
-	@PostMapping("updateMonologueText")
-	public String updateMonologueText(String monologueText) throws Exception{
-		monologueService.updateMonologu(monologueText); 
-		
-		
-		return "monologue/updateMonologue";
-		
-	}
-	
 	
 	@GetMapping("deleteMonologue")
-	public String deleteMonologue(int monologueId, Model model) throws Exception{
-		
+	public String deleteMonologue( Model model, HttpSession session) throws Exception{
 		System.out.println("deleteMonologue GepMapping 시작 합니다잉~~");
 		
-		monologueService.deleteMonologue(monologueId);
+		session.setAttribute("userId", "hyoeun");
 		
-				
+		String userId=(String)session.getAttribute("userId");
+		
+		System.out.println("deleteMonologue에서 userId 확인이니이이이잉 :::"+userId);
+		
+	    List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
+		
+		model.addAttribute("monologueList", monologueList);
+		
+		System.out.println("monologueController deleteMonologue  ::  "+monologueList);
 		
 		return "monologue/deleteMonologue";
 	}
 	
 	
 	@PostMapping("deleteMonologue")
-	public String deleteMonologue(int monologueId) throws Exception{
-		monologueService.deleteMonologue(monologueId);
+	public String deleteMonologue(@RequestParam("monologueId") int monologueId, Model model, HttpSession session) throws Exception{
+		System.out.println("deleteMonologue PostMapping 시작 합니다잉~~");
 		
+		monologueService.deleteMonologue(monologueId);
 		
 		System.out.println("deleteMonologue monologueId 확인 ::::  "+monologueId);
 		
-		return "monologue/deleteMonologue";
+	    List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
+		
+		model.addAttribute("monologueList", monologueList);
+		
+		System.out.println("monologueController deleteMonologue  ::  "+monologueList);
+		
+		return "monologue/getMonologueList";
 	}
 
 	
+	@GetMapping("updateMonologue")
+	public String updateMonologue(@RequestParam("monologueId") int monologueId, Model model) throws Exception{
+		System.out.println("updateMonologue 시작 합니다!");
+		
+        Monologue monologue=monologueService.getMonologue(monologueId);
+        
+		model.addAttribute("monologue", monologue);
+		
+		System.out.println("updateMonologue에서 monologueId 확인 :::  "+monologueId);
+		
+		System.out.println("updateMonologue 확인 :::  "+monologue);
+		
+		return "monologue/updateMonologue";
+	}
 	
-	
+	@PostMapping("updateMonologue")
+	public String updateMonologue(Monologue monologue, Model model) throws Exception{
+		
+		monologue.getShareStatus();
+		
+		if(monologue.getShareStatus().trim().equals("0,1")) {
+			monologue.setShareStatus("1");
+		}
+		
+		monologueService.updateMonologue(monologue);
+		
+		System.out.println("updateMonologue 확인합니다" +monologue);
+		
+		return "monologue/getMonologue";
+		
+	}
 	
 	
 	

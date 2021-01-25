@@ -71,18 +71,18 @@ public class MonologueServiceImpl implements MonologueService {
 	
 	
 	@Override
-	public void updateMonologu(String monologueText) throws Exception {
+	public void updateMonologue(Monologue monologue) throws Exception {
 		// TODO Auto-generated method stub
 		
-		monologueDAO.updateMonologue(monologueText);
+		monologueDAO.updateMonologue(monologue);
 		
 	}
 
 
 	@Override
-	public void deleteMonologue(int questionId) throws Exception {
+	public void deleteMonologue(int monologueId) throws Exception {
 		
-		monologueDAO.deleteMonologue(questionId);
+		monologueDAO.deleteMonologue(monologueId);
 		// TODO Auto-generated method stub
 		
 	}

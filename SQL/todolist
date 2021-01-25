@@ -1,0 +1,25 @@
+
+<<todolist 추가 예시>>
+Insert into
+    todolist(todolist_id, user_id, todolist_text, todolist_date)
+values(todolist_seq.nextval, 'gydms', '저녁은 맛있는 거 먹기', sysdate);
+
+
+
+<<todolist select 예시>>
+select todolist_id, user_id, todolist_text, todolist_date, finish_status
+from todolist
+where user_id = 'gydms';
+
+
+
+<<todolist update 예시>>
+update todolist
+set 	todolist_text='아구찜이 맛있지',
+       finish_status=1
+where todolist_id = 2;
+
+
+
+<<todolist delete 예시>>
+delete from todolist where todolist_id = 2;
