@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nj.secretary.services.todolist.service.TodolistService">
+
+    <resultMap id="todolistSelectMap" type="com.nj.secretary.services.todolist.domain.Todolist">
+
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="todolistId" column="todolist_id" jdbcType="INTEGER"/>
+        <result property="todolist" column="todolist_text" jdbcType="VARCHAR"/>
+        <result property="todolistDate" column="todolist_date" jdbcType="DATE"/>
+        <result property="finishStatus" column="finish_status" jdbcType="CHAR"/>
+
+    </resultMap>
+
+    <insert id="addTodolist" parameterType="com.nj.secretary.services.todolist.domain.Todolist">
+
+        Insert into todolist(todolist_id, user_id, todolist_text, todolist_date)
+        values (todolist_seq.nextval, #{userId}, #{todolist}, sysdate);
+
+    </insert>
+
+    <!-- <select id="getTodolist" resultType="todolistSelectMap">
+
+     select todolist_id, user_id, todolist_text, todolist_date, finish_status
+     from todolist
+     where user_id = #{userId};
+
+     </select>-->
+
+    <update id="updateTodolist" parameterType="com.nj.secretary.services.todolist.domain.Todolist">
+
+        update todolist
+        set todolist_text=#{todolistText},
+            finish_status=#{finishStatus}
+        where todolist_id = #{todolistId};
+
+    </update>
+
+    <delete id="deleteTodolist" parameterType="integer">
+
+        delete
+        from todolist
+        where todolist_id = #{todolistId};
+
+    </delete>
+
+</mapper>
