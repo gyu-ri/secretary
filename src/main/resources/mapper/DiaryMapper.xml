@@ -53,9 +53,9 @@
         ORDER BY diary_date
     </select>
 
-    <select id="getOthersDiaryList" resultMap="diaryServiceMap">
+    <select id="getOthersDiaryList" resultMap="diaryServiceMap" parameterType="String">
         SELECT * FROM DIARY
-        WHERE delete_status = 0 AND share_status = 1
+        WHERE delete_status = 0 AND share_status = 1 AND NOT USER_ID = #{userId}
     </select>
 
 

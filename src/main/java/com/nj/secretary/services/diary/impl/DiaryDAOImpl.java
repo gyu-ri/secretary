@@ -44,9 +44,9 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public List<Diary> getOthersDiaryList() {
+    public List<Diary> getOthersDiaryList(String userId) {
 
-        List<Diary> list = sqlSession.selectList("DiaryMapper.getOthersDiaryList");
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getOthersDiaryList",userId);
 
         return list;
     }

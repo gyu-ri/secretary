@@ -16,7 +16,7 @@ public interface DiaryDAO {
 
     public  List<Diary> getTagDiaryList(String userId);
 
-    public List<Diary> getOthersDiaryList();
+    public List<Diary> getOthersDiaryList(String userId);
 
     public void moveToBin(int diaryId);
 

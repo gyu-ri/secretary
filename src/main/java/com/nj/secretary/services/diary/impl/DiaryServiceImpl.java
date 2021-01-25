@@ -52,9 +52,9 @@ public class DiaryServiceImpl implements DiaryService {
 
 
     @Override
-    public List<Diary> getOthersDiaryList() {
+    public List<Diary> getOthersDiaryList(String userId) {
 
-        List<Diary> list = diaryDAO.getOthersDiaryList();
+        List<Diary> list = diaryDAO.getOthersDiaryList(userId);
         return list;
     }
 

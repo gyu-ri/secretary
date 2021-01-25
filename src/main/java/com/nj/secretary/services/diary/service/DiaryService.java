@@ -16,7 +16,7 @@ public interface DiaryService {
 
     public List<Diary> getDiaryList(String userId);
 
-    public List<Diary> getOthersDiaryList();
+    public List<Diary> getOthersDiaryList(String userId);
 
     public Diary getDiary(int diaryNumber);
 
