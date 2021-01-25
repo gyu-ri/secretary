@@ -3,6 +3,7 @@ package com.nj.secretary.services.diary.repository;
 import com.nj.secretary.services.calendar.domain.Calendar;
 import com.nj.secretary.services.calendar.domain.IsDiary;
 import com.nj.secretary.services.diary.domain.Diary;
+import com.nj.secretary.services.diary.domain.Report;
 
 import java.util.List;
 
@@ -45,8 +46,13 @@ public interface DiaryDAO {
 
 
 
-    public int deleteDiary(String diaryId);
+    public int deleteDiary(int diaryId);
 
-    public int recoverDiary(String diaryId);
+    public int recoverDiary(int diaryId);
 
+    public int reportDiary(int diaryId);
+
+    public int addReport(Report report);
+
+    public int checkReporter(Report report);
 }
