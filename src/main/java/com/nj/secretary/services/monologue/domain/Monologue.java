@@ -13,8 +13,8 @@ public class Monologue{
 
 	private int monologueId;         //1�������ȣ
 	private int reportCount;         //�Ű��
-	private boolean shareStatus;     //�������� 0:default:false
-	private boolean blindStatus;     //����ε���� 0:default:false
+	private String shareStatus;     //�������� 0:default:false
+	private char blindStatus;     //����ε���� 0:default:false
 	private Date monologueDate;      //1���ۼ���
 
 	private String postGroup = "monologue";
@@ -31,17 +31,14 @@ public class Monologue{
 	}
 
 
-
 	//Method
 	public String getUserId() {
 		return userId;
 	}
 
-
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-
 
 	public String getQuestionText() {
 		return questionText;
@@ -55,58 +52,29 @@ public class Monologue{
 		return monologueText;
 	}
 
-
 	public void setMonologueText(String monologueText) {
 		this.monologueText = monologueText;
 	}
-
-
-
 
 	public int getMonologueId() {
 		return monologueId;
 	}
 
-
 	public void setMonologueId(int monologueId) {
 		this.monologueId = monologueId;
 	}
-
 
 	public int getReportCount() {
 		return reportCount;
 	}
 
-
 	public void setReportCount(int reportCount) {
 		this.reportCount = reportCount;
 	}
 
-
-	public boolean isShareStatus() {
-		return shareStatus;
-	}
-
-
-	public void setShareStatus(boolean shareStatus) {
-		this.shareStatus = shareStatus;
-	}
-
-
-	public boolean isBlindStatus() {
-		return blindStatus;
-	}
-
-
-	public void setBlindStatus(boolean blindStatus) {
-		this.blindStatus = blindStatus;
-	}
-
-
 	public Date getMonologueDate() {
 		return monologueDate;
 	}
-
 
 	public void setMonologueDate(Date monologueDate) {
 		this.monologueDate = monologueDate;
@@ -144,30 +112,45 @@ public class Monologue{
 		this.reportText = reportText;
 	}
 
-	
-
 	public int getQuestionId() {
 		return questionId;
 	}
-
-
-
-
 
 	public void setQuestionId(int questionId) {
 		this.questionId = questionId;
 	}
 
+	public String getShareStatus() {
+		return shareStatus;
+	}
 
 
+	public void setShareStatus(String shareStatus) {
+		this.shareStatus = shareStatus;
+	}
+
+
+	public char getBlindStatus() {
+		return blindStatus;
+	}
+
+
+	public void setBlindStatus(char blindStatus) {
+		this.blindStatus = blindStatus;
+	}
 
 
 	@Override
 	public String toString() {
-		return "Monologue [userId=" + userId + ", monologueText=" + monologueText + ", questionId=" + questionId
-				+ ", monologueId=" + monologueId + ", reportCount=" + reportCount + ", shareStatus=" + shareStatus
-				+ ", blindStatus=" + blindStatus + ", monologueDate=" + monologueDate + "]";
+		return "Monologue [userId=" + userId + ", questionText=" + questionText + ", monologueText=" + monologueText
+				+ ", questionId=" + questionId + ", monologueId=" + monologueId + ", reportCount=" + reportCount
+				+ ", shareStatus=" + shareStatus + ", blindStatus=" + blindStatus + ", monologueDate=" + monologueDate
+				+ ", postGroup=" + postGroup + ", reportReasonId=" + reportReasonId + ", reporterId=" + reporterId
+				+ ", reportDate=" + reportDate + ", reportText=" + reportText + "]";
 	}
+
+
+
 
 
 

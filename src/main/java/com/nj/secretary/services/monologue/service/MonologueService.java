@@ -27,9 +27,9 @@ public interface MonologueService {
 	//Monologue
 	public void addMonologue(Monologue monologue) throws Exception;
 	
-	public void updateMonologu(String monologueText) throws Exception;
+	public void updateMonologue(Monologue monologue) throws Exception;
 
-	public void deleteMonologue(int questionId) throws Exception;
+	public void deleteMonologue(int monologueId) throws Exception;
 	
 	public List<Monologue> getMonologueList(String userId) throws Exception;
 
