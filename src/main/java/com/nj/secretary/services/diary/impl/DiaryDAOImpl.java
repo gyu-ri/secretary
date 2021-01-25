@@ -3,6 +3,7 @@ package com.nj.secretary.services.diary.impl;
 import com.nj.secretary.services.calendar.domain.Calendar;
 import com.nj.secretary.services.calendar.domain.IsDiary;
 import com.nj.secretary.services.diary.domain.Diary;
+import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.diary.repository.DiaryDAO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,12 +98,27 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public int deleteDiary(String diaryId) {
+    public int deleteDiary(int diaryId) {
         return sqlSession.delete("DiaryMapper.deleteDiary",diaryId);
     }
 
     @Override
-    public int recoverDiary(String diaryId) {
+    public int recoverDiary(int diaryId) {
         return sqlSession.update("DiaryMapper.recoverDiary",diaryId);
+    }
+
+    @Override
+    public int reportDiary(int diaryId) {
+        return sqlSession.update("DiaryMapper.reportDiary",diaryId);
+    }
+
+    @Override
+    public int addReport(Report report) {
+        return sqlSession.insert("DiaryMapper.addReport",report);
+    }
+
+    @Override
+    public int checkReporter(Report report) {
+        return sqlSession.selectOne("DiaryMapper.checkReporter",report);
     }
 }
