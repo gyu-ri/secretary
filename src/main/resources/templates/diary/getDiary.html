@@ -241,7 +241,7 @@
         <div th:text="${diary.diaryTitle}"/></div>
 
         <br><br>
-        <div id="text" name="0" th:text="${diary.diaryText}">일기 내용입니다.</div>
+        <div id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
         <input type="hidden" name="shareStatus" value="0">
         <span style="float: right">
             <span style="color: white">&#9964; 일기공유</span> &nbsp;&nbsp;

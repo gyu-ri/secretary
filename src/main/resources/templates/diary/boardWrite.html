@@ -108,25 +108,23 @@
                 minHeight: 370,
                 maxHeight: null,
                 focus: true,
-                lang : 'ko-KR'
-                // callbacks: {
-                //     onImageUpload: function (files, editor, welEditable) {
-                //
-                //         console.log('image upload:', files);
-                //         alert("before sendfile");
-                //
-                //         sendFile(files[0], this);
-                         // for(var i = files.length - 1; i>=0; i--){
-                         //     sendFile(files[i], this);
-                         //}
+                lang : 'ko-KR',
+                callbacks: {
+                    onImageUpload: function (files, editor, welEditable) {
 
-                    //}
+                        console.log('image upload:', files);
+                        alert("before sendfile");
 
-               // }
+                        // sendFile(files[0], this);
+                         for(var i = files.length - 1; i>=0; i--){
+                             sendFile(files[i], this);
+                         }
+                    }
+               }
             });
 
 
-            function sendFile(file,el) {
+            function sendFile(file,editor) {
                 var data = new FormData();
                 data.append('file', file);
                 $.ajax({
@@ -138,25 +136,17 @@
                     enctype: 'multipart/form-data',
                     processData: false,
                     success: function(data) {
-                        // var obj = JSON.parse(data);
-                        // if (obj.success){}
-                        // $(el).summernote('editor.insertImage', form_data.url , img_name);
-                        //  alert(url);
-                        // editor.insertImage(welEditable, data.url);
-                        // $note.summernote('insertImage', url);
-                        // alert(data);
-                        //  alert("Success");
-                        $(el).summernote('editor.insertImage', data.url);
+                        $("#summernote").summernote("insertImage",data.url);
                         alert(data.url);
-                        $('#summernote').append('<li><img src="'+data.url+'" width="480" height="auto"/></li>');
-                    }
-                    ,error:function (request,status,error, form_data){
+                        console.log("console : "+data.url);
+                        $('.note-editable').append("<li><img src='"+data.url+"' width='480' height='auto'/></li>");
+                        console.log("append ??")
+                    },
+                    error:function (request,status,error, form_data){
                         alert("Error");
                     }
                 });
             }
-
-
 
                 var check = $("input[type='checkbox']");
                 check.click(function(){
@@ -304,9 +294,6 @@
 
     <br><br>
         <textarea id="summernote" name="diaryText">
-
-
-
         </textarea>
     <input type="hidden" name="shareStatus" value="0">
         <span style="float: right">
@@ -339,6 +326,8 @@
         <input id="subBtn" class="subBtn" type="submit" value="작성완료" style="text-align: center" onclick="goWrite(this.form)"/>
 
         <br><br><br><br>
+
+        <img src="/images/diaryImage/0a0de88b-3516-4704-bd2d-7550f4e7a26c.png"/>
 
 
 

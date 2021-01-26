@@ -78,6 +78,11 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
+    public void addImage(String imageName) {
+        diaryDAO.addImage(imageName);
+    }
+
+    @Override
     public int deleteDiary(int diaryId) {
 
         return diaryDAO.deleteDiary(diaryId);
@@ -117,9 +122,9 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
-    public void addFiles(String file) {
+    public void addTag(String tag) {
 
-        diaryDAO.addFiles(file);
+        diaryDAO.addTag(tag);
     }
 
     @Override

@@ -22,7 +22,7 @@ public interface DiaryService {
 
     public void updateDiary(Diary diary);
 
-    public void addFiles(String file);
+    public void addTag(String tag);
 
     public List<Diary> getTagDiaryList(String userId);
 
@@ -35,6 +35,8 @@ public interface DiaryService {
     public List<Diary> getBinList(String userId);
 
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
+
+    public void addImage(String imageName);
 
 
 
