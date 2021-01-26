@@ -15,12 +15,12 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
     <!-- 서머노트를 위해 추가해야할 부분 -->
-    <script src="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/summernote-lite.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/summernote-lite.css">
+    <script src="../../summernote/summernote-0.8.18-dist/summernote-lite.js"></script>
+    <script src="../../summernote/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="../../summernote/summernote-0.8.18-dist/summernote-lite.css">
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!--<link rel="stylesheet" href="/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
@@ -139,7 +139,7 @@
                         $("#summernote").summernote("insertImage",data.url);
                         alert(data.url);
                         console.log("console : "+data.url);
-                        $('.note-editable').append("<li><img src='"+data.url+"' width='480' height='auto'/></li>");
+                        $('.note-editable').append("<p><img src='"+data.url+"' width='90px' height='auto'/></p>");
                         console.log("append ??")
                     },
                     error:function (request,status,error, form_data){
