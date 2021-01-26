@@ -14,9 +14,9 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
     <!-- 서머노트를 위해 추가해야할 부분 -->
-    <script src="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/summernote-lite.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/summernote-lite.css">
+    <script src="../summernote/summernote-0.8.18-dist/summernote-lite.js"></script>
+    <script src="../summernote/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="../summernote/summernote-0.8.18-dist/summernote-lite.css">
 
 
 
@@ -241,7 +241,7 @@
         <div th:text="${diary.diaryTitle}"/></div>
 
         <br><br>
-        <div id="text" name="0" th:text="${diary.diaryText}">일기 내용입니다.</div>
+        <div id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
         <input type="hidden" name="shareStatus" value="0">
         <span style="float: right">
             <span style="color: white">&#9964; 일기공유</span> &nbsp;&nbsp;

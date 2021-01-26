@@ -31,10 +31,10 @@ public class DiaryRestController {
     DiaryService diaryService;
 
     @GetMapping("getOthersDiaryList")
-    public List<Diary> getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model){
+    public List<Diary> getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model,HttpSession session){
         System.out.println("getOthersDiaryList start in controller");
         System.out.println("test : " + shareStatus + userId);
-        List<Diary> list = diaryService.getOthersDiaryList();
+        List<Diary> list = diaryService.getOthersDiaryList(userId);
         System.out.println("parse test : " + list);
         System.out.println("getOthersDiaryList finish in controller");
         model.addAttribute("list", list);
