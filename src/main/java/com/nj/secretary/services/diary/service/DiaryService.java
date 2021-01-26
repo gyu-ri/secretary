@@ -37,6 +37,8 @@ public interface DiaryService {
 
     public List<Diary> getDiaryReportReason(int diaryId);
 
+    public String getCount(Object message);
+
 
 
 

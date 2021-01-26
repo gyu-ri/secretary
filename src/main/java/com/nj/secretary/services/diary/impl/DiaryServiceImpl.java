@@ -122,4 +122,13 @@ public class DiaryServiceImpl implements DiaryService {
     public List<Diary> getDiaryReportReason(int diaryId) {
         return diaryDAO.getDiaryReportReason(diaryId);
     }
+
+
+    @Override
+    public String getCount(Object message) {
+        return diaryDAO.getCount(message);
+
+    }
+
+
 }

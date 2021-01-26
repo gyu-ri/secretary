@@ -1,5 +1,7 @@
 package com.nj.secretary.services.user.controller;
 
+import com.nj.secretary.services.alarm.domain.Alarm;
+import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.user.domain.User;
 import com.nj.secretary.services.user.service.UserService;
 import org.json.JSONObject;
@@ -22,6 +24,8 @@ public class UserRestController {
     private UserService userService;
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private AlarmService alarmService;
 
     @ResponseBody//서버로 보낸 json데이터를 자바 객체로 매핑
     @GetMapping("/idCheck")
@@ -121,22 +125,31 @@ public class UserRestController {
         System.out.println("userId : " + userId + "blindStatus : " + blindStatus);
 
         Map map = new HashMap();
-
+        Alarm alarm = new Alarm();
         if(blindStatus == 2){
              map.put("userId", userId);
              map.put("period", 7);
-
+            alarm.setAlarmText("공유기능이 7일간 제한됬습니다.");
         }else if(blindStatus == 3){
             map.put("userId", userId);
             map.put("period", 30);
+            alarm.setAlarmText("공유기능이 30일간 제한됬습니다.");
         }else if(blindStatus == 4){
             map.put("userId", userId);
             map.put("period", 365);
+            alarm.setAlarmText("공유기능이 1년간 제한됬습니다.");
         }else if(blindStatus >= 5){
             map.put("userId", userId);
             map.put("period", 3650);
+            alarm.setAlarmText("공유기능이 10년간 제한됬습니다.");
         }
         userService.setLimit(map);
+
+
+        alarm.setUserId(userId);
+        alarm.setAlarmType("3");
+
+        alarmService.shareLimitAlarm(alarm);
        //int i = userService.setShareLimit(userId);
         System.out.println("setShareLimit from UserRestController finish");
 

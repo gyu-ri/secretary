@@ -134,6 +134,9 @@
         WHERE diary_id = #{value}
     </select>
 
+    <select id="getCount" parameterType="Object">
+        SELECT COUNT(#{value}) from users
+    </select>
 
 
 

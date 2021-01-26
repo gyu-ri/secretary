@@ -200,11 +200,11 @@
         <th>처리</th>
         <p id="block" th:each="diary : ${diaryList}" style="float: left">
             <tr>
-                <td th:text="${diary.userId}"></td>
+                <td id="userFlag" th:text="${diary.userId}" th:class="${diary.userId}"></td>
                 <td><a href="#"  id="navigateDiary" th:text="${diary.diaryId}" th:class="${diary.diaryId}"></a></td>
                 <td th:text="${diary.reportCount}"></td>
                 <td><a href='#' id='getDiaryReportReason' th:class="${diary.diaryId}" th:value="${diary.diaryId}">신고사유보기</a> </td>
-                <td th:if="${diary.blindStatus} == '0'" id="setDiaryBlind2"><a href='#' id='setDiaryBlind' th:class="${diary.diaryId}" th:value="${diary.diaryId}">블라인드처리</a> </td>
+                <td th:if="${diary.blindStatus} == '0'" id="setDiaryBlind2"><a href='#' id='setDiaryBlind' th:class="${diary.diaryId}" th:value="${diary.userId}">블라인드처리</a> </td>
                 <td th:unless="${diary.blindStatus} == '0'">처리완료</td>
 
 
@@ -245,17 +245,17 @@
                     if (item.blindStatus == 0) {
                         $("#table").append(
                             "                               <tr>\n" +
-                            "                                   <td>" + item.userId + "</td>\n" +
+                            "                                   <td id='userFlag' class='" + item.userId + "'>" + item.userId + "</td>\n" +
                             "                                   <td><a href='/diary/getDiary?diaryNo=" + item.diaryId + "'  th:class='" + item.diaryId +"'>" + item.diaryId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
                             "                                   <td><a href='#' id='getDiaryReportReason' class='" + item.diaryId + "' value='" + item.diaryId + "'>신고사유보기</a> </td>" +
-                            "                                   <td id='setDiaryBlind2'><a href='#' id='setDiaryBlind' class='"+item.diaryId+"'>블라인드처리2</a> </td>\n" +
+                            "                                   <td id='setDiaryBlind2'><a href='#' id='setDiaryBlind' class='"+item.diaryId+"' value='" + item.userId + "'>블라인드처리2</a> </td>\n" +
                             "                               </tr>\n"
                         )
                     }else{
                         $("#table").append(
                             "                               <tr>\n" +
-                            "                                   <td>" + item.userId + "</td>\n" +
+                            "                                   <td id='userFlag' class='" + item.userId + "'>" + item.userId + "</td>\n" +
                             "                                   <td><a href='/diary/getDiary?diaryNo=" + item.diaryId + "' th:class='" + item.diaryId +"'>" + item.diaryId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
                             "                                   <td><a href='#' id='getDiaryReportReason' class='" + item.diaryId + "' value='" + item.diaryId + "'>신고사유보기</a> </td>" +
@@ -279,7 +279,8 @@
                 method : "POST",
                 dataType : "json",
                 cache : false,
-                data : {diaryId:$(this).attr('class')},
+                data : {diaryId:$(this).attr('class'),
+                        userId:$(this).attr('value')},
                 success : function (data){
                     alert("성공" + data);
                     adminDiary();
@@ -320,17 +321,17 @@
                     if (item.blindStatus == 0) {
                         $("#table").append(
                             "                               <tr>\n" +
-                            "                                   <td>" + item.userId + "</td>\n" +
+                            "                                   <td id='userFlag' class='" + item.userId + "'>" + item.userId + "</td>\n" +
                             "                                   <td><a href='/monologue/getMonologue?monologueId=" + item.monologueId + "'  th:class='" + item.monologueId +"'>" + item.monologueId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
                             "                                   <td><a href='#' id='getMonologueReportReason' class='" + item.monologueId + "' value='" + item.monologueId + "'>신고사유보기</a> </td>" +
-                            "                                   <td id='setMonologueBlind2'><a href='#' id='setMonologueBlind' value='"+item.monologueId+"'>블라인드처리3</a> </td>\n" +
+                            "                                   <td id='setMonologueBlind2'><a href='#' id='setMonologueBlind' class='" + item.userId + "' value='"+item.monologueId+"'>블라인드처리3</a> </td>\n" +
                             "                               </tr>\n"
                         )
                     }else{
                         $("#table").append(
                             "                               <tr>\n" +
-                            "                                   <td>" + item.userId + "</td>\n" +
+                            "                                   <td id='userFlag' class='" + item.userId + "'>" + item.userId + "</td>\n" +
                             "                                   <td><a href='/monologue/getMonologue?monologueId=" + item.monologueId + "' th:class='" + item.monologueId +"'>" + item.monologueId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
                             "                                   <td><a href='#' id='getMonologueReportReason' class='" + item.monologueId + "' value='" + item.monologueId + "'>신고사유보기</a> </td>" +
@@ -353,7 +354,8 @@
             method : "POST",
             dataType : "json",
             cache : false,
-            data : {MonologueId:$("#setMonologueBlind").attr('value')},
+            data : {MonologueId:$(this).attr('value'),
+                    userId:$(this).attr('class')},
             success : function (data){
                 alert("성공" + data);
                 adminMonologue();

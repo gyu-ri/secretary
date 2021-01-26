@@ -9,11 +9,16 @@ import java.util.Date;
 @ToString
 public class Alarm {
 
-    private String code;
-    private String title;
-    private String dept;
-    private Integer quota;
-    private Integer applicant;
-    private Date createDate;
+    private int alarmId;
+    private int diaryId;
+    private int monologueId;
+    private String userId;
+    private String checkStatus;
+    private String alarmType;
+    private String alarmText;
+    private String reportReasonId;
+    private Date reportDate;
+    private String reportText;
+
 
 }
