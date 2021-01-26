@@ -30,6 +30,8 @@ public interface MonologueDAO {
 	
 	public List<Monologue> getShareMonologueList(String userId) throws Exception;
 	
+	public List<Monologue> getOtherMonologueList(String userId) throws Exception;
+
 	public void updateMonologue(Monologue monologue) throws Exception;
 	
 	public List<Monologue> getReportedMonoList();

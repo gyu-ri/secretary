@@ -130,7 +130,7 @@ public class MonologueController {
     
 		monologue.setMonologueText(monologue.getMonologueText());
 		
-		session.setAttribute("userId", "hyoeun");
+		session.setAttribute("userId", "gyuri");
 		
 		String user=(String)session.getAttribute("userId");
 		
@@ -148,24 +148,25 @@ public class MonologueController {
 
 	
 	@GetMapping("getMonologueList")
-	public String getMonologueList(Model model, HttpSession session) throws Exception{
+	public String getMonologueList(Model model, HttpSession session, String questionText) throws Exception{
 		System.out.println("getMonologueList 시작해유");
 		
-		session.setAttribute("userId", "gyuri");
+		session.setAttribute("userId", "hyoeun");
 		
 		String userId=(String)session.getAttribute("userId");
 		
 		System.out.println("getMonologueList에서 userId 확인이니이이이잉 :::"+userId);
 		
 		List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
-		
+				
 		model.addAttribute("monologueList", monologueList);
 		
-		System.out.println("monologueController getMonologueList  ::  "+monologueList);
-		
+		System.out.println("monologueController getMonologueList  ::  " + monologueList);
+	
 		return "monologue/getMonologueList";
 		
 	}
+	
 	
 	@GetMapping("getShareMonologueList")
 	public String getShareMonologueList(Model model, HttpSession session) throws Exception{
@@ -187,9 +188,29 @@ public class MonologueController {
 		
 	}
 	
+	@GetMapping("getOtherMonologueList")
+	public String getOtherMonologueList(Model model, HttpSession session) throws Exception{
+		System.out.println("getOtherMonologueList 시작해유");
+		
+		session.setAttribute("userId", "gyuri");
+		
+		String userId=(String)session.getAttribute("userId");
+		
+		System.out.println("getOtherMonologueList에서 userId 확인이니이이이잉 :::"+userId);
+		
+		List<Monologue> otherMonologueList=monologueService.getShareMonologueList((session.getAttribute("userId")).toString());
+		
+		model.addAttribute("otherMonologueList", otherMonologueList);
+		
+		System.out.println("monologueController getOtherMonologueList  ::  "+otherMonologueList);
+		
+		return "monologue/getOtherMonologueList";
+		
+	}
+
 	
 	@GetMapping("getMonologue")
-	public String getMonologueText(int monologueId, Model model) throws Exception{
+	public String getMonologueText(Model model, int monologueId) throws Exception{
 		
 		System.out.println("getMonologueText 시작합니다잉");
 		

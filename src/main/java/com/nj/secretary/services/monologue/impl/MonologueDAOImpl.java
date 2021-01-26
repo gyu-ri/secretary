@@ -129,6 +129,12 @@ public class MonologueDAOImpl implements MonologueDAO{
 		return sqlsession.selectList("MonologueMapper.getShareMonologueList", userId);
 	}
 
+	@Override
+	public List<Monologue> getOtherMonologueList(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlsession.selectList("MonologueMapper.getOtherMonologueList", userId);
+	}
+
 
 
 }

@@ -122,6 +122,13 @@ public List<Monologue> getShareMonologueList(String userId) throws Exception {
 }
 
 
+@Override
+public List<Monologue> getOtherMonologueList(String userId) throws Exception {
+	// TODO Auto-generated method stub
+	return monologueDAO.getOtherMonologueList(userId);
+}
+
+
 
 }
 
