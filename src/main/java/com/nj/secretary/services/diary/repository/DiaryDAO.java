@@ -13,10 +13,9 @@ public interface DiaryDAO {
 
     public List<Diary> getDiaryList(String userId) ;
 
-
     public  List<Diary> getTagDiaryList(String userId);
 
-    public List<Diary> getOthersDiaryList();
+    public List<Diary> getOthersDiaryList(String userId);
 
     public void moveToBin(int diaryId);
 
@@ -26,14 +25,15 @@ public interface DiaryDAO {
 
     public void updateDiary(Diary diary);
 
-    public void addFiles(String file);
-
+    public void addTag(String tag);
 
     public List<Diary> getReportedDiaryList();
 
     public int setBlindDiary(int num);
 
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
+
+    public void addImage(String imageName);
 
 
 
