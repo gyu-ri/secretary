@@ -44,9 +44,9 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public List<Diary> getOthersDiaryList() {
+    public List<Diary> getOthersDiaryList(String userId) {
 
-        List<Diary> list = sqlSession.selectList("DiaryMapper.getOthersDiaryList");
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getOthersDiaryList",userId);
 
         return list;
     }
@@ -73,8 +73,8 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public void addFiles(String file) {
-        sqlSession.insert("DiaryMapper.addFiles", file);
+    public void addTag(String tag) {
+        sqlSession.insert("DiaryMapper.addTag", tag);
     }
 
     @Override
@@ -95,6 +95,11 @@ public class DiaryDAOImpl implements DiaryDAO {
     public List<IsDiary> getDiaryEmotion(Calendar calendar) {
         return sqlSession.selectList("DiaryMapper.getDiaryEmotion",calendar);
 
+    }
+
+    @Override
+    public void addImage(String imageName) {
+        sqlSession.insert("DiaryMapper.addImage",imageName);
     }
 
     @Override

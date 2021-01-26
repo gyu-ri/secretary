@@ -16,13 +16,13 @@ public interface DiaryService {
 
     public List<Diary> getDiaryList(String userId);
 
-    public List<Diary> getOthersDiaryList();
+    public List<Diary> getOthersDiaryList(String userId);
 
     public Diary getDiary(int diaryNumber);
 
     public void updateDiary(Diary diary);
 
-    public void addFiles(String file);
+    public void addTag(String tag);
 
     public List<Diary> getTagDiaryList(String userId);
 
@@ -36,9 +36,13 @@ public interface DiaryService {
 
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
 
+
     public List<Diary> getDiaryReportReason(int diaryId);
 
     public String getCount(Object message);
+
+    public void addImage(String imageName);
+
 
 
 
