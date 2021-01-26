@@ -60,8 +60,8 @@
         }
         article .block {padding: 20px; min-height: 100px;padding: 20px; border: 20px;}
         article .block p {line-height: 22px; color: #fff; font-size: 16px; font-weight: 600;}
-        article .block:nth-child(2n+1) {background: #999;}
-        article .block:nth-child(2n) {background: #222;}
+        /*article .block:nth-child(2n+1) {background-image: url("https://source.unsplash.com/227x140/?pastel")}*/
+        /*article .block:nth-child(2n) {background-image: url("https://source.unsplash.com/227x140/?pastel")}*/
 
         /*----- Tabs -----*/
         .tabs {
@@ -253,7 +253,7 @@
     <div id="location" style="float: right; padding-left: 10px; padding-right: 20px;">&#127759;          </div>
 
     <br><br>
-    <h1 class="pageTitle">일기 목록 보기</h1>
+    <h1 class="pageTitle">일기 목록 보기 </h1>
     <br><br>
 
     <div class="tabs">
@@ -291,7 +291,7 @@
         <article id="for">
 
             <div class="block" th:each="diary : ${list}" style="float: left">
-                <p>
+                <p style="background-image: url('https://source.unsplash.com/random/227x140')">
                     <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style="float: left" hidden/>
                     <input type="hidden" name="diaryId" th:value="${diary.diaryId}"/>
                     <input type="hidden" class="diaryText" th:value="${diary.diaryText}">
@@ -330,7 +330,7 @@
                     console.log(item);
                     $("#for").prepend(
                         "<div class='block' style='float: left'> " +
-                        "<p>" +
+                        "<p style=\"background-image: url('https://source.unsplash.com/227x140/?pastel')\">" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                         "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
@@ -368,7 +368,7 @@
                         console.log(item);
                         $("#for").prepend(
                             "<div class='block' style='float: left'> " +
-                            "<p>" +
+                            "<p style=\"background-image: url('https://source.unsplash.com/227x140/?pastel')\">" +
                             "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                             "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                             "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
@@ -405,7 +405,7 @@
                     console.log(item);
                     $("#for").prepend(
                         "<div class='block' style='float: left'> " +
-                        "<p>" +
+                        "<p style=\"background-image: url('https://source.unsplash.com/227x140/?pastel')\">" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                         "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
@@ -457,7 +457,7 @@
                         console.log(item);
                         $("#for").prepend(
                             "<div class='block' style='float: left'> " +
-                            "<p>" +
+                            "<p style=\"background-image: url('https://source.unsplash.com/227x140/?pastel')\">" +
                             "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                             "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                             "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
@@ -496,7 +496,7 @@
                     console.log(item);
                     $("#for").prepend(
                         "<div class='block' style='float: left'> " +
-                        "<p>" +
+                        "<p style=\"background-image: url('https://source.unsplash.com/227x140/?pastel')\">" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                         "<input type='hidden' class='diaryText' value='" + item.fileName + "'/>" +

@@ -14,9 +14,9 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
     <!-- 서머노트를 위해 추가해야할 부분 -->
-    <script src="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/summernote-lite.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/summernote/summernote-0.8.18-dist/summernote-lite.css">
+    <script src="../summernote/summernote-0.8.18-dist/summernote-lite.js"></script>
+    <script src="../summernote/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
+    <link rel="stylesheet" href="../summernote/summernote-0.8.18-dist/summernote-lite.css">
 
 
 
@@ -170,18 +170,27 @@
                 $("#eventModal").modal("show");
             })
 
-            $("#sendReport").on("click",function(){
-                let text = $("#textArea").val();
-                let reason = $("")
-                $.ajax({
-                    url : "/restDiary/reportDiary",
-                    type : "POST",
-                    data :JSON.stringify(text),
-                    contentType: "application/json",
-                    success: function (response){
-                        alert(response);
-                    }
-                });
+            $("#sendReport").on("click",function(e){
+
+                if($("input:checkbox[name='reason']:checked").length > 1){
+                    alert("신고사유는 한가지만 선택 가능합니다.")
+                }else{
+                    let text = {
+                        reportText : $("#textArea").val(),
+                        diaryId : new Number($("#diaryId").val()),
+                        reportReasonId : new Number($("input:checkbox[name='reason']:checked").val())
+                    };
+                    $.ajax({
+                        url : "/restDiary/reportDiary",
+                        type : "POST",
+                        data :JSON.stringify(text),
+                        contentType: "application/json",
+                        success: function (response){
+                            alert(response);
+                        }
+                    });
+                }
+
             })
 
             $(".translate").on("click",function(){
@@ -257,7 +266,7 @@
         <div th:text="${diary.diaryTitle}"/></div>
 
         <br><br>
-        <div id="text" name="0" th:text="${diary.diaryText}">일기 내용입니다.</div>
+        <div id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
         <input type="hidden" name="shareStatus" value="0">
         <span style="float: right">
             <span style="color: white">&#9964; 일기공유</span> &nbsp;&nbsp;
@@ -331,9 +340,9 @@
                     <div class="col-xs-12">
                         <label class="cdl-xs-12">신고</label>
                         <label class="col-xs-4">
-                            1 <input type="checkbox" value="1"></br>
-                            2 <input type="checkbox" value="2"></br>
-                            3 <input type="checkbox" value="3"></br>
+                            1 <input type="checkbox" name="reason" value="1"></br>
+                            2 <input type="checkbox" name="reason" value="2"></br>
+                            3 <input type="checkbox" name="reason" value="3"></br>
                         </label>
                         <textarea id="textArea" class="col-xs-8" rows="8" cols="100"></textarea>
                     </div>
@@ -341,7 +350,7 @@
             </div>
             <div class="modal-footer modalBtnContainer-addEvent">
                 <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                <button type="button" class="btn btn-primary" id="sendReport">신고</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="sendReport">신고</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

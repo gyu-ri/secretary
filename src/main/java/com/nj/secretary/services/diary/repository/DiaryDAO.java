@@ -3,6 +3,7 @@ package com.nj.secretary.services.diary.repository;
 import com.nj.secretary.services.calendar.domain.Calendar;
 import com.nj.secretary.services.calendar.domain.IsDiary;
 import com.nj.secretary.services.diary.domain.Diary;
+import com.nj.secretary.services.diary.domain.Report;
 
 import java.util.List;
 
@@ -12,10 +13,9 @@ public interface DiaryDAO {
 
     public List<Diary> getDiaryList(String userId) ;
 
-
     public  List<Diary> getTagDiaryList(String userId);
 
-    public List<Diary> getOthersDiaryList();
+    public List<Diary> getOthersDiaryList(String userId);
 
     public void moveToBin(int diaryId);
 
@@ -25,14 +25,15 @@ public interface DiaryDAO {
 
     public void updateDiary(Diary diary);
 
-    public void addFiles(String file);
-
+    public void addTag(String tag);
 
     public List<Diary> getReportedDiaryList();
 
     public int setBlindDiary(int num);
 
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
+
+    public void addImage(String imageName);
 
     public List<Diary> getDiaryReportReason(int diaryId);
 
@@ -49,8 +50,13 @@ public interface DiaryDAO {
 
 
 
-    public int deleteDiary(String diaryId);
+    public int deleteDiary(int diaryId);
 
-    public int recoverDiary(String diaryId);
+    public int recoverDiary(int diaryId);
 
+    public int reportDiary(int diaryId);
+
+    public int addReport(Report report);
+
+    public int checkReporter(Report report);
 }

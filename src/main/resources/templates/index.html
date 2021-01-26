@@ -14,7 +14,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <style>
     body{
-            background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
+            background-image: url("https://source.unsplash.com/1920x1080/?nature");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -61,6 +61,39 @@
 
 
 <body>
+<audio id="myaudio" controls autoplay="autoplay">
+    <source id="main">
+    <source src="../music/sb_growingup.mp3">
+    <source src="../music/Charms - 02 Train by Sergey Cheremisinov.mp3">
+    <source src="../music/Childhood by Scott Buckley (Music promoted by Audio Library).mp3">
+    <source src="../music/Clarion – Scott Buckley (No Copyright Music).mp3">
+    <source src="../music/close your eyes – Rexlambo (No Copyright Music).mp3">
+    <source src="../music/Home – Neutrin05 (No Copyright Music).mp3">
+    <source src="../music/kv-ocean.mp3">
+    <source src="../music/Reverie - Scott Buckley (Music promoted by Audio Library).mp3">
+    <source src="../music/To Count The Stars – Sapajou (No Copyright Music).mp3">
+    <source src="../music/Wistful Rain by Ghostrifter Official · [Free Copyright-safe Music].mp3">
+</audio>
+<button id='play-next'>&#9654;</button>
+
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script>
+    var index = 1;
+    $('#play-next').click(function() {
+        index++;
+        if(index > $('#myaudio source').length) index=2;
+        console.log( index + '번째 소스 재생' );
+
+        $('#myaudio source#main').attr('src',
+            $('#myaudio source:nth-child('+index+')').attr('src'));
+        $("#myaudio")[0].load();
+        $("#myaudio")[0].play();
+    });
+</script>
+
+
+
+<!----------------------------------- music end------------------->
 <header>
     <div  id="menu"  style="float: left">menu</div>
     <div  id="weather" style="float: right">weather</div>

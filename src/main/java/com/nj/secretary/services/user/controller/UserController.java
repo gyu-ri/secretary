@@ -57,12 +57,12 @@ public class UserController {
             session.setAttribute("user",dbUser);
         }
         // 수정한 부분 시작
-        int alarmCount = alarmService.alarmCount("user03");
+        int alarmCount = alarmService.alarmCount("user02");
         model.addAttribute("count", alarmCount);
         System.out.println("count check : " + alarmCount);
         // 수정한 부분 끝
-        return "user/afterLogin";
-        //return "index";
+        //return "user/afterLogin";
+        return "index";
     }
 
     @GetMapping("logout")
@@ -167,7 +167,6 @@ public class UserController {
             System.out.println(jsonObject.get("access_token"));
             System.out.println(jsonObject.get("refresh_token"));
             model.addAttribute("accessToken",jsonObject.get("access_token"));
-
 
             br.close();
             bw.close();

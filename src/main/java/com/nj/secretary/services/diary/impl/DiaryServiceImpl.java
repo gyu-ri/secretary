@@ -3,6 +3,7 @@ package com.nj.secretary.services.diary.impl;
 import com.nj.secretary.services.calendar.domain.Calendar;
 import com.nj.secretary.services.calendar.domain.IsDiary;
 import com.nj.secretary.services.diary.domain.Diary;
+import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.diary.repository.DiaryDAO;
 import com.nj.secretary.services.diary.service.DiaryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +52,9 @@ public class DiaryServiceImpl implements DiaryService {
 
 
     @Override
-    public List<Diary> getOthersDiaryList() {
+    public List<Diary> getOthersDiaryList(String userId) {
 
-        List<Diary> list = diaryDAO.getOthersDiaryList();
+        List<Diary> list = diaryDAO.getOthersDiaryList(userId);
         return list;
     }
 
@@ -77,14 +78,35 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
-    public int deleteDiary(String diaryId) {
+    public void addImage(String imageName) {
+        diaryDAO.addImage(imageName);
+    }
+
+    @Override
+    public int deleteDiary(int diaryId) {
 
         return diaryDAO.deleteDiary(diaryId);
     }
 
     @Override
-    public int recoverDiary(String diaryId) {
+    public int recoverDiary(int diaryId) {
         return diaryDAO.recoverDiary(diaryId);
+    }
+
+    @Override
+    public int reportDiary(int diaryId) {
+
+        return diaryDAO.reportDiary(diaryId);
+    }
+
+    @Override
+    public int addReport(Report report) {
+        return diaryDAO.addReport(report);
+    }
+
+    @Override
+    public int checkReporter(Report report) {
+        return diaryDAO.checkReporter(report);
     }
 
     @Override
@@ -100,9 +122,9 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
-    public void addFiles(String file) {
+    public void addTag(String tag) {
 
-        diaryDAO.addFiles(file);
+        diaryDAO.addTag(tag);
     }
 
     @Override

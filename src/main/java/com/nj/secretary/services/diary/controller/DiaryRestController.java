@@ -4,6 +4,7 @@ package com.nj.secretary.services.diary.controller;
 import com.nj.secretary.services.alarm.domain.Alarm;
 import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.diary.domain.Diary;
+import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.diary.domain.Translate;
 import com.nj.secretary.services.diary.service.DiaryService;
 import com.nj.secretary.services.monologue.domain.Monologue;
@@ -35,10 +36,10 @@ public class DiaryRestController {
     AlarmService alarmService;
 
     @GetMapping("getOthersDiaryList")
-    public List<Diary> getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model){
+    public List<Diary> getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model,HttpSession session){
         System.out.println("getOthersDiaryList start in controller");
         System.out.println("test : " + shareStatus + userId);
-        List<Diary> list = diaryService.getOthersDiaryList();
+        List<Diary> list = diaryService.getOthersDiaryList(userId);
         System.out.println("parse test : " + list);
         System.out.println("getOthersDiaryList finish in controller");
         model.addAttribute("list", list);
@@ -164,7 +165,7 @@ public class DiaryRestController {
     }
 
     @GetMapping("deleteDiary")
-    public String deleteDiary(@RequestParam("diaryId") String diaryId){
+    public String deleteDiary(@RequestParam("diaryId") int diaryId){
         System.out.println(diaryId);
 
         if(diaryService.deleteDiary(diaryId)==0){
@@ -175,7 +176,7 @@ public class DiaryRestController {
     }
 
     @GetMapping("recoverDiary")
-    public String recoverDiary(@RequestParam("diaryId") String diaryId){
+    public String recoverDiary(@RequestParam("diaryId") int diaryId){
         System.out.println(diaryId);
 
         if(diaryService.recoverDiary(diaryId)==0){
@@ -186,10 +187,21 @@ public class DiaryRestController {
     }
 
     @PostMapping("reportDiary")
-    public String reportDiary(){
+    public String reportDiary(@RequestBody Report report,HttpSession session){
+        System.out.println(report);
+        session.setAttribute("user","user02");
+        report.setReporterId((String)session.getAttribute("user"));
 
+        if(diaryService.checkReporter(report) > 0){
+            return "이미 신고한 일기입니다.";
+        }else{
+            if(diaryService.reportDiary(report.getDiaryId()) == 0){
+                return "신고하는데 문제가 생겼습니다.";
+            }
+            diaryService.addReport(report);
+            return "신고되었습니다.";
+        }
 
-        return "nothing";
     }
 
     @GetMapping("getDiaryReportReason")
@@ -202,6 +214,7 @@ public class DiaryRestController {
 
         return list;
     }
+
 
 
 
