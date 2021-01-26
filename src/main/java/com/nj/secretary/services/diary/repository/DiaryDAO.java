@@ -35,9 +35,13 @@ public interface DiaryDAO {
 
     public void addImage(String imageName);
 
+
     public List<Diary> getDiaryReportReason(int diaryId);
 
     public String getCount(Object message);
+
+
+
 
 
 

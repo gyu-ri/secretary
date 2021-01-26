@@ -113,6 +113,15 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
+    public List<Diary> getDiaryReportReason(int diaryId) {
+        return sqlSession.selectList("DiaryMapper.getDiaryReportReason", diaryId);
+    }
+
+    @Override
+    public String getCount(Object message) {
+        return sqlSession.selectOne("DiaryMapper.getCount", message);
+    }
+    @Override
     public int reportDiary(int diaryId) {
         return sqlSession.update("DiaryMapper.reportDiary",diaryId);
     }

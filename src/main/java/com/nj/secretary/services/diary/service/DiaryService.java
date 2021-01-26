@@ -36,13 +36,15 @@ public interface DiaryService {
 
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
 
-    public void addImage(String imageName);
-
-
 
     public List<Diary> getDiaryReportReason(int diaryId);
 
     public String getCount(Object message);
+
+    public void addImage(String imageName);
+
+
+
 
 
 
