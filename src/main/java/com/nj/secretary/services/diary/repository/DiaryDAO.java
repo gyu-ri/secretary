@@ -33,7 +33,13 @@ public interface DiaryDAO {
 
     public List<IsDiary> getDiaryEmotion(Calendar calendar);
 
+
+    public List<Diary> getDiaryReportReason(int diaryId);
+
+    public String getCount(Object message);
+
     public void addImage(String imageName);
+
 
 
 

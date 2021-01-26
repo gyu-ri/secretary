@@ -21,6 +21,8 @@
         <result property="isDisplayTime" column="is_display_time" jdbcType="CHAR"/>
         <result property="isDisplayWeather" column="is_display_weather" jdbcType="CHAR"/>
         <result property="isDisplayLocation" column="is_display_location" jdbcType="CHAR"/>
+        <result property="withdrawalReasonType" column="withdrawal_reason_type" jdbcType="CHAR"/>
+        <result property="withdrawalReasonText" column="withdrawal_reason_text" jdbcType="VARCHAR"/>
 
     </resultMap>
 
@@ -83,4 +85,9 @@
         SET limit_start_date = null
         WHERE user_id = #{value}
     </update>
+
+    <select id="getWithdrawalReasonList" resultMap="userSelectMap">
+        SELECT *
+        FROM withdrawalreasons
+    </select>
 </mapper>

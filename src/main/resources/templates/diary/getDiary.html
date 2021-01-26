@@ -215,6 +215,31 @@
                 });
             })
         })
+
+        function back(){
+            history.go(-1);
+        }
+
+        </script>
+    <script th:inline="javascript">
+        document.addEventListener("DOMContentLoaded", function(){
+            var role = [[${role}]];
+            alert(role);
+
+           if(role == "admin"){
+               alert("admin이다! admin이 나타났다~!!");
+               $("#forAdmin").append(
+                   "<a href='#' id='back' style='font-size: 30px' onclick='back()'>&#128281;</a>"
+               )
+           } else{
+               alert("user 쫌생이다! user 쫌생이가 나타났다~!!")
+           }
+
+
+        });
+
+
+
     </script>
 
 
@@ -294,6 +319,8 @@
     <option value="zh-TW">중국어-번체</option>
 </select>
 <img class="translate" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
+<br>
+<p  id="forAdmin" ></p>
 </body>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">

@@ -1,6 +1,8 @@
 package com.nj.secretary.services.diary.controller;
 
 
+import com.nj.secretary.services.alarm.domain.Alarm;
+import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.service.DiaryService;
 import com.google.gson.JsonObject;
@@ -132,6 +134,7 @@ public class DiaryController {
         System.out.println(diaryNo);
         System.out.println(diaryService.getDiary(diaryNo));
         model.addAttribute("diary",diaryService.getDiary(diaryNo));
+        model.addAttribute("role", "admin");
         return "diary/getDiary";
     }
 
@@ -184,5 +187,8 @@ public class DiaryController {
 
         return "diary/adminPost";
     }
+
+
+
     
 }

@@ -2,82 +2,82 @@ package com.nj.secretary.services.alarm.impl;
 
 import com.nj.secretary.services.alarm.domain.Alarm;
 import com.nj.secretary.services.alarm.repository.AlarmDAO;
-import com.nj.secretary.services.alarm.service.AlarmService;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Service
-public class AlarmServiceImpl implements AlarmService {
+@Repository("alarmDAOImpl")
+public class AlarmDAOImpl implements AlarmDAO {
 
     @Autowired
-    @Qualifier("alarmDAOImpl")
-    AlarmDAO alarmDAO;
+    private SqlSession sqlSession;
+
 
     @Override
     public void likeDiaryAlarm(Alarm alarm) {
-        alarmDAO.likeDiaryAlarm(alarm);
+        sqlSession.insert("AlarmMapper.likeDiaryAlarm", alarm);
     }
 
     @Override
     public void likeMonologueAlarm(Alarm alarm) {
-        alarmDAO.likeMonologueAlarm(alarm);
+        sqlSession.insert("AlarmMapper.likeMonologueAlarm", alarm);
     }
 
     @Override
     public void blindDiaryAlarm(Alarm alarm) {
-        alarmDAO.blindDiaryAlarm(alarm);
+        sqlSession.insert("AlarmMapper.blindDiaryAlarm", alarm);
     }
 
     @Override
     public void blindMonologueAlarm(Alarm alarm) {
-        alarmDAO.blindMonologueAlarm(alarm);
+        sqlSession.insert("AlarmMapper.blindMonologueAlarm", alarm);
     }
 
     @Override
     public void shareLimitAlarm(Alarm alarm) {
-        alarmDAO.shareLimitAlarm(alarm);
+        sqlSession.insert("AlarmMapper.shareLimitAlarm", alarm);
     }
 
     @Override
     public int alarmCount(String userId) {
-        return alarmDAO.alarmCount(userId);
+        return sqlSession.selectOne("AlarmMapper.alarmCount", userId);
     }
 
     @Override
     public List<Alarm> getAlarmList(String userId) {
-        return alarmDAO.getAlarmList(userId);
+        return sqlSession.selectList("AlarmMapper.getAlarmList", userId);
     }
 
     @Override
     public void deleteAlarmList(String userId) {
-        alarmDAO.deleteAlarmList(userId);
+        sqlSession.delete("AlarmMapper.deleteAlarmList", userId);
     }
 
     @Override
     public void seenDiaryAlarm(int diaryId) {
-        alarmDAO.seenDiaryAlarm(diaryId);
+        sqlSession.update("AlarmMapper.seenDiaryAlarm", diaryId);
     }
 
     @Override
     public void seenMonologueAlarm(int monologueId) {
-        alarmDAO.seenMonologueAlarm(monologueId);
+        sqlSession.update("AlarmMapper.seenMonologueAlarm", monologueId);
     }
 
     @Override
     public List<Alarm> getLimitReasonsOfDiary(String userId) {
-        return alarmDAO.getLimitReasonsOfDiary(userId);
+        return sqlSession.selectList("AlarmMapper.getLimitReasonsOfDiary", userId);
     }
 
     @Override
     public List<Alarm> getLimitReasonsOfMonologue(String userId) {
-        return alarmDAO.getLimitReasonsOfMonologue(userId);
+        return sqlSession.selectList("AlarmMapper.getLimitReasonsOfMonologue", userId);
     }
 
     @Override
     public void seenLimitReasons(String id) {
-        alarmDAO.seenLimitReasons(id);
+        sqlSession.update("AlarmMapper.seenLimitReasons", id);
     }
 }

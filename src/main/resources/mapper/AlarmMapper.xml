@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.nj.secretary.services.alarm.service.AlarmService">
+
+    <resultMap id="alarmServiceMap" type="com.nj.secretary.services.alarm.domain.Alarm">
+        <result property="alarmId" column="ALARM_ID" jdbcType="NUMERIC"/>
+        <result property="diaryId" column="DIARY_ID" jdbcType="NUMERIC"/>
+        <result property="monologueId" column="MONOLOGUE_ID" jdbcType="NUMERIC"/>
+        <result property="userId" column="USER_ID" jdbcType="VARCHAR"/>
+        <result property="checkStatus" column="CHECK_STATUS" jdbcType="VARCHAR"/>
+        <result property="alarmType" column="ALARM_TYPE" jdbcType="VARCHAR"/>
+        <result property="alarmText" column="ALARM_TEXT" jdbcType="VARCHAR"/>
+        <result property="reportReasonId" column="REPORT_REASON_ID" jdbcType="CHAR"/>
+        <result property="reportDate" column="REPORT_DATE" jdbcType="DATE"/>
+        <result property="reportText" column="REPORT_TEXT" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <insert id="likeDiaryAlarm" parameterType="com.nj.secretary.services.alarm.domain.Alarm">
+        INSERT INTO ALARM(ALARM_ID, DIARY_ID, USER_ID, CHECK_STATUS, ALARM_TYPE, ALARM_TEXT)
+        VALUES(ALARM_SEQ.NEXTVAL, #{diaryId}, #{userId}, '0', '1', #{AlarmText})
+    </insert>
+
+    <insert id="likeMonologueAlarm" parameterType="com.nj.secretary.services.alarm.domain.Alarm">
+        INSERT INTO ALARM(ALARM_ID, MONOLOGUE_ID, USER_ID, CHECK_STATUS, ALARM_TYPE, ALARM_TEXT)
+        VALUES(ALARM_SEQ.NEXTVAL, #{monologueId}, #{userId}, '0', '1', #{AlarmText})
+    </insert>
+
+    <insert id="blindDiaryAlarm" parameterType="com.nj.secretary.services.alarm.domain.Alarm">
+        INSERT INTO ALARM(ALARM_ID, DIARY_ID, USER_ID, CHECK_STATUS, ALARM_TYPE, ALARM_TEXT)
+        VALUES(ALARM_SEQ.NEXTVAL, #{diaryId}, #{userId}, '0', '2', #{alarmText})
+    </insert>
+
+    <insert id="blindMonologueAlarm" parameterType="com.nj.secretary.services.alarm.domain.Alarm">
+        INSERT INTO ALARM(ALARM_ID, MONOLOGUE_ID, USER_ID, CHECK_STATUS, ALARM_TYPE, ALARM_TEXT)
+        VALUES(ALARM_SEQ.NEXTVAL, #{monologueId}, #{userId}, '0', '2', #{AlarmText})
+    </insert>
+
+    <insert id="shareLimitAlarm" parameterType="com.nj.secretary.services.alarm.domain.Alarm">
+        INSERT INTO ALARM(ALARM_ID, USER_ID, CHECK_STATUS, ALARM_TYPE, ALARM_TEXT)
+        VALUES(ALARM_SEQ.NEXTVAL, #{userId}, '0', '3', #{AlarmText})
+    </insert>
+
+    <select id="alarmCount" parameterType="String" resultType="Integer">
+        SELECT COUNT(USER_ID)
+        FROM ALARM
+        WHERE USER_ID = #{value} AND CHECK_STATUS = '0'
+    </select>
+
+    <select id="getAlarmList" parameterType="String" resultMap="alarmServiceMap">
+        SELECT * FROM ALARM
+        WHERE USER_ID = #{value} AND CHECK_STATUS = '0'
+    </select>
+
+    <delete id="deleteAlarmList" parameterType="String">
+        DELETE FROM ALARM
+        WHERE USER_ID = #{value}
+    </delete>
+
+    <update id="seenDiaryAlarm" parameterType="Integer">
+        UPDATE ALARM SET CHECK_STATUS = '1'
+        WHERE DIARY_ID=#{value}
+    </update>
+
+    <update id="seenMonologueAlarm" parameterType="Integer">
+        UPDATE ALARM SET CHECK_STATUS = '1'
+        WHERE MONOLOGUE_ID=#{value}
+    </update>
+
+    <select id="getLimitReasonsOfDiary" parameterType="String" resultMap="alarmServiceMap">
+        select	 DIARY.USER_ID as USER_ID,
+                   REPORT.DIARY_ID as DIARY_ID,
+                   REPORT.MONOLOGUE_ID as MONOLOGUE_ID,
+                   REPORT.REPORT_REASON_ID as REPORT_REASON_ID,
+                   REPORT.REPORT_DATE as REPORT_DATE,
+                   REPORT.REPORT_TEXT as REPORT_TEXT
+        from	 REPORT REPORT,
+                 DIARY DIARY
+        where   DIARY.DIARY_ID=REPORT.DIARY_ID AND DIARY.USER_ID = #{value}
+    </select>
+
+    <select id="getLimitReasonsOfMonologue" parameterType="String" resultMap="alarmServiceMap">
+        select	 MONOLOGUE.USER_ID as USER_ID,
+                   REPORT.DIARY_ID as DIARY_ID,
+                   REPORT.MONOLOGUE_ID as MONOLOGUE_ID,
+                   REPORT.REPORT_REASON_ID as REPORT_REASON_ID,
+                   REPORT.REPORT_DATE as REPORT_DATE,
+                   REPORT.REPORT_TEXT as REPORT_TEXT
+        from	 REPORT REPORT,
+                 MONOLOGUE MONOLOGUE
+        where   MONOLOGUE.MONOLOGUE_ID=REPORT.MONOLOGUE_ID AND MONOLOGUE.USER_ID = #{value}
+    </select>
+
+    <update id="seenLimitReasons" parameterType="String">
+        UPDATE ALARM
+        SET CHECK_STATUS = '1'
+        WHERE DIARY_ID IS NULL AND MONOLOGUE_ID IS NULL AND USER_ID=#{value}
+    </update>
+</mapper>
