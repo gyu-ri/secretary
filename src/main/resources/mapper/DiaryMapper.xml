@@ -128,6 +128,7 @@
         WHERE USER_ID = #{userId} and DELETE_STATUS = '1'
     </select>
 
+
     <select id="getDiaryReportReason" parameterType="integer" resultMap="diaryServiceMap">
         SELECT report_reason_id, reporter_id, report_date, report_text
         FROM report
@@ -137,6 +138,17 @@
     <select id="getCount" parameterType="Object">
         SELECT COUNT(#{value}) from users
     </select>
+
+    <update id="reportDiary" parameterType="integer">
+        update DIARY set REPORT_COUNT = REPORT_COUNT + 1
+        where DIARY_ID = #{diaryId}
+    </update>
+
+    <insert id="addReport" parameterType="com.nj.secretary.services.diary.domain.Report">
+        insert into REPORT(REPORT_ID,REPORT_REASON_ID,DIARY_ID,MONOLOGUE_ID,REPORTER_ID,REPORT_DATE,REPORT_TEXT)
+            VALUES(report_seq.NEXTVAL,#{reportReasonId},#{diaryId},#{monologueId},#{reporterId},SYSDATE,#{reportText})
+    </insert>
+
 
 
 
@@ -174,5 +186,11 @@
         update DIARY set DELETE_STATUS = '0'
         where DIARY_ID = #{diaryId}
     </update>
+
+    <select id="checkReporter" parameterType="com.nj.secretary.services.diary.domain.Report" resultType="integer">
+        SELECT COUNT(REPORTER_ID)
+        FROM REPORT
+        WHERE DIARY_ID = #{diaryId} and REPORTER_ID = #{reporterId}
+    </select>
 </mapper>
 
