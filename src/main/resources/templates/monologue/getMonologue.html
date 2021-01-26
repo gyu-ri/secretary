@@ -21,7 +21,10 @@ body{
 
 </style>
 
+<script>
+  function reportPopup(){window.open("ReportPopup.html","report","width=400, height=300, left=600, top=450");}
 
+</script>
 
 
 </head>
@@ -38,8 +41,11 @@ body{
 <input type="hidden" th:value="${monologue.questionId}" name="questionId"/>
 <h2  th:text="${monologue.monologueText}"/>
 <input type="submit" value="수정~★">
+
+
 </form>
 
+<input type="button" value="신고하기" onclick="reportPopup();"/>
 
 </body>
 </html>
