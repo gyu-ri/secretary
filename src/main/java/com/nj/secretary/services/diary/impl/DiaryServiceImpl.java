@@ -139,4 +139,18 @@ public class DiaryServiceImpl implements DiaryService {
         diaryDAO.setBlindDiary(num);
         return 1;
     }
+
+    @Override
+    public List<Diary> getDiaryReportReason(int diaryId) {
+        return diaryDAO.getDiaryReportReason(diaryId);
+    }
+
+
+    @Override
+    public String getCount(Object message) {
+        return diaryDAO.getCount(message);
+
+    }
+
+
 }

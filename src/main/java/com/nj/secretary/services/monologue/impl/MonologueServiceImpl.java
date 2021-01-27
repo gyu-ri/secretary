@@ -115,6 +115,9 @@ public class MonologueServiceImpl implements MonologueService {
 	}
 
 
-
+	@Override
+	public List<Monologue> getMonologueReportReason(int monologueId) {
+		return monologueDAO.getMonologueReportReason(monologueId);
+	}
 }
 

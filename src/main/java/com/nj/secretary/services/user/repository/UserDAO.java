@@ -45,4 +45,6 @@ public interface UserDAO {
     public int setLimit(Map map);
 
     public int releaseShareLimit(String userId);
+
+    public List<User> getWithdrawalReasonList();
 }

@@ -26,6 +26,8 @@ public class User {
     private int withdrawalReasonId;
     private String isAlarmDiary;
     private String isAlarmMonologue;
+    private String withdrawalReasonType;
+    private String withdrawalReasonText;
 
 
 }

@@ -112,3 +112,20 @@ MERGE INTO users u
     ON (u.user_id = m.user_id)
     WHEN MATCHED THEN
         UPDATE SET u.blind_count = m.blind_count + 1;
+
+
+
+
+
+insert into monologue (monologue_id, question_id, user_id, share_status, blind_status, monologue_text, report_count, monologue_date)
+values(monologue_seq.NEXTVAL, 1, 'user01', '1', '0', '1문1답 대답이여', 1, '2020-12-25');
+
+
+insert into monologue (monologue_id, question_id, user_id, share_status, blind_status, monologue_text, report_count, monologue_date)
+values(monologue_seq.NEXTVAL, 1, 'user02', '1', '0', 'user02 1문1답 대답이여', 4, '2020-12-25');
+
+insert into monologue (monologue_id, question_id, user_id, share_status, blind_status, monologue_text, report_count, monologue_date)
+values(monologue_seq.NEXTVAL, 1, 'user03', '1', '0', 'user03 1문1답 대답이여', 3, '2020-12-25');
+
+insert into monologue (monologue_id, question_id, user_id, share_status, blind_status, monologue_text, report_count, monologue_date)
+values(monologue_seq.NEXTVAL, 1, 'user04', '1', '0', 'user04 1문1답 대답이여', 2, '2020-12-25');
