@@ -36,7 +36,7 @@
 
     <select id="getUser" parameterType="string" resultType="com.nj.secretary.services.user.domain.User">
 
-        select user_name, user_id, password, nickname, email
+        select user_name, user_id, password, nickname, email, motto
         from users
         where user_Id=#{userId}
 
