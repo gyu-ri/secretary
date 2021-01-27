@@ -130,5 +130,10 @@ public List<Monologue> getOtherMonologueList(String userId) throws Exception {
 
 
 
+	@Override
+	public List<Monologue> getMonologueReportReason(int monologueId) {
+		return monologueDAO.getMonologueReportReason(monologueId);
+	}
+
 }
 

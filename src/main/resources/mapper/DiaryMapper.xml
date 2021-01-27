@@ -53,9 +53,9 @@
         ORDER BY diary_date
     </select>
 
-    <select id="getOthersDiaryList" resultMap="diaryServiceMap">
+    <select id="getOthersDiaryList" resultMap="diaryServiceMap" parameterType="String">
         SELECT * FROM DIARY
-        WHERE delete_status = 0 AND share_status = 1
+        WHERE delete_status = 0 AND share_status = 1 AND NOT USER_ID = #{userId}
     </select>
 
 
@@ -77,9 +77,14 @@
         where DIARY_ID = #{diaryId}
     </update>
 
-    <insert id="addFiles" parameterType="String">
+    <insert id="addTag" parameterType="String">
         INSERT INTO AttachFile(file_id, diary_id, file_name, file_status)
         VALUES(attachfile_seq.nextval, diary_seq.currval, #{value}, '0')
+    </insert>
+
+    <insert id="addImage" parameterType="String">
+        INSERT INTO AttachFile(file_id, diary_id, file_name, file_status)
+        VALUES(attachfile_seq.nextval, '56', #{value}, '1')
     </insert>
 
     <select id="getTagDiaryList" parameterType="String" resultMap="diaryServiceMap">
@@ -126,6 +131,17 @@
         SELECT DIARY_ID, DIARY_TITLE, DELETE_DATE, DIARY_DATE
         FROM DIARY
         WHERE USER_ID = #{userId} and DELETE_STATUS = '1'
+    </select>
+
+
+    <select id="getDiaryReportReason" parameterType="integer" resultMap="diaryServiceMap">
+        SELECT report_reason_id, reporter_id, report_date, report_text
+        FROM report
+        WHERE diary_id = #{value}
+    </select>
+
+    <select id="getCount" parameterType="Object">
+        SELECT COUNT(#{value}) from users
     </select>
 
     <update id="reportDiary" parameterType="integer">

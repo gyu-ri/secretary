@@ -1,6 +1,8 @@
 package com.nj.secretary.services.diary.controller;
 
 
+import com.nj.secretary.services.alarm.domain.Alarm;
+import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.service.DiaryService;
 import com.google.gson.JsonObject;
@@ -56,7 +58,7 @@ public class DiaryController {
 
         diaryService.addDiary(diary);
         for(String tag : tags){
-            diaryService.addFiles(tag);
+            diaryService.addTag(tag);
         }
         System.out.println("다이어리 추가 완료");
 
@@ -79,7 +81,7 @@ public class DiaryController {
 
         JsonObject jsonObject = new JsonObject();
 
-        String fileRoot = "C:\\summertnote_image\\";    //저장될 파일 경로로
+        String fileRoot = "./src/main/resources/static/images/diaryImage/";    //저장될 파일 경로로
         String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
         System.out.println("오리지널 파일 이름 : " + originalFileName);
@@ -93,15 +95,17 @@ public class DiaryController {
         try {
             InputStream fileStream = multipartFile.getInputStream();
             FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-            jsonObject.addProperty("url", "/summernoteImage/"+savedFileName);
+            jsonObject.addProperty("url", "/images/diaryImage/"+savedFileName);
             jsonObject.addProperty("responseCode", "success");
-            System.out.println("addproperty해준 경로 : " + "url");
+            System.out.println("addproperty해준 경로 : " + fileRoot);
+            diaryService.addImage("/images/diaryImage"+savedFileName);
 
         } catch (IOException e) {
             FileUtils.deleteQuietly(targetFile);	// 실패시 저장된 파일 삭제
             jsonObject.addProperty("responseCode", "error");
             e.printStackTrace();
         }
+
         System.out.println("파일 업로드 끝" + jsonObject);
         return jsonObject;
 
@@ -130,6 +134,7 @@ public class DiaryController {
         System.out.println(diaryNo);
         System.out.println(diaryService.getDiary(diaryNo));
         model.addAttribute("diary",diaryService.getDiary(diaryNo));
+        model.addAttribute("role", "admin");
         return "diary/getDiary";
     }
 
@@ -182,5 +187,8 @@ public class DiaryController {
 
         return "diary/adminPost";
     }
+
+
+
     
 }

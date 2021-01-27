@@ -1,6 +1,8 @@
 package com.nj.secretary.services.diary.controller;
 
 
+import com.nj.secretary.services.alarm.domain.Alarm;
+import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.diary.domain.Translate;
@@ -30,11 +32,14 @@ public class DiaryRestController {
     @Autowired
     DiaryService diaryService;
 
+    @Autowired
+    AlarmService alarmService;
+
     @GetMapping("getOthersDiaryList")
-    public List<Diary> getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model){
+    public List<Diary> getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model,HttpSession session){
         System.out.println("getOthersDiaryList start in controller");
         System.out.println("test : " + shareStatus + userId);
-        List<Diary> list = diaryService.getOthersDiaryList();
+        List<Diary> list = diaryService.getOthersDiaryList(userId);
         System.out.println("parse test : " + list);
         System.out.println("getOthersDiaryList finish in controller");
         model.addAttribute("list", list);
@@ -96,12 +101,21 @@ public class DiaryRestController {
     }
 
     @PostMapping("setBlindDiary")
-    public int setBlindDiary(@RequestBody String id) {
-        System.out.println("diary check : " + id);
-        int num = Integer.parseInt(id.split("=")[1]);
-        System.out.println(num);
+    public int setBlindDiary(@RequestBody String json) {
+        System.out.println("json check : " + json);
+        String data[] = json.split("&");
+        int diaryId = Integer.parseInt(data[0].split("=")[1]);
+        String userId = data[1].split("=")[1];
+        System.out.println("diaryId : " + diaryId);
+        System.out.println("userId : " + userId);
 
-        diaryService.setBlindDiary(num);
+        diaryService.setBlindDiary(diaryId);
+        Alarm alarm = new Alarm();
+        alarm.setUserId(userId);
+        alarm.setDiaryId(diaryId);
+        alarm.setAlarmType("2");
+        alarm.setAlarmText("블라인드 처리된 일기가 있어요!");
+        alarmService.blindDiaryAlarm(alarm);
         System.out.println("setBlindDiary from DiaryRestController finish");
 
         return 1;
@@ -188,6 +202,17 @@ public class DiaryRestController {
             return "신고되었습니다.";
         }
 
+    }
+
+    @GetMapping("getDiaryReportReason")
+    public List<Diary> getDiaryReportReason(@RequestParam("diaryId") int diaryId){
+        System.out.println("getDiaryReportReason in diaryrestcontroller start");
+        System.out.println("diaryId : " + diaryId);
+
+        List<Diary> list = diaryService.getDiaryReportReason(diaryId);
+        System.out.println("getDiaryReportReason finish : " + list);
+
+        return list;
     }
 
 }

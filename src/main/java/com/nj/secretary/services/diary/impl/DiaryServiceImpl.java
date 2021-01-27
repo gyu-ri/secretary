@@ -52,9 +52,9 @@ public class DiaryServiceImpl implements DiaryService {
 
 
     @Override
-    public List<Diary> getOthersDiaryList() {
+    public List<Diary> getOthersDiaryList(String userId) {
 
-        List<Diary> list = diaryDAO.getOthersDiaryList();
+        List<Diary> list = diaryDAO.getOthersDiaryList(userId);
         return list;
     }
 
@@ -75,6 +75,11 @@ public class DiaryServiceImpl implements DiaryService {
     @Override
     public List<IsDiary> getDiaryEmotion(Calendar calendar) {
         return diaryDAO.getDiaryEmotion(calendar);
+    }
+
+    @Override
+    public void addImage(String imageName) {
+        diaryDAO.addImage(imageName);
     }
 
     @Override
@@ -117,9 +122,9 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
-    public void addFiles(String file) {
+    public void addTag(String tag) {
 
-        diaryDAO.addFiles(file);
+        diaryDAO.addTag(tag);
     }
 
     @Override
@@ -134,4 +139,18 @@ public class DiaryServiceImpl implements DiaryService {
         diaryDAO.setBlindDiary(num);
         return 1;
     }
+
+    @Override
+    public List<Diary> getDiaryReportReason(int diaryId) {
+        return diaryDAO.getDiaryReportReason(diaryId);
+    }
+
+
+    @Override
+    public String getCount(Object message) {
+        return diaryDAO.getCount(message);
+
+    }
+
+
 }

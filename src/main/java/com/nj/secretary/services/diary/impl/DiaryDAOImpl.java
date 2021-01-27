@@ -44,9 +44,9 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public List<Diary> getOthersDiaryList() {
+    public List<Diary> getOthersDiaryList(String userId) {
 
-        List<Diary> list = sqlSession.selectList("DiaryMapper.getOthersDiaryList");
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getOthersDiaryList",userId);
 
         return list;
     }
@@ -73,8 +73,8 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public void addFiles(String file) {
-        sqlSession.insert("DiaryMapper.addFiles", file);
+    public void addTag(String tag) {
+        sqlSession.insert("DiaryMapper.addTag", tag);
     }
 
     @Override
@@ -98,6 +98,11 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
+    public void addImage(String imageName) {
+        sqlSession.insert("DiaryMapper.addImage",imageName);
+    }
+
+    @Override
     public int deleteDiary(int diaryId) {
         return sqlSession.delete("DiaryMapper.deleteDiary",diaryId);
     }
@@ -107,6 +112,15 @@ public class DiaryDAOImpl implements DiaryDAO {
         return sqlSession.update("DiaryMapper.recoverDiary",diaryId);
     }
 
+    @Override
+    public List<Diary> getDiaryReportReason(int diaryId) {
+        return sqlSession.selectList("DiaryMapper.getDiaryReportReason", diaryId);
+    }
+
+    @Override
+    public String getCount(Object message) {
+        return sqlSession.selectOne("DiaryMapper.getCount", message);
+    }
     @Override
     public int reportDiary(int diaryId) {
         return sqlSession.update("DiaryMapper.reportDiary",diaryId);

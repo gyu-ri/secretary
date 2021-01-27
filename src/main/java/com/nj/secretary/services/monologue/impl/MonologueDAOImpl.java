@@ -136,5 +136,8 @@ public class MonologueDAOImpl implements MonologueDAO{
 	}
 
 
-
+	@Override
+	public List<Monologue> getMonologueReportReason(int monologueId) {
+		return sqlsession.selectList("MonologueMapper.getMonologueReportReason", monologueId);
+	}
 }
