@@ -1,5 +1,6 @@
 package com.nj.secretary.services.user.controller;
 
+import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.monologue.domain.Monologue;
 import org.json.JSONObject;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -51,18 +52,19 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login01(User user, HttpSession session) throws Exception {
+    public String login01(User user, HttpSession session,Model model) throws Exception {
         User dbUser = userService.getUser(user.getUserId());
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
         }
         // 수정한 부분 시작
-        int alarmCount = alarmService.alarmCount("user03");
+        int alarmCount = alarmService.alarmCount("user02");
         model.addAttribute("count", alarmCount);
         System.out.println("count check : " + alarmCount);
         // 수정한 부분 끝
         return "user/afterLogin";
         //return "index";
+
     }
 
     @GetMapping("/logout")
