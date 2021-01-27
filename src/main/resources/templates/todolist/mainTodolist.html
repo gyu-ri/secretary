@@ -3,18 +3,52 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
+    <link rel="stylesheet" href="../../css/todolist/todolist.css">
+    <script src="../../js/todolist/todolist.js"></script>
     <title>
         To Do List
     </title>
 
-    <link rel="stylesheet" href="../../css/todolist/todolistStyle.css"/>
+    <script type="text/javascript">
+
+        /*        const addButton = document.querySelector('#add-button');
+
+                /!*
+                Document.querySelector() 제공한 선택자 또는 선택자 뭉치와 일치하는 문서 내 첫 번째 Element를 반환한다.
+                일치하는 요소가 없으면 null을 반환한다.
+                 *!/
+
+                addButton.addEventListener('click', () => {
+                    const input = document.querySelector('#input');
+                    const text = input.value.trim();
+
+                    if (text !== '') {
+                        addToList(text);
+                        input.value = '';
+                        input.focus();
+                    }
+                });
+
+                function addToList(text) {
+                    const list = document.querySelector('#list');
+
+                    const newListItem = document.createElement('li');//새로운 li요소를 만듦
+
+                    newListItem.classList.add('list-item');//list-item 클래스를 더해줌
+
+                    newListItem.innerHTML = text; //사용자 입력 문자를 li사이에 넣음
+
+                    list.appendChild(newListItem);//리스트에 새로 만든 li를 추가가
+                }*/
+
+    </script>
 </head>
+
 <body>
 
-<div class="input-container">
-    <input id="input" placeholder="오늘 할 일을 작성해보세요."/>
-    <button id="add-button">추가</button>
+<div class="input-container" style="width: 50%;">
+    <input id="input" type="text" placeholder="오늘 할 일을 작성해보세요."/>
+    <button id="button" type="button">입력</button>
 </div>
 <div class="list-container">
     <h1>To Do List</h1>
@@ -23,6 +57,6 @@
         <li class="list-item">집 청소하기</li>
     </ul>
 </div>
-<script src="../../js/todolist/todolist.js"/>
+
 </body>
 </html>

@@ -20,10 +20,13 @@ public interface UserDAO {
     //Select One : 비밀번호 찾기
     public User findUserPwd(String userName) throws Exception;
 
+    //Update : 레이아웃 설정 변경
+    public void settingUser() throws Exception;
+
     //Select List
     public List<User> getUserList() throws Exception;
 
-    //Update
+    //Update : 내정보수정
     public void updateUser() throws Exception;
 
     //Delete
