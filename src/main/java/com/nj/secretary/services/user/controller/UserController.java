@@ -54,7 +54,14 @@ public class UserController {
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
         }
+        // 수정한 부분 시작
+        int alarmCount = alarmService.alarmCount("user02");
+        model.addAttribute("count", alarmCount);
+        System.out.println("count check : " + alarmCount);
+        // 수정한 부분 끝
         return "user/afterLogin";
+        //return "index";
+
     }
 
     @GetMapping("/logout")
