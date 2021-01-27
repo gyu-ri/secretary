@@ -151,7 +151,7 @@ public class MonologueController {
 	public String getMonologueList(Model model, HttpSession session, String questionText) throws Exception{
 		System.out.println("getMonologueList 시작해유");
 		
-		session.setAttribute("userId", "hyoeun");
+		session.setAttribute("userId", "gyuri");
 		
 		String userId=(String)session.getAttribute("userId");
 		
