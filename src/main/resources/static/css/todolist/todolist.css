@@ -1,25 +1,32 @@
-.container{
+
+
+.container {
     background-color: #1b6d85;
-    display: flex;/* flex를 이용하면 요소들을 중앙에 두는데 편함 */
-    flex-direction: column;/* class안에 있는 요소들이 위에서 아래로 쌓이게 해줌 */
-    padding: 32px 0;/* 여백 32픽셀 */
+    display: flex; /* flex를 이용하면 요소들을 중앙에 두는데 편함 */
+    flex-direction: column; /* class안에 있는 요소들이 위에서 아래로 쌓이게 해줌 */
+    padding: 32px 0; /* 여백 32픽셀 */
 }
 
-.input-container{
+body{
+    background-image: linear-gradient(180deg, #487eb0, #FFFFFF);
+    min-height: 100vh;
+}
+
+.input-container {
     width: 80%;
     display: flex;
     align-self: center;
-    justify-content: space-between;/* 자식 요소 자동 거리두기 */
+    justify-content: space-between; /* 자식 요소 자동 거리두기 */
 }
 
-#input{
+#input {
     width: 70%;
     padding: 8px 12px;
-    border-radius: 4px;/* 모서리 둥글게 */
+    border-radius: 4px; /* 모서리 둥글게 */
     border: 1px solid #eaeaea;
 }
 
-#add-button{
+#button {
     width: 20%;
     background-color: #66afe9;
     border-radius: 4px;
@@ -27,7 +34,7 @@
     color: white;
 }
 
-.list-container{
+.list-container {
     display: flex;
     flex-direction: column;
     margin-top: 48px;
@@ -38,18 +45,18 @@
     background-color: white;
 }
 
-h1{
+h1 {
     padding: 16px 24px;
     margin: 0;
     font-size: 16px;
     border-bottom: 1px solid #eaeaea;
 }
 
-#list{
+#list {
     margin: 32px 0;
 }
 
-.list-item{
+.list-item {
     border-bottom: 1px solid #eaeaea;
     margin-right: 32px;
     padding: 16px 0;
