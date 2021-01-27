@@ -268,13 +268,15 @@ var calendar = $('#calendar').fullCalendar({
     $contextMenu.on("click", "a", function (e) {
       e.preventDefault();
 
+
       //닫기 버튼이 아닐때
       if ($(this).data().role !== 'close') {
-        newEvent(startDate, endDate, $(this).html());
+          newEvent(startDate, endDate, $(this).html());
       }
+        $contextMenu.removeClass("contextOpened");
+        $contextMenu.hide();
 
-      $contextMenu.removeClass("contextOpened");
-      $contextMenu.hide();
+
     });
 
     $('body').on('click', function () {
@@ -290,6 +292,12 @@ var calendar = $('#calendar').fullCalendar({
   }
 
 });
+
+
+
+$("#addDiary").on("click",function(){
+    location.href="/diary/addDiary";
+})
 
 function getDisplayEventDate(event) {
 
