@@ -27,6 +27,8 @@ public interface UserService{
 
     public User findUserPwd(String userName) throws Exception;
 
+    public void settingUser() throws Exception;
+
     //Select List
     public List<User> getUserList() throws Exception;
 

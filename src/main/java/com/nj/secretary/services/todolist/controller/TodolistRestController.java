@@ -18,6 +18,5 @@ public class TodolistRestController {
     @PostMapping("addTodolist")
     public void addTodolist(@RequestBody Todolist todolist) {
         System.out.println(todolist);
-
     }
 }
