@@ -98,8 +98,8 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public void addImage(String imageName) {
-        sqlSession.insert("DiaryMapper.addImage",imageName);
+    public void addImage(Diary diary) {
+        sqlSession.insert("DiaryMapper.addImage",diary);
     }
 
     @Override

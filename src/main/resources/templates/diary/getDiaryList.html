@@ -294,7 +294,7 @@
         <article id="for" class="col-md-12">
 
             <div name="thumbnails" class="col-md-4 thumbnail" th:each="diary : ${list}" style="float: left; padding: 2px">
-                <p style="background-image: url('https://source.unsplash.com/random/227x140')">
+                <p th:style="'background-image:url('+${diary.fileName}+');'">
                     <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style="float: left" hidden/>
                     <input type="hidden" name="diaryId" th:value="${diary.diaryId}"/>
                     <input type="hidden" class="diaryText" th:value="${diary.diaryText}">
@@ -333,7 +333,7 @@
                     console.log(item);
                     $("#for").prepend(
                         "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left'> " +
-                        "<p style=\"background-image: url('https://source.unsplash.com/227x140/?pastel')\">" +
+                        "<p style=\"background-image: url("+item.fileName+")\">" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                         // "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
@@ -371,7 +371,7 @@
                         console.log(item);
                         $("#for").prepend(
                             "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left'> " +
-                            "<p style=\"background-image: url('https://source.unsplash.com/227x140/?pastel')\">" +
+                            "<p style=\"background-image: url("+item.fileName+")\">" +
                             "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                             "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                             "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
@@ -408,7 +408,7 @@
                     console.log(item);
                     $("#for").prepend(
                         "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left'> " +
-                        "<p style=\"background-image: url('https://source.unsplash.com/227x140/?pastel')\">" +
+                        "<p style=\"background-image: url("+item.fileName+")\">" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                         "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
@@ -460,7 +460,7 @@
                         console.log(item);
                         $("#for").prepend(
                             "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left'> " +
-                            "<p style=\"background-image: url('https://source.unsplash.com/227x140/?pastel')\">" +
+                            "<p style=\"background-image: url("+item.fileName+")\">" +
                             "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                             "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                             "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
@@ -499,7 +499,7 @@
                     console.log(item);
                     $("#for").prepend(
                         "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left'> " +
-                        "<p style=\"background-image: url('https://source.unsplash.com/227x140/?pastel')\">" +
+                        "<p style=\"background-image: url("+item.fileName+")\">" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                         "<input type='hidden' class='diaryText' value='" + item.fileName + "'/>" +

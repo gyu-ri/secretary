@@ -41,7 +41,7 @@ public interface DiaryService {
 
     public String getCount(Object message);
 
-    public void addImage(String imageName);
+    public void addImage(Diary diary);
 
 
 
