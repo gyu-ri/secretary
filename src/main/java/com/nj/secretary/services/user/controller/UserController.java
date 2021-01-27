@@ -1,5 +1,6 @@
 package com.nj.secretary.services.user.controller;
 
+import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.monologue.domain.Monologue;
 import org.json.JSONObject;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -29,6 +30,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private AlarmService alarmService;
 
     @GetMapping("/signUp")
     public String signUp() throws Exception {
@@ -49,7 +52,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login01(User user, HttpSession session) throws Exception {
+    public String login01(User user, HttpSession session,Model model) throws Exception {
         User dbUser = userService.getUser(user.getUserId());
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
