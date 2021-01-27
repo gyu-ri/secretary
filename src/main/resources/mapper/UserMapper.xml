@@ -26,9 +26,8 @@
 
     <insert id="addUser" parameterType="com.nj.secretary.services.user.domain.User">
 
-        insert into
-        USERS(user_id, user_name, password, nickname, email)
-        values(#{userId},#{userName},#{password},#{nickname},#{email})
+        insert into USERS(user_id, user_name, password, nickname, email, motto)
+        values (#{userId}, #{userName}, #{password}, #{nickname}, #{email}, #{motto})
 
     </insert>
 
@@ -36,7 +35,7 @@
 
         select user_name, user_id, password, nickname, email, motto
         from users
-        where user_Id=#{userId}
+        where user_Id = #{userId}
 
     </select>
 
@@ -44,37 +43,43 @@
 
         select count(*)
         from users
-        where user_id=#{userId}
+        where user_id = #{userId}
 
     </select>
 
     <select id="findUserId" parameterType="string" resultType="com.nj.secretary.services.user.domain.User">
-    select user_Id, user_name, email
-    from users
-    where user_name=#{userName}
+        select user_Id, user_name, email
+        from users
+        where user_name = #{userName}
     </select>
 
     <select id="getBlindedUserList" resultMap="userSelectMap">
         SELECT user_id, blind_count, limit_start_date, limit_end_date
         FROM users
-        WHERE blind_count >= 1 AND limit_end_date IS NULL
+        WHERE blind_count >= 1
+          AND limit_end_date IS NULL
     </select>
 
     <select id="getLimitedUserList" resultMap="userSelectMap">
         SELECT user_id, blind_count, limit_start_date, limit_end_date
         FROM users
-        WHERE blind_count >= 1 AND limit_start_date IS NOT NULL AND limit_end_date > sysdate
+        WHERE blind_count >= 1
+          AND limit_start_date IS NOT NULL
+          AND limit_end_date > sysdate
     </select>
 
     <select id="getLimitDateOverUser" resultMap="userSelectMap">
         SELECT user_id, blind_count, limit_start_date, limit_end_date
         FROM users
-        WHERE blind_count >= 1 AND limit_start_date IS NOT NULL AND sysdate > limit_end_date
+        WHERE blind_count >= 1
+          AND limit_start_date IS NOT NULL
+          AND sysdate > limit_end_date
     </select>
 
     <update id="setLimit" parameterType="hashMap">
         UPDATE users
-        SET limit_start_date = TO_DATE(TO_CHAR(sysdate, 'YYYY/MM/DD')), limit_end_date = TO_DATE(TO_CHAR(sysdate + #{period}, 'YYYY/MM/DD'))
+        SET limit_start_date = TO_DATE(TO_CHAR(sysdate, 'YYYY/MM/DD')),
+            limit_end_date   = TO_DATE(TO_CHAR(sysdate + #{period}, 'YYYY/MM/DD'))
         WHERE user_id = #{userId}
     </update>
 
@@ -83,4 +88,5 @@
         SET limit_start_date = null
         WHERE user_id = #{value}
     </update>
+
 </mapper>

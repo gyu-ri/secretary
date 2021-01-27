@@ -43,6 +43,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public void settingUser() throws Exception {
+
+    }
+
+    @Override
     public List<User> getUserList() throws Exception {
         return null;
     }

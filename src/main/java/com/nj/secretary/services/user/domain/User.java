@@ -12,6 +12,7 @@ public class User {
     private String password;//사용자 비밀번호
     private String nickname;//사용자 닉네임 : 중복가능
     private String email;//이메일 : 본인인증을 위한 수단
+    private String motto;//좌우명
     private int certificationNo;//인증번호
     private String role;//사용자권한부여
     private Date withdrawalDate;//탈퇴일
@@ -23,7 +24,6 @@ public class User {
     private boolean isDisplayWeather;//레이아웃 설정
     private boolean isDisplayLocation;//레이아웃 설정
     private int withdrawalReasonId;
-    private String motto;
     private String isAlarmDiary;
     private String isAlarmMonologue;
 
