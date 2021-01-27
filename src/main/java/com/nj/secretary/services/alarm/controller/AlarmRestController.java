@@ -21,7 +21,7 @@ public class AlarmRestController {
     @GetMapping("getAlarmList")
     public List<Alarm> getAlarmList(HttpSession session, Model model){
         session.getAttribute("userId");
-        return alarmService.getAlarmList("user03");
+        return alarmService.getAlarmList("user04 ");
     }
 
     @PostMapping("seenDiaryAlarm")
