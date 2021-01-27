@@ -3,7 +3,7 @@
   xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
 <meta charset="UTF-8">
-<title>MONOLOGUE LIST</title>
+<title>SHARE MONOLOGUE LIST</title>
 
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -26,15 +26,14 @@ body{
 </head>
 <body>
 
-<h1>여기는 모노로그그으으으으으 목록 보기이이이이</h1>
+<h1>여기는 공유한 모노로그그으으으으으 목록 보기이이이이</h1>
 
-<div th:each="monologue : ${monologueList}">
+<div th:each="monologue : ${shareMonologueList}">
 
 <input type="hidden" th:value=${monologue.monologueId} name="monologueId"/>
-
+<input type="hidden" th:value=${monologue.shareStatus} name="shareStatus"/>
 <a th:href="@{./getMonologue(monologueId=${monologue.monologueId})}"/>
 <span th:text=${monologue.questionText}/>
-
 
 
 

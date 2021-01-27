@@ -115,9 +115,25 @@ public class MonologueServiceImpl implements MonologueService {
 	}
 
 
+@Override
+public List<Monologue> getShareMonologueList(String userId) throws Exception {
+	// TODO Auto-generated method stub
+	return monologueDAO.getShareMonologueList(userId);
+}
+
+
+@Override
+public List<Monologue> getOtherMonologueList(String userId) throws Exception {
+	// TODO Auto-generated method stub
+	return monologueDAO.getOtherMonologueList(userId);
+}
+
+
+
 	@Override
 	public List<Monologue> getMonologueReportReason(int monologueId) {
 		return monologueDAO.getMonologueReportReason(monologueId);
 	}
+
 }
 
