@@ -268,7 +268,6 @@ var calendar = $('#calendar').fullCalendar({
     $contextMenu.on("click", "a", function (e) {
       e.preventDefault();
 
-
       //닫기 버튼이 아닐때
       if ($(this).data().role !== 'close') {
           newEvent(startDate, endDate, $(this).html());

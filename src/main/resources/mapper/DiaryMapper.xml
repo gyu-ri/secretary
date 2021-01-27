@@ -91,7 +91,7 @@
         SELECT
             DISTINCT a.file_name AS file_name
         FROM DIARY d, ATTACHFILE a
-        WHERE d.diary_id=a.diary_id AND d.user_id = #{value}
+        WHERE d.diary_id=a.diary_id AND d.user_id = #{value} and a.FILE_STATUS = '0'
         ORDER BY file_name
     </select>
 
@@ -184,6 +184,9 @@
 
     <delete id="deleteDiary" parameterType="String">
         DELETE FROM DIARY
+        WHERE DIARY_ID = #{diaryId}
+
+        DELETE FROM ATTACHFILE
         WHERE DIARY_ID = #{diaryId}
     </delete>
 
