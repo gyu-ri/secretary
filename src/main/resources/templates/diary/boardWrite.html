@@ -140,7 +140,6 @@
                         alert(data.url);
                         console.log("console : "+data.url);
                         $('.note-editable').append("<p><img src='"+data.url+"' width='90px' height='auto'/></p>");
-                        console.log("append ??")
                     },
                     error:function (request,status,error, form_data){
                         alert("Error");
@@ -242,11 +241,8 @@
                         $('#img').attr("src", imgURL);
                         $('#weather').attr("value", imgURL);
                     });
-
-
             }
         });
-
         $("#tag").onclick(function () {
             $("#tag").prepend("<input type=\"text\" name=\"tag_text\">");
         });
