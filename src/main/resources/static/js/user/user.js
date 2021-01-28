@@ -65,9 +65,9 @@ function checkCertificationNo() {
     }
 }
 
-$(".submit-btn").click(function submitCheck(){
+function submitCheck(){
     if (isCertification == false){
         alert("메일 인증이 완료되지 않았습니다.");
         return false;
     }else true;
-});
+}
