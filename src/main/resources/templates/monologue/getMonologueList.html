@@ -20,6 +20,39 @@ body{
 
 </style>
 
+<script type="text/javascript">
+ $(function(){
+	 $("#test").on("click",function(){
+		 alert("test");
+		 $.ajax({
+		      type:"GET",
+		        url:"/restMonologue/getMonologueList",
+	//	        data : {name : "홍길동"},    //html에서 restController로 보내주는 값  ex) userId 같은거
+//		        dataType : "xml",
+		        success: function(data){//server가 return 성공했을때
+		        	
+		            console.log(data);
+		        	$.each(data,function(index,item){ //반복문
+		        		console.log(index+"="+item.monologueText);      //sysout
+		        		$("#test02").append("<span>"+item.monologueText+"</span>");    //밑에 적어준 test02에 접근해서 monologueText를 뽑아와서 계속 추가해주겠다~
+		        	})                                        
+		        
+		        
+		        },
+		        error: function(xhr, status, error) {
+		            alert(error);
+		        } 
+
+		 })
+		 
+	 })
+	 
+ })
+
+
+
+
+</script>
 
 
 
@@ -28,17 +61,19 @@ body{
 
 <h1>여기는 모노로그그으으으으으 목록 보기이이이이</h1>
 
-<div th:each="monologue : ${monologueList}">
+<div th:each="monologue : ${monologueList}" id="test02">
 
 <input type="hidden" th:value=${monologue.monologueId} name="monologueId"/>
 
-<a th:href="@{./getMonologue(monologueId=${monologue.monologueId})}"/>
+<!-- <a th:href="@{./getMonologue(monologueId=${monologue.monologueId})}"/> -->
 <span th:text=${monologue.questionText}/>
 
 
 
-
 </div>
+
+
+<input type="button" id="test" value="확인"/>
 
 
 
