@@ -340,6 +340,7 @@
                     console.log(item);
                     $("#for").prepend(
                         "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
+                        "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
                         "<p name='backImage' style=\"background-image: url("+item.fileName+"); background-repeat: no-repeat;\">" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
@@ -349,6 +350,7 @@
                         "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
                         "위치 : <span>"+item.location+"</span>" +
                         "</p>"+
+                        "</a>"+
                         "</div>"
                     )
 
@@ -378,6 +380,7 @@
                         console.log(item);
                         $("#for").prepend(
                             "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
                             "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
                             "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                             "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
@@ -387,6 +390,7 @@
                             "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
                             "위치 : <span>"+item.location+"</span>" +
                             "</p>"+
+                            "</a>"+
                             "</div>"
                         )
 
@@ -415,6 +419,7 @@
                     console.log(item);
                     $("#for").prepend(
                         "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
+                        "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
                         "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
@@ -424,6 +429,7 @@
                         "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
                         "위치 : <span>"+item.location+"</span>" +
                         "</p>"+
+                        "</a>"+
                         "</div>"
                     )
 
@@ -467,6 +473,7 @@
                         console.log(item);
                         $("#for").prepend(
                             "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
                             "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
                             "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                             "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
@@ -476,6 +483,7 @@
                             "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
                             "위치 : <span>"+item.location+"</span>" +
                             "</p>"+
+                            "</a>"+
                             "</div>"
                         )
 
@@ -506,12 +514,14 @@
                     console.log(item);
                     $("#for").prepend(
                         "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left'> " +
+                        "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
                         "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
                         "<input type='hidden' class='diaryText' value='" + item.fileName + "'/>" +
                         "태그 : <span>"+item.fileName+"</span><br>" +
                         "</p>"+
+                        "</a>"+
                         "</div>"
                     )
 
