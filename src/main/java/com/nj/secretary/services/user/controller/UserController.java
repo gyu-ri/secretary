@@ -10,12 +10,14 @@ import com.nj.secretary.services.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -40,7 +42,17 @@ public class UserController {
     }
 
     @PostMapping("/signUp")
-    public String signUp01(User user) throws Exception {
+    public String signUp01(@Valid User user, Errors errors, Model model) throws Exception {
+        if (errors.hasErrors()){
+            //회원가입 실패시, 입력 데이터를 유지
+            model.addAttribute("user",user);
+
+            //유효성 통과 못한 필드와 메시지를 핸들링
+            Map<String, String> validatorResult = userService.validateHandling(errors);
+            for (String key : validatorResult.keySet()){
+                model.addAttribute(key, validatorResult.get(key));
+            }
+        }
         System.out.println(user);
         userService.addUser(user);
         return "index";

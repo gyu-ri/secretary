@@ -1,25 +1,27 @@
 <!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>signUp</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../css/user/user.css">
     <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
     <script src="../../js/user/user.js"></script>
-
 </head>
 <body>
 <h3>signUp</h3>
 
-<form action="/user/signUp" method="post" onsubmit="return submitCheck();">
+<form th:action="@{user/signUp}" method="post" onsubmit="return submitCheck();">
 
     <div class="form-group">
         <label for="userId"></label>
         id : <input type="text" onkeyup="idCheck()" class="form-control" id="userId" name="userId"
-                    placeholder="아이디를 입력해주세요" required><!-- keyup method 사용하면 안좋음 변경가능 메서드 찾기 -->
+                   th:value="${user.userId}" placeholder="아이디를 입력해주세요" required><!-- keyup method 사용하면 안좋음 변경가능 메서드 찾기 -->
         <div class="check_font" id="idCheck"></div><!--경고문이 들어갈 공간 -->
     </div>
 
-    password : <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required></br>
+    PW : <input type="password" name="password" placeholder="새 비밀번호를 입력해주세요" required></br>
+
+    PW 확인: <input type="password" name="passwordCheck" placeholder="비밀번호를 재입력해주세요" required></br>
 
     name : <input type="text" name="userName" placeholder="이름을 입력해주세요" required></br>
 
