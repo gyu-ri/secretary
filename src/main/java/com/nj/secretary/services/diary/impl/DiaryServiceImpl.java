@@ -78,8 +78,8 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
-    public void addImage(String imageName) {
-        diaryDAO.addImage(imageName);
+    public void addImage(Diary diary) {
+        diaryDAO.addImage(diary);
     }
 
     @Override

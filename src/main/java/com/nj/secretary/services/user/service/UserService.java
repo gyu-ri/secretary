@@ -3,7 +3,10 @@ package com.nj.secretary.services.user.service;
 import com.nj.secretary.services.user.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +19,9 @@ Service Layer단에서 세분화된 비즈니스로직을 처리하는 객체
 public interface UserService{
 
     @Transactional
+    public Map<String, String> validateHandling(Errors errors);
+
+
     public void addUser(User user) throws Exception;
 
     //Select One
@@ -33,7 +39,7 @@ public interface UserService{
     public List<User> getUserList() throws Exception;
 
     //Update
-    public void updateUser() throws Exception;
+    public void updateUser(User user) throws Exception;
 
     //Delete
     public int deleteUser() throws Exception;
@@ -53,4 +59,5 @@ public interface UserService{
     public int releaseShareLimit(String userId);
 
     public List<User> getWithdrawalReasonList();
+
 }

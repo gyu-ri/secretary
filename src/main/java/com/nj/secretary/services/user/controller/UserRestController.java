@@ -30,11 +30,7 @@ public class UserRestController {
     @ResponseBody//서버로 보낸 json데이터를 자바 객체로 매핑
     @GetMapping("/idCheck")
     public int idCheck(@RequestParam("userId") String userId) throws Exception{
-        //System.out.println(userId);
         int count = userService.idCheck(userId);
-        //System.out.println(userId);
-        //if(userId != null) count = ;
-       // System.out.println(count);
         return userService.idCheck(userId);
     }
 

@@ -10,12 +10,14 @@ import com.nj.secretary.services.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -40,7 +42,17 @@ public class UserController {
     }
 
     @PostMapping("/signUp")
-    public String signUp01(User user) throws Exception {
+    public String signUp01(@Valid User user, Errors errors, Model model) throws Exception {
+        if (errors.hasErrors()){
+            //회원가입 실패시, 입력 데이터를 유지
+            model.addAttribute("user",user);
+
+            //유효성 통과 못한 필드와 메시지를 핸들링
+            Map<String, String> validatorResult = userService.validateHandling(errors);
+            for (String key : validatorResult.keySet()){
+                model.addAttribute(key, validatorResult.get(key));
+            }
+        }
         System.out.println(user);
         userService.addUser(user);
         return "index";
@@ -183,7 +195,7 @@ public class UserController {
     @GetMapping("/getUser")
     public String getUser(String userId, Model model, HttpSession session) throws Exception {
         System.out.println("getUser 내정보보기 Controller 시작");
-        session.setAttribute("userId", "gydms");
+        session.setAttribute("userId", "gyuri");
         User user = userService.getUser((session.getAttribute("userId")).toString());
         model.addAttribute("user", user);
         System.out.println("userId 받아오나요" + userId);
@@ -200,6 +212,31 @@ public class UserController {
         model.addAttribute("blindedUserList", blindedUserList);
 
         return "user/adminUser";
+    }
+    
+    @GetMapping("updateUser")
+    public String updateUser(@RequestParam("userId") String userId, Model model) throws Exception{
+    	System.out.println("updateUser controller 시작 합니다");
+    	
+    	User user=userService.getUser(userId);
+    	
+    	model.addAttribute("user",user);
+    	
+    	System.out.println("updateUser에서 userId 확인"+userId);
+    	
+    	System.out.println("updateUser  확인"+user);
+    	
+    	return "user/updateUser";
+    }
+    
+    @PostMapping("updateUser")
+    public String updateuser(User user, Model model) throws Exception{
+    	userService.updateUser(user);
+    	System.out.println("updateUser 확인::"+user);
+    	
+    	return "user/getUser";
+    	
+    	
     }
 
     @GetMapping("getWithdrawalReasonList")

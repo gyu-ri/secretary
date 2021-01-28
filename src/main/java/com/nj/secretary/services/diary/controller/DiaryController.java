@@ -53,10 +53,17 @@ public class DiaryController {
         }
         System.out.println("diary : " + diary);
         System.out.println("다이어리 내용들 : " + diary.getDiaryTitle() + diary.getDiaryText());
-        System.out.println("tag : " + tag_text);
-        String[] tags = tag_text.split(",");
 
         diaryService.addDiary(diary);
+        System.out.println("tag : " + tag_text);
+        String[] tags = tag_text.split(",");
+        if(diary.getDiaryText().contains("src=")){
+            System.out.println(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("width")-2));
+            diary.setFileName(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("width")-2));
+            diaryService.addImage(diary);
+        }
+
+
         for(String tag : tags){
             diaryService.addTag(tag);
         }
@@ -98,8 +105,6 @@ public class DiaryController {
             jsonObject.addProperty("url", "/images/diaryImage/"+savedFileName);
             jsonObject.addProperty("responseCode", "success");
             System.out.println("addproperty해준 경로 : " + fileRoot);
-            diaryService.addImage("/images/diaryImage"+savedFileName);
-
         } catch (IOException e) {
             FileUtils.deleteQuietly(targetFile);	// 실패시 저장된 파일 삭제
             jsonObject.addProperty("responseCode", "error");
