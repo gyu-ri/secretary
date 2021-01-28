@@ -239,4 +239,14 @@ public class UserController {
     	
     }
 
+    @GetMapping("getWithdrawalReasonList")
+    public String getWithdrawalReasonList(Model model){
+        System.out.println("getWithdrawalReasonList in userController start");
+        List<User> list = userService.getWithdrawalReasonList();
+        System.out.println("getWithdrawalReasonList : " + list);
+        model.addAttribute("list", list);
+
+        return "user/getWithdrawalReasonList";
+
+    }
 }

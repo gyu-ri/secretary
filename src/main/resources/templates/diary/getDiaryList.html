@@ -19,12 +19,28 @@
             background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
             background-repeat: no-repeat;
             background-size: cover;
+            background-attachment: fixed;
             text-align: center;
             position: relative;
             width: 100%;
             margin: 0;
             padding: 0;
         }
+
+        /*---------------- 제목 -----------------------*/
+        .pageTitle {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 52px;
+            line-height: 52px;
+            text-align: center;
+            font-family: 'Lobster', cursive;
+            font-size: 50px;
+            letter-spacing: 10px;
+        }
+
 
         ul, li{
             margin: 0;
@@ -38,12 +54,20 @@
         }
 
         .text {
-            width: 50%;
-            margin: 0 auto;
-            padding: 20px;
+            width: 62%;
+            height: 50%;
+            margin: auto;
+            padding: 2%;
             background-color: #ffffff;
             background-color: rgba(255, 255, 255, 0.5)  ;
-            box-sizing: border-box;
+        }
+
+        .text:after{
+            content: '';
+            display: block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
         }
 
         .pageTitle {
@@ -57,21 +81,32 @@
         }
         article {
             padding: 52px 3% 0;
-            /*column-count: 3;*/
-            padding: 20px;
-            /*column-gap: 10px;*/
+            padding: 0;
         }
-        article .col-md-4 thumbnail {padding: 20px; min-height: 100px;padding: 20px; border: 20px;}
-        article .col-md-4 thumbnail p {line-height: 22px; color: #fff; font-size: 16px; font-weight: 600;}
+        article::after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        article .col-md-4 {margin: 1%; padding: 1%; width: 31%; height: 200px; border: 0;  transition: 0.5s; -webkit-transition: 0.5s;}
+        article .col-md-4:hover{
+        transform: scale(1.1, 1.1);
+        transition: 0.5s;
+        -webkit-transition: 0.5s;}
+
+        article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  padding-top: 3%;
+           margin: 0; vertical-align: middle;}
+        /*line-height: 22px; color: #fff; font-size: 16px; font-weight: 600;*/
         /*article .block:nth-child(2n+1) {background-image: url("https://source.unsplash.com/227x140/?pastel")}*/
         /*article .block:nth-child(2n) {background-image: url("https://source.unsplash.com/227x140/?pastel")}*/
 
         /*----- Tabs -----*/
         .tabs {
-            width: 50%;
+            width: 62%;
             display: block;
-            margin: 90px auto 0;
+            margin: 5px auto 16px;
             position: relative;
+            clear: both;
         }
 
         /*----- Tab Links -----*/
@@ -91,12 +126,6 @@
             align-content: center;
         }
 
-        .tab-links li:last-child{
-            position: absolute;
-            width: 21%;
-            top: -25px;
-            right: 0px;
-        }
 
         .tab-links a {
             width: 100%;
@@ -110,17 +139,13 @@
             box-sizing: border-box;
         }
 
-        .searchbox input{
-            border: 0;
-        }
-
-        .searchbox input:focus{
-            outline: none;
-        }
-
-        .tab-links a:hover {
+        .tab-links a:hover{
             background:#a7cce5;
             text-decoration:none;
+            transform: rotate(5deg);
+            transition: 0.5s;
+            -webkit-transition: 0.5s;
+            -webkit-animation-fill-mode: both;
         }
 
         li.active a, li.active a:hover {
@@ -144,14 +169,222 @@
             display:block;
         }
 
-        p[name='backImage']{
-            width: 100%;
-            height: 100%;
+
+        /*------------------searchBox--------------------*/
+        .searchbox{
+            width: 50%;
+            display: block;
+            margin-top: 90px;
+            float:right;
+            border: none;
+            margin-bottom: 10px;
+
+        }
+        .searchbox:hover > #value{
+            border: 3px solid white;
+            width: 180px;
+            height: 30px;
+            border-radius: 10px;
+
+            background: transparent;
+            transition: 1s;
+            -webkit-transition: 1s;
+        }
+
+        .searchbox #searchIcon{
+            width: 30px;
+            height: 30px;
+            vertical-align: middle;
+        }
+
+        #value{
+            background: transparent;
+            width: 1px;
+            height: 20px;
+            border: none;
+            border-color: #ffffff;
+            -webkit-transition: 1s;
         }
 
 
+        /*-----------------------------삭제 버튼------------------------------*/
+        .back {
+            width: 33%;
+            height: 200px;
+            margin-left: 33.5%;
+            background-color: transparent;
+            border: none;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            counter-increment: bc;
+            padding: 0px 5px 5px 5px;
+        }
+
+        .back:before {
+            position: absolute;
+            padding: 10px;
+        }
 
 
+        .button_base {
+            margin: 0;
+            border: 0;
+            font-size: 18px;
+            position: relative;
+            top: 50%;
+            left: 50%;
+            margin-top: -25px;
+            margin-left: -100px;
+            width: 200px;
+            height: 50px;
+            text-align: center;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-user-select: none;
+            cursor: default;
+        }
+
+        .button_base:hover {
+            cursor: pointer;
+        }
+
+
+        .b07_3d_double_roll {
+            perspective: 500px;
+            -webkit-perspective: 500px;
+            -moz-perspective: 500px;
+            transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+        }
+
+        .b07_3d_double_roll div {
+            position: absolute;
+            text-align: center;
+            padding: 10px;
+            border: white solid 3px;
+            pointer-events: none;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .b07_3d_double_roll div:nth-child(1) {
+            color: white;
+            background-color: transparent;
+            z-index: 0;
+            width: 100%;
+            height: 50px;
+            clip: rect(0px, 100px, 50px, 0px);
+            position: absolute;
+            transition: all 0.2s ease;
+            -webkit-transition: all 0.2s ease;
+            -moz-transition: all 0.2s ease;
+            transform: rotateX(0deg);
+            -webkit-transform: rotateX(0deg);
+            -moz-transform: rotateX(0deg);
+            transform-origin: 50% 50% -25px;
+            -webkit-transform-origin: 50% 50% -25px;
+            -moz-transform-origin: 50% 50% -25px;
+        }
+
+        .b07_3d_double_roll div:nth-child(2) {
+            color: white;
+            background-color: transparent;
+            z-index: -1;
+            width: 100%;
+            height: 50px;
+            clip: rect(0px, 100px, 50px, 0px);
+            position: absolute;
+            transform: rotateX(90deg);
+            -webkit-transform: rotateX(90deg);
+            -moz-transform: rotateX(90deg);
+            transition: all 0.2s ease;
+            -webkit-transition: all 0.2s ease;
+            -moz-transition: all 0.2s ease;
+            transform-origin: 50% 50% -25px;
+            -webkit-transform-origin: 50% 50% -25px;
+            -moz-transform-origin: 50% 50% -25px;
+        }
+
+        .b07_3d_double_roll div:nth-child(3) {
+            color: white;
+            background-color: transparent;
+            z-index: 0;
+            width: 100%;
+            height: 50px;
+            clip: rect(0px, 200px, 50px, 100px);
+            position: absolute;
+            transition: all 0.2s ease 0.1s;
+            -webkit-transition: all 0.2s ease 0.1s;
+            -moz-transition: all 0.2s ease 0.1s;
+            transform: rotateX(0deg);
+            -webkit-transform: rotateX(0deg);
+            -moz-transform: rotateX(0deg);
+            transform-origin: 50% 50% -25px;
+            -webkit-transform-origin: 50% 50% -25px;
+            -moz-transform-origin: 50% 50% -25px;
+        }
+
+        .b07_3d_double_roll div:nth-child(4) {
+            color: white;
+            background-color: transparent;
+            z-index: -1;
+            width: 100%;
+            height: 50px;
+            clip: rect(0px, 200px, 50px, 100px);
+            position: absolute;
+            transform: rotateX(-90deg);
+            -webkit-transform: rotateX(-90deg);
+            -moz-transform: rotateX(-90deg);
+            transition: all 0.2s ease 0.1s;
+            -webkit-transition: all 0.2s ease 0.1s;
+            -moz-transition: all 0.2s ease 0.1s;
+            transform-origin: 50% 50% -25px;
+            -webkit-transform-origin: 50% 50% -25px;
+            -moz-transform-origin: 50% 50% -25px;
+        }
+
+        .b07_3d_double_roll:hover div:nth-child(1) {
+            background-color: #000000;
+            transition: all 0.2s ease;
+            -webkit-transition: all 0.2s ease;
+            -moz-transition: all 0.2s ease;
+            transform: rotateX(-90deg);
+            -webkit-transform: rotateX(-90deg);
+            -moz-transform: rotateX(-90deg);
+        }
+
+        .b07_3d_double_roll:hover div:nth-child(2) {
+            color: #ffffff;
+            transition: all 0.2s ease;
+            -webkit-transition: all 0.2s ease;
+            -moz-transition: all 0.2s ease;
+            transform: rotateX(0deg);
+            -webkit-transform: rotateX(0deg);
+            -moz-transform: rotateX(0deg);
+        }
+
+        .b07_3d_double_roll:hover div:nth-child(3) {
+            background-color: #000000;
+            transition: all 0.2s ease 0.1s;
+            -webkit-transition: all 0.2s ease 0.1s;
+            -moz-transition: all 0.2s ease 0.1s;
+            transform: rotateX(90deg);
+            -webkit-transform: rotateX(90deg);
+            -moz-transform: rotateX(90deg);
+        }
+
+        .b07_3d_double_roll:hover div:nth-child(4) {
+            color: #ffffff;
+            transition: all 0.2s ease 0.1s;
+            -webkit-transition: all 0.2s ease 0.1s;
+            -moz-transition: all 0.2s ease 0.1s;
+            transform: rotateX(0deg);
+            -webkit-transform: rotateX(0deg);
+            -moz-transform: rotateX(0deg);
+        }
 
     </style>
     <script>
@@ -216,22 +449,7 @@
             }
         });
 
-        document.querySelector('#find-me').addEventListener('click', geoFindMe);
 
-        //Javascript
-        var count = 0;
-        //스크롤 바닥 감지
-        window.onscroll = function(e) {
-            //추가되는 임시 콘텐츠
-            //window height + window scrollY 값이 document height보다 클 경우,
-            if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                //실행할 로직 (콘텐츠 추가)
-                count++;
-                var addContent = '<div class="block"><p>'+ count +'번째로 추가된 콘텐츠</p></div>';
-                //article에 추가되는 콘텐츠를 append
-                $('article').append(addContent);
-            }
-        };
 
 
         $(document).ready(function() {
@@ -255,22 +473,27 @@
 </head>
 <body>
 <form method="get" action="">
-    <div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px;">   &#8451;</div> &nbsp;
-    <div id="temparature" style="float: right; padding-left: 20px"></div>
-    <img src="" id="img" width="20" height="20" style="float: right;"/>
-    <div id="location" style="float: right; padding-left: 10px; padding-right: 20px;">&#127759;          </div>
+    <div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px; font-size: 20px">   &#8451;</div> &nbsp;
+    <div id="temparature" style="float: right; padding-left: 20px; font-size: 20px"></div>
+    <img src="" id="img" width="30px" height="30px" style="float: right; font-size: 20px"/>
+    <div id="location" style="float: right; padding-left: 10px; padding-right: 20px; font-size: 20px">&#127759;          </div>
 
     <br><br>
-    <h1 class="pageTitle">일기 목록 보기 </h1>
+    <h1 class="pageTitle">Diary List</h1>
     <br><br>
+
+    <div class="searchbox">
+        <input type="text" onkeyup="filter()" name="searchKeyword" id="value">
+        <img src="../images/diaryImage/seo-1970475_1280.png" id="searchIcon"/>
+    </div>
+
 
     <div class="tabs">
         <ul class="tab-links">
-            <li class="active"><a href="#tab1">&#128198;</a></li>
-            <li><a href="#" id="getTagDiaryList">&#128172;</a></li>
-            <li><a href="#" id="getOthersDiaryList">&#128107;</a></li>
-            <li id="deleteBtn"><a href="#">&#128163; &#128228; &#128194; &#128465; &#9989;</a></li>
-            <li><div class="searchbox"> <input type="text" onkeyup="filter()" name="searchKeyword" id="value" placeholder="&#128270;"> </div></li>
+            <li class="active"><a href="#tab1" style="font-size: 30px; text-decoration: none">&#128198;</a></li>
+            <li><a href="#" id="getTagDiaryList" style="font-size: 30px">&#128172;</a></li>
+            <li><a href="#" id="getOthersDiaryList" style="font-size: 30px">&#128107;</a></li>
+            <li id="deleteBtn"><a href="#" style="font-size: 30px">&#128194; &#9989;</a></li>
         </ul>
     </div>
 
@@ -278,13 +501,12 @@
         function filter(){
             var value, name, item, i;
             value = document.getElementById("value").value.toUpperCase();
-            item = document.getElementsByClassName("block");
+            item = document.getElementsByClassName("thumbnail");
             console.log(value);
             console.log(item);
 
             for(i=0; i< item.length; i++){
                 name = item[i].getElementsByClassName("diaryText");
-                console.log(name);
                 if(name[0].value.toUpperCase().indexOf(value) > -1){
                     item[i].style.display = "flex";
                 }else{
@@ -295,12 +517,12 @@
     </script>
 
     <div class="text">
-        <a href="#" style="float: right" class="deleteUnactive" hidden>&#10006;</a>
+        <a href="#" style="float: right; font-size: 20px;" class="deleteUnactive" hidden>&#10006;</a>
         <article id="for" class="col-md-12">
 
             <div name="thumbnails" class="col-md-4 col-xs-4 thumbnail" th:each="diary : ${list}" style="float: left; padding: 2px; width:30%; height: 200px">
                 <a th:href="@{/diary/getDiary(diaryNo=${diary.diaryId})}">
-                    <p   name="backImage" th:style="'background-image:url('+${diary.fileName}+'); background-repeat:no-repeat;'">
+                    <p name="backImage" th:style="'background-image:url('+${diary.fileName}+'); background-repeat:no-repeat; background-size: cover;'">
                         <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left" hidden/>
                         <input type="hidden" name="diaryId" th:value="${diary.diaryId}"/>
                         <input type="hidden" class="diaryText" th:value="${diary.diaryText}">
@@ -313,8 +535,17 @@
             </div>
         </article>
     </div>
-    <input type="button" id="deleteDiary" value="삭제" hidden/>
+    <br/>
+    <div class="back" id="deleteDiary" hidden>
+        <div class="button_base b07_3d_double_roll">
+            <div>Delete &nbsp; Diary</div>
+            <div>Delete &nbsp; Diary</div>
+            <div>Delete &nbsp; Diary</div>
+            <div>Delete &nbsp; Diary</div>
+        </div>
+    </div>
     <input type="hidden" id="userId" th:value="${user}" hidden/>
+    <br/><br/><br/><br/>
 </form>
 <script>
     $("#deleteBtn").on("click", function(){
