@@ -57,20 +57,25 @@ body{
 
 
 </head>
-<body>
+  <body>
 
-<h1>여기는 모노로그그으으으으으 목록 보기이이이이</h1>
-
-<div th:each="monologue : ${monologueList}" id="test02">
-
-<input type="hidden" th:value=${monologue.monologueId} name="monologueId"/>
-
-<!-- <a th:href="@{./getMonologue(monologueId=${monologue.monologueId})}"/> -->
-<span th:text=${monologue.questionText}/>
+    <h1>여기는 모노로그그으으으으으 목록 보기이이이이</h1>
 
 
+      <div th:each="monologue : ${monologueList}" id="test02">
 
-</div>
+      <input type="hidden" th:value=${monologue.monologueId} name="monologueId"/>
+ <!-- <a th:href="@{./getMonologue(monologueId=${monologue.monologueId})}"/> -->
+      <span th:text=${monologue.questionText}/>
+
+
+
+      </div>
+
+
+
+
+
 
 
 <input type="button" id="test" value="확인"/>
@@ -82,5 +87,5 @@ body{
 
 
 
-</body>
+  </body>
 </html>
