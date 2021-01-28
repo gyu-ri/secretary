@@ -7,4 +7,5 @@ public class Translate {
     private String text;
     private String source;
     private String target;
+    private String question;
 }

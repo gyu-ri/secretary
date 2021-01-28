@@ -105,7 +105,6 @@ public class DiaryController {
             jsonObject.addProperty("url", "/images/diaryImage/"+savedFileName);
             jsonObject.addProperty("responseCode", "success");
             System.out.println("addproperty해준 경로 : " + fileRoot);
-
         } catch (IOException e) {
             FileUtils.deleteQuietly(targetFile);	// 실패시 저장된 파일 삭제
             jsonObject.addProperty("responseCode", "error");
