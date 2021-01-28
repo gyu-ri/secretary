@@ -33,7 +33,7 @@ public interface UserService{
     public List<User> getUserList() throws Exception;
 
     //Update
-    public void updateUser() throws Exception;
+    public void updateUser(User user) throws Exception;
 
     //Delete
     public int deleteUser() throws Exception;

@@ -53,7 +53,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser() throws Exception {
+    public void updateUser(User user) throws Exception {
+    	userDAO.updateUser(user);
 
     }
 

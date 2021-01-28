@@ -27,7 +27,7 @@ public interface UserDAO {
     public List<User> getUserList() throws Exception;
 
     //Update : 내정보수정
-    public void updateUser() throws Exception;
+    public void updateUser(User user) throws Exception;
 
     //Delete
     public int deleteUser() throws Exception;
