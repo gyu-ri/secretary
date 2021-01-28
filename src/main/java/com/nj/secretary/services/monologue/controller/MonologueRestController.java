@@ -21,6 +21,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/restMonologue/*")
 public class MonologueRestController {
@@ -162,4 +164,26 @@ public class MonologueRestController {
         return "";
 
     }
+    
+
+	@GetMapping("getMonologueList")
+	public List<Monologue> getMonologueList(Model model, HttpSession session, String questionText) throws Exception{
+		System.out.println("getMonologueList 시작해유");
+		
+		session.setAttribute("userId", "gyuri");
+		
+		String userId=(String)session.getAttribute("userId");
+		
+		System.out.println("getMonologueList에서 userId 확인이니이이이잉 :::"+userId);
+		
+		List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
+				
+		model.addAttribute("monologueList", monologueList);
+		
+		System.out.println("monologueController getMonologueList  ::  " + monologueList);
+	
+		return monologueList;
+		
+	}
+    
 }

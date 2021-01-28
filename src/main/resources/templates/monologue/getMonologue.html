@@ -79,12 +79,15 @@ body{
 <form action="updateMonologue" method="get">
 <input type="hidden" th:value="${monologue.monologueId}" name="monologueId"/>
 <input type="hidden" th:value="${monologue.questionId}" name="questionId"/>
+
 <span>질문 : <span id="questionText" th:text="${monologue.questionText}"/></span>
 <h2 id="monologueText" th:text="${monologue.monologueText}"/>
+
 <input type="submit" value="수정~★">
 
 
 </form>
+
 
 <button type="button" id="reportModal">신고하기</button>
 <div class="modal hidden"></div>
@@ -104,6 +107,7 @@ body{
  <option value="zh-TW">중국어-번체</option>
 </select>
 <img class="translate" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
+
 
 
 
