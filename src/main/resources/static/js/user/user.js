@@ -19,6 +19,16 @@ function idCheck() {
                 $("#submit").attr("disabled", true);
             }
 
+            /*if($("#password1").val().length >= 8){
+                $("#8char").removeClass("glyphicon-remove");
+                $("#8char").addClass("glyphicon-ok");
+                $("#8char").css("color","#00A41E");
+            }else{
+                $("#8char").removeClass("glyphicon-ok");
+                $("#8char").addClass("glyphicon-remove");
+                $("#8char").css("color","#FF0004");
+            }*/
+
         }, error: function () {
             console.log("실패");
         }
@@ -70,4 +80,17 @@ function submitCheck(){
         alert("메일 인증이 완료되지 않았습니다.");
         return false;
     }else true;
+}
+
+function pwdCheck(){
+
+    if($("#password01").val() == $("#password02").val()){
+        $("#pwmatch").removeClass("glyphicon-remove");
+        $("#pwmatch").addClass("glyphicon-ok");
+        $("#pwmatch").css("color","#0029a4");
+    }else{
+        $("#pwmatch").removeClass("glyphicon-ok");
+        $("#pwmatch").addClass("glyphicon-remove");
+        $("#pwmatch").css("color","#FF0004");
+    }
 }
