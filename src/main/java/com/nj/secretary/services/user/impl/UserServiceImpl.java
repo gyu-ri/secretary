@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(){
     }
 
-    @Override
+/*    @Override
     public Map<String, String> validateHandling(Errors errors) {
         Map<String, String> validatorResult = new HashMap<>();
 
@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
             validatorResult.put(validKeyName, error.getDefaultMessage());
         }
         return validatorResult;
-    }
+    }*/
 
     //method
     @Override

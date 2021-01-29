@@ -15,13 +15,23 @@
     <div class="form-group">
         <label for="userId"></label>
         id : <input type="text" onkeyup="idCheck()" class="form-control" id="userId" name="userId"
-                   placeholder="아이디를 입력해주세요" required><!-- keyup method 사용하면 안좋음 변경가능 메서드 찾기 -->
+                    placeholder="아이디를 입력해주세요" required><!-- keyup method 사용하면 안좋음 변경가능 메서드 찾기 -->
         <div class="check_font" id="idCheck"></div><!--경고문이 들어갈 공간 -->
+       <!-- <div class="col-lg-6">
+            <span id="5char" class="glyphicon glyphicon-remove" style="color:#ff0004"></span>5글자 이상
+        </div>-->
     </div>
 
-    PW : <input type="password" name="password" placeholder="새 비밀번호를 입력해주세요" required></br>
+    PW : <input type="password" class="input-lg form-control" id="password01" name="password"
+                placeholder="새 비밀번호를 입력해주세요" autocomplete="off" required></br>
 
-    PW 확인: <input type="password" name="passwordCheck" placeholder="비밀번호를 재입력해주세요" required></br>
+    PW 확인: <input type="password" onkeyup="pwdCheck()" class="input-lg form-control" id="password02" placeholder="비밀번호를 재입력해주세요"
+                  autocomplete="off" required></br>
+    <div class="row">
+        <div class="col-sm-12">
+            <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#2E2F34;">비밀번호 확인</span>
+        </div>
+    </div>
 
     name : <input type="text" name="userName" placeholder="이름을 입력해주세요" required></br>
 
@@ -31,7 +41,7 @@
     certificationNo : <input type="text" id="certificationNo" placeholder="인증번호를 입력해주세요" required>
     <a id="checkCertificationNo" href="#" value="certificationNo" onclick=javascript:checkCertificationNo()>인증확인</a>
 
-    <button id="resend" onclick=javascript:resend()>재전송</button>
+    <!-- <button id="resend" onclick=javascript:resend()>재전송</button>-->
     </br>
 
     nickname : <input type="text" name="nickname" placeholder="닉네임을 입력해주세요"></br>
@@ -43,5 +53,6 @@
 </form>
 
 <input type="hidden" id="check" value="">
+
 </body>
 </html>
