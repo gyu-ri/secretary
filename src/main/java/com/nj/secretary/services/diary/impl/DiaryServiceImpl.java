@@ -152,5 +152,8 @@ public class DiaryServiceImpl implements DiaryService {
 
     }
 
-
+    @Override
+    public List<Diary> getTagedList(Map map) {
+        return diaryDAO.getTagedList(map);
+    }
 }

@@ -50,7 +50,7 @@
     <select id="getDiaryList" resultMap="diaryServiceMap" parameterType="String">
 
         SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.FILE_NAME FROM DIARY d, ATTACHFILE a
-        WHERE d.user_id = #{value} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+) and a.FILE_STATUS='1'
+        WHERE d.user_id = #{value} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+) and a.FILE_NAME IS NOT NULL
         ORDER BY d.diary_date desc
     </select>
 
@@ -155,6 +155,11 @@
             VALUES(report_seq.NEXTVAL,#{reportReasonId},#{diaryId},#{monologueId},#{reporterId},SYSDATE,#{reportText})
     </insert>
 
+    <select id="getTagedList" parameterType="hashMap" resultMap="diaryServiceMap">
+        SELECT d.diary_id AS diary_id, d.diary_title AS diary_title, d.diary_date AS diary_date, d.weather AS weather, d.location AS location, a.file_name AS file_name
+        FROM DIARY d, ATTACHFILE a
+        WHERE d.diary_id=a.diary_id AND d.user_id=#{userId} AND a.file_name=#{tag}
+    </select>
 
 
 
@@ -181,14 +186,12 @@
 
 
 
-
-
-    <delete id="deleteDiary" parameterType="String">
+    <delete id="deleteDiary" parameterType="integer">
         DELETE FROM DIARY
         WHERE DIARY_ID = #{diaryId}
     </delete>
 
-    <update id="recoverDiary" parameterType="String">
+    <update id="recoverDiary" parameterType="integer">
         update DIARY set DELETE_STATUS = '0'
         where DIARY_ID = #{diaryId}
     </update>

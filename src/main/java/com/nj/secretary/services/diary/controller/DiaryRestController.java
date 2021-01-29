@@ -23,7 +23,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/restDiary/*")
@@ -169,9 +171,9 @@ public class DiaryRestController {
         System.out.println(diaryId);
 
         if(diaryService.deleteDiary(diaryId)==0){
-            return "삭제불가능합니다.";
+            return "failed";
         }else{
-            return "삭제되었습니다.";
+            return "success";
         }
     }
 
@@ -180,9 +182,9 @@ public class DiaryRestController {
         System.out.println(diaryId);
 
         if(diaryService.recoverDiary(diaryId)==0){
-            return "복원불가능합니다.";
+            return "failed.";
         }else{
-            return "복원되었습니다.";
+            return "success.";
         }
     }
 
@@ -201,7 +203,6 @@ public class DiaryRestController {
             diaryService.addReport(report);
             return "신고되었습니다.";
         }
-
     }
 
     @GetMapping("getDiaryReportReason")
@@ -215,6 +216,19 @@ public class DiaryRestController {
         return list;
     }
 
+
+    @GetMapping("getTagedList")
+    public List<Diary> getTagedList(@RequestParam("tag") String tag, Model model, HttpSession session){
+        System.out.println("getTagedList parameter check : " + tag);
+        session.setAttribute("userId", "윤도영");
+        String userId = (String) session.getAttribute("userId");
+        Map map = new HashMap();
+        map.put("userId", userId);
+        map.put("tag", tag);
+
+
+        return diaryService.getTagedList(map);
+    }
 
 
 

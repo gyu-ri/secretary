@@ -41,9 +41,9 @@ public class UserController {
         return "user/addUser";
     }
 
-    @PostMapping("/signUp")
+    @PostMapping("signUp")
     public String signUp01(@Valid User user, Errors errors, Model model) throws Exception {
-        if (errors.hasErrors()){
+       /* if (errors.hasErrors()){
             //회원가입 실패시, 입력 데이터를 유지
             model.addAttribute("user",user);
 
@@ -52,10 +52,10 @@ public class UserController {
             for (String key : validatorResult.keySet()){
                 model.addAttribute(key, validatorResult.get(key));
             }
-        }
+        }*/
         System.out.println(user);
         userService.addUser(user);
-        return "index";
+        return "user/login";
     }
 
     @GetMapping("/login")

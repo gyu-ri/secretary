@@ -18,10 +18,9 @@ Service Layer단에서 세분화된 비즈니스로직을 처리하는 객체
 @Transactional(readOnly = true)
 public interface UserService{
 
+//    public Map<String, String> validateHandling(Errors errors);
+
     @Transactional
-    public Map<String, String> validateHandling(Errors errors);
-
-
     public void addUser(User user) throws Exception;
 
     //Select One
