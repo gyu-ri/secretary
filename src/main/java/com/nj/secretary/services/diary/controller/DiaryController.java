@@ -121,7 +121,7 @@ public class DiaryController {
     public String listDiary(HttpSession session, Model model){
 
         System.out.println("listDiary start in controller");
-        session.setAttribute("userId", "윤도영");
+        session.setAttribute("userId", "user02");
 
         System.out.println("session 확인 : " + session.getAttribute("userId"));
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository("diaryDAOImpl")
 public class DiaryDAOImpl implements DiaryDAO {
@@ -136,5 +137,10 @@ public class DiaryDAOImpl implements DiaryDAO {
     @Override
     public String getCount(Object message) {
         return sqlSession.selectOne("DiaryMapper.getCount", message);
+    }
+
+    @Override
+    public List<Diary> getTagedList(Map map) {
+        return sqlSession.selectList("DiaryMapper.getTagedList", map);
     }
 }

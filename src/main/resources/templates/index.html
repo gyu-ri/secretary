@@ -169,26 +169,36 @@
             method : "GET",
             cache : false,
             contentType : "application/json",
-            success : function(alarmList){
+            success : function(alarmList) {
                 console.log(alarmList);
-                $.each(alarmList, function (i, item){
-                    if(item.diaryId == 0 && item.monologueId == 0){
-                        $('#alarmLi').append(
-                            "<li id='getLimitReasons' value='" + item.userId + "'>" + item.userId + "님" + item.alarmText + "</li>"
-                        )
-                    }else if(item.monologueId == 0){
-                        $('#alarmLi').append(
-                            "<li id='getDiary' value='" + item.diaryId + "'>" + item.userId + "님!" + item.alarmText + "</li>"
-                        )
-                    }else{
-                        $('#alarmLi').append(
-                            "<li id='getMonologue' value='" + item.monologueId + "'>" + item.userId + "님!" + item.alarmText + "</li>"
-                        )
-                    }
-                })
-                $('#alarmLi').append("<span id='deleteAlarmList' style='font-size: 10px'>&#128465; 목록지우기</span>")
-            }
+                if (document.querySelector('#alarmLi span') != null) {
+                    alert("지우기 있음")
+                    document.querySelector('#alarmLi span').remove();
+                    document.querySelector('#alarmLi li').remove();
+                } else {
+                    alert("지우기 없음")
+                    $('#alarmLi li,span').remove();
 
+                    $.each(alarmList, function (i, item) {
+                        if (item.diaryId == 0 && item.monologueId == 0) {
+                            $('#alarmLi').append(
+                                "<li id='getLimitReasons' value='" + item.userId + "'>" + item.userId + "님" + item.alarmText + "</li>"
+                            )
+                        } else if (item.monologueId == 0) {
+                            $('#alarmLi').append(
+                                "<li id='getDiary' value='" + item.diaryId + "'>" + item.userId + "님!" + item.alarmText + "</li>"
+                            )
+                        } else {
+                            $('#alarmLi').append(
+                                "<li id='getMonologue' value='" + item.monologueId + "'>" + item.userId + "님!" + item.alarmText + "</li>"
+                            )
+                        }
+                    })
+                    if (!$('#alarmLi').hasClass('deleteAlarmList')) {
+                        $('#alarmLi').append("<span id='deleteAlarmList' class='deleteAlarmList' style='font-size: 10px'>&#128465; 목록지우기</span>")
+                    }
+                }
+            }
         })
     };
 

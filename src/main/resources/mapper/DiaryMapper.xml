@@ -155,8 +155,11 @@
             VALUES(report_seq.NEXTVAL,#{reportReasonId},#{diaryId},#{monologueId},#{reporterId},SYSDATE,#{reportText})
     </insert>
 
-
-
+    <select id="getTagedList" parameterType="hashMap" resultMap="diaryServiceMap">
+        SELECT d.diary_id AS diary_id, d.diary_title AS diary_title, d.diary_date AS diary_date, d.weather AS weather, d.location AS location, a.file_name AS file_name
+        FROM DIARY d, ATTACHFILE a
+        WHERE d.diary_id=a.diary_id AND d.user_id=#{userId} AND a.file_name=#{tag}
+    </select>
 
 
 
