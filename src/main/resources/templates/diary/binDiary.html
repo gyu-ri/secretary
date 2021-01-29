@@ -76,9 +76,9 @@
             font-weight:bold;
         }
     </style>
-    <script type="text/javascript">
+    <script>
         function deleteDiary(diaryId){
-
+            alert("DELETE");
             $.ajax({
                 url: "/restDiary/deleteDiary",
                 method: "get",
@@ -96,7 +96,7 @@
             });
         }
         function recoverDiary(diaryId){
-
+            alert("RECOVER");
             $.ajax({
                 url: "/restDiary/recoverDiary",
                 method: "get",

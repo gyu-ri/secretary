@@ -169,9 +169,9 @@ public class DiaryRestController {
         System.out.println(diaryId);
 
         if(diaryService.deleteDiary(diaryId)==0){
-            return "삭제불가능합니다.";
+            return "failed";
         }else{
-            return "삭제되었습니다.";
+            return "success";
         }
     }
 
@@ -180,9 +180,9 @@ public class DiaryRestController {
         System.out.println(diaryId);
 
         if(diaryService.recoverDiary(diaryId)==0){
-            return "복원불가능합니다.";
+            return "failed.";
         }else{
-            return "복원되었습니다.";
+            return "success.";
         }
     }
 
@@ -201,7 +201,6 @@ public class DiaryRestController {
             diaryService.addReport(report);
             return "신고되었습니다.";
         }
-
     }
 
     @GetMapping("getDiaryReportReason")
