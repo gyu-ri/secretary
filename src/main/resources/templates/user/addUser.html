@@ -10,12 +10,12 @@
 <body>
 <h3>signUp</h3>
 
-<form th:action="@{user/signUp}" method="post" onsubmit="return submitCheck();">
+<form th:action="@{signUp}" method="post" onsubmit="return submitCheck();">
 
     <div class="form-group">
         <label for="userId"></label>
         id : <input type="text" onkeyup="idCheck()" class="form-control" id="userId" name="userId"
-                   th:value="${user.userId}" placeholder="아이디를 입력해주세요" required><!-- keyup method 사용하면 안좋음 변경가능 메서드 찾기 -->
+                   placeholder="아이디를 입력해주세요" required><!-- keyup method 사용하면 안좋음 변경가능 메서드 찾기 -->
         <div class="check_font" id="idCheck"></div><!--경고문이 들어갈 공간 -->
     </div>
 

@@ -48,8 +48,9 @@
     </insert>
 
     <select id="getDiaryList" resultMap="diaryServiceMap" parameterType="String">
-        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.FILE_NAME,d.DIARY_TEXT FROM DIARY d, ATTACHFILE a
-        WHERE d.user_id = #{value} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+)
+
+        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.FILE_NAME FROM DIARY d, ATTACHFILE a
+        WHERE d.user_id = #{value} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+) and a.FILE_STATUS='1'
         ORDER BY d.diary_date desc
     </select>
 

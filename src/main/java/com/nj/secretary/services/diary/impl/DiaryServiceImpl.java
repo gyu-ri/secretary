@@ -47,7 +47,7 @@ public class DiaryServiceImpl implements DiaryService {
         List<Diary> list = diaryDAO.getTagDiaryList(userId);
 
 
-        return null;
+        return list;
     }
 
 
