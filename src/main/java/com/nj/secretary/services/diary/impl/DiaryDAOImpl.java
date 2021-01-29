@@ -143,4 +143,19 @@ public class DiaryDAOImpl implements DiaryDAO {
     public List<Diary> getTagedList(Map map) {
         return sqlSession.selectList("DiaryMapper.getTagedList", map);
     }
+
+    @Override
+    public int likeDiary(int diaryId) {
+        return sqlSession.update("DiaryMapper.likeDiary",diaryId);
+    }
+
+    @Override
+    public int addLike(Diary diary) {
+        return sqlSession.insert("DiaryMapper.addLike",diary);
+    }
+
+    @Override
+    public int checkLike(Diary diary) {
+        return sqlSession.selectOne("DiaryMapper.checkLike",diary);
+    }
 }

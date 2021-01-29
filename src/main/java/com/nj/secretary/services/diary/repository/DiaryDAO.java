@@ -43,6 +43,12 @@ public interface DiaryDAO {
 
     public List<Diary> getTagedList(Map map);
 
+    public int likeDiary(int diaryId);
+
+    public int addLike(Diary diary);
+
+    public int checkLike(Diary diary);
+
 
 
 
