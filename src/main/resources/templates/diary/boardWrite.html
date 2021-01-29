@@ -139,7 +139,8 @@
                         $("#summernote").summernote("insertImage",data.url);
                         alert(data.url);
                         console.log("console : "+data.url);
-                        $('.note-editable').append("<p><img src='"+data.url+"' width='90px' height='auto'/></p>");
+                        $('.note-editable').append("<p><img src='"+data.url+"' width='90px' height='auto'/></p><br/>");
+                        $('.note-editable').reload();
                     },
                     error:function (request,status,error, form_data){
                         alert("Error");
@@ -275,7 +276,7 @@
 <h2 style="text-align: center; margin-top: 50px">일기 작성</h2><br><br><br>
 <div style="width: 60%; margin: auto;">
 
-        <input type="text" id="diaryTitle" name="diaryTitle" style="width: 40%;" placeholder="제목"/>
+        <input type="text" id="diaryTitle" name="diaryTitle" style="width: 40%;" placeholder="제목" required/>
 
         <p>
            작성날짜 :  <input type="date" name="diaryDate" required pattern="\d{4}-\d{2}-\d{2}"/>
@@ -328,11 +329,9 @@
 
         <br><br>
 
-        <input id="subBtn" class="subBtn" type="submit" value="작성완료" style="text-align: center" onclick="goWrite(this.form)"/>
+        <input id="subBtn" class="subBtn" type="button" value="작성완료" style="text-align: center" onclick="goWrite(this.form)"/>
 
         <br><br><br><br>
-
-        <img src="/images/diaryImage/0a0de88b-3516-4704-bd2d-7550f4e7a26c.png"/>
 
 
 
@@ -357,9 +356,10 @@
         if (content.trim() == ''){
             alert("내용을 입력해주세요");
             return false;
+        }else{
+            frm.submit();
         }
-        debugger;
-        frm.submit();
+
 
     }
 </script>
