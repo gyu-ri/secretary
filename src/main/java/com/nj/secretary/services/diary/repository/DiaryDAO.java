@@ -6,6 +6,7 @@ import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.domain.Report;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DiaryDAO {
 
@@ -39,6 +40,8 @@ public interface DiaryDAO {
     public List<Diary> getDiaryReportReason(int diaryId);
 
     public String getCount(Object message);
+
+    public List<Diary> getTagedList(Map map);
 
 
 

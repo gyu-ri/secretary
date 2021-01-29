@@ -43,6 +43,8 @@ public interface DiaryService {
 
     public void addImage(Diary diary);
 
+    public List<Diary> getTagedList(Map map);
+
 
 
 

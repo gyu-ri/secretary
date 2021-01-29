@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head profile="http://www.w3.org/2005/10/profile">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8">
 
+
+    <link rel="icon" type="image/png" href="http://example.com/myicon.png">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -452,19 +454,18 @@
 
 
 
-        $(document).ready(function() {
-            $('.tabs .tab-links a').on('click', function(e) {
-                var currentAttrValue = jQuery(this).attr('href');
-
-                // Show/Hide Tabs
-                $('.tabs ' + currentAttrValue).show().siblings().hide();
-
-                // Change/remove current tab to active
-                $(this).parent('li').addClass('active').siblings().removeClass('active');
-
-                e.preventDefault();
-            });
-        });
+        // $(document).ready(function() {
+        //     $('.tabs .tab-links a').on('click', function(e) {
+        //         var currentAttrValue = jQuery(this).attr('href');
+        //         // Show/Hide Tabs
+        //         $('.tabs ' + currentAttrValue).show().siblings().hide();
+        //
+        //         // Change/remove current tab to active
+        //         $(this).parent('li').addClass('active').siblings().removeClass('active');
+        //
+        //         e.preventDefault();
+        //     });
+        // });
 
 
 
@@ -492,7 +493,7 @@
         <ul class="tab-links">
             <li class="active"><a href="#tab1" style="font-size: 30px; text-decoration: none">&#128198;</a></li>
             <li><a href="#" id="getTagDiaryList" style="font-size: 30px">&#128172;</a></li>
-            <li><a href="#" id="getOthersDiaryList" style="font-size: 30px">&#128107;</a></li>
+            <li><a href="#"  style="font-size: 30px">&#128107;</a></li>
             <li id="deleteBtn"><a href="#" style="font-size: 30px">&#128194; &#9989;</a></li>
         </ul>
     </div>
@@ -536,6 +537,14 @@
         </article>
     </div>
     <br/>
+    <div class="back" id="return">
+        <div class="button_base b07_3d_double_roll" onclick="back()">
+            <div>돌아가기</div>
+            <div>돌아가기</div>
+            <div>돌아가기</div>
+            <div>돌아가기</div>
+        </div>
+    </div>
     <div class="back" id="deleteDiary" hidden>
         <div class="button_base b07_3d_double_roll">
             <div>Delete &nbsp; Diary</div>
@@ -744,8 +753,8 @@
                 $.each(list,function(i,item){
                     console.log(item);
                     $("#for").prepend(
-                        "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left'> " +
-                        "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
+                        "<div name='thumbnails' id='thisTag' value='" + item.fileName + "' class='col-md-4 thumbnail' style='float: left'> " +
+                        "<a href='#'>"+
                         "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
                         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
                         "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
@@ -755,25 +764,49 @@
                         "</a>"+
                         "</div>"
                     )
-
                 })
             }
-            //     )$("#for").prepend(
-            //         "<div class='block' th:each='"+list+"' style='float: left'> " +
-            //         "<p>" +
-            //         "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' th:value='${diary.diaryId}' style='float: left' hidden/>" +
-            //         "<input type='hidden' name='diaryId' th:value='${diary.diaryId}'/>" +
-            //         "제목 : <span th:text='${diary.diaryTitle}'>제목</span><br>" +
-            //         "날짜 : <span th:text='${diary.diaryDate}'>날짜</span><br>" +
-            //         "날씨 :  <img th:src='${diary.weather}' width='20' height='20'/><br>" +
-            //         "위치 : <span th:text='${diary.location}'>위치</span>" +
-            //         "</p>" +
-            //         "</div>"
-            // }
         });
         return list;
     });
 
+    $(document).on("click","#thisTag", function (){
+        $.ajax({
+            url: "/restDiary/getTagedList",
+            method: "GET",
+            dataType: "json",
+            data: {tag: $(this).attr('value')},
+            contentType: "application/json",
+            success: function(list){
+                console.log(list);
+                $("div[name='thumbnails']").remove();
+                $.each(list,function(i,item) {
+                    $('#for').prepend(
+                        "<div name='thumbnails' class='col-md-4 thumbnail tagList' style='float: left'> " +
+                        "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
+                        "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
+                        "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
+                        "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
+                        "<input type='hidden' class='diaryText' value='" + item.fileName + "'/>" +
+                        "태그 : <span>"+item.fileName+"</span><br>" +
+                        "제목 : <span>"+item.diaryTitle+"</span><br>" +
+                        "날짜 : <span>"+item.diaryDate+"</span><br>" +
+                        "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
+                        "위치 : <span>"+item.location+"</span>" +
+                        "</p>"+
+                        "</a>"+
+                        "</div>"
+                    )
+
+                })
+            }
+        });
+
+    });
+
+    function back(){
+        history.go(-1);
+    }
 </script>
 
 </body>

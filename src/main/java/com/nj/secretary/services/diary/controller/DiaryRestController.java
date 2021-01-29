@@ -23,7 +23,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/restDiary/*")
@@ -215,6 +217,19 @@ public class DiaryRestController {
         return list;
     }
 
+
+    @GetMapping("getTagedList")
+    public List<Diary> getTagedList(@RequestParam("tag") String tag, Model model, HttpSession session){
+        System.out.println("getTagedList parameter check : " + tag);
+        session.setAttribute("userId", "윤도영");
+        String userId = (String) session.getAttribute("userId");
+        Map map = new HashMap();
+        map.put("userId", userId);
+        map.put("tag", tag);
+
+
+        return diaryService.getTagedList(map);
+    }
 
 
 
