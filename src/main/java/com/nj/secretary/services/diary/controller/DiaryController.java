@@ -1,6 +1,7 @@
 package com.nj.secretary.services.diary.controller;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.nj.secretary.services.alarm.domain.Alarm;
 import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.diary.domain.Diary;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -44,8 +46,8 @@ public class DiaryController {
 
 
     @PostMapping("addDiarys")
-    public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam("tag_text" +
-            "") String tag_text){
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam("tag_text") String tag_text){
         System.out.println("shareStatus : " + diary.getShareStatus());
 
         if(diary.getShareStatus().trim().equals("0,1")) {
@@ -56,7 +58,17 @@ public class DiaryController {
 
         diaryService.addDiary(diary);
         System.out.println("tag : " + tag_text);
+
         String[] tags = tag_text.split(",");
+        List<String> tagsList = new ArrayList<String>();
+        for(String tag : tags){
+            if(tag.trim()==""||tag.trim()==null||tag.trim().length()==0){
+            }else{
+                tagsList.add(tag);
+            }
+        }
+
+        System.out.println("tagsList : " + tagsList);
         if(diary.getDiaryText().contains("src=")){
             System.out.println(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("width")-2));
             diary.setFileName(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("width")-2));
@@ -64,8 +76,9 @@ public class DiaryController {
         }
 
 
-        for(String tag : tags){
-            diaryService.addTag(tag);
+        for(String tag : tagsList){
+                diaryService.addTag(tag);
+                System.out.println("들어가는 태그 : " + tag);
         }
         System.out.println("다이어리 추가 완료");
 
@@ -121,7 +134,7 @@ public class DiaryController {
     public String listDiary(HttpSession session, Model model){
 
         System.out.println("listDiary start in controller");
-        session.setAttribute("userId", "user02");
+        session.setAttribute("userId", "윤도영");
 
         System.out.println("session 확인 : " + session.getAttribute("userId"));
 
