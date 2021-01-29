@@ -49,8 +49,8 @@
 
     <select id="getDiaryList" resultMap="diaryServiceMap" parameterType="String">
 
-        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.FILE_NAME FROM DIARY d, ATTACHFILE a
-        WHERE d.user_id = #{value} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+) and a.FILE_NAME IS NOT NULL
+        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.IMAGE_NAME FILE_NAME FROM DIARY d, IMAGE a
+        WHERE d.user_id = #{value} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+)
         ORDER BY d.diary_date desc
     </select>
 
@@ -84,8 +84,8 @@
     </insert>
 
     <insert id="addImage" parameterType="com.nj.secretary.services.diary.domain.Diary">
-        INSERT INTO AttachFile(file_id, diary_id, file_name, file_status)
-        VALUES(attachfile_seq.nextval, diary_seq.currval, #{fileName}, '1')
+        INSERT INTO IMAGE(IMAGE_ID, DIARY_ID, IMAGE_NAME)
+        VALUES(image_seq.nextval, diary_seq.currval, #{fileName})
     </insert>
 
     <select id="getTagDiaryList" parameterType="String" resultMap="diaryServiceMap">
