@@ -13,32 +13,14 @@
 <script th:inline="javascript">
     function loginWithKakao() {
         Kakao.Auth.authorize({
-            redirectUri: 'http://localhost:9090/user/kakaologin' //토큰지고 가는 경로
+            redirectUri: 'http://localhost:9090/user/kakaologin' //토큰을 가지고 가는 경로
         })
     }
-
-    function userInfo(){
-        alert("test");
-        /*<![CDATA[*/
-        const token = [[${accessToken}]];
-        /*]]>*/
-        Kakao.Auth.setAccessToken(token)
-        Kakao.API.request({
-            url: '/v2/user/me',
-            success: function(response) {
-                console.log(response);
-            },
-            fail: function(error) {
-                console.log(error);
-            }
-        });
-    }
-
 
 </script>
 <head>
     <meta charset="UTF-8">
-    <title>signUp</title>
+    <title>login</title>
 </head>
 <style>
     body {
@@ -70,7 +52,7 @@
 <a id="custom-login-btn" href="javascript:loginWithKakao()">
     <img
             src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-            width="222"
+            width="150"
     />
 </a>
 
@@ -79,5 +61,7 @@
 <span th:text="${code}"></span>
 
 <a id="kakao-login-btn"></a>
+
 </body>
+
 </html>
