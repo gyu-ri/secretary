@@ -20,6 +20,8 @@ public interface UserDAO {
     //Select One : 비밀번호 찾기
     public User findUserPwd(String userName) throws Exception;
 
+    public int kakaoLogin(String userId) throws Exception;
+
     //Update : 레이아웃 설정 변경
     public void settingUser() throws Exception;
 

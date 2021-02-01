@@ -94,3 +94,33 @@ function pwdCheck(){
         $("#pwmatch").css("color","#FF0004");
     }
 }
+
+//Kakao.init('b924b1b6cefccb2c71d88231552b32a8');
+
+/*
+$(document).ready(function (){
+    Kakao.init('b924b1b6cefccb2c71d88231552b32a8');
+        alert("test");
+        const token = $("#token").val();
+        console.log(token)
+        Kakao.Auth.setAccessToken(token)
+        Kakao.API.request({
+            url: '/v2/user/me',
+            success: function(response) {
+                /!*alert(JSON.stringify(response));
+                alert(JSON.stringify(authObj));
+                console.log(response.id);
+                console.log(response.email);
+                console.log(authObj.accessToken);*!/
+                console.log(JSON.stringify(response));
+                $("#userId").attr('value',response.id);
+                $("#password01").attr('value',response.id);
+                $("#userName").attr('value',response.properties.nickname);
+                $("#email").attr('value',response.kakao_account.email);
+            },
+            fail: function(error) {
+                alert(JSON.stringify(error));
+                console.log(error);
+            }
+        });
+})*/
