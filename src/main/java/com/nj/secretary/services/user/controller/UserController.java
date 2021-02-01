@@ -2,6 +2,7 @@ package com.nj.secretary.services.user.controller;
 
 import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.monologue.domain.Monologue;
+import com.nj.secretary.services.user.impl.UserDAOImpl;
 import org.json.JSONObject;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -21,6 +22,7 @@ import javax.validation.Valid;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,8 +30,9 @@ import java.util.Map;
 @RequestMapping("/user/*")
 public class UserController {
 
+
     @Autowired
-    private UserService userService;
+    UserService userService;
     @Autowired
     private JavaMailSender mailSender;
     @Autowired
@@ -134,9 +137,8 @@ public class UserController {
 
 
     @GetMapping("/kakaologin")
-    public String kakaoGetToken(@RequestParam("code") String code, Model model) throws IOException {
-        //String access_Token = "";
-        //String refresh_Token = "";
+    public String kakaoGetToken(@RequestParam("code") String code, Model model,HttpSession session) throws IOException {
+
         String reqURL = "https://kauth.kakao.com/oauth/token";
         System.out.println("code" + code);
 
@@ -154,7 +156,7 @@ public class UserController {
             sb.append("grant_type=authorization_code");
             sb.append("&client_id=aceb8c76e94a93fae1034661828f1e34");
             sb.append("&redirect_uri=http://localhost:9090/user/kakaologin");
-            sb.append("&code=" + code);
+            sb.append("&code=" + code);//로그인 과정 중에 얻은 code
             bw.write(sb.toString());
             bw.flush();
 
@@ -176,21 +178,78 @@ public class UserController {
             //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
 
             JSONObject jsonObject = new JSONObject(result);
+            br.close();
+            bw.close();
 
             System.out.println(jsonObject);
             System.out.println(jsonObject.get("access_token"));
             System.out.println(jsonObject.get("refresh_token"));
             model.addAttribute("accessToken", jsonObject.get("access_token"));
+            Map map = UserController.getUserInfo((String) jsonObject.get("access_token"));
 
-            br.close();
-            bw.close();
+            if ((int)map.get("check")==0){
+                model.addAttribute("userInfo",map.get("userInfo"));
+                return "user/kakao";
+            }else {
+                JSONObject abc = (JSONObject)map.get("userInfo");
+                //session.setAttribute("user",abc.get("id"));
+                return "user/login";
+            }
+
         } catch (IOException e) {
             System.out.println("변환에 실패");
             e.printStackTrace();
         }
-
-        return "user/login";
+        return "";
     }
+
+    public static Map getUserInfo (String access_Token) {
+
+        //    요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
+        HashMap<String, Object> userInfo = new HashMap<>();
+        String reqURL = "https://kapi.kakao.com/v2/user/me";
+        try {
+            URL url = new URL(reqURL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("POST");
+
+            //    요청에 필요한 Header에 포함될 내용
+            conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+
+            int responseCode = conn.getResponseCode();
+            System.out.println("responseCode : " + responseCode);
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+            String line = "";
+            String result = "";
+
+            while ((line = br.readLine()) != null) {
+                result += line;
+            }
+            System.out.println("response body : " + result);
+
+            JSONObject jsonObject = new JSONObject(result);
+            System.out.println(jsonObject);
+
+            System.out.println(Integer.toString((Integer)jsonObject.get("id")));
+            /*int user = userService.kakaoLogin(Integer.toString((Integer)jsonObject.get("id")));//0일때 회원가입, 1일때 로그인
+            System.out.println(user);
+            userInfo.put("userInfo",jsonObject);
+            userInfo.put("check",user);*/
+
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return userInfo;
+
+    }
+
 
     @GetMapping("/getUser")
     public String getUser(String userId, Model model, HttpSession session) throws Exception {

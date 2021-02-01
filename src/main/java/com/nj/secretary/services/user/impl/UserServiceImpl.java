@@ -57,6 +57,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int kakaoLogin(String userId) throws Exception {
+        return userDAO.kakaoLogin(userId);
+    }
+
+    @Override
     public void settingUser() throws Exception {
 
     }

@@ -49,8 +49,8 @@
 
     <select id="getDiaryList" resultMap="diaryServiceMap" parameterType="String">
 
-        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.FILE_NAME FROM DIARY d, ATTACHFILE a
-        WHERE d.user_id = #{value} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+) and a.FILE_NAME IS NOT NULL
+        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.IMAGE_NAME FILE_NAME FROM DIARY d, IMAGE a
+        WHERE d.user_id = #{value} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+)
         ORDER BY d.diary_date desc
     </select>
 
@@ -84,8 +84,8 @@
     </insert>
 
     <insert id="addImage" parameterType="com.nj.secretary.services.diary.domain.Diary">
-        INSERT INTO AttachFile(file_id, diary_id, file_name, file_status)
-        VALUES(attachfile_seq.nextval, diary_seq.currval, #{fileName}, '1')
+        INSERT INTO IMAGE(IMAGE_ID, DIARY_ID, IMAGE_NAME)
+        VALUES(image_seq.nextval, diary_seq.currval, #{fileName})
     </insert>
 
     <select id="getTagDiaryList" parameterType="String" resultMap="diaryServiceMap">
@@ -158,7 +158,7 @@
     <select id="getTagedList" parameterType="hashMap" resultMap="diaryServiceMap">
         SELECT d.diary_id AS diary_id, d.diary_title AS diary_title, d.diary_date AS diary_date, d.weather AS weather, d.location AS location, a.file_name AS file_name
         FROM DIARY d, ATTACHFILE a
-        WHERE d.diary_id=a.diary_id AND d.user_id=#{userId} AND a.file_name=#{tag}
+        WHERE d.diary_id=a.diary_id AND d.user_id=#{userId} AND a.file_name=#{tag} AND d.delete_status='0'
     </select>
 
 

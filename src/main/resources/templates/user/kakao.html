@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>signUp</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../../css/user/user.css">
+    <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script src="../../js/user/user.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+</head>
+<body>
+<h3>signUp</h3>
+
+<form th:action="@{signUp}" method="post" onsubmit="return submitCheck();">
+
+    <div class="form-group">
+        <label for="userId"></label>
+        id : <input type="text" onkeyup="idCheck()" class="form-control" id="userId" name="userId"
+                    placeholder="아이디를 입력해주세요" required><!-- keyup method 사용하면 안좋음 변경가능 메서드 찾기 -->
+        <div class="check_font" id="idCheck"></div><!--경고문이 들어갈 공간 -->
+        <!-- <div class="col-lg-6">
+             <span id="5char" class="glyphicon glyphicon-remove" style="color:#ff0004"></span>5글자 이상
+         </div>-->
+    </div>
+
+    PW : <input type="password" class="input-lg form-control" id="password01" name="password"
+                placeholder="새 비밀번호를 입력해주세요" autocomplete="off" required></br>
+
+    name : <input type="text" id="userName" name="userName" placeholder="이름을 입력해주세요" required></br>
+
+    email : <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required></br>
+
+    nickname : <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력해주세요"></br>
+
+    motto : <input type="text" id="motto" name="motto" placeholder="나의 좌우명을 입력해주세요"></br>
+
+    <input type="submit" value="회원가입">
+
+</form>
+
+<input type="hidden" id="check" value=""><!--아이디 중복체크-->
+<!--<h3 th:text="${userInfo}"></h3>-->
+<!--<input type="hidden" id="token" th:value="${accessToken}">--><!--카카오 로그인 사용자 정보 불러오기-->
+
+</body>
+</html>

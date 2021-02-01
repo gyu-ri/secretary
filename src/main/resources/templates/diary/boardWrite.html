@@ -249,9 +249,6 @@
         });
 
 
-        var editor = $("#summernote");
-        editor.summernote("insertImage", "http://sir.kr/img/main/logo2.png");
-
     </script>
 
 
@@ -281,13 +278,23 @@
         <p>
            작성날짜 :  <input type="date" name="diaryDate" required pattern="\d{4}-\d{2}-\d{2}"/>
         </p>
+    <span id="addTag">태그 추가 &#10133;</span>
+    <ol id="addedTag"></ol>
+    <script>
+        $(document).on("click", "#addTag", function(){
+            $('#addedTag').append("<li><input class='tagText' id='tagText' type=\"text\" name=\"tag_text\" style=\"float: left\"/> <span id='deleteTag'>삭제</span></li>")
+        })
+        $(document).on("click", "#deleteTag", function (){
+           alert($(this).closest('li'));
+            $(this).closest('li').remove();
+        })
+    </script>
 
-
-    <input type="text" name="tag_text" style="float: right">
-    <input type="text" name="tag_text" style="float: right">
-    <input type="text" name="tag_text" style="float: right">
-    <input type="text" name="tag_text" style="float: right">
-    <input type="text" name="tag_text" style="float: right">
+<!--    <input type="text" name="tag_text" style="float: left">-->
+<!--    <input type="text" name="tag_text" style="float: left">-->
+<!--    <input type="text" name="tag_text" style="float: left">-->
+<!--    <input type="text" name="tag_text" style="float: left">-->
+<!--    <input type="text" name="tag_text" style="float: left">-->
 
 
 
@@ -344,13 +351,20 @@
 
         var title = frm.diaryTitle.value;
         var content = frm.summernote.value;
-
+        var tag = $("#frm input[type=text]")
         if (title.trim() == ''){
             alert("제목을 입력해주세요");
             return false;
+        }$.trim($('#tagText').val())
+        for(var i =0; i < tag.length; i++){
+            if(""==$.trim((tag[i]).val())||null==$.trim((tag[i]).val())){
+                alert("태그를 입력해주세요");
+                return false;
+            }
+
         }
-        // if (writer.trim() == ''){
-        //     alert("작성자를 입력해주세요");
+        // if (tag.trim() == ''){
+        //     alert("태그를 입력해주세요");
         //     return false;
         // }
         if (content.trim() == ''){
