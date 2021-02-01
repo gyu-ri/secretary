@@ -213,11 +213,26 @@
                     }
                 });
             })
+
+            $("#like").on("click",function(){
+                let diaryId = {diaryId:$("#diaryId").val()}
+                $.ajax({
+                    url : "/restDiary/likeDiary",
+                    type : "POST",
+                    data :JSON.stringify(diaryId),
+                    contentType: "application/json",
+                    success: function (response){
+                        alert(response);
+                    }
+                });
+
+            })
         })
 
         function back(){
             history.go(-1);
         }
+
 
         </script>
     <script th:inline="javascript">
@@ -296,6 +311,8 @@
 
         <input type="submit" id="modifyDiary" value="수정">
         <span id="report">신고하기</span>
+        <span id="like">좋아요</span>
+
 
 
         <br><br><br><br>

@@ -45,6 +45,11 @@ public interface DiaryService {
 
     public List<Diary> getTagedList(Map map);
 
+    public int likeDiary(int diaryId);
+
+    public int addLike(Diary diary);
+
+
 
 
 
@@ -69,6 +74,10 @@ public interface DiaryService {
     public int addReport(Report report);
 
     public int checkReporter(Report report);
+
+    public int checkLike(Diary diary);
+
+
 
 
 

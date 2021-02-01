@@ -40,6 +40,7 @@ CREATE SEQUENCE report_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE attachfile_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE weather_seq START WITH 1 INCREMENT BY 1;
 CREATE SEQUENCE image_seq START WITH 1 INCREMENT BY 1;
+CREATE SEQUENCE like_seq START WITH 1 INCREMENT BY 1;
 
 
 
@@ -61,6 +62,16 @@ create table Image
         primary key,
     DIARY_ID   NUMBER(8),
     IMAGE_NAME VARCHAR2(100)
+)
+
+create table LIKE
+(
+    LIKE_ID      NUMBER(8) not null
+        constraint LIKE_PK
+        primary key,
+    DIARY_ID     NUMBER(8),
+    MONOLOGUE_ID NUMBER(8),
+    LIKER_ID     NUMBER(8)
 )
 
 

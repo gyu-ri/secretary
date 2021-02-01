@@ -161,6 +161,22 @@
         WHERE d.diary_id=a.diary_id AND d.user_id=#{userId} AND a.file_name=#{tag} AND d.delete_status='0'
     </select>
 
+    <update id="likeDiary" parameterType="integer">
+        update DIARY set LIKE_COUNT = LIKE_COUNT + 1
+        where DIARY_ID = #{diaryId}
+    </update>
+
+    <insert id="addLike" parameterType="com.nj.secretary.services.diary.domain.Diary">
+        INSERT INTO LIKES(LIKE_ID,DIARY_ID,LIKER_ID)
+                VALUES(like_seq.NEXTVAL,#{diaryId},#{userId})
+    </insert>
+
+    <select id="checkLike" parameterType="com.nj.secretary.services.diary.domain.Diary" resultType="integer">
+        SELECT COUNT(LIKER_ID)
+        FROM LIKES
+        WHERE DIARY_ID = #{diaryId} and LIKER_ID = #{userId}
+    </select>
+
 
 
 
