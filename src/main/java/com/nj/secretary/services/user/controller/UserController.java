@@ -235,8 +235,6 @@ public class UserController {
     	System.out.println("updateUser 확인::"+user);
     	
     	return "user/getUser";
-    	
-    	
     }
 
     @GetMapping("getWithdrawalReasonList")

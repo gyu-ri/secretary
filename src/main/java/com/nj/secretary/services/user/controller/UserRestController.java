@@ -164,4 +164,11 @@ public class UserRestController {
         return 1;
     }
 
+    @PostMapping("updateUser")
+    public User updateuser(User user, Model model) throws Exception{
+    	userService.updateUser(user);
+    	System.out.println("updateUser 확인::"+user);
+    	
+    	return user;
+    }
 }
