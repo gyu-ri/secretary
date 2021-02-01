@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>signUp</title>
+    <title>회원가입</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../css/user/user.css">
     <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
@@ -9,25 +9,30 @@
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
-<h3>signUp</h3>
+<center>
+<h3>회원가입</h3>
 
 <form th:action="@{signUp}" method="post" onsubmit="return submitCheck();">
 
     <div class="form-group">
         <label for="userId"></label>
         id : <input type="text" onkeyup="idCheck()" class="form-control" id="userId" name="userId"
-                    placeholder="아이디를 입력해주세요" required><!-- keyup method 사용하면 안좋음 변경가능 메서드 찾기 -->
+                    placeholder="아이디를 입력해주세요" minlength="5" maxlength="20" title="아이디를 5~20자 사이로 입력해주세요" required>
+        <!-- keyup method 사용하면 안좋음 변경가능 메서드 찾기 -->
         <div class="check_font" id="idCheck"></div><!--경고문이 들어갈 공간 -->
-       <!-- <div class="col-lg-6">
-            <span id="5char" class="glyphicon glyphicon-remove" style="color:#ff0004"></span>5글자 이상
-        </div>-->
+        <!-- <div class="col-lg-6">
+             <span id="5char" class="glyphicon glyphicon-remove" style="color:#ff0004"></span>5글자 이상
+         </div>-->
     </div>
 
     PW : <input type="password" class="input-lg form-control" id="password01" name="password"
-                                                                                           placeholder="새 비밀번호를 입력해주세요" autocomplete="off" required></br>
+                placeholder="새 비밀번호를 입력해주세요" minlength="6"
+                maxlength="12" pattern="[a-zA-Z0-9]{6,12}"
+                title="비밀번호는 영문자와 숫자, 특수기호가 적어도 1개 이상 포함된 6자~12자의 비밀번호여야 합니다."
+                autocomplete="off" required></br>
 
-    PW 확인: <input type="password" onkeyup="pwdCheck()" class="input-lg form-control" id="password02" placeholder="비밀번호를 재입력해주세요"
-                  autocomplete="off" required></br>
+    PW 확인: <input type="password" onkeyup="pwdCheck()" class="input-lg form-control" id="password02"
+                  placeholder="비밀번호를 재입력해주세요" autocomplete="off" required></br>
     <div class="row">
         <div class="col-sm-12">
             <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#2E2F34;">비밀번호 확인</span>
@@ -52,9 +57,9 @@
     <input type="submit" value="회원가입">
 
 </form>
-
+</center>
 <input type="hidden" id="check" value=""><!--아이디 중복체크-->
-<input type="hidden" id="token" th:value="${accessToken}"><!--카카오 로그인 사용자 정보 불러오기-->
+<!--<input type="hidden" id="token" th:value="${accessToken}">--><!--카카오 로그인 사용자 정보 불러오기-->
 
 </body>
 </html>
