@@ -106,8 +106,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
 	@Override
-	public void withdrawal(String userId) throws Exception {
+	public void withdrawal(String password) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.update("UserMapper.withdrawal", userId);
+		sqlSession.update("UserMapper.withdrawal", password);
 	}
 }

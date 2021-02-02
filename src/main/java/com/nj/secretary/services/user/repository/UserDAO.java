@@ -38,7 +38,7 @@ public interface UserDAO {
     public int idCheck(String userId) throws Exception;
     
     //탈퇴
-    public void withdrawal(String userId) throws Exception;
+    public void withdrawal(String password) throws Exception;
 
     //adminUser
     public List<User> getBlindedUserList();

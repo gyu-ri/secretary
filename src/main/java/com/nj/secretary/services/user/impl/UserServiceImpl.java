@@ -127,8 +127,8 @@ public class UserServiceImpl implements UserService {
     }
 
 	@Override
-	public void withdrawal(String userId) throws Exception {
-		userDAO.withdrawal(userId);
+	public void withdrawal(String password) throws Exception {
+		userDAO.withdrawal(password);
 		
 	}
 }

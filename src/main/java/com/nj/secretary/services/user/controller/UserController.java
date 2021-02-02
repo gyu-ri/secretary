@@ -317,14 +317,13 @@ public class UserController {
     @PostMapping("withdrawal")
     public String withdrawal(String userId, @RequestParam("password") String password) throws Exception{
     	System.out.println("withdrawal controller 시작 합니다 PostMapping");
-    	userService.withdrawal(userId);
-
-    	System.out.println("withdrawal에서 userId 확인::::"+userId);
-    	
-    	        
+    	userService.getUser(userId);
+  
     	        
      	userService.withdrawal(password);
      	System.out.println("withdrawal에서 password 확인::::"+password);
+     	
+     	
      	
     	return "user/withdrawal";
     }
