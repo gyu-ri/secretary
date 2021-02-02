@@ -49,7 +49,7 @@
 
     <select id="getDiaryList" resultMap="diaryServiceMap" parameterType="String">
 
-        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.IMAGE_NAME FILE_NAME FROM DIARY d, IMAGE a
+        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.IMAGE_NAME FILE_NAME,d.DIARY_TEXT, d.SHARE_STATUS FROM DIARY d, IMAGE a
         WHERE d.user_id = #{value} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+)
         ORDER BY d.diary_date desc
     </select>
@@ -92,7 +92,7 @@
         SELECT
             DISTINCT a.file_name AS file_name
         FROM DIARY d, ATTACHFILE a
-        WHERE d.diary_id=a.diary_id AND d.user_id = #{value} and a.FILE_STATUS = '0'
+        WHERE d.diary_id=a.diary_id AND d.user_id = #{value} and a.FILE_STATUS = '0'AND d.delete_status='0'
         ORDER BY file_name desc
     </select>
 
@@ -156,7 +156,7 @@
     </insert>
 
     <select id="getTagedList" parameterType="hashMap" resultMap="diaryServiceMap">
-        SELECT d.diary_id AS diary_id, d.diary_title AS diary_title, d.diary_date AS diary_date, d.weather AS weather, d.location AS location, a.file_name AS file_name
+        SELECT d.diary_id AS diary_id, d.diary_title AS diary_title, d.diary_date AS diary_date, d.weather AS weather, d.location AS location, a.file_name AS file_name, d.SHARE_STATUS AS share_status
         FROM DIARY d, ATTACHFILE a
         WHERE d.diary_id=a.diary_id AND d.user_id=#{userId} AND a.file_name=#{tag} AND d.delete_status='0'
     </select>
