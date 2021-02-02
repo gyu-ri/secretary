@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500,600">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="../../css/calendar/mainCal.css">
+    <link rel="stylesheet" href='../../css/main/main.css' />
+    <link rel="stylesheet" href='../../css/main/menu.css' />
 
 </head>
 
@@ -128,6 +130,51 @@
     </div>
     <!-- /.container -->
 
+    <div class="wrapper">
+        <input type="checkbox" id="menuToggler" class="input-toggler" />
+        <label for="menuToggler" class="menu-toggler">
+            <span class="menu-toggler__line"></span>
+            <span class="menu-toggler__line"></span>
+            <span class="menu-toggler__line"></span>
+        </label>
+        <aside class="sidebar">
+            <ul class="menu">
+                <li class="menu__item"><a class="menu__link" href="#Home">Home</a></li>
+                <li class="menu__item"><a class="menu__link" href="#Blog">Profile</a></li>
+                <li class="menu__item"><a class="menu__link" href="#Portfolio">Diary</a></li>
+                <li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
+                <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
+            </ul>
+        </aside>
+        <main class="content">
+            <div>
+                <h1>CSS sidebar toggle</h1>
+                <p>Pure CSS solution for hiding and showing sidebar.</p>
+            </div>
+            <div id="Home">
+                <h1>Home</h1>
+                <p>This is the home page.</p>
+            </div>
+            <div id="Blog">
+                <h1>Blog</h1>
+                <p>This is the blog page.</p>
+            </div>
+            <div id="Portfolio">
+                <h1>Portfolio</h1>
+                <p>This is the portfolio page.</p>
+            </div>
+            <div id="About">
+                <h1>About</h1>
+                <p>This is the about page.</p>
+            </div>
+            <div id="Contact">
+                <h1>Contact</h1>
+                <p>This is the contact page.</p>
+            </div>
+        </main>
+
+    </div>
+
     <script src="../../js/calendar/jquery.min.js"></script>
     <script src="../../js/calendar/bootstrap.min.js"></script>
     <script src="../../js/calendar/moment.min.js"></script>
@@ -139,6 +186,8 @@
     <script src="../../js/calendar/addEvent.js"></script>
     <script src="../../js/calendar/editEvent.js"></script>
     <script src="../../js/calendar/etcSetting.js"></script>
+    <script src="../../js/main/main.js"></script>
+    <script src="../../js/main/menu.js"></script>
 </body>
 
 </html>

@@ -42,12 +42,17 @@ public class MonologueDAOImpl implements MonologueDAO{
 		
 		return sqlsession.selectList("MonologueMapper.getQuestoinList");
 	}
-	
-	
+
 	@Override
-	public String getQuestionText(String questionText) throws Exception {
+	public int randomCheck(Monologue monologue) throws Exception {
+		return sqlsession.selectOne("MonologueMapper.randomCheck",monologue);
+	}
+
+
+	@Override
+	public Question getQuestionText(int questionId) throws Exception {
 		
-		return sqlsession.selectOne("MonologueMapper.getQuestionText", questionText);
+		return sqlsession.selectOne("MonologueMapper.getQuestionText", questionId);
 		// TODO Auto-generated method stub
 		
 	}

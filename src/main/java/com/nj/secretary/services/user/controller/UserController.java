@@ -1,7 +1,10 @@
 package com.nj.secretary.services.user.controller;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.monologue.domain.Monologue;
+import com.nj.secretary.services.monologue.service.MonologueService;
 import com.nj.secretary.services.user.impl.UserDAOImpl;
 import org.json.JSONObject;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -25,6 +28,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 @Controller
 @RequestMapping("/user/*")
@@ -36,6 +40,8 @@ public class UserController {
     private JavaMailSender mailSender;
     @Autowired
     private AlarmService alarmService;
+    @Autowired
+    private MonologueService monologueService;
 
     @GetMapping("/signUp")
     public String signUp() throws Exception {
@@ -66,17 +72,30 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login01(User user, HttpSession session, Model model) throws Exception {
+
+    public String login01(User user, HttpSession session,Model model,@ModelAttribute Monologue monologue) throws Exception {
+
         User dbUser = userService.getUser(user.getUserId());
+        Random random = new Random();
+        System.out.println(user+" : "+monologue);
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
+
+            while(true){
+                int ran = random.nextInt(100)+1;
+                monologue.setQuestionId(ran);
+                if(monologueService.randomCheck(monologue)==0){
+                    model.addAttribute("question",monologueService.getQuestionText(ran));
+                    return "user/afterLogin";
+                }
+            }
         }
         // 수정한 부분 시작
         int alarmCount = alarmService.alarmCount("user02");
         model.addAttribute("count", alarmCount);
         System.out.println("count check : " + alarmCount);
         // 수정한 부분 끝
-        return "user/afterLogin";
+        return "";
         //return "index";
 
     }
