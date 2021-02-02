@@ -42,7 +42,7 @@
 
     </select>
 
-    <select id="kakao" parameterType="string" resultType="Integer">
+    <select id="kakaoLogin" parameterType="string" resultType="Integer">
 
         select count(*)
         from users

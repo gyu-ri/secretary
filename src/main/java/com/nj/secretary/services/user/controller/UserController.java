@@ -34,7 +34,6 @@ import java.util.Random;
 @RequestMapping("/user/*")
 public class UserController {
 
-
     @Autowired
     private UserService userService;
     @Autowired
@@ -73,7 +72,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
+
     public String login01(User user, HttpSession session,Model model,@ModelAttribute Monologue monologue) throws Exception {
+
         User dbUser = userService.getUser(user.getUserId());
         Random random = new Random();
         System.out.println(user+" : "+monologue);
@@ -154,7 +155,7 @@ public class UserController {
 
 
     @GetMapping("/kakaologin")
-    public String kakaoGetToken(@RequestParam("code") String code, Model model,HttpSession session) throws IOException {
+    public String kakaoGetToken(@RequestParam("code") String code, Model model, HttpSession session) throws IOException {
 
         String reqURL = "https://kauth.kakao.com/oauth/token";
         System.out.println("code" + code);
@@ -178,7 +179,7 @@ public class UserController {
             bw.flush();
 
             //    결과 코드가 200이라면 성공
-            //    결과 코드가 401일시 에러 :
+            //    결과 코드가 401일시 에러
             int responseCode = conn.getResponseCode();
             System.out.println("responseCode : " + responseCode);
 
@@ -193,34 +194,34 @@ public class UserController {
             System.out.println("response body : " + result);
 
             //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
-
-            JSONObject jsonObject = new JSONObject(result);
             br.close();
             bw.close();
 
+            JSONObject jsonObject = new JSONObject(result);
             System.out.println(jsonObject);
             System.out.println(jsonObject.get("access_token"));
             System.out.println(jsonObject.get("refresh_token"));
             model.addAttribute("accessToken", jsonObject.get("access_token"));
-            Map map = UserController.getUserInfo((String) jsonObject.get("access_token"));
-
-            if ((int)map.get("check")==0){
-                model.addAttribute("userInfo",map.get("userInfo"));
+            HashMap map = getUserInfo((String)jsonObject.get("access_token"));
+            if ((int) map.get("check") == 0) {
+                model.addAttribute("userInfo", map.get("userInfo"));
                 return "user/kakao";
-            }else {
-                JSONObject abc = (JSONObject)map.get("userInfo");
-                //session.setAttribute("user",abc.get("id"));
+            } else {
+                JSONObject abc = (JSONObject) map.get("userInfo");
+                session.setAttribute("user", abc.get("id"));
                 return "user/login";
             }
 
         } catch (IOException e) {
             System.out.println("변환에 실패");
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return "";
     }
 
-    public static Map getUserInfo (String access_Token) {
+    public HashMap<String, Object> getUserInfo(String access_Token) throws Exception {
 
         //    요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
         HashMap<String, Object> userInfo = new HashMap<>();
@@ -234,7 +235,7 @@ public class UserController {
             conn.setRequestProperty("Authorization", "Bearer " + access_Token);
 
             int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : " + responseCode);
+            System.out.println("responseCode02 : " + responseCode);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
@@ -249,22 +250,16 @@ public class UserController {
             JSONObject jsonObject = new JSONObject(result);
             System.out.println(jsonObject);
 
-            System.out.println(Integer.toString((Integer)jsonObject.get("id")));
-            /*int user = userService.kakaoLogin(Integer.toString((Integer)jsonObject.get("id")));//0일때 회원가입, 1일때 로그인
-            System.out.println(user);
-            userInfo.put("userInfo",jsonObject);
-            userInfo.put("check",user);*/
-
-
+            System.out.println(jsonObject.get("id"));
+            int dbUser = userService.kakaoLogin(Integer.toString((Integer) jsonObject.get("id")));
+            userInfo.put("userInfo", jsonObject);
+            System.out.println("userInfo 있나욤?"+jsonObject);
+            userInfo.put("check", dbUser);
+            System.out.println("dbUser안에 아뒤있나욤 1 나오면 있는거야?"+dbUser);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (Exception e) {
             e.printStackTrace();
         }
-
         return userInfo;
-
     }
 
 
@@ -289,30 +284,30 @@ public class UserController {
 
         return "user/adminUser";
     }
-    
+
     @GetMapping("updateUser")
     public String updateUser(@RequestParam("userId") String userId, Model model) throws Exception{
     	System.out.println("updateUser controller 시작 합니다");
-    	
+
     	User user=userService.getUser(userId);
-    	
+
     	model.addAttribute("user",user);
-    	
+
     	System.out.println("updateUser에서 userId 확인"+userId);
-    	
+
     	System.out.println("updateUser  확인"+user);
-    	
+
     	return "user/updateUser";
     }
-    
+
     @PostMapping("updateUser")
     public String updateuser(User user, Model model) throws Exception{
     	userService.updateUser(user);
     	System.out.println("updateUser 확인::"+user);
-    	
+
     	return "user/getUser";
-    	
-    	
+
+
     }
 
     @GetMapping("getWithdrawalReasonList")
