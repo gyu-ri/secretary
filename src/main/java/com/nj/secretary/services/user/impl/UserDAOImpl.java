@@ -104,4 +104,10 @@ public class UserDAOImpl implements UserDAO {
     public List<User> getWithdrawalReasonList() {
         return sqlSession.selectList("UserMapper.getWithdrawalReasonList");
     }
+
+	@Override
+	public void withdrawal(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		sqlSession.update("UserMapper.withdrawal", userId);
+	}
 }

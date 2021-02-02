@@ -254,7 +254,7 @@ public class UserController {
     @GetMapping("/getUser")
     public String getUser(String userId, Model model, HttpSession session) throws Exception {
         System.out.println("getUser 내정보보기 Controller 시작");
-        session.setAttribute("userId", "gyuri");
+        session.setAttribute("userId", "ddd");
         User user = userService.getUser((session.getAttribute("userId")).toString());
         model.addAttribute("user", user);
         System.out.println("userId 받아오나요" + userId);
@@ -305,5 +305,27 @@ public class UserController {
 
         return "user/getWithdrawalReasonList";
 
+    }
+    
+//    @GetMapping("withdrawal")
+//    public String withdrawal() throws Exception{ 
+//    	System.out.println("withdrawal controller 시작 합니다");
+//    	
+//    	return "user/withdrawal";
+//    }
+    
+    @PostMapping("withdrawal")
+    public String withdrawal(String userId, @RequestParam("password") String password) throws Exception{
+    	System.out.println("withdrawal controller 시작 합니다 PostMapping");
+    	userService.withdrawal(userId);
+
+    	System.out.println("withdrawal에서 userId 확인::::"+userId);
+    	
+    	        
+    	        
+     	userService.withdrawal(password);
+     	System.out.println("withdrawal에서 password 확인::::"+password);
+     	
+    	return "user/withdrawal";
     }
 }

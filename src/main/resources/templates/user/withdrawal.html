@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <title>회원탈퇴</title>
+</head>
+<body>
+
+<h1>회원탈퇴</h1>
+
+<form action="withdrawal" method="post">
+<input type="hidden" name="userId" th:value="${userId}"/>
+<!-- <input type="hidden" name="password" th:value="${password}"/> -->
+비밀번호 : <input type="text" placeholder="password" name="password"/>
+
+<input type="submit" value="탈퇴">
+</form>
+</body>
+
+</html>
