@@ -230,6 +230,23 @@ public class DiaryRestController {
         return diaryService.getTagedList(map);
     }
 
+    @PostMapping("likeDiary")
+    public String likeDiary(@RequestBody Diary diary,HttpSession session){
+
+        session.setAttribute("user","윤도영");
+        diary.setUserId((String)session.getAttribute("user"));
+        System.out.println(diary);
+        if(diaryService.checkLike(diary) > 0){
+            return "이미 좋아한 일기입니다..";
+        }else{
+            if(diaryService.likeDiary(diary.getDiaryId()) == 0){
+                return "좋아하는데 문제가 발생했습니다.";
+            }
+            diaryService.addLike(diary);
+            return "좋아합니다.";
+        }
+    }
+
 
 
 }

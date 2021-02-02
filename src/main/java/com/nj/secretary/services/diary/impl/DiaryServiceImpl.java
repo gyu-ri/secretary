@@ -110,6 +110,11 @@ public class DiaryServiceImpl implements DiaryService {
     }
 
     @Override
+    public int checkLike(Diary diary) {
+        return diaryDAO.checkLike(diary);
+    }
+
+    @Override
     public Diary getDiary(int diaryNumber) {
 
         return diaryDAO.getDiary(diaryNumber);
@@ -155,5 +160,15 @@ public class DiaryServiceImpl implements DiaryService {
     @Override
     public List<Diary> getTagedList(Map map) {
         return diaryDAO.getTagedList(map);
+    }
+
+    @Override
+    public int likeDiary(int diaryId) {
+        return diaryDAO.likeDiary(diaryId);
+    }
+
+    @Override
+    public int addLike(Diary diary) {
+        return diaryDAO.addLike(diary);
     }
 }

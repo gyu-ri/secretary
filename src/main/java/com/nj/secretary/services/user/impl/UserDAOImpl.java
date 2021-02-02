@@ -39,7 +39,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public int kakaoLogin(String userId) throws Exception {
-        return sqlSession.selectOne("UserMapper.kakao", userId);
+        return sqlSession.selectOne("UserMapper.kakaoLogin", userId);
     }
 
     @Override

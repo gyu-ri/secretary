@@ -120,6 +120,10 @@ body {
   padding-top: 1em;
 }
 
+.fc-view-container{
+  background-color:#FFFFFF;
+}
+
 .fc-day {
   -webkit-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;

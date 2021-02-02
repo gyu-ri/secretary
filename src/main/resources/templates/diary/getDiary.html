@@ -29,72 +29,6 @@
             background-size: cover;
             text-align: center;
         }
-        /* The switch - the box around the slider */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-            vertical-align:middle;
-        }
-
-        /* Hide default HTML checkbox */
-        .switch input {display:none;}
-
-        /* The slider */
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input.checkbox:checked + .slider {
-            background-color: #2196F3;
-        }
-
-        input.checkbox:focus + .slider {
-            box-shadow: 0 0 1px #2196F3;
-        }
-
-        input.checkbox:checked + .slider:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
-
-        /* Rounded sliders */
-        .slider.round {
-            border-radius: 34px;
-        }
-
-        .slider.round:before {
-            border-radius: 50%;
-        }
-
-        p.toggle {
-            margin:0px;
-            display:inline-block;
-            font-size:15px;
-            font-weight:bold;
-        }
 
     </style>
     <script type="text/javascript">
@@ -213,11 +147,26 @@
                     }
                 });
             })
+
+            $("#like").on("click",function(){
+                let diaryId = {diaryId:$("#diaryId").val()}
+                $.ajax({
+                    url : "/restDiary/likeDiary",
+                    type : "POST",
+                    data :JSON.stringify(diaryId),
+                    contentType: "application/json",
+                    success: function (response){
+                        alert(response);
+                    }
+                });
+
+            })
         })
 
         function back(){
             history.go(-1);
         }
+
 
         </script>
     <script th:inline="javascript">
@@ -267,35 +216,14 @@
         <br><br>
         <div id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
         <input type="hidden" name="shareStatus" value="0">
-        <span style="float: right">
-            <span style="color: white">&#9964; 일기공유</span> &nbsp;&nbsp;
 
-            <label class="switch">
-                <input type="checkbox" name="shareStatus" class="checkbox" width="20" height="10"value="1">
-
-                <span class="slider round"></span>
-            </label>
-            <p class="toggle" value="0">OFF</p><p class="toggle" style="display:none;" value="1">ON</p>
-
-            <!--                <label class="switch" >-->
-            <!--                     <input type="checkbox" id="checkbox" onclick="toggle(this)" name="shareStatus"/>-->
-            <!--                     <span class="slider round" ></span>-->
-            <!--                </label>-->
-
-        </span>
-        <!--    <script>-->
-        <!--        function toggle(element){-->
-        <!--            console.log(element.checked);-->
-
-        <!--        }-->
-
-
-        <!--    </script>-->
 
         <br><br>
 
         <input type="submit" id="modifyDiary" value="수정">
         <span id="report">신고하기</span>
+        <span id="like">좋아요</span>
+
 
 
         <br><br><br><br>

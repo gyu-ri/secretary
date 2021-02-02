@@ -483,6 +483,7 @@
     <h1 class="pageTitle">Diary List</h1>
     <br><br>
 
+
     <div class="searchbox">
         <input type="text" onkeyup="filter()" name="searchKeyword" id="value">
         <img src="../images/diaryImage/seo-1970475_1280.png" id="searchIcon"/>
@@ -491,9 +492,9 @@
 
     <div class="tabs">
         <ul class="tab-links">
-            <li class="active"><a href="#tab1" style="font-size: 30px; text-decoration: none">&#128198;</a></li>
-            <li><a href="#" id="getTagDiaryList" style="font-size: 30px">&#128172;</a></li>
-            <li><a href="#"  id="getOthersDiaryList" style="font-size: 30px">&#128107;</a></li>
+            <li id="fisrtTab" class="active"><a href="#tab1" id="getDiaryList" style="font-size: 30px; text-decoration: none">&#128198;</a></li>
+            <li id="secondTab"><a href="#" id="getTagDiaryList" style="font-size: 30px">&#128172;</a></li>
+            <li id="thirdTab"><a href="#"  id="getOthersDiaryList" style="font-size: 30px">&#128107;</a></li>
             <li id="deleteBtn"><a href="#" style="font-size: 30px">&#128194; &#9989;</a></li>
         </ul>
     </div>
@@ -530,21 +531,24 @@
                         제목 : <span th:text="${diary.diaryTitle}">제목</span><br>
                         날짜 : <span th:text="${diary.diaryDate}">날짜</span><br>
                         날씨 :  <img th:src="${diary.weather}" width="20" height="20"/><br>
-                        위치 : <span th:text="${diary.location}">위치</span>
+                        위치 : <span th:text="${diary.location}">위치</span><br/><br/>
+                        <th:block th:if="${diary.shareStatus == '1'}">
+                            <span style="float: bottom; text-align: right">&#9964;</span>
+                        </th:block>
                     </p>
                 </a>
             </div>
         </article>
     </div>
     <br/>
-    <div class="back" id="return">
-        <div class="button_base b07_3d_double_roll" onclick="back()">
-            <div>돌아가기</div>
-            <div>돌아가기</div>
-            <div>돌아가기</div>
-            <div>돌아가기</div>
-        </div>
-    </div>
+<!--    <div class="back" id="return">-->
+<!--        <div class="button_base b07_3d_double_roll" onclick="back()">-->
+<!--            <div>돌아가기</div>-->
+<!--            <div>돌아가기</div>-->
+<!--            <div>돌아가기</div>-->
+<!--            <div>돌아가기</div>-->
+<!--        </div>-->
+<!--    </div>-->
     <div class="back" id="deleteDiary" hidden>
         <div class="button_base b07_3d_double_roll">
             <div>Delete &nbsp; Diary</div>
@@ -567,7 +571,7 @@
         $('#deleteDiary').hide();
         $('.deleteUnactive').hide();
     })
-    $(".active").click(function(){
+    $("#getDiaryList").click(function(){
 
         $.ajax({
             url : "/restDiary/getDiaryList",
@@ -576,24 +580,46 @@
             success: function (list){
                 console.log(list);
                 $("div[name='thumbnails']").remove();
+                document.getElementById('fisrtTab').setAttribute('class', 'active');
+                document.getElementById('secondTab').setAttribute('class', '');
+                document.getElementById('thirdTab').setAttribute('class', '');
+                document.getElementById('deleteBtn').setAttribute('class', '');
                 $.each(list,function(i,item){
                     console.log(item);
-                    $("#for").prepend(
-                        "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
-                        "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
-                        "<p name='backImage' style=\"background-image: url("+item.fileName+"); background-repeat: no-repeat;\">" +
-                        "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
-                        "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
-                        // "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
-                        "제목 : <span >"+item.diaryTitle+"</span><br>" +
-                        "날짜 : <span>"+item.diaryDate+"</span><br>" +
-                        "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
-                        "위치 : <span>"+item.location+"</span>" +
-                        "</p>"+
-                        "</a>"+
-                        "</div>"
-                    )
-
+                    if (item.shareStatus=='1') {
+                        $("#for").prepend(
+                            "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
+                            "<a href='/diary/getDiary?diaryNo=" + item.diaryId + "'>" +
+                            "<p name='backImage' style=\"background-image: url(" + item.fileName + "); background-repeat: no-repeat;\">" +
+                            "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='" + item.diaryId + "' style='float: left' hidden/>" +
+                            "<input type='hidden' name='diaryId' value='" + item.diaryId + "'/>" +
+                            "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
+                            "제목 : <span >" + item.diaryTitle + "</span><br>" +
+                            "날짜 : <span>" + item.diaryDate + "</span><br>" +
+                            "날씨 :  <img src='" + item.weather + "' width='20' height='20'/><br>" +
+                            "위치 : <span>" + item.location + "</span><br/><br/>" +
+                            "<span style=\"float: bottom; text-align: right\">&#9964;</span>\n" +
+                            "</p>" +
+                            "</a>" +
+                            "</div>"
+                        )
+                    }else{
+                        $("#for").prepend(
+                            "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
+                            "<a href='/diary/getDiary?diaryNo=" + item.diaryId + "'>" +
+                            "<p name='backImage' style=\"background-image: url(" + item.fileName + "); background-repeat: no-repeat;\">" +
+                            "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='" + item.diaryId + "' style='float: left' hidden/>" +
+                            "<input type='hidden' name='diaryId' value='" + item.diaryId + "'/>" +
+                            "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
+                            "제목 : <span >" + item.diaryTitle + "</span><br>" +
+                            "날짜 : <span>" + item.diaryDate + "</span><br>" +
+                            "날씨 :  <img src='" + item.weather + "' width='20' height='20'/><br>" +
+                            "위치 : <span>" + item.location + "</span><br/><br/>" +
+                            "</p>" +
+                            "</a>" +
+                            "</div>"
+                        )
+                    }
                 })
             }
         });
@@ -616,6 +642,11 @@
                 success: function (list){
                     console.log(list);
                     $("div[name='thumbnails']").remove();
+                    document.getElementById('fisrtTab').setAttribute('class', '');
+                    document.getElementById('secondTab').setAttribute('class', '');
+                    document.getElementById('thirdTab').setAttribute('class', '');
+                    document.getElementById('deleteBtn').setAttribute('class', 'active');
+
                     $.each(list,function(i,item){
                         console.log(item);
                         $("#for").prepend(
@@ -655,6 +686,10 @@
             success: function (list){
                 console.log(list);
                 $("div[name='thumbnails']").remove();
+                document.getElementById('fisrtTab').setAttribute('class', '');
+                document.getElementById('secondTab').setAttribute('class', '');
+                document.getElementById('deleteBtn').setAttribute('class', '');
+                document.getElementById('thirdTab').setAttribute('class', 'active');
                 $.each(list,function(i,item){
                     console.log(item);
                     $("#for").prepend(
@@ -750,6 +785,10 @@
             success: function (list){
                 console.log(list);
                 $("div[name='thumbnails']").remove();
+                document.getElementById('fisrtTab').setAttribute('class', '');
+                document.getElementById('secondTab').setAttribute('class', 'active');
+                document.getElementById('deleteBtn').setAttribute('class', '');
+                document.getElementById('thirdTab').setAttribute('class', '');
                 $.each(list,function(i,item){
                     console.log(item);
                     $("#for").prepend(
