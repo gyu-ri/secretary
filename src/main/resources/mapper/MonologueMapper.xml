@@ -31,11 +31,11 @@
 	</select>
 	
 	
-	<select id="getQuestionText" parameterType="String" resultMap="question">
+	<select id="getQuestionText" parameterType="integer" resultMap="question">
    
-     SELECT question_text
+     SELECT question_text,question_id
    	 FROM questions
-   	 WHERE question_text=#{questionText}
+   	 WHERE question_id=#{questionId}
 	
 	</select>
 	
@@ -171,6 +171,12 @@
 		SELECT report_reason_id, reporter_id, report_date, report_text
 		FROM report
 		WHERE monologue_id = #{value}
+	</select>
+
+	<select id="randomCheck" parameterType="com.nj.secretary.services.monologue.domain.Monologue" resultType="integer">
+		select count(m.user_id)
+		FROM questions q, monologue m
+		WHERE m.user_id=#{userId} and q.question_id=#{questionId} and m.question_id = q.question_id
 	</select>
 
 </mapper>
