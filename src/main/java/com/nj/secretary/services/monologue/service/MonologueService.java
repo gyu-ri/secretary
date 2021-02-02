@@ -17,11 +17,13 @@ public interface MonologueService {
 	
 	public void addQuestion(String questionText) throws Exception;
 	
-	public String getQuestionText(String questionText) throws Exception;
+	public Question getQuestionText(int questionId) throws Exception;
 	
 	public void deleteQuestion(int monologueId) throws Exception;
 	
 	public List<Question> getQuestionList() throws Exception;
+
+	public int randomCheck(Monologue monologue) throws Exception;
 	
 	
 	//Monologue
