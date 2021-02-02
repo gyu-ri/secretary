@@ -171,4 +171,14 @@ public class UserRestController {
     	
     	return user;
     }
+    
+    @PostMapping("withdrawalReason")
+    public String withdrawalReason(@RequestBody User user) throws Exception {
+    	//user.setWithdrawalReasonId(withdrawalReasonId);
+    	userService.withdrawalReason(user);
+    	    	
+    	System.out.println("restController에서 탈퇴사유 확이이이인::::"+user);
+    	return "";
+    	
+    }
 }

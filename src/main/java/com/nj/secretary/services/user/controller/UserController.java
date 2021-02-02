@@ -266,7 +266,7 @@ public class UserController {
     @GetMapping("/getUser")
     public String getUser(String userId, Model model, HttpSession session) throws Exception {
         System.out.println("getUser 내정보보기 Controller 시작");
-        session.setAttribute("userId", "ddd");
+        session.setAttribute("userId", "aaa");
         User user = userService.getUser((session.getAttribute("userId")).toString());
         model.addAttribute("user", user);
         System.out.println("userId 받아오나요" + userId);
@@ -320,24 +320,39 @@ public class UserController {
 
     }
     
-//    @GetMapping("withdrawal")
-//    public String withdrawal() throws Exception{ 
-//    	System.out.println("withdrawal controller 시작 합니다");
-//    	
-//    	return "user/withdrawal";
-//    }
-    
-    @PostMapping("withdrawal")
-    public String withdrawal(String userId, @RequestParam("password") String password) throws Exception{
-    	System.out.println("withdrawal controller 시작 합니다 PostMapping");
-    	userService.getUser(userId);
-  
-    	        
-     	userService.withdrawal(password);
-     	System.out.println("withdrawal에서 password 확인::::"+password);
-     	
-     	
-     	
+    @GetMapping("withdrawal")
+    public String withdrawal() throws Exception{ 
+    	System.out.println("withdrawal controller 시작 합니다");
+    	
     	return "user/withdrawal";
     }
+    
+    @PostMapping("withdrawal")
+    public String withdrawal(@RequestParam("password") String password, Model model, HttpSession session) throws Exception{
+    	System.out.println("withdrawal controller 시작 합니다");
+    	User user02=new User();
+    	user02.setUserId("aaa");
+    	
+    	session.setAttribute("user", user02);
+    	User user=(User)session.getAttribute("user");
+    	
+    	model.addAttribute("user",user);
+    	    	
+    	User user01=userService.getUser(user.getUserId());
+    	
+    	if(user01.getPassword().equals(password)) {
+    		System.out.println("password 맞나 확인");
+    		userService.withdrawal(user01);
+    	}else {
+			System.out.println("틀림");
+			
+			return "user/updateUser";
+    		
+		}
+    	
+    	
+    	
+    	return "user/withdrawal";
+    }
+
 }
