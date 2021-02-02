@@ -88,6 +88,9 @@ public class UserController {
                     model.addAttribute("question",monologueService.getQuestionText(ran));
                     return "user/afterLogin";
                 }
+                if(monologueService.randomCheck(monologue)==100){
+                    return "user/afterLogin";
+                }
             }
         }
         // 수정한 부분 시작

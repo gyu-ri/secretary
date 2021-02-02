@@ -17,6 +17,7 @@
     <link rel="stylesheet" href='../../css/main/menu.css' />
     <script src="../../js/main/main.js"></script>
     <script src="../../js/main/menu.js"></script>
+    <script src="https://use.fontawesome.com/b51c131c86.js"></script>
 
 </head>
 
@@ -63,7 +64,9 @@
 <div id="temparature"></div>
 <img src="" id="img"/>
 <div id="location" >&#127759;          </div>
-
+<header>
+    <div id="clock"></div>
+</header>
 <div class="wrapper">
 
     <input type="checkbox" id="menuToggler" class="input-toggler" />
@@ -81,13 +84,30 @@
             <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
         </ul>
     </aside>
+    <!----- close button ----->
+    <div class="close">
+        <i class="fa fa-times"></i>
+    </div>
+    <div class="icon">
+        <i class="fa fa-book"></i>
+    </div>
+
+    <!---- search field ------->
+    <div class="search">
+        <h1 id="question" th:value="${question.questionId}" th:text="${question.questionText}"></h1><br/><br/>
+        <label>
+            <textarea  class="input"></textarea>
+        </label>
+    </div>
 
     <main class="content">
-        <span id="clock"></span>
+
+
         <div>
-            <h1 id="question" th:value="${question.questionId}" th:text="${question.questionText}">안녕안녕</h1>
-            <p>Pure CSS solution for hiding and showing sidebar.</p>
+            <p>Something you can add here</p>
         </div>
+
+
         <!--        <div id="Home">-->
         <!--            <h1>Home</h1>-->
         <!--            <p>This is the home page.</p>-->
