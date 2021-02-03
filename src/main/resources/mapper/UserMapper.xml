@@ -101,7 +101,20 @@
     
     <update id="updateUser" parameterType="com.nj.secretary.services.user.domain.User" >
     	UPDATE users
-		SET user_name=#{userName},nickname=#{nickname},email=#{email},motto=#{motto}
+		SET user_name=#{userName},nickname=#{nickname},email=#{email},motto=#{motto}, password=#{password}
 		WHERE user_id=#{userId}
     </update>
+    
+    <update id="withdrawal" parameterType="com.nj.secretary.services.user.domain.User">
+   		 UPDATE users
+		 SET withdrawal_status=1, withdrawal_DATE=SYSDATE
+		 WHERE user_id=#{userId} AND password=#{password}
+	</update>
+	
+	<insert id="withdrawalReason" parameterType="com.nj.secretary.services.user.domain.User">
+		INSERT
+		INTO WITHDRAWALREASONS(withdrawal_reason_id, withdrawal_reason_type, withdrawal_reason_text)
+		VALUES (withdrawalreasons_seq.NEXTVAL,#{withdrawalReasonType},#{withdrawalReasonText});
+	
+	</insert>
 </mapper>

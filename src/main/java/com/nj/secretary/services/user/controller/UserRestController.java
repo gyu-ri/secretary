@@ -164,4 +164,21 @@ public class UserRestController {
         return 1;
     }
 
+    @PostMapping("updateUser")
+    public User updateuser(User user, Model model) throws Exception{
+    	userService.updateUser(user);
+    	System.out.println("updateUser 확인::"+user);
+    	
+    	return user;
+    }
+    
+    @PostMapping("withdrawalReason")
+    public String withdrawalReason(@RequestBody User user) throws Exception {
+    	//user.setWithdrawalReasonId(withdrawalReasonId);
+    	userService.withdrawalReason(user);
+    	    	
+    	System.out.println("restController에서 탈퇴사유 확이이이인::::"+user);
+    	return "";
+    	
+    }
 }

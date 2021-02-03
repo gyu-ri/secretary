@@ -125,4 +125,17 @@ public class UserServiceImpl implements UserService {
     public List<User> getWithdrawalReasonList() {
         return userDAO.getWithdrawalReasonList();
     }
+
+	@Override
+	public void withdrawal(User user) throws Exception {
+		userDAO.withdrawal(user);
+		
+	}
+
+	@Override
+	public void withdrawalReason(User user) throws Exception {
+		// TODO Auto-generated method stub
+		userDAO.withdrawalReason(user);
+		
+	}
 }

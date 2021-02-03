@@ -49,6 +49,12 @@ public interface UserService{
 
     //idCheck
     public int idCheck(String userId) throws Exception;
+    
+    //탈퇴
+    public void withdrawal(User user) throws Exception;
+    
+    //탈퇴사유
+    public void withdrawalReason(User user) throws Exception;
 
     //adminUser
     public List<User> getBlindedUserList();
