@@ -8,6 +8,7 @@ import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.diary.domain.Translate;
 import com.nj.secretary.services.diary.service.DiaryService;
 import com.nj.secretary.services.monologue.domain.Monologue;
+import com.nj.secretary.services.user.domain.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -191,8 +192,8 @@ public class DiaryRestController {
     @PostMapping("reportDiary")
     public String reportDiary(@RequestBody Report report,HttpSession session){
         System.out.println(report);
-        session.setAttribute("user","user02");
-        report.setReporterId((String)session.getAttribute("user"));
+        User user =(User)session.getAttribute("user");
+        report.setReporterId(user.getUserId());
 
         if(diaryService.checkReporter(report) > 0){
             return "이미 신고한 일기입니다.";
@@ -220,10 +221,9 @@ public class DiaryRestController {
     @GetMapping("getTagedList")
     public List<Diary> getTagedList(@RequestParam("tag") String tag, Model model, HttpSession session){
         System.out.println("getTagedList parameter check : " + tag);
-        session.setAttribute("userId", "윤도영");
-        String userId = (String) session.getAttribute("userId");
+        User user =(User)session.getAttribute("user");
         Map map = new HashMap();
-        map.put("userId", userId);
+        map.put("userId", user.getUserId());
         map.put("tag", tag);
 
 
@@ -233,8 +233,8 @@ public class DiaryRestController {
     @PostMapping("likeDiary")
     public String likeDiary(@RequestBody Diary diary,HttpSession session){
 
-        session.setAttribute("user","윤도영");
-        diary.setUserId((String)session.getAttribute("user"));
+        User user =(User)session.getAttribute("user");
+        diary.setUserId(user.getUserId());
         System.out.println(diary);
         if(diaryService.checkLike(diary) > 0){
             return "이미 좋아한 일기입니다..";

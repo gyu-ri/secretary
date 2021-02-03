@@ -5,12 +5,14 @@ import com.nj.secretary.services.calendar.domain.IsDiary;
 import com.nj.secretary.services.calendar.service.CalendarService;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.service.DiaryService;
+import com.nj.secretary.services.user.domain.User;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,13 +29,15 @@ public class CalendarRestController {
     DiaryService diaryService;
     @GetMapping("getCalendarList")
     public List getCalendarList(@RequestParam("startDate") String start,
-                                     @RequestParam("endDate") String end) {
+                                @RequestParam("endDate") String end,
+                                HttpSession session) {
         System.out.println("getCalendarList Rest Start");
+        User user = (User)session.getAttribute("user");
         Calendar calendar = new Calendar();
         Map<String, List> map = new HashMap<String, List>();
         calendar.setStart(start);
         calendar.setEnd(end);
-        calendar.setUsername("윤도영");
+        calendar.setUsername(user.getUserId());
         System.out.println(calendar);
         List<Calendar> calendarList = calendarService.getCalendarList(calendar);
         List<IsDiary> diaryList = diaryService.getDiaryEmotion(calendar);
