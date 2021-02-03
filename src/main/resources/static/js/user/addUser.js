@@ -19,16 +19,6 @@ function idCheck() {
                 $("#submit").attr("disabled", true);
             }
 
-            /*if($("#password1").val().length >= 8){
-                $("#8char").removeClass("glyphicon-remove");
-                $("#8char").addClass("glyphicon-ok");
-                $("#8char").css("color","#00A41E");
-            }else{
-                $("#8char").removeClass("glyphicon-ok");
-                $("#8char").addClass("glyphicon-remove");
-                $("#8char").css("color","#FF0004");
-            }*/
-
         }, error: function () {
             console.log("실패");
         }
@@ -95,6 +85,10 @@ function pwdCheck(){
     }
 }
 
+function validate(){
+    let getUserId = RegExp()
+    let getPwd = RegExp()
+}
 //Kakao.init('b924b1b6cefccb2c71d88231552b32a8');
 
 /*
@@ -124,3 +118,18 @@ $(document).ready(function (){
             }
         });
 })*/
+
+$(".close-btn").click(function(){
+    TweenMax.from("#container", .4, { scale: 1, ease:Sine.easeInOut});
+    TweenMax.to("#container", .4, { left:"0px", scale: 0, ease:Sine.easeInOut});
+    $("#container, #forgotten-container").fadeOut(800, function(){
+        $("#login-button").fadeIn(800);
+    });
+});
+
+/* Forgotten Password */
+$('#forgotten').click(function(){
+    $("#container").fadeOut(function(){
+        $("#forgotten-container").fadeIn();
+    });
+});
