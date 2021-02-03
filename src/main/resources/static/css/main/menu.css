@@ -15,7 +15,7 @@ html {
 }
 
 .wrapper {
-    min-height: 100vh;
+    min-height: 80vh;
     min-width: 100vw;
     /*background: AliceBlue;*/
     display: flex;
@@ -48,8 +48,11 @@ html {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+}
+.content div{
+    margin-top: 10%;
 }
 
 .content div[id] {

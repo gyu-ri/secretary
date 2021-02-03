@@ -6,7 +6,8 @@ $(function() {
         var minutes = nTime.getMinutes();
 
         var time = (hour >= 12 ? "PM  " : "AM  ")
-            + (hour < 10 ? "0" + (hour - 12) : hour) + ":"
+            + (hour < 10 ? "0" + hour : (hour<=12 ? hour : "0"+(hour-12))) + ":"
+
             + (minutes >= 10 ? minutes : "0" + minutes);
 
         $("#clock").text(time);
@@ -318,27 +319,4 @@ $(function geoFindMe() {
                 $('#weather').attr("value", imgURL);
             });
     }
-});
-
-$(function(){
-    var search_button = $('.fa-book'),
-        close_button  = $('.close'),
-        input = $('.input'),
-        question = $('#question');
-
-    search_button.on('click',function(){
-        alert("search button");
-        $(".search").addClass('open');
-        close_button.fadeIn(500);
-        input.fadeIn(500);
-        question.fadeIn(500);
-    });
-
-    close_button.on('click',function(){
-        alert("search close")
-        $(".search").removeClass('open');
-        close_button.fadeOut(500);
-        input.fadeOut(500);
-        question.fadeOut(500);
-    });
 });
