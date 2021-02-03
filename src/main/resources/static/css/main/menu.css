@@ -1,5 +1,5 @@
 :root {
-    --sidebar-width: 300px;
+    --sidebar-width: 250px;
     --toggler-size: 40px;
 }
 
@@ -23,14 +23,15 @@ html {
 
 .sidebar {
     width: var(--sidebar-width);
+    height: 1600px;
     transform: translateX(calc(var(--sidebar-width) * -1));
     background: linear-gradient(to bottom right, #ffffff, #424141);
     background-size: 400% 400%;
     background-position: 90% 90%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: absolute;
+    align-items: start;
+    position: fixed;
     top: 0;
     bottom: 0;
     opacity: 0.5;
@@ -61,10 +62,11 @@ html {
 
 .menu__link {
     color: #050505;
-    font-weight: 100;
+    font-weight: 80;
     text-decoration: none;
-    font-size: 3rem;
+    font-size: 2rem;
     line-height: 5rem;
+    margin-top: 15px;
 }
 
 .menu__link:hover,
@@ -137,6 +139,6 @@ html {
 
 
 @keyframes slidein {
-    from {left: -200%; right:200%;}
-    to {left: 0; right: 0;}
+    from {left: -100%; right:100%;}
+    to {left: 10%; right: 10%;}
 }
