@@ -63,7 +63,9 @@
 <!--                    </div>-->
                     <div class="row people">
                         <div class="col-md-4 col-lg-3 item" th:each="diary : ${list}">
+
                             <div class="box" th:style="'background-image:url('+${diary.fileName}+'); background-repeat:no-repeat; background-size: cover;'">
+                                <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left"/>
                                 <div class="cover">
                                     <h3 class="name" th:text="${diary.diaryTitle}">제목</h3>
                                     <p class="title" th:text="${diary.diaryDate}">날짜</p>

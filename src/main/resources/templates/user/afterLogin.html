@@ -84,26 +84,12 @@
             <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
         </ul>
     </aside>
-    <!----- close button ----->
-    <div class="close">
-        <i class="fa fa-times"></i>
-    </div>
-    <div class="icon">
-        <i class="fa fa-book"></i>
-    </div>
-
-    <!---- search field ------->
-    <div class="search">
-        <h1 id="question" th:value="${question.questionId}" th:text="${question.questionText}"></h1><br/><br/>
-        <label>
-            <textarea  class="input"></textarea>
-        </label>
-    </div>
 
     <main class="content">
 
 
         <div>
+            <h1 id="question" th:value="${question.questionId}" th:text="${question.questionText}"></h1><br/>
             <p>Something you can add here</p>
         </div>
 
