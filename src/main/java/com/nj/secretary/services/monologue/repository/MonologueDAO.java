@@ -2,6 +2,7 @@ package com.nj.secretary.services.monologue.repository;
 
 import java.util.List;
 
+import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.domain.Question;
 
@@ -44,6 +45,7 @@ public interface MonologueDAO {
 	
 	public List<Monologue> getMonologueReportReason(int monologueId);
 	
+	public void monologueReport(Report report) throws Exception;
 	
 	
 	

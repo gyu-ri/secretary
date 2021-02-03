@@ -2,6 +2,7 @@ package com.nj.secretary.services.monologue.impl;
 
 import java.util.List;
 
+import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.monologue.domain.Monologue;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -144,5 +145,11 @@ public class MonologueDAOImpl implements MonologueDAO{
 	@Override
 	public List<Monologue> getMonologueReportReason(int monologueId) {
 		return sqlsession.selectList("MonologueMapper.getMonologueReportReason", monologueId);
+	}
+
+	@Override
+	public void monologueReport(Report report) throws Exception {
+		sqlsession.insert("MonologueMapper.monologueReport", report);
+		
 	}
 }

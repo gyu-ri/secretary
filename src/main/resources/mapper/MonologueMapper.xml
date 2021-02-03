@@ -178,7 +178,12 @@
 		FROM questions q, monologue m
 		WHERE m.user_id=#{userId} and q.question_id=#{questionId} and m.question_id = q.question_id
 	</select>
-
+	
+	<insert id="monologueReport" parameterType="com.nj.secretary.services.diary.domain.Report">
+		INSERT
+		INTO REPORT(report_id, report_reason_id, monologue_id, report_date, report_text, reporter_id)                                               
+		VALUES(report_seq.NEXTVAL,#{reportReasonId}, #{monologueId},SYSDATE, #{reportText}, #{reporterId})
+ 	</insert>
 </mapper>
 
 

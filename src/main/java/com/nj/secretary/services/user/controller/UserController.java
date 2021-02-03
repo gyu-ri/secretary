@@ -350,11 +350,7 @@ public class UserController {
 			System.out.println("틀림");
 			
 			return "user/updateUser";
-    		
 		}
-    	
-    	
-    	
     	return "user/withdrawal";
     }
 
