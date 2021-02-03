@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="../../css/user/login.css">
+<script src="../../js/user/login.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
 <script>
@@ -10,58 +12,39 @@
     console.log(Kakao.isInitialized());
 </script>
 
-<script th:inline="javascript">
-    function loginWithKakao() {
-        Kakao.Auth.authorize({
-            redirectUri: 'http://localhost:9090/user/kakaologin' //토큰을 가지고 가는 경로
-        })
-    }
-
-</script>
 <head>
     <link rel="shortcut icon" href="#">
     <meta charset="UTF-8">
     <title>login</title>
 </head>
-<style>
-    body {
-        background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-    }
-</style>
+
 <body>
-<h3>login</h3>
+<div id="container" style="display: block; transform: matrix(1,0,0,1,0,0); left: 0px;">
+<h2>login</h2>
 <form action="login" method="post">
 
-    id       : <input type="text" name="userId" placeholder="아이디를 입력해주세요" required/>  </br>
-    password : <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required/>  </br>
+    <input type="text" name="userId" placeholder="아이디를 입력해주세요" required/>  </br>
+    <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required/>  </br>
 
     <input type="submit" value="로그인"/>
 
+    <a id="custom-login-btn" href="javascript:loginWithKakao()">
+        <img
+                src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+                width="100"
+        />
+    </a>
 </form>
-
-<!--<form action="/kakaoLogin">-->
-
-<!--    <input type="submit" name="buttonTest">-->
-
-<!--</form>-->
+</div>
 
 <p id="token-result"></p>
 
-<a id="custom-login-btn" href="javascript:loginWithKakao()">
-    <img
-            src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-            width="150"
-    />
-</a>
 
-<a id="testUserInfo" href="javascript:userInfo()">test</a>
+<!--<a id="testUserInfo" href="javascript:userInfo()">test</a>-->
 
 <span th:text="${code}"></span>
 
-<a id="kakao-login-btn"></a>
+<!--<a id="kakao-login-btn"></a>-->
 
 </body>
 
