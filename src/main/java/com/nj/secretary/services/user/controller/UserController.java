@@ -269,7 +269,7 @@ public class UserController {
     @GetMapping("/getUser")
     public String getUser(String userId, Model model, HttpSession session) throws Exception {
         System.out.println("getUser 내정보보기 Controller 시작");
-        session.setAttribute("userId", "aaa");
+        session.setAttribute("userId", "bbb");
         User user = userService.getUser((session.getAttribute("userId")).toString());
         model.addAttribute("user", user);
         System.out.println("userId 받아오나요" + userId);

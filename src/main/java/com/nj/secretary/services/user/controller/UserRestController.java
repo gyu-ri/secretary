@@ -178,7 +178,7 @@ public class UserRestController {
     	userService.withdrawalReason(user);
     	    	
     	System.out.println("restController에서 탈퇴사유 확이이이인::::"+user);
-    	return "";
+    	return "탈퇴가 완료 되었습니다.";
     	
     }
 }

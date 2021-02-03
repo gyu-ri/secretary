@@ -114,7 +114,7 @@
 	<insert id="withdrawalReason" parameterType="com.nj.secretary.services.user.domain.User">
 		INSERT
 		INTO WITHDRAWALREASONS(withdrawal_reason_id, withdrawal_reason_type, withdrawal_reason_text)
-		VALUES (withdrawalreasons_seq.NEXTVAL,#{withdrawalReasonType},#{withdrawalReasonText});
+		VALUES (withdrawalreasons_seq.NEXTVAL,#{withdrawalReasonType},#{withdrawalReasonText})
 	
 	</insert>
 </mapper>
