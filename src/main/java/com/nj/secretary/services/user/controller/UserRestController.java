@@ -16,6 +16,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 @RestController//반환 값이 단순 문자열과 Json이다.
 @RequestMapping("/restUser/*")
 public class UserRestController {
@@ -164,12 +166,12 @@ public class UserRestController {
         return 1;
     }
 
-    @PostMapping("updateUser")
-    public User updateuser(User user, Model model) throws Exception{
-    	userService.updateUser(user);
-    	System.out.println("updateUser 확인::"+user);
+    @PostMapping("changePassword")
+    public String changePassword(@RequestBody User user) throws Exception{
+    	userService.changePassword(user);
+    	System.out.println("changePassword 확인::"+user);
     	
-    	return user;
+    	return "변경이 완료 되었습니다.";
     }
     
     @PostMapping("withdrawalReason")

@@ -138,4 +138,9 @@ public class UserServiceImpl implements UserService {
 		userDAO.withdrawalReason(user);
 		
 	}
+
+	@Override
+	public void changePassword(User user) throws Exception {
+		userDAO.changePassword(user);
+	}
 }

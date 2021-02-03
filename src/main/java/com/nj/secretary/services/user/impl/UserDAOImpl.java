@@ -117,4 +117,10 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.insert("UserMapper.withdrawalReason", user);
 		
 	}
+
+	@Override
+	public void changePassword(User user) throws Exception {
+		sqlSession.update("UserMapper.changePassword", user);
+		
+	}
 }
