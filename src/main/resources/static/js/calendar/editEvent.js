@@ -83,7 +83,7 @@ var editEvent = function (event, element, view) {
             end: displayDate,
             description: editDesc.val(),
             type: editType.val(),
-            username: '윤도영',
+            username: '',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: statusAllDay

@@ -63,8 +63,10 @@ public class CalendarRestController {
         return allList;
     }
     @PostMapping("addCalendar")
-    public void addCalendar(@RequestBody Calendar calendar){
+    public void addCalendar(@RequestBody Calendar calendar,HttpSession session){
         System.out.println(calendar);
+        User user = (User)session.getAttribute(("user"));
+        calendar.setUsername(user.getUserId());
         System.out.println("addCalendar Start.");
         calendar.setStart(calendar.getStart().replace(" ","T"));    //for FullCalendar format
         calendar.setEnd(calendar.getEnd().replace(" ","T"));    //for FullCalendar format
@@ -74,8 +76,10 @@ public class CalendarRestController {
     }
 
     @PostMapping("updateCalendar")
-    public void updateCalendar(@RequestBody Calendar calendar){
+    public void updateCalendar(@RequestBody Calendar calendar,HttpSession session){
         System.out.println(calendar);
+        User user = (User)session.getAttribute(("user"));
+        calendar.setUsername(user.getUserId());
         System.out.println("updateCalendar Start");
         calendar.setStart(calendar.getStart().replace(" ","T"));    //for FullCalendar format
         calendar.setEnd(calendar.getEnd().replace(" ","T"));    //for FullCalendar format
