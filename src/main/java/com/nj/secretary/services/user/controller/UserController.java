@@ -286,7 +286,7 @@ public class UserController {
     public String getUser(String userId, Model model, HttpSession session) throws Exception {
         System.out.println("getUser 내정보보기 Controller 시작");
 
-        session.setAttribute("userId", "gydms");
+        session.setAttribute("userId", "gyuri");
 
         User user = userService.getUser((session.getAttribute("userId")).toString());
         model.addAttribute("user", user);

@@ -64,8 +64,42 @@ $("#password-modal-open").on("click",function(){
 
 </script>
  
+ <script>
+$(function(){
+$("#changeUser").on("click",function(){
+	$("#pwdCheck-modal").modal("show");
+	})
+
+ $("#sendPwdCheck").on("click",function(e){
+
+                if($("#password").val() == $("#dbpassword").val()){
+                	let text = {
+                        	password : $("#password").val(),
+                        	userId : $("#userId").val()
+                        };
+                    $.ajax({
+                        url : "/restUser/pwdCheck",
+                        type : "POST",
+                        data :JSON.stringify(text),
+                        contentType: "application/json",
+                        success: function (response){
+                            alert(response);
+                        }
+                    });
+                    $("#updateUser").submit();
+                    //location.href="updateUser";
+            
+                }else{
+                    alert("입력하신 비밀번호가 일치하지 않습니다.")
+                  
+                }
+
+            })
     
-    
+        });
+
+</script>
+
 
 
 </head>
@@ -73,8 +107,8 @@ $("#password-modal-open").on("click",function(){
 <body>
 <div id="container" style="display: block; transform: matrix(1,0,0,1,0,0); left: 0px;">
 <h2> My Profile</h2>
-<form action="updateUser" method="get">
-<input type="hidden" name="password" th:value="${user.password}"/>
+<form action="updateUser" method="get" id="updateUser">
+<input type="hidden" name="password" th:value="${user.password}" id="dbpassword"/>
 <input type="hidden" name="userId" th:value="${user.userId}" id="userId"/>
 
 <div class="profile">
@@ -85,13 +119,30 @@ $("#password-modal-open").on("click",function(){
 좌우명 : <span th:text = "${user.motto}" name="motto"/></br>
 </div>
 
-<input type="submit" value="내정보수정">
 
 </form>
 
-<button type="button" id="password-modal-open">☆비밀번호변경☆</button>
+<button type="button" id="changeUser">☆내정보수정☆</button>
+
 </div>
 
+<div id="pwdCheck-modal" class="modal fade" tabindex="-1" role="dialog">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+	
+	<p>비밀번호를 입력해주세요</p>
+	<input type="password" class="input-lg form-control" th:value=${password} 
+			name="password" id="password" placeholder="비밀번호를 입력해주세요" autocomplete="off" required>
+	 <div class="password-modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		<button type="button" class="btn btn-primary" data-dismiss="modal" id="sendPwdCheck">OK</button>
+	</div>
+</div>
+</div>
+</div>
+
+
+<!-- <button type="button" id="password-modal-open">☆비밀번호변경☆</button>
 <div id="password-modal" class="modal fade" tabindex="-1" role="dialog">
 <div class="modal-dialog" role="document">
 	<div class="modal-content">
@@ -113,16 +164,7 @@ $("#password-modal-open").on("click",function(){
 </div>
 </div>
 </div>
-
-
-<script type="text/javascript">
-$("#password-modal-open").on("click",function(){
-	$("#password-modal").modal("show");
-})
-
-
-
-
+ -->
 
 
 
