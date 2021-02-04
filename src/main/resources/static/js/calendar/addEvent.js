@@ -43,11 +43,11 @@ var newEvent = function (start, end, eventType) {
             end: editEnd.val(),
             description: editDesc.val(),
             type: editType.val(),
-            username: '윤도영',
+            username: '',
             backgroundColor: editColor.val(),
             textColor: '#ffffff',
             allDay: '0',
-            imageUrl:'../../images/background (1).jpg'
+            imageUrl:''
         };
 
         if (eventData.start > eventData.end) {

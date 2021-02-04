@@ -61,17 +61,28 @@
 <!--                        <h2 class="text-center">Team </h2>-->
 <!--                        <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet.  </p>-->
 <!--                    </div>-->
-                    <div class="row people">
-                        <div class="col-md-4 col-lg-3 item" th:each="diary : ${list}">
-
-                            <div class="box" th:style="'background-image:url('+${diary.fileName}+'); background-repeat:no-repeat; background-size: cover;'">
-                                <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left"/>
+                    <div class="listDiary">
+                        <div name="listSet" class="col-md-4 col-lg-3 item" th:each="diary : ${list}">
+<!--                            <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left;" hidden/>-->
+                            <div class="box" th:if="${diary.fileName} != null" th:style="'background-image:url('+${diary.fileName}+'); background-repeat:no-repeat; background-size: cover;'">
+                                <a  th:href="@{/diary/getDiary(diaryNo=${diary.diaryId})}">
+                                    <div class="cover">
+                                        <h3 class="name" th:text="${diary.diaryTitle}">제목</h3>
+                                        <p class="title" th:text="${diary.diaryDate}">날짜</p>
+                                        <img th:src="${diary.weather}" width="30px" height="30px"/>
+                                        <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="box" th:if="${diary.fileName} == null" th:style="'background-image:url(/images/icon/book.png); background-repeat:no-repeat; background-size: cover;'">
+                                <a  th:href="@{/diary/getDiary(diaryNo=${diary.diaryId})}">
                                 <div class="cover">
                                     <h3 class="name" th:text="${diary.diaryTitle}">제목</h3>
                                     <p class="title" th:text="${diary.diaryDate}">날짜</p>
                                     <img th:src="${diary.weather}" width="30px" height="30px"/>
                                     <div class="social"><a href="#"><i class="fa fa-facebook-official"></i></a><a href="#"><i class="fa fa-twitter"></i></a><a href="#"><i class="fa fa-instagram"></i></a></div>
                                 </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -112,7 +123,7 @@
             <div>Delete &nbsp; Diary</div>
         </div>
     </div>
-    <input type="hidden" id="userId" th:value="${user}" hidden/>
+    <input type="hidden" id="userId" th:value="${user.userId}" hidden/>
     <br/><br/><br/><br/>
 </form>
 
@@ -124,9 +135,9 @@
 </label>
 <aside class="sidebar">
     <ul class="menu">
-        <li class="menu__item"><a class="menu__link" href="#Home">Home</a></li>
+        <li class="menu__item"><a class="menu__link" href="/user/login">Home</a></li>
         <li class="menu__item"><a class="menu__link" href="#Blog">Profile</a></li>
-        <li class="menu__item"><a class="menu__link" href="#Portfolio">Diary</a></li>
+        <li class="menu__item"><a class="menu__link" href="/diary/getDiaryList">Diary</a></li>
         <li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
         <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
     </ul>

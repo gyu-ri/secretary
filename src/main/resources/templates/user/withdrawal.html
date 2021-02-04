@@ -7,12 +7,20 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>회원탈퇴</title>
     
+    
+  
+  
+    
      <script>
         $(function(){
             $("#withdrawal").on("click",function(){
                 $("#eventModal").modal("show");
             })
-
+            
+       /*      $("#next").on("click",function(){
+            	$("eventModal").modal("show");
+            })
+ */
             $("#send").on("click",function(e){
 
                 if($("input:checkbox[name='reason']:checked").length > 1){
@@ -40,7 +48,6 @@
     
     
     
-    
    </script>
     
     
@@ -60,7 +67,33 @@
 <!-- <input type="hidden" name="password" th:value="${password}"/> -->
 비밀번호 : <input type="text" placeholder="password" name="password"/>
 
-<span id="withdrawal">탈퇴</span>
+<button type="button" class="btn btn-primary" id="withdrawal">탈퇴</button>
+
+</form>
+
+
+<!-- 
+<div class="modal fade" tabindex="-1" role="dialog" id="guideModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                       		   회원 탈퇴시 일주일간 계정이 휴면상태로 전환 됩니다.</br>
+                         	   휴면기간 내에 로그인시 게정이 복구 되며, 휴면기간이 지나면 영구 삭제 됩니다.</br>
+                        	   정말 탈퇴를 하시겠습니까?</br>
+            </div>
+            <div class="modal-footer modalBtnContainer-addEvent">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="next">OK</button>
+            </div>
+        </div>/.modal-content
+    </div>/.modal-dialog
+</div>/.modal
+ -->
 
 
 <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
@@ -74,8 +107,6 @@
                 <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
-
-
                 <div class="row">
                     <div class="col-xs-12">
                         <label class="cdl-xs-12">사유 선택</label>
@@ -91,13 +122,13 @@
             </div>
             <div class="modal-footer modalBtnContainer-addEvent">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-primary" data-dismiss="modal" id="send">OK</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="send">OK</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-</form>
+
 
 </body>
 

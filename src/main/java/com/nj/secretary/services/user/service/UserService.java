@@ -55,6 +55,9 @@ public interface UserService{
     
     //탈퇴사유
     public void withdrawalReason(User user) throws Exception;
+    
+    //비번 변경
+    public void changePassword(User user) throws Exception;
 
     //adminUser
     public List<User> getBlindedUserList();

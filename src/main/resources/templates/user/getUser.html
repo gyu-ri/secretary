@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <script src="../../js/user/passwordCheck.js"></script>
         <!-- include libraries(jQuery, bootstrap) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="../../css/user/getUser.css">
@@ -29,6 +30,44 @@ $(function(){
 })
 
 </script> -->
+
+<script>
+$(function(){
+$("#password-modal-open").on("click",function(){
+	$("#password-modal").modal("show");
+	})
+
+ $("#sendPassword").on("click",function(e){
+
+                if($("#password01").val() == $("#password02").val()){
+                	let text = {
+                        	password : $("#password02").val(),
+                        	userId : $("#userId").val()
+                        };
+                    $.ajax({
+                        url : "/restUser/changePassword",
+                        type : "POST",
+                        data :JSON.stringify(text),
+                        contentType: "application/json",
+                        success: function (response){
+                            alert(response);
+                        }
+                    });
+                }else{
+                    alert("입력하신 비밀번호가 일치하지 않습니다.")
+                  
+                }
+
+            })
+    
+        });
+
+</script>
+ 
+    
+    
+
+
 </head>
 
 <body>
@@ -36,7 +75,7 @@ $(function(){
 <h2> My Profile</h2>
 <form action="updateUser" method="get">
 <input type="hidden" name="password" th:value="${user.password}"/>
-<input type="hidden" name="userId" th:value="${user.userId}"/>
+<input type="hidden" name="userId" th:value="${user.userId}" id="userId"/>
 
 <div class="profile">
 이름 : <span th:text = "${user.userName}" name="userName"/></br>
@@ -58,8 +97,15 @@ $(function(){
 	<div class="modal-content">
 	
 	<p>비밀번호를 입력해주세요</p>
-	<input type="text" th:value=${password} name="password" placeholder="password" required>
-	
+	<input type="password" class="input-lg form-control" th:value=${password} 
+			name="password" id="password01" placeholder="새 비밀번호를 입력해주세요" autocomplete="off" required>
+	<input type="password" class="input-lg form-control" onkeyup="pwdCheck()" id="password02"
+			placeholder="비밀번호를 재입력해주세요" autocomplete="off" required>
+	     <div class="row">
+            <div class="col-sm-12">
+                <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#2E2F34;">비밀번호 확인</span>
+            </div>
+        </div>
 	<div class="password-modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 		<button type="button" class="btn btn-primary" data-dismiss="modal" id="sendPassword">OK</button>
@@ -75,8 +121,9 @@ $("#password-modal-open").on("click",function(){
 })
 
 
-</script>
- 
+
+
+
 
 
 

@@ -78,6 +78,7 @@ html {
     color: #000000;
 }
 
+
 .menu-toggler {
     display: block;
     width: var(--toggler-size);

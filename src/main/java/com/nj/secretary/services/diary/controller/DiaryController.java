@@ -47,9 +47,10 @@ public class DiaryController {
 
     @PostMapping("addDiarys")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam("tag_text") String tag_text){
+    public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam("tag_text") String tag_text,HttpSession session){
         System.out.println("shareStatus : " + diary.getShareStatus());
-
+        User user = (User)session.getAttribute("user");
+        diary.setUserId(user.getUserId());
         if(diary.getShareStatus().trim().equals("0,1")) {
             diary.setShareStatus("1");
         }
@@ -134,14 +135,14 @@ public class DiaryController {
     public String listDiary(HttpSession session, Model model){
 
         System.out.println("listDiary start in controller");
-        session.setAttribute("userId", "윤도영");
 
-        System.out.println("session 확인 : " + session.getAttribute("userId"));
 
-       List<Diary> list = diaryService.getDiaryList((session.getAttribute("userId")).toString());
+        User user = (User)session.getAttribute("user");
+        System.out.println(user);
+       List<Diary> list = diaryService.getDiaryList(user.getUserId());
        System.out.println("list : " + list);
         model.addAttribute("list", list);
-        model.addAttribute("user",session.getAttribute("userId"));
+        model.addAttribute("user",user);
         System.out.println("listDiary controller 완료");
         return "diary/getDiaryList";
     }

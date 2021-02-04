@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.domain.Question;
 import com.nj.secretary.services.monologue.repository.MonologueDAO;
@@ -135,6 +136,12 @@ public List<Monologue> getOtherMonologueList(String userId) throws Exception {
 	@Override
 	public List<Monologue> getMonologueReportReason(int monologueId) {
 		return monologueDAO.getMonologueReportReason(monologueId);
+	}
+
+
+	@Override
+	public void monologueReport(Report report) throws Exception {
+		monologueDAO.monologueReport(report);
 	}
 
 }

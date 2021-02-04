@@ -2,6 +2,7 @@ package com.nj.secretary.services.monologue.controller;
 
 import com.nj.secretary.services.alarm.domain.Alarm;
 import com.nj.secretary.services.alarm.service.AlarmService;
+import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.diary.domain.Translate;
 import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.service.MonologueService;
@@ -165,25 +166,38 @@ public class MonologueRestController {
 
     }
     
+    @PostMapping("monologueReport")
+    public String monologueReport(@RequestBody Report report, HttpSession session) throws Exception{
+    	System.out.println("monologueReport restController에서 확인===="+report);
+    	session.setAttribute("user", "gyuri");
+    	report.setReporterId((String)session.getAttribute("user"));
+    	
+    	
+    	monologueService.monologueReport(report);
+    	
+    	return "신고가 완료 되었습니다.";
+    	
+    }
+    
 
-	@GetMapping("getMonologueList")
-	public List<Monologue> getMonologueList(Model model, HttpSession session, String questionText) throws Exception{
-		System.out.println("getMonologueList 시작해유");
-		
-		session.setAttribute("userId", "gyuri");
-		
-		String userId=(String)session.getAttribute("userId");
-		
-		System.out.println("getMonologueList에서 userId 확인이니이이이잉 :::"+userId);
-		
-		List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
-				
-		model.addAttribute("monologueList", monologueList);
-		
-		System.out.println("monologueController getMonologueList  ::  " + monologueList);
-	
-		return monologueList;
-		
-	}
+//	@GetMapping("getMonologueList")
+//	public List<Monologue> getMonologueList(Model model, HttpSession session, String questionText) throws Exception{
+//		System.out.println("getMonologueList 시작해유");
+//		
+//		session.setAttribute("userId", "gyuri");
+//		
+//		String userId=(String)session.getAttribute("userId");
+//		
+//		System.out.println("getMonologueList에서 userId 확인이니이이이잉 :::"+userId);
+//		
+//		List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
+//				
+//		model.addAttribute("monologueList", monologueList);
+//		
+//		System.out.println("monologueController getMonologueList  ::  " + monologueList);
+//	
+//		return monologueList;
+//		
+//	}
     
 }
