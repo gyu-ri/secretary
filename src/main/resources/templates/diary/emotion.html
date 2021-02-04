@@ -30,31 +30,45 @@
     </script>
 </head>
 <body>
-<form action="/diary/write" method="get">
+<form name="emotionSelect" onsubmit="return goWrite()" action="/diary/write" method="get">
 <br><br>
 
 <h1 align="center">감정을 선택해보세요!</h1>
 
 <div>
-    <input type="radio" id="기쁨" name="emotionNo" value="1"/> <span style="font-size: 50px"> &#128512; </span>
-    <input type="radio" id="슬픔" name="emotionNo" value="2"/> <span style="font-size: 50px"> &#128549; </span>
-    <input type="radio" id=화남 name="emotionNo" value="3"/> <span style="font-size: 50px"> &#128545; </span>
-    <input type="radio" id="무표정" name="emotionNo" value="4"/> <span style="font-size: 50px"> &#128528; </span><br>
-    <input type="radio" id="심각" name="emotionNo" value="5"/> <span style="font-size: 50px"> &#129300; </span>
-    <input type="radio" id="힘듦" name="emotionNo" value="6"/> <span style="font-size: 50px"> &#128555; </span>
-    <input type="radio" id="짜증" name="emotionNo" value="7"/> <span style="font-size: 50px"> &#128548; </span>
-    <input type="radio" id="신나" name="emotionNo" value="8"/> <span style="font-size: 50px"> &#128537; </span><br>
-    <input type="radio" id="멘붕" name="emotionNo" value="9"/> <span style="font-size: 50px"> &#128552; </span>
-    <input type="radio" id="설렘" name="emotionNo" value="10"/> <span style="font-size: 50px"> &#128525; </span>
-    <input type="radio" id="좌절" name="emotionNo" value="11"/> <span style="font-size: 50px"> &#128557; </span>
-    <input type="radio" id="공포" name="emotionNo" value="12"/> <span style="font-size: 50px"> &#128561; </span><br>
-    <input type="radio" id="놀람" name="emotionNo" value="13"/> <span style="font-size: 50px"> &#128562; </span>
-    <input type="radio" id="당황" name="emotionNo" value="14"/> <span style="font-size: 50px"> &#128527; </span>
-    <input type="radio" id="민망" name="emotionNo " value="15"/> <span style="font-size: 50px"> &#128517; </span>
-    <input type="radio" id="아픔" name="emotionNo " value="16"/> <span style="font-size: 50px"> &#129298; </span><br><br><br>
+    <input type="radio" id="기쁨" name="emotionNo" value="1"> <span style="font-size: 50px"> &#128512; </span>
+    <input type="radio" id="슬픔" name="emotionNo" value="2"> <span style="font-size: 50px"> &#128549; </span>
+    <input type="radio" id=화남 name="emotionNo" value="3"> <span style="font-size: 50px"> &#128545; </span>
+    <input type="radio" id="무표정" name="emotionNo" value="4"> <span style="font-size: 50px"> &#128528; </span>
+    <input type="radio" id="심각" name="emotionNo" value="5"> <span style="font-size: 50px"> &#129300; </span>
+    <input type="radio" id="힘듦" name="emotionNo" value="6"> <span style="font-size: 50px"> &#128555; </span>
+    <input type="radio" id="짜증" name="emotionNo" value="7"> <span style="font-size: 50px"> &#128548; </span>
+    <input type="radio" id="신나" name="emotionNo" value="8"> <span style="font-size: 50px"> &#128537; </span>
+    <input type="radio" id="멘붕" name="emotionNo" value="9"> <span style="font-size: 50px"> &#128552; </span>
+    <input type="radio" id="설렘" name="emotionNo" value="10"> <span style="font-size: 50px"> &#128525; </span>
+    <input type="radio" id="좌절" name="emotionNo" value="11"> <span style="font-size: 50px"> &#128557; </span>
+    <input type="radio" id="공포" name="emotionNo" value="12"> <span style="font-size: 50px"> &#128561; </span>
+    <input type="radio" id="놀람" name="emotionNo" value="13"> <span style="font-size: 50px"> &#128562; </span>
+    <input type="radio" id="당황" name="emotionNo" value="14"> <span style="font-size: 50px"> &#128527; </span>
+    <input type="radio" id="민망" name="emotionNo" value="15"> <span style="font-size: 50px"> &#128517; </span>
+    <input type="radio" id="아픔" name="emotionNo" value="16"> <span style="font-size: 50px"> &#129298; </span>
+    <br><br><br>
     <input type="submit" id="submit" value="선택"/>
 
 </div>
 </form>
+<script>
+    function goWrite(){
+        var emotion = document.emotionSelect.emotionNo.value;
+        if(emotion.trim() == ''){
+            alert(emotion);
+            alert("감정을 선택해주세요");
+            return false;
+        }else{
+            alert(emotion + "선택됨");
+            return true;
+        }
+    }
+</script>
 </body>
 </html>

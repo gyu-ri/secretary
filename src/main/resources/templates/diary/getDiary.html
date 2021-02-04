@@ -18,7 +18,8 @@
     <script src="../summernote/summernote-0.8.18-dist/lang/summernote-ko-KR.js"></script>
     <link rel="stylesheet" href="../summernote/summernote-0.8.18-dist/summernote-lite.css">
 
-
+    <!--글꼴-->
+    <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
 
 
     <title>글쓰기</title>
@@ -29,10 +30,84 @@
             background-attachment: fixed;
             background-size: cover;
             text-align: center;
+            font-family: 'Stylish', sans-serif;
         }
 
+        #pageTitle{
+            text-align: center;
+            font-size: 80px;
+            margin-top: 2%;
+        }
+
+        #diaryTitle{
+            grid-area: title;
+            font-size: 30px;
+        }
+
+
+        .container{
+            display: grid;
+            grid-template-areas:
+                        "side title"
+                        "side text";
+            gap: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 30px;
+            border-radius: 3px;
+            align-items: center;
+        }
+
+        .text{
+            grid-area: text;
+        }
+
+        #image{
+            grid-area: side;
+        }
+
+        #image img{
+            width: auto; height: auto;
+            min-width: 400px;
+        }
+
+
+        #modifyDiary, #report, #like{
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            text-shadow: 1px 1px 0px white;
+        }
+
+        .buttons{
+            font-size: 20px;
+            text-shadow: 1px 1px 0px white;
+        }
+
+        #source, #target{
+            background-color: rgba(255, 255, 255, 0.5);
+            border: none;
+            margin-bottom: 10%;
+        }
+
+        #forAdmin{
+            position: fixed;
+            bottom: 1%;
+            left: 48%;
+
+        }
+
+        #back{
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.5);
+        }
     </style>
     <script type="text/javascript">
+
+        window.onload = function(){
+            var temp = $('.text img').detach();
+            $('#image').html(temp);
+        }
+
 
         $(function geoFindMe() {
 
@@ -178,7 +253,7 @@
            if(role == "admin"){
                //alert("admin이다! admin이 나타났다~!!");
                $("#forAdmin").append(
-                   "<a href='#' id='back' style='font-size: 30px' onclick='back()'>&#128281;</a>"
+                   "<a href='#' id='back' onclick='back()'>	&#11013;</a>"
                )
            } else{
                // alert("user 쫌생이다! user 쫌생이가 나타났다~!!")
@@ -199,36 +274,38 @@
 <form method="get" action="updateDiary">
     <p id = "status"></p>
     <a id = "map-link" target="_blank"></a>
-    <div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px;">	&#8451;</div> &nbsp;
-    <div id="temparature" style="float: right; padding-left: 20px"></div>
-    <img src="" id="img" width="20" height="20" style="float: right;"/>
-    <div id="location" style="float: right; padding-left: 10px; padding-right: 20px;">&#127759;          </div>
+    <div style="float: right">
+        <span id="location" style="padding-left: 10px; padding-right: 20px;">&#127759;</span>
+        <img src="" id="img" width="20" height="20" />
+        <span id="temparature" style="padding-left: 20px"></span>
+        <span id="tempIcon" style="padding-left: 10px; padding-right: 10px;">   &#8451;</span> &nbsp;
+    </div>
 
     <br><br>
 
     <input type="hidden" name="diaryId" id="diaryId" th:value="${diary.diaryId}"/>
 
 
-    <h2 style="text-align: center; margin-top: 50px">일기 보기</h2><br><br><br>
-    <div style="width: 60%; margin: auto;">
+    <h2 id="pageTitle">일기 보기</h2><br><br><br>
+    <div class="container">
 
-        <div th:text="${diary.diaryTitle}"/></div>
+        <div id="diaryTitle" th:text="${diary.diaryTitle}"/>
 
-        <br><br>
-        <div id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
+        <div id="image"></div>
+        <div class="text" id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
         <input type="hidden" name="shareStatus" value="0">
+    </div>
+
+        <br><br>
+    <div class="buttons">
+        <input type="submit" id="modifyDiary" onclick="return onsubmit(this)" value="&#128214; 수정">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="report"> &#128680; 신고하기</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="like"> &#128147; 좋아요</span>
+    </div>
 
 
         <br><br>
 
-        <input type="submit" id="modifyDiary" value="수정">
-        <span id="report">신고하기</span>
-        <span id="like">좋아요</span>
-
-
-
-        <br><br><br><br>
-    </div>
 
 </form>
 <select id="source">
@@ -237,7 +314,7 @@
     <option value="ja">일본어</option>
     <option value="zh-CN">중국어-간체</option>
     <option value="zh-TW">중국어-번체</option>
-</select> ==>
+</select> &#10145;
 
 <select id="target">
     <option value="ko">한국어</option>

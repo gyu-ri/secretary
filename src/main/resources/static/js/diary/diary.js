@@ -13,6 +13,10 @@ $(function(){
         $('.deleteUnactive').hide();
     })
 
+    $('#addDiaryNavi').on("click", function (){
+        window.location.href="/diary/addDiary";
+    })
+
     $("#getDiaryList").click(function(){
 
         $.ajax({

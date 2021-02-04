@@ -376,3 +376,10 @@ li.active a, li.active a:hover {
     -webkit-transform: rotateX(0deg);
     -moz-transform: rotateX(0deg);
 }
+
+.listDiary span{
+    display: inline;
+    cursor: pointer;
+    float: right;
+    margin-left: 80%;
+}
