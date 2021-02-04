@@ -2,16 +2,67 @@
 $(function(){
 
     $("#deleteBtn").on("click", function(){
-        $('.deleteActive').show();
-        $('#deleteDiary').show();
-        $('.deleteUnactive').show();
+
+        $.ajax({
+            url : "/restDiary/binDiaryList",
+            type : "GET",
+            data : {userId:$("#userId").val()},
+            success: function (list){
+                console.log(list);
+                $("div [name='listSet']").remove();
+                $("div [name='listSet']").remove();
+                document.getElementById('fisrtTab').setAttribute('class', '');
+                document.getElementById('secondTab').setAttribute('class', '');
+                document.getElementById('thirdTab').setAttribute('class', '');
+                document.getElementById('deleteBtn').setAttribute('class', 'active');
+
+                $.each(list.reverse(),function(i,item){
+                    console.log(item);
+                    if (item.imageName!=null) {
+                        $(".listDiary").prepend(
+                            "<div id='"+item.diaryId+"' name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i onclick=\"deleteDiary("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i  class='fas fa-trash-restore-alt'></i></a><a href='#'><i class='fa fa-instagram' onclick=\"recoverDiary("+item.diaryId+")\"></i></a></div>" +
+                            "</div>" +
+                            "</a>"+
+                            "</div>"+
+                            "</div>"
+                        )
+                    }else{
+                        $(".listDiary").prepend(
+                            "<div id='"+item.diaryId+"' name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i onclick=\"deleteDiary("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "</div>" +
+                            "</a>"+
+                            "</div>"+
+                            "</div>"
+
+                        )
+                    }
+
+                })
+            }
+        });
     });
 
-    $(".deleteUnactive").on("click", function (){
-        $('.deleteActive').hide();
-        $('#deleteDiary').hide();
-        $('.deleteUnactive').hide();
-    })
+
+
+    // $(".deleteUnactive").on("click", function (){
+    //     $('.deleteActive').hide();
+    //     $('#deleteDiary').hide();
+    //     $('.deleteUnactive').hide();
+    // })
 
     $("#getDiaryList").click(function(){
 
@@ -29,16 +80,16 @@ $(function(){
                 document.getElementById('deleteBtn').setAttribute('class', '');
                 $.each(rev,function(i,item){
                     console.log(item);
-                    if (item.fileName!=null) {
+                    if (item.imageName!=null) {
                         $(".listDiary").prepend(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                            "<div class='box' style=\"background-image:url("+item.fileName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
                             "<h3 class='name'>"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
                             "</div>" +
                             "</a>"+
                             "</div>"+
@@ -53,7 +104,7 @@ $(function(){
                             "<h3 class='name'>"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
                             "</div>" +
                             "</a>"+
                             "</div>"+
@@ -66,68 +117,6 @@ $(function(){
         });
     })
 
-    $('#deleteDiary').click(function (){
-        var confirm_val = confirm("정말 삭제하시겠습니까?");
-
-        if(confirm_val){
-
-            var checkArr = [];
-            $("input[name=deleteActive]:checked").each(function (i){
-                checkArr.push($(this).val());
-            });
-            $.ajax({
-                url : "/restDiary/moveToBin",
-                type : "POST",
-                data : JSON.stringify(checkArr),
-                contentType : "application/json",
-                success: function (list){
-                    console.log(list);
-                    $("div [name='listSet']").remove();
-                    document.getElementById('fisrtTab').setAttribute('class', '');
-                    document.getElementById('secondTab').setAttribute('class', '');
-                    document.getElementById('thirdTab').setAttribute('class', '');
-                    document.getElementById('deleteBtn').setAttribute('class', 'active');
-
-                    $.each(list.reverse(),function(i,item){
-                        console.log(item);
-                        if (item.fileName!=null) {
-                            $(".listDiary").prepend(
-                                "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                                "<div class='box' style=\"background-image:url("+item.fileName+"); background-repeat:no-repeat; background-size: cover;\">" +
-                                "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
-                                "<div class='cover'>" +
-                                "<h3 class='name'>"+item.diaryTitle+"</h3>" +
-                                "<p class='title'>"+item.diaryDate+"</p>" +
-                                "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                                "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
-                                "</div>" +
-                                "</a>"+
-                                "</div>"+
-                                "</div>"
-                            )
-                        }else{
-                            $(".listDiary").prepend(
-                                "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                                "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
-                                "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
-                                "<div class='cover'>" +
-                                "<h3 class='name'>"+item.diaryTitle+"</h3>" +
-                                "<p class='title'>"+item.diaryDate+"</p>" +
-                                "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                                "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
-                                "</div>" +
-                                "</a>"+
-                                "</div>"+
-                                "</div>"
-
-                            )
-                        }
-
-                    })
-                }
-            });
-        }
-    });
 
     $("#getOthersDiaryList").on("click", function () {
         var list = [];
@@ -150,10 +139,10 @@ $(function(){
                 document.getElementById('thirdTab').setAttribute('class', 'active');
                 $.each(list,function(i,item){
                     console.log(item);
-                    if (item.fileName!=null) {
+                    if (item.imageName!=null) {
                         $(".listDiary").prepend(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                            "<div class='box' style=\"background-image:url("+item.fileName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
                             "<h3 class='name'>"+item.diaryTitle+"</h3>" +
@@ -221,10 +210,10 @@ $(function(){
                     $("div [name='listSet']").remove();
                     $.each(list.reverse(),function(i,item){
                         console.log(item);
-                        if (item.fileName!=null) {
+                        if (item.imageName!=null) {
                             $(".listDiary").prepend(
                                 "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                                "<div class='box' style=\"background-image:url("+item.fileName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                                "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
                                 "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                                 "<div class='cover'>" +
                                 "<h3 class='name'>"+item.diaryTitle+"</h3>" +
@@ -283,13 +272,10 @@ $(function(){
                     console.log(item);
 
                         $(".listDiary").prepend(
-                            "<div name=\"listSet\" id='thisTag' value='"+item.diaryId+"' class='col-md-4 col-lg-3 item'>"+
+                            "<div name=\"listSet\" id='thisTag' value='"+item.fileName+"' class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.fileName+"</h3>" +
-                            "<p class='title'>"+item.diaryDate+"</p>" +
-                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<h3 class='name'>#"+item.fileName+"</h3>" +
                             "</div>" +
                             "</div>"+
                             "</div>"
@@ -312,10 +298,10 @@ $(function(){
                 console.log(list);
                 $("div [name='listSet']").remove();
                 $.each(list.reverse(),function(i,item) {
-                    if (item.fileName!=null) {
+                    if (item.imageName!=null) {
                         $(".listDiary").prepend(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                            "<div class='box' style=\"background-image:url("+item.fileName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
                             "<h3 class='name'>"+item.diaryTitle+"</h3>" +
@@ -437,6 +423,97 @@ function filter(){
             item[i].style.display = "none";
         }
     }
+}
+
+function deleteDiary(diaryId){
+    alert("DELETE");
+    let test = {diaryId:diaryId};
+    $.ajax({
+        url: "/restDiary/deleteDiary",
+        method: "get",
+        dataType: "json",
+        data : test,
+        contentType : "application/text",
+        success: function (response){
+            alert(response);
+            $("#"+diaryId).remove();
+        }
+
+    });
+}
+function recoverDiary(diaryId){
+    alert("RECOVER");
+    let test = {diaryId:diaryId};
+    $.ajax({
+        url: "/restDiary/recoverDiary",
+        method: "get",
+        dataType: "json",
+        data : test,
+        contentType : "application/text",
+        success: function (response){
+            alert(response);
+            $("#"+diaryId).remove();
+        }
+
+    });
+}
+function moveToBin(diaryId){
+    alert("move");
+    let test = {diaryId : diaryId};
+    $(function(){
+        $.ajax({
+            url : "/restDiary/moveToBin",
+            type : "POST",
+            data : JSON.stringify(test),
+            contentType : "application/json",
+            success: function (list){
+                console.log(list);
+                $("div [name='listSet']").remove();
+                document.getElementById('fisrtTab').setAttribute('class', '');
+                document.getElementById('secondTab').setAttribute('class', '');
+                document.getElementById('thirdTab').setAttribute('class', '');
+                document.getElementById('deleteBtn').setAttribute('class', 'active');
+
+                $.each(list.reverse(),function(i,item){
+                    console.log(item);
+                    if (item.imageName!=null) {
+                        $(".listDiary").prepend(
+                            "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "</div>" +
+                            "</a>"+
+                            "</div>"+
+                            "</div>"
+                        )
+                    }else{
+                        $(".listDiary").prepend(
+                            "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "</div>" +
+                            "</a>"+
+                            "</div>"+
+                            "</div>"
+
+                        )
+                    }
+
+                })
+            }
+        });
+    })
+
 }
 
 
