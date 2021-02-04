@@ -306,27 +306,32 @@ public class UserController {
         return "user/adminUser";
     }
 
-    @GetMapping("updateUser")
-    public String updateUser(@RequestParam("userId") String userId, Model model) throws Exception{
-    	System.out.println("updateUser controller 시작 합니다");
-
-    	User user=userService.getUser(userId);
-
-    	model.addAttribute("user",user);
-
-    	System.out.println("updateUser에서 userId 확인"+userId);
-
-    	System.out.println("updateUser  확인"+user);
-
-    	return "user/updateUser";
-    }
+//    @GetMapping("updateUser")
+//    public String updateUser(@RequestParam("userId") String userId, Model model) throws Exception{
+//    	System.out.println("updateUser controller 시작 합니다");
+//
+//    	User user=userService.getUser(userId);
+//
+//    	model.addAttribute("user",user);
+//
+//    	System.out.println("updateUser에서 userId 확인"+userId);
+//
+//    	System.out.println("updateUser  확인"+user);
+//
+//    	return "user/updateUser";
+//    }
 
     @PostMapping("updateUser")
-    public String updateuser(User user, Model model) throws Exception{
+    public String updateuser(@RequestParam("userId") String userId, User user, Model model) throws Exception{
+    	System.out.println("updateUser controller 시작 합니다");
+    	User user01=userService.getUser(userId);
+    	model.addAttribute("user",user01);
+    	
     	userService.updateUser(user);
+    	System.out.println("updateUser controller 시작 합니다2");
     	System.out.println("updateUser 확인::"+user);
 
-    	return "user/getUser";
+    	return "user/updateUser";
 
     }
 
@@ -348,28 +353,4 @@ public class UserController {
     	return "user/withdrawal";
     }
     
-//    @PostMapping("withdrawal")
-//    public String withdrawal(@RequestParam("password") String password, Model model, HttpSession session) throws Exception{
-//    	System.out.println("withdrawal controller 시작 합니다");
-//    	User user02=new User();
-//    	user02.setUserId("aaa");
-//    	
-//    	session.setAttribute("user", user02);
-//    	User user=(User)session.getAttribute("user");
-//    	
-//    	model.addAttribute("user",user);
-//    	    	
-//    	User user01=userService.getUser(user.getUserId());
-//    	
-//    	if(user01.getPassword().equals(password)) {
-//    		System.out.println("password 맞나 확인");
-//    		userService.withdrawal(user01);
-//    	}else {
-//			System.out.println("틀림");
-//			
-//			return "user/updateUser";
-//		}
-//    	return "user/withdrawal";
-//    }
-
 }

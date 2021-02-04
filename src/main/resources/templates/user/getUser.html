@@ -56,16 +56,21 @@ $("#changeUser").on("click",function(){
 <body>
 <div id="container" style="display: block; transform: matrix(1,0,0,1,0,0); left: 0px;">
 <h2> My Profile</h2>
-<form action="updateUser" method="get" id="updateUser">
+
+<form action="updateUser" method="post" id="updateUser">
 <input type="hidden" name="password" th:value="${user.password}" id="dbpassword"/>
 <input type="hidden" name="userId" th:value="${user.userId}" id="userId"/>
+<input type="hidden" name="userName" th:value="${user.userName}" id="userName"/>
+<input type="hidden" name="nickname" th:value="${user.nickname}" id="nickname"/>
+<input type="hidden" name="email" th:value="${user.email}" id="email"/>
+<input type="hidden" name="motto" th:value="${user.motto}" id="motto"/>
 
 <div class="profile">
-이름 : <span th:text = "${user.userName}" name="userName"/></br>
+이름 : <span th:text = "${user.userName}" name="userName" /></br>
 닉네임 : <span th:text = "${user.nickname}" name="nickname"/></br>
-이메일 : <span th:text = "${user.email}" name="email"/></br>
+이메일 : <span th:text = "${user.email}" name="email" /></br>
 아이디 : <span th:text = "${user.userId}" name="userId"/></br>
-좌우명 : <span th:text = "${user.motto}" name="motto"/></br>
+좌우명 : <span th:text = "${user.motto}" name="motto" /></br>
 </div>
 
 
