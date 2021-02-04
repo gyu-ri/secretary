@@ -50,21 +50,13 @@ public class DiaryRestController {
     }
 
     @PostMapping("moveToBin")
-    public List<Diary> moveToBin(@RequestBody List<String> id, HttpSession session){
-        session.setAttribute("userId", "user02");
-        String userId = (String) session.getAttribute("userId");
+    public List<Diary> moveToBin(@RequestBody Diary diary, HttpSession session){
+        User user = (User)session.getAttribute("user");
+        String userId = user.getUserId();
 
 
-        System.out.println("Move to Bin 확인 : " + id);
-//       for(String diary : id){
-//
-//           int diaryId = Integer.parseInt(diary);
-//           diaryService.moveToBin(diaryId);
-//       }
-        System.out.println("삭제하기 위한 diary 객체 리스트 : " + id);
-        for(int i = 0; i<id.size(); i++){
-            diaryService.moveToBin(Integer.parseInt(id.get(i)));
-        }
+        System.out.println("삭제하기 위한 diary 객체 : " + diary.getDiaryId());
+        diaryService.moveToBin(diary.getDiaryId());
         List<Diary> list = diaryService.getDiaryList(userId);
 
         return list;
@@ -170,19 +162,25 @@ public class DiaryRestController {
     @GetMapping("deleteDiary")
     public String deleteDiary(@RequestParam("diaryId") int diaryId){
         System.out.println(diaryId);
-
-        if(diaryService.deleteDiary(diaryId)==0){
+        int delete = diaryService.deleteDiary(diaryId);
+        if(delete==0){
             return "failed";
         }else{
             return "success";
         }
     }
+    @GetMapping("binDiaryList")
+    public List<Diary> binDiaryList(HttpSession session,Model model){
+        User user = (User)session.getAttribute("user");
+        List<Diary> list = diaryService.getBinList(user.getUserId());
+        return list;
+    }
 
     @GetMapping("recoverDiary")
     public String recoverDiary(@RequestParam("diaryId") int diaryId){
         System.out.println(diaryId);
-
-        if(diaryService.recoverDiary(diaryId)==0){
+        int recover = diaryService.recoverDiary(diaryId);
+        if(recover==0){
             return "failed.";
         }else{
             return "success.";

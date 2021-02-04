@@ -23,6 +23,7 @@
         <result property="emotionImg" column="EMOTION_IMG" jdbcType="VARCHAR"/>
         <result property="fileId" column="FILE_ID" jdbcType="NUMERIC"/>
         <result property="fileName" column="FILE_NAME" jdbcType="VARCHAR"/>
+        <result property="imageName" column="IMAGE_NAME" jdbcType="VARCHAR"/>
         <result property="fileStatus" column="FILE_STATUS" jdbcType="VARCHAR"/>
 
         <result property="reportReasonId" column="report_reason_id" jdbcType="CHAR"/>
@@ -49,13 +50,13 @@
 
     <select id="getDiaryList" resultMap="diaryServiceMap" parameterType="String">
 
-        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.IMAGE_NAME FILE_NAME,d.DIARY_TEXT, d.SHARE_STATUS FROM DIARY d, IMAGE a
+        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.IMAGE_NAME,d.DIARY_TEXT, d.SHARE_STATUS FROM DIARY d, IMAGE a
         WHERE d.user_id = #{value} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+)
         ORDER BY d.diary_date desc
     </select>
 
     <select id="getOthersDiaryList" resultMap="diaryServiceMap" parameterType="String">
-        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.IMAGE_NAME FILE_NAME,d.DIARY_TEXT, d.SHARE_STATUS FROM DIARY d, IMAGE a
+        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.IMAGE_NAME,d.DIARY_TEXT, d.SHARE_STATUS FROM DIARY d, IMAGE a
         WHERE d.user_id != #{userId} AND d.delete_status = 0 and d.DIARY_ID = a.DIARY_ID(+) and share_status= 1
         ORDER BY d.diary_date desc
     </select>
@@ -130,9 +131,9 @@
     </select>
 
     <select id="getBinList" parameterType="String" resultMap="diaryServiceMap">
-        SELECT DIARY_ID, DIARY_TITLE, DELETE_DATE, DIARY_DATE
-        FROM DIARY
-        WHERE USER_ID = #{userId} and DELETE_STATUS = '1'
+        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.IMAGE_NAME,d.DIARY_TEXT, d.SHARE_STATUS FROM DIARY d, IMAGE a
+        WHERE d.user_id = #{value} and d.DIARY_ID = a.DIARY_ID(+) and d.DELETE_STATUS = '1'
+        ORDER BY d.diary_date desc
     </select>
 
 
@@ -157,9 +158,9 @@
     </insert>
 
     <select id="getTagedList" parameterType="hashMap" resultMap="diaryServiceMap">
-        SELECT d.diary_id AS diary_id, d.diary_title AS diary_title, d.diary_date AS diary_date, d.weather AS weather, d.location AS location, a.file_name AS file_name, d.SHARE_STATUS AS share_status
-        FROM DIARY d, ATTACHFILE a
-        WHERE d.diary_id=a.diary_id AND d.user_id=#{userId} AND a.file_name=#{tag} AND d.delete_status='0'
+        SELECT d.diary_id AS diary_id, d.diary_title AS diary_title, d.diary_date AS diary_date, d.weather AS weather, d.location AS location, a.file_name AS file_name, d.SHARE_STATUS AS share_status, i.image_name
+        FROM DIARY d, ATTACHFILE a,IMAGE i
+        WHERE d.diary_id=a.diary_id AND d.diary_id=i.diary_id AND d.user_id=#{userId} AND a.file_name=#{tag} AND d.delete_status='0'
     </select>
 
     <update id="likeDiary" parameterType="integer">
