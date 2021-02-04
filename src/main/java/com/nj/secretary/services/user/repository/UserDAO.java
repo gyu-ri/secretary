@@ -42,6 +42,9 @@ public interface UserDAO {
     
     //탈퇴 사유
     public void withdrawalReason(User user) throws Exception;
+    
+    //비번 번경
+    public void changePassword(User user) throws Exception;
 
     //adminUser
     public List<User> getBlindedUserList();
