@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <link rel="stylesheet" href="../../css/user/login.css">
+<link rel="stylesheet" href='../../css/main/main.css' />
 <script src="../../js/user/login.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
@@ -21,12 +23,38 @@
 <body>
 <div id="container" style="display: block; transform: matrix(1,0,0,1,0,0); left: 0px;">
 <h2>login</h2>
-<form action="login" method="post">
+<form action="login" id="login" method="post">
 
     <input type="text" name="userId" placeholder="아이디를 입력해주세요" required/>  </br>
     <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required/>  </br>
-
+    <!--<div class="error" id="error" aria-live="assertive">
+        <p>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</p>
+    </div>-->
+    <p id="error" class="error-msg" style="display: block">
+        가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.
+    </p>
     <input type="submit" value="로그인"/>
+
+    <div class="find_info">
+
+        <a id="findId" href="/user/findId">아이디찾기</a>
+        <a id="findPwd" href="/user/findPwd">비밀번호찾기</a>
+        <a id="signUp" href="/user/signUp">회원가입</a>
+
+    </div>
+
+    <!-- Forgotten Password Container -->
+    <!--<div id="findId-container">
+        <h1>아이디찾기</h1>
+        <span class="close-btn">
+    <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
+  </span>
+
+        <form>
+            <input type="email" name="email" placeholder="E-mail">
+            <a href="#" class="orange-btn">Get new password</a>
+        </form>
+    </div>-->
 
     <a id="custom-login-btn" href="javascript:loginWithKakao()">
         <img

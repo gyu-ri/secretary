@@ -11,11 +11,11 @@ function idCheck() {
 
             if (data == 1) {
                 $("#idCheck").text("이미 존재하는 아이디입니다.");
-                $("#idCheck").css("color", "red");
+                $("#idCheck").css("color", "#ae0f11");
                 $("#submit").attr("disabled", true);
             } else {
-                $("#idCheck").text("사용가능한 아이디입니다.");
-                $("#idCheck").css("color", "blue");
+                $("#idCheck").text("사용 가능한 아이디입니다.");
+                $("#idCheck").css("color", "#0029a4");
                 $("#submit").attr("disabled", true);
             }
 
@@ -75,13 +75,15 @@ function submitCheck(){
 function pwdCheck(){
 
     if($("#password01").val() == $("#password02").val()){
+        $("#pwmatch").text("비밀번호가 일치합니다.")
         $("#pwmatch").removeClass("glyphicon-remove");
         $("#pwmatch").addClass("glyphicon-ok");
         $("#pwmatch").css("color","#0029a4");
     }else{
+        $("#pwmatch").text("비밀번호가 일치하지 않습니다.")
         $("#pwmatch").removeClass("glyphicon-ok");
         $("#pwmatch").addClass("glyphicon-remove");
-        $("#pwmatch").css("color","#FF0004");
+        $("#pwmatch").css("color","#ae0f11");
     }
 }
 
