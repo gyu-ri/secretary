@@ -19,6 +19,7 @@ public class Diary {
     private String weather;
     private int fileId;
     private String fileName;
+    private String imageName;
     private String fileStatus;
     private char blindStatus;
     private char deleteStatus;
