@@ -28,6 +28,7 @@ $("#password-modal-open").on("click",function(){
                         type : "POST",
                         data :JSON.stringify(text),
                         contentType: "application/json",
+                        //async: false,
                         success: function (response){
                             alert(response);
                         }
@@ -84,7 +85,7 @@ $("#password-modal-open").on("click",function(){
 </div>
 </div>
 
-<form action="withdrawal" method="get">
+<form action="withdrawal" method="post">
 <input type="hidden" name="password" th:value="${user.password}"/>
 <input type="hidden" name="userId" th:value="${user.userId}"/>
 <input type="submit" value="회원탈퇴">

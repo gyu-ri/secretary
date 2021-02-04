@@ -353,7 +353,7 @@ public class UserController {
 
     }
     
-    @GetMapping("withdrawal")
+    @PostMapping("withdrawal")
     public String withdrawal(User user) throws Exception{ 
     	System.out.println("withdrawal controller 시작 합니다");
     	
