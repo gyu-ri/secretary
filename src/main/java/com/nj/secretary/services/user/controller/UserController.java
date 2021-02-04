@@ -294,6 +294,13 @@ public class UserController {
         System.out.println("user" + user);
         return "user/getUser";
     }
+    
+    @PostMapping("getUser")
+    public String getUser(User user,HttpSession session) throws Exception{
+    	userService.getUser((session.getAttribute("userId")).toString());
+    	
+    	return "user/getUser";
+    }
 
     @GetMapping("/adminUser")
     public String adminUser(Model model) throws Exception {

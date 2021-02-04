@@ -47,7 +47,7 @@ $("#password-modal-open").on("click",function(){
 <body>
 
 <h1> 내  정보 수정</h1>
-<form action="updateUser" method="post">
+<form action="getUser" method="post">
 <input type="hidden" name="password" th:value="${user.password}"/>
 <input type="hidden" name="userId" th:value="${user.userId}" id="userId"/>
 
