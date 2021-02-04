@@ -1,4 +1,8 @@
 //Clock
+$(document).ready(function(){
+    $(".wrapper").load("../main/menu.html");
+})
+
 $(function() {
     setInterval(function() {
         var nTime = new Date();

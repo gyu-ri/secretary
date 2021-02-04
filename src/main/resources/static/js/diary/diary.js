@@ -21,45 +21,44 @@ $(function(){
             data :{userId:$("#userId").val()},
             success: function (list){
                 console.log(list);
-                $("div[name='thumbnails']").remove();
+                let rev = list.reverse();
+                $("div [name='listSet']").remove();
                 document.getElementById('fisrtTab').setAttribute('class', 'active');
                 document.getElementById('secondTab').setAttribute('class', '');
                 document.getElementById('thirdTab').setAttribute('class', '');
                 document.getElementById('deleteBtn').setAttribute('class', '');
-                $.each(list,function(i,item){
+                $.each(rev,function(i,item){
                     console.log(item);
-                    if (item.shareStatus=='1') {
-                        $("#for").prepend(
-                            "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
-                            "<a href='/diary/getDiary?diaryNo=" + item.diaryId + "'>" +
-                            "<p name='backImage' style=\"background-image: url(" + item.fileName + "); background-repeat: no-repeat;\">" +
-                            "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='" + item.diaryId + "' style='float: left' hidden/>" +
-                            "<input type='hidden' name='diaryId' value='" + item.diaryId + "'/>" +
-                            "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
-                            "제목 : <span >" + item.diaryTitle + "</span><br>" +
-                            "날짜 : <span>" + item.diaryDate + "</span><br>" +
-                            "날씨 :  <img src='" + item.weather + "' width='20' height='20'/><br>" +
-                            "위치 : <span>" + item.location + "</span><br/><br/>" +
-                            "<span style=\"float: bottom; text-align: right\">&#9964;</span>\n" +
-                            "</p>" +
-                            "</a>" +
+                    if (item.fileName!=null) {
+                        $(".listDiary").prepend(
+                            "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url("+item.fileName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "</div>" +
+                            "</a>"+
+                            "</div>"+
                             "</div>"
                         )
                     }else{
-                        $("#for").prepend(
-                            "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
-                            "<a href='/diary/getDiary?diaryNo=" + item.diaryId + "'>" +
-                            "<p name='backImage' style=\"background-image: url(" + item.fileName + "); background-repeat: no-repeat;\">" +
-                            "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='" + item.diaryId + "' style='float: left' hidden/>" +
-                            "<input type='hidden' name='diaryId' value='" + item.diaryId + "'/>" +
-                            "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
-                            "제목 : <span >" + item.diaryTitle + "</span><br>" +
-                            "날짜 : <span>" + item.diaryDate + "</span><br>" +
-                            "날씨 :  <img src='" + item.weather + "' width='20' height='20'/><br>" +
-                            "위치 : <span>" + item.location + "</span><br/><br/>" +
-                            "</p>" +
-                            "</a>" +
+                        $(".listDiary").prepend(
+                            "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "</div>" +
+                            "</a>"+
+                            "</div>"+
                             "</div>"
+
                         )
                     }
                 })
@@ -83,29 +82,46 @@ $(function(){
                 contentType : "application/json",
                 success: function (list){
                     console.log(list);
-                    $("div[name='thumbnails']").remove();
+                    $("div [name='listSet']").remove();
                     document.getElementById('fisrtTab').setAttribute('class', '');
                     document.getElementById('secondTab').setAttribute('class', '');
                     document.getElementById('thirdTab').setAttribute('class', '');
                     document.getElementById('deleteBtn').setAttribute('class', 'active');
 
-                    $.each(list,function(i,item){
+                    $.each(list.reverse(),function(i,item){
                         console.log(item);
-                        $("#for").prepend(
-                            "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
-                            "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
-                            "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
-                            "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
-                            "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
-                            "제목 : <span >"+item.diaryTitle+"</span><br>" +
-                            "날짜 : <span>"+item.diaryDate+"</span><br>" +
-                            "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
-                            "위치 : <span>"+item.location+"</span>" +
-                            "</p>"+
-                            "</a>"+
-                            "</div>"
-                        )
+                        if (item.fileName!=null) {
+                            $(".listDiary").prepend(
+                                "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                                "<div class='box' style=\"background-image:url("+item.fileName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                                "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                                "<div class='cover'>" +
+                                "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                                "<p class='title'>"+item.diaryDate+"</p>" +
+                                "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                                "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                                "</div>" +
+                                "</a>"+
+                                "</div>"+
+                                "</div>"
+                            )
+                        }else{
+                            $(".listDiary").prepend(
+                                "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                                "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                                "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                                "<div class='cover'>" +
+                                "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                                "<p class='title'>"+item.diaryDate+"</p>" +
+                                "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                                "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                                "</div>" +
+                                "</a>"+
+                                "</div>"+
+                                "</div>"
+
+                            )
+                        }
 
                     })
                 }
@@ -120,35 +136,52 @@ $(function(){
             url: "/restDiary/getOthersDiaryList",
             method: "get",
             dataType: "json",
-            data : {shareStatus:"1",userId:"user02"},
+            data : {shareStatus:"1",userId:$("#userId").val()},
             headers: { //excess 제어요청 헤더, n : v 형식으로 헤더 추가하면 url의 request header에서 해당 헤더로 값을 얻어올 수 있다.
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
             success: function (list){
                 console.log(list);
-                $("div[name='thumbnails']").remove();
+                $("div [name='listSet']").remove();
                 document.getElementById('fisrtTab').setAttribute('class', '');
                 document.getElementById('secondTab').setAttribute('class', '');
                 document.getElementById('deleteBtn').setAttribute('class', '');
                 document.getElementById('thirdTab').setAttribute('class', 'active');
                 $.each(list,function(i,item){
                     console.log(item);
-                    $("#for").prepend(
-                        "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
-                        "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
-                        "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
-                        "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
-                        "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
-                        "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
-                        "제목 : <span >"+item.diaryTitle+"</span><br>" +
-                        "날짜 : <span>"+item.diaryDate+"</span><br>" +
-                        "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
-                        "위치 : <span>"+item.location+"</span>" +
-                        "</p>"+
-                        "</a>"+
-                        "</div>"
-                    )
+                    if (item.fileName!=null) {
+                        $(".listDiary").prepend(
+                            "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url("+item.fileName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "</div>" +
+                            "</a>"+
+                            "</div>"+
+                            "</div>"
+                        )
+                    }else{
+                        $(".listDiary").prepend(
+                            "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "</div>" +
+                            "</a>"+
+                            "</div>"+
+                            "</div>"
+
+                        )
+                    }
 
                 })
             }
@@ -185,24 +218,41 @@ $(function(){
                 contentType : "application/json",
                 success: function (list){
                     console.log(list);
-                    $("div[name='thumbnails']").remove();
-                    $.each(list,function(i,item){
+                    $("div [name='listSet']").remove();
+                    $.each(list.reverse(),function(i,item){
                         console.log(item);
-                        $("#for").prepend(
-                            "<div name='thumbnails' class='col-md-4 thumbnail' style='float: left; padding: 2px; width:30%; height: 200px'> " +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
-                            "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
-                            "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
-                            "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
-                            "<input type='hidden' class='diaryText' value='" + item.diaryText + "'/>" +
-                            "제목 : <span >"+item.diaryTitle+"</span><br>" +
-                            "날짜 : <span>"+item.diaryDate+"</span><br>" +
-                            "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
-                            "위치 : <span>"+item.location+"</span>" +
-                            "</p>"+
-                            "</a>"+
-                            "</div>"
-                        )
+                        if (item.fileName!=null) {
+                            $(".listDiary").prepend(
+                                "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                                "<div class='box' style=\"background-image:url("+item.fileName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                                "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                                "<div class='cover'>" +
+                                "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                                "<p class='title'>"+item.diaryDate+"</p>" +
+                                "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                                "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                                "</div>" +
+                                "</a>"+
+                                "</div>"+
+                                "</div>"
+                            )
+                        }else{
+                            $(".listDiary").prepend(
+                                "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                                "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                                "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                                "<div class='cover'>" +
+                                "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                                "<p class='title'>"+item.diaryDate+"</p>" +
+                                "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                                "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                                "</div>" +
+                                "</a>"+
+                                "</div>"+
+                                "</div>"
+
+                            )
+                        }
 
                     })
                 }
@@ -217,32 +267,34 @@ $(function(){
             url: "/restDiary/getTagDiaryList",
             method: "get",
             dataType: "json",
-            data : {userId:"윤도영"},
+            data : {userId:$("#userId").val()},
             headers: { //excess 제어요청 헤더, n : v 형식으로 헤더 추가하면 url의 request header에서 해당 헤더로 값을 얻어올 수 있다.
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
             success: function (list){
                 console.log(list);
-                $("div[name='thumbnails']").remove();
+                $("div [name='listSet']").remove();
                 document.getElementById('fisrtTab').setAttribute('class', '');
                 document.getElementById('secondTab').setAttribute('class', 'active');
                 document.getElementById('deleteBtn').setAttribute('class', '');
                 document.getElementById('thirdTab').setAttribute('class', '');
                 $.each(list,function(i,item){
                     console.log(item);
-                    $("#for").prepend(
-                        "<div name='thumbnails' id='thisTag' value='" + item.fileName + "' class='col-md-4 thumbnail' style='float: left'> " +
-                        "<a href='#'>"+
-                        "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
-                        "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
-                        "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
-                        "<input type='hidden' class='diaryText' value='" + item.fileName + "'/>" +
-                        "태그 : <span>"+item.fileName+"</span><br>" +
-                        "</p>"+
-                        "</a>"+
-                        "</div>"
-                    )
+
+                        $(".listDiary").prepend(
+                            "<div name=\"listSet\" id='thisTag' value='"+item.diaryId+"' class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.fileName+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "</div>" +
+                            "</div>"+
+                            "</div>"
+                        )
+
                 })
             }
         });
@@ -258,24 +310,40 @@ $(function(){
             contentType: "application/json",
             success: function(list){
                 console.log(list);
-                $("div[name='thumbnails']").remove();
-                $.each(list,function(i,item) {
-                    $('#for').prepend(
-                        "<div name='thumbnails' class='col-md-4 thumbnail tagList' style='float: left'> " +
-                        "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>"+
-                        "<p name='backImage' style=\"background-image: url("+item.fileName+")\">" +
-                        "<input type='checkbox' class='deleteActive' name='deleteActive' id='deleteActive' value='"+item.diaryId+"' style='float: left' hidden/>" +
-                        "<input type='hidden' name='diaryId' value='"+item.diaryId+"'/>" +
-                        "<input type='hidden' class='diaryText' value='" + item.fileName + "'/>" +
-                        "태그 : <span>"+item.fileName+"</span><br>" +
-                        "제목 : <span>"+item.diaryTitle+"</span><br>" +
-                        "날짜 : <span>"+item.diaryDate+"</span><br>" +
-                        "날씨 :  <img src='"+item.weather+"' width='20' height='20'/><br>" +
-                        "위치 : <span>"+item.location+"</span>" +
-                        "</p>"+
-                        "</a>"+
-                        "</div>"
-                    )
+                $("div [name='listSet']").remove();
+                $.each(list.reverse(),function(i,item) {
+                    if (item.fileName!=null) {
+                        $(".listDiary").prepend(
+                            "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url("+item.fileName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "</div>" +
+                            "</a>"+
+                            "</div>"+
+                            "</div>"
+                        )
+                    }else{
+                        $(".listDiary").prepend(
+                            "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                            "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
+                            "<div class='cover'>" +
+                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<p class='title'>"+item.diaryDate+"</p>" +
+                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "</div>" +
+                            "</a>"+
+                            "</div>"+
+                            "</div>"
+
+                        )
+                    }
 
                 })
             }

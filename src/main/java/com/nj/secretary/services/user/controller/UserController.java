@@ -67,7 +67,22 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login() throws Exception {
+    public String login(HttpSession session,Model model) throws Exception {
+        if(session.getAttribute("user")!=null){
+            User login = (User)session.getAttribute("user");
+            Monologue monologue = new Monologue();
+            Random random = new Random();
+            monologue.setUserId(login.getUserId());
+            int ran = random.nextInt(100)+1;
+            monologue.setQuestionId(ran);
+            if(monologueService.randomCheck(monologue)==0){
+                model.addAttribute("question",monologueService.getQuestionText(ran));
+                return "user/afterLogin";
+            }
+            if(monologueService.randomCheck(monologue)==100){
+                return "user/afterLogin";
+            }
+        }
         return "user/login";
     }
 
@@ -78,6 +93,7 @@ public class UserController {
         User dbUser = userService.getUser(user.getUserId());
         Random random = new Random();
         System.out.println(user+" : "+monologue);
+
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
 
@@ -106,7 +122,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(HttpSession session) throws Exception {
         session.invalidate();
-        return "index";
+        return "user/login";
     }
 
     @GetMapping("/findId")

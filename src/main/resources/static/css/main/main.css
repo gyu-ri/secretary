@@ -49,6 +49,20 @@ body{
     text-shadow: 1px 1px 2px #000000;
     color: #bce8f1;
 }
+#answer{
+    font-family: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    text-shadow: 0.5px 0.5px 0.5px #000000;
+    color: #bce8f1;
+    background-attachment: local;
+    line-height: 31px;
+    padding: 8px 10px;
+    width: 100%;
+    opacity: 80%;
+    resize: none;
+    background-color: transparent;
+}
 
 
 /*Alarm*/
