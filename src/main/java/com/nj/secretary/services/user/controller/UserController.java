@@ -342,34 +342,34 @@ public class UserController {
     }
     
     @GetMapping("withdrawal")
-    public String withdrawal() throws Exception{ 
+    public String withdrawal(User user) throws Exception{ 
     	System.out.println("withdrawal controller 시작 합니다");
     	
     	return "user/withdrawal";
     }
     
-    @PostMapping("withdrawal")
-    public String withdrawal(@RequestParam("password") String password, Model model, HttpSession session) throws Exception{
-    	System.out.println("withdrawal controller 시작 합니다");
-    	User user02=new User();
-    	user02.setUserId("aaa");
-    	
-    	session.setAttribute("user", user02);
-    	User user=(User)session.getAttribute("user");
-    	
-    	model.addAttribute("user",user);
-    	    	
-    	User user01=userService.getUser(user.getUserId());
-    	
-    	if(user01.getPassword().equals(password)) {
-    		System.out.println("password 맞나 확인");
-    		userService.withdrawal(user01);
-    	}else {
-			System.out.println("틀림");
-			
-			return "user/updateUser";
-		}
-    	return "user/withdrawal";
-    }
+//    @PostMapping("withdrawal")
+//    public String withdrawal(@RequestParam("password") String password, Model model, HttpSession session) throws Exception{
+//    	System.out.println("withdrawal controller 시작 합니다");
+//    	User user02=new User();
+//    	user02.setUserId("aaa");
+//    	
+//    	session.setAttribute("user", user02);
+//    	User user=(User)session.getAttribute("user");
+//    	
+//    	model.addAttribute("user",user);
+//    	    	
+//    	User user01=userService.getUser(user.getUserId());
+//    	
+//    	if(user01.getPassword().equals(password)) {
+//    		System.out.println("password 맞나 확인");
+//    		userService.withdrawal(user01);
+//    	}else {
+//			System.out.println("틀림");
+//			
+//			return "user/updateUser";
+//		}
+//    	return "user/withdrawal";
+//    }
 
 }

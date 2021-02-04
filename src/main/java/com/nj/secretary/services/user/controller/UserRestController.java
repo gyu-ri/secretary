@@ -184,6 +184,36 @@ public class UserRestController {
     	return "변경이 완료 되었습니다.";
     }
     
+    @PostMapping("withdrawal")
+    public String withdrawal(@RequestBody User user, Model model, HttpSession session) throws Exception{
+    	
+    	
+    	System.out.println("withdrawal restController 시작합니다");
+    	userService.withdrawal(user);
+    	
+    	
+//    	User user02=new User();
+//    	user02.setUserId("gyuri");
+//    	
+//    	session.setAttribute("user", user02);
+//    	User user=(User)session.getAttribute("user");
+//    	
+//    	model.addAttribute("user",user);
+//    	    	
+//    	User user01=userService.getUser(user.getUserId());
+//    	
+//    	if(user01.getPassword().equals(password)) {
+//    		System.out.println("password 맞나 확인");
+//    		userService.withdrawal(user01);
+//    	}else {
+//			System.out.println("틀림");
+//			
+//			return "비밀번호가 일치하지 않습니다.";
+//		}
+    	return "dddd";
+    }
+    
+    
     @PostMapping("withdrawalReason")
     public String withdrawalReason(@RequestBody User user) throws Exception {
     	//user.setWithdrawalReasonId(withdrawalReasonId);
