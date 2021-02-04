@@ -98,7 +98,7 @@ public class UserController {
         model.addAttribute("count", alarmCount);
         System.out.println("count check : " + alarmCount);
         // 수정한 부분 끝
-        return "";
+        return "user/login";
         //return "index";
 
     }
@@ -269,7 +269,7 @@ public class UserController {
     @GetMapping("/getUser")
     public String getUser(String userId, Model model, HttpSession session) throws Exception {
         System.out.println("getUser 내정보보기 Controller 시작");
-        session.setAttribute("userId", "aaa");
+        session.setAttribute("userId", "gydms");
         User user = userService.getUser((session.getAttribute("userId")).toString());
         model.addAttribute("user", user);
         System.out.println("userId 받아오나요" + userId);

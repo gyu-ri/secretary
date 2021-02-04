@@ -1,11 +1,11 @@
-html {
-    background: url(http://cdn.magdeleine.co/wp-content/uploads/2014/05/3jPYgeVCTWCMqjtb7Dqi_IMG_8251-1400x933.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    overflow: hidden;
-}
+/*html {*/
+/*    background: url(http://cdn.magdeleine.co/wp-content/uploads/2014/05/3jPYgeVCTWCMqjtb7Dqi_IMG_8251-1400x933.jpg) no-repeat center center fixed;*/
+/*    -webkit-background-size: cover;*/
+/*    -moz-background-size: cover;*/
+/*    -o-background-size: cover;*/
+/*    background-size: cover;*/
+/*    overflow: hidden;*/
+/*}*/
 
 img{
     display: block;
@@ -14,11 +14,6 @@ img{
     height: auto;
 }
 
-/*form{
-    width: 200px;
-    height: 200px;
-    border-radius: 5px;
-}*/
 /*
 #login-button{
     cursor: pointer;
@@ -39,16 +34,16 @@ img{
 
 /* Login container */
 #container{
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: 2.5% 30% 10%;
-    width: 35%;
-    height:90%;
+    width: 600px;
+    height:770px;
     border-radius: 5px;
-    background: rgba(3,3,3,0.25);
+    background: rgba(3, 3, 3, 0.25);
     box-shadow: 1px 1px 50px #000;
     display: none;
 }
@@ -73,6 +68,10 @@ img{
 
 .close-btn:hover{
     opacity: .5;
+}
+
+.check_font{
+    margin-left: 20%;
 }
 
 /* Heading */
@@ -116,7 +115,7 @@ input:focus{
 
 /* Placeholders */
 ::-webkit-input-placeholder {
-    color: #ddd;  }
+    color: #e5dada;  }
 :-moz-placeholder { /* Firefox 18- */
     color: red;  }
 ::-moz-placeholder {  /* Firefox 19+ */
