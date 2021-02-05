@@ -150,4 +150,9 @@ public class UserServiceImpl implements UserService {
 	public void changePassword(User user) throws Exception {
 		userDAO.changePassword(user);
 	}
+
+	@Override
+	public User pwdCheck(User user) throws Exception {
+		return userDAO.pwdCheck(user);
+	}
 }

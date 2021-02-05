@@ -7,21 +7,33 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>회원탈퇴</title>
     
-    
-  
   
     
      <script>
         $(function(){
             $("#withdrawal").on("click",function(){
-                $("#eventModal").modal("show");
+            	if($("#password").val()==$("#dbpassword").val()){
+            	let password={
+            			password : $("#password").val(),
+            			userId : $("#userId").val()
+            	};
+            	 $.ajax({
+                     url : "/restUser/withdrawal",
+                     type : "get",
+                     data :JSON.stringify(password),
+                     contentType: "application/json",
+                     success: function (response){
+                         alert(response);
+                     }
+                 });
+                    	 $("#eventModal").modal("show");
+            	}else{
+            		alert("입력하신 비밀번호가 일치하지 않습니다.")
+            	}
+               
             })
             
-       /*      $("#next").on("click",function(){
-            	$("eventModal").modal("show");
-            })
- */
-            $("#send").on("click",function(e){
+             $("#send").on("click",function(e){
 
                 if($("input:checkbox[name='reason']:checked").length > 1){
                     alert("신고사유는 한가지만 선택 가능합니다.")
@@ -46,15 +58,7 @@
     
         });
     
-    
-    
    </script>
-    
-    
-    
-    
-    
-    
     
     
 </head>
@@ -63,37 +67,14 @@
 <h1>회원탈퇴</h1>
 
 <form action="withdrawal" method="post">
-<input type="hidden" name="userId" th:value="${userId}"/>
-<!-- <input type="hidden" name="password" th:value="${password}"/> -->
-비밀번호 : <input type="text" placeholder="password" name="password"/>
+<input type="hidden" name="userId" th:value="${userId}" id="userId"/>
+<input type="hidden" name="password" th:value="${user.password}" id="dbpassword"/>
+비밀번호 : <input type="text" placeholder="password" name="password" id="password"/>
 
-<button type="button" class="btn btn-primary" id="withdrawal">탈퇴</button>
 
 </form>
+<input type="button" class="btn btn-primary" id="withdrawal" value="☆탈퇴☆">
 
-
-<!-- 
-<div class="modal fade" tabindex="-1" role="dialog" id="guideModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"></h4>
-            </div>
-            <div class="modal-body">
-                       		   회원 탈퇴시 일주일간 계정이 휴면상태로 전환 됩니다.</br>
-                         	   휴면기간 내에 로그인시 게정이 복구 되며, 휴면기간이 지나면 영구 삭제 됩니다.</br>
-                        	   정말 탈퇴를 하시겠습니까?</br>
-            </div>
-            <div class="modal-footer modalBtnContainer-addEvent">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal" id="next">OK</button>
-            </div>
-        </div>/.modal-content
-    </div>/.modal-dialog
-</div>/.modal
- -->
 
 
 <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">

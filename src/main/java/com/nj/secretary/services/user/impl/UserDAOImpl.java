@@ -131,4 +131,9 @@ public class UserDAOImpl implements UserDAO {
 		sqlSession.update("UserMapper.changePassword", user);
 		
 	}
+
+	@Override
+	public User pwdCheck(User user) throws Exception {
+		return sqlSession.selectOne("UserMapper.pwdCheck", user);
+	}
 }
