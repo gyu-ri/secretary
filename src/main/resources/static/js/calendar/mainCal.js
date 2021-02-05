@@ -105,11 +105,10 @@ var calendar = $('#calendar').fullCalendar({
           $("td [data-date='"+eD+"']").attr({
               style:"background-image:url('"+event.imageUrl+"')",
 
-
           });
           $("td [data-date='"+eD+"']").css({
-              margin:'1px',
-              backgroundSize:70,
+              margin:'4px',
+              backgroundSize:'18%',
               backgroundRepeat:'no-repeat'
 
 
