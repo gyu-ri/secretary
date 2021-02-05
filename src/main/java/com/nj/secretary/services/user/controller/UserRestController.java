@@ -165,6 +165,17 @@ public class UserRestController {
 
         return 1;
     }
+    
+    @PostMapping("pwdCheck")
+    public String pwdCheck(@RequestBody User user, HttpSession session) throws Exception{
+    	System.out.println("UserRestController pwdCheck 시작"+user);
+    	session.setAttribute("user", "gyuri");
+    	user.setUserId((String)session.getAttribute("user"));
+    	userService.pwdCheck(user);
+    	
+    	return "비밀번호 확인 되었습니다.";
+    }
+    
 
     @PostMapping("changePassword")
     public String changePassword(@RequestBody User user) throws Exception{
@@ -173,6 +184,17 @@ public class UserRestController {
     	
     	return "변경이 완료 되었습니다.";
     }
+    
+    @PostMapping("withdrawal")
+    public String withdrawal(@RequestBody User user) throws Exception{
+    	
+    	
+    	System.out.println("withdrawal restController 시작합니다");
+    	userService.withdrawal(user);
+
+    	return "";
+    }
+    
     
     @PostMapping("withdrawalReason")
     public String withdrawalReason(@RequestBody User user) throws Exception {
