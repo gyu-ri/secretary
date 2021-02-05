@@ -124,19 +124,19 @@ public class UserController {
         return "user/login";
     }
 
-    @GetMapping("/findId")
+    /*@GetMapping("/findId")
     public String findId() throws Exception {
         return "user/findId";
     }
 
     @PostMapping("findId")
-    public String findIdMailSend(@RequestParam Map<String, Object> paramMap)
+    public String findIdMailSend(@RequestParam Map<String, Object> paramMap, User user)
             throws Exception {
 
         String userName = (String) paramMap.get("userName");
         String email = (String) paramMap.get("email");
         System.out.println(userName);
-        User dbUser = userService.findUserId(userName);
+        User dbUser = userService.findUserId(user);
         System.out.println(dbUser);
         if (email.equals(dbUser.getEmail())) {
             String userId = dbUser.getUserId();
@@ -158,7 +158,7 @@ public class UserController {
             System.out.println("일치하는 정보 없음");
         }
         return "user/emailSuccess";
-    }
+    }*/
 
     @GetMapping("/findPwd")
     public String findPwd() throws Exception {

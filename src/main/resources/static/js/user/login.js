@@ -27,6 +27,7 @@ function loginValiCheck(){
                 // $("#submit").attr("disabled", true);
                 $('#message').remove();
                 $('.check_font').append("<div id='message'>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</div>")
+                $('.check_font').css("color","#ae0f11")
                 $('#login').preventDefault();
                 return false;
             }else{
@@ -54,8 +55,33 @@ function loginValiCheck(){
     });
 });*/
 
-$('#findId').click(function(){
+/*$('#findId').click(function(){
     $("#container").fadeOut(function(){
         $("#findId-container").fadeIn();
     });
+});*/
+
+$(function() {
+    $('#findId').on("click", function () {
+        $("#findId-modal").modal("show");
+    })
+    $("#sendEmail").on("click",function(e){
+        let text = {
+            userName : $("#userName").val(),
+            email : $("#email").val()
+        };
+        $.ajax({
+            url : "/restUser/findId",
+            type : "POST",
+            data :JSON.stringify(text),
+            contentType: "application/json",
+            success: function (response){
+                alert(response);
+            }
+        });
+        //$("#updateUser").submit();
+        //location.href="/user/login";
+
+    })
+
 });

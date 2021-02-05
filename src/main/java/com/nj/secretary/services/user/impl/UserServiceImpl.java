@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserId(String userName) throws Exception {
-        return userDAO.findUserId(userName);
+    public User findUserId(User user) throws Exception {
+        return userDAO.findUserId(user);
     }
 
     @Override

@@ -64,11 +64,11 @@
 
 	</select>
 
-	<select id="findUserId" parameterType="string"
-		resultType="com.nj.secretary.services.user.domain.User">
+	<select id="findUserId" parameterType="com.nj.secretary.services.user.domain.User"
+			resultMap="userSelectMap">
 		select user_Id, user_name, email
 		from users
-		where user_name=#{userName}
+		where  user_name=#{userName} and  email=#{email}
 	</select>
 
 	<select id="getBlindedUserList" resultMap="userSelectMap">

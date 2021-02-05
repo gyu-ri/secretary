@@ -28,8 +28,8 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User findUserId(String userName) throws Exception {
-        return sqlSession.selectOne("UserMapper.findUserId", userName);
+    public User findUserId(User user) throws Exception {
+        return sqlSession.selectOne("UserMapper.findUserId", user);
     }
 
     @Override

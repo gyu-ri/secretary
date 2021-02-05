@@ -27,7 +27,7 @@ public interface UserService{
     public User getUser(String userId) throws Exception;
 
 
-    public User findUserId(String userName) throws Exception;
+    public User findUserId(User user) throws Exception;
 
 
     public User findUserPwd(String userName) throws Exception;
