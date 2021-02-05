@@ -53,6 +53,12 @@ INSERT INTO EMOTIONS (EMOTION_ID, EMOTION_NAME, EMOTION_IMG) VALUES (7, '그냥�
 INSERT INTO EMOTIONS (EMOTION_ID, EMOTION_NAME, EMOTION_IMG) VALUES (8, '아주좋음', '/images/emotions/very smile.png');
 INSERT INTO EMOTIONS (EMOTION_ID, EMOTION_NAME, EMOTION_IMG) VALUES (9, '조금 핑크', '/images/emotions/little pink.png');
 INSERT INTO EMOTIONS (EMOTION_ID, EMOTION_NAME, EMOTION_IMG) VALUES (10, '좋아요', '/images/emotions/goooood.png');
+INSERT INTO EMOTIONS (EMOTION_ID, EMOTION_NAME, EMOTION_IMG) VALUES (11, '죽음', '/images/emotions/dead.png');
+INSERT INTO EMOTIONS (EMOTION_ID, EMOTION_NAME, EMOTION_IMG) VALUES (12, '아픔', '/images/emotions/sick.png');
+INSERT INTO EMOTIONS (EMOTION_ID, EMOTION_NAME, EMOTION_IMG) VALUES (13, '뭐야', '/images/emotions/wtf.png');
+INSERT INTO EMOTIONS (EMOTION_ID, EMOTION_NAME, EMOTION_IMG) VALUES (14, '걱정', '/images/emotions/worry.png');
+INSERT INTO EMOTIONS (EMOTION_ID, EMOTION_NAME, EMOTION_IMG) VALUES (15, '놀람', '/images/emotions/surprise.png');
+INSERT INTO EMOTIONS (EMOTION_ID, EMOTION_NAME, EMOTION_IMG) VALUES (15, '무표정', '/images/emotions/nothing.png');
 
 
 
