@@ -12,6 +12,8 @@
     <!-- include summernote css/js -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <link rel="stylesheet" href='../../css/main/menu.css' />
+    <script src="../../js/main/menu.js"></script>
 
     <!-- 서머노트를 위해 추가해야할 부분 -->
     <script src="../summernote/summernote-0.8.18-dist/summernote-lite.js"></script>
@@ -360,6 +362,25 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<input type="checkbox" id="menuToggler" class="input-toggler" />
+<label for="menuToggler" class="menu-toggler">
+    <span class="menu-toggler__line"></span>
+    <span class="menu-toggler__line"></span>
+    <span class="menu-toggler__line"></span>
+</label>
+<aside class="sidebar">
+    <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href="/user/login">Home</a></li>
+        <li class="menu__item"><a class="menu__link" href="/user/getUser">Profile</a></li>
+        <li class="menu__item"><a class="menu__link" href="/diary/getDiaryList">Diary</a></li>
+        <li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
+        <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
+        <li class="menu__item"><a class="menu__link" href="/user/logout">Logout</a></li>
+    </ul>
+
+
+</aside>
 
 
 </html>
