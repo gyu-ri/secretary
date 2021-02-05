@@ -236,6 +236,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#summernote').summernote({
+                maximumImageFileSize: 10520000,
                 placeholder: 'content',
                 minHeight: 370,
                 maxHeight: null,
@@ -245,18 +246,18 @@
                     onImageUpload: function (files, editor, welEditable) {
 
                         console.log('image upload:', files);
-                        alert("before sendfile");
 
                         // sendFile(files[0], this);
                          for(var i = files.length - 1; i>=0; i--){
-                             sendFile(files[i], this);
+                             sendFile(files[i], editor,welEditable);
                          }
+
                     }
                }
             });
 
 
-            function sendFile(file,editor) {
+            function sendFile(file,editor,welEditable) {
                 var data = new FormData();
                 data.append('file', file);
                 $.ajax({
@@ -271,8 +272,9 @@
                         $("#summernote").summernote("insertImage",data.url);
                         alert(data.url);
                         console.log("console : "+data.url);
-                        $('.note-editable').append("<p><img src='"+data.url+"' width='90px' height='auto'/></p><br/>");
-                        $('.note-editable').reload();
+                        // $('.note-editable').append("<p><img src='"+data.url+"' width='90px' height='auto'/></p><br/>");
+                        $('#summernote').summernote('insertNode', data.url);
+                        // $('.note-editable').reload();
                     },
                     error:function (request,status,error, form_data){
                         alert("Error");
