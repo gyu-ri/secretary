@@ -69,7 +69,7 @@ public class UserController {
     @GetMapping("/login")
     public String login(HttpSession session, Model model) throws Exception {
         if (session.getAttribute("user") != null) {
-            User login = (User) session.getAttribute("user");
+            User login = (User)session.getAttribute("user");
             Monologue monologue = new Monologue();
             Random random = new Random();
             monologue.setUserId(login.getUserId());
@@ -286,7 +286,7 @@ public class UserController {
         System.out.println("getUser 내정보보기 Controller 시작");
 
         //session.setAttribute("userId", userId);
-        User user = (User) session.getAttribute("user");
+        User user = (User)session.getAttribute("user");
         //User user = userService.getUser((session.getAttribute("userId")).toString());
 
         model.addAttribute("user", user);
@@ -296,9 +296,10 @@ public class UserController {
     }
     
     @PostMapping("getUser")
-    public String getUser(User user,HttpSession session) throws Exception{
-    	userService.getUser((session.getAttribute("userId")).toString());
-    	
+    public String getUser(HttpSession session,Model model) throws Exception{
+        User user = (User)session.getAttribute("user");
+    	User user01 = userService.getUser(user.getUserId());
+        model.addAttribute("user", user01);
     	return "user/getUser";
     }
 
@@ -312,21 +313,28 @@ public class UserController {
 
         return "user/adminUser";
     }
+    @GetMapping("updateUser")
+    public String updateuser(User user, Model model) throws Exception{
+        System.out.println("updateUser controller 시작 합니다");
+        System.out.println("updateUser controller 시작 합니다2");
+        System.out.println("updateUser 확인::"+user);
+        User user01=userService.getUser(user.getUserId());
+        model.addAttribute("user",user01);
+        return "user/updateUser";
+    }
 
 
 
     @PostMapping("updateUser")
     public String updateuser(@RequestParam("userId") String userId, User user, Model model) throws Exception{
     	System.out.println("updateUser controller 시작 합니다");
-    	User user01=userService.getUser(userId);
-    	model.addAttribute("user",user01);
     	
     	userService.updateUser(user);
     	System.out.println("updateUser controller 시작 합니다2");
     	System.out.println("updateUser 확인::"+user);
-
-    	return "user/updateUser";
-
+        User user01=userService.getUser(userId);
+        model.addAttribute("user",user01);
+    	return "user/getUser";
     }
 
     @GetMapping("getWithdrawalReasonList")

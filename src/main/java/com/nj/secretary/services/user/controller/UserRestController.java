@@ -185,8 +185,7 @@ public class UserRestController {
     @PostMapping("pwdCheck")
     public String pwdCheck(@RequestBody User user, HttpSession session) throws Exception{
     	System.out.println("UserRestController pwdCheck 시작"+user);
-    	session.setAttribute("user", "gyuri");
-    	user.setUserId((String)session.getAttribute("user"));
+        user = (User)session.getAttribute("user");
     	userService.pwdCheck(user);
     	
     	return "비밀번호 확인 되었습니다.";
