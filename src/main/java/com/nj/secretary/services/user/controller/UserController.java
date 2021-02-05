@@ -67,19 +67,19 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(HttpSession session,Model model) throws Exception {
-        if(session.getAttribute("user")!=null){
-            User login = (User)session.getAttribute("user");
+    public String login(HttpSession session, Model model) throws Exception {
+        if (session.getAttribute("user") != null) {
+            User login = (User) session.getAttribute("user");
             Monologue monologue = new Monologue();
             Random random = new Random();
             monologue.setUserId(login.getUserId());
-            int ran = random.nextInt(100)+1;
+            int ran = random.nextInt(100) + 1;
             monologue.setQuestionId(ran);
-            if(monologueService.randomCheck(monologue)==0){
-                model.addAttribute("question",monologueService.getQuestionText(ran));
+            if (monologueService.randomCheck(monologue) == 0) {
+                model.addAttribute("question", monologueService.getQuestionText(ran));
                 return "user/afterLogin";
             }
-            if(monologueService.randomCheck(monologue)==100){
+            if (monologueService.randomCheck(monologue) == 100) {
                 return "user/afterLogin";
             }
         }
@@ -87,36 +87,34 @@ public class UserController {
     }
 
     @PostMapping("/login")
-
-    public String login01(User user, HttpSession session,Model model,@ModelAttribute Monologue monologue) throws Exception {
+    public String login01(User user, HttpSession session, Model model, @ModelAttribute Monologue monologue) throws Exception {
 
         User dbUser = userService.getUser(user.getUserId());
         Random random = new Random();
-        System.out.println(user+" : "+monologue);
+        System.out.println(user + " : " + monologue);
 
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
 
-            while(true){
-                int ran = random.nextInt(100)+1;
+            while (true) {
+                int ran = random.nextInt(100) + 1;
                 monologue.setQuestionId(ran);
-                if(monologueService.randomCheck(monologue)==0){
-                    model.addAttribute("question",monologueService.getQuestionText(ran));
+                if (monologueService.randomCheck(monologue) == 0) {
+                    model.addAttribute("question", monologueService.getQuestionText(ran));
                     return "user/afterLogin";
                 }
-                if(monologueService.randomCheck(monologue)==100){
+                if (monologueService.randomCheck(monologue) == 100) {
                     return "user/afterLogin";
                 }
             }
         }
-        // 수정한 부분 시작
-        int alarmCount = alarmService.alarmCount("user02");
-        model.addAttribute("count", alarmCount);
-        System.out.println("count check : " + alarmCount);
-        // 수정한 부분 끝
+//        // 수정한 부분 시작
+//        int alarmCount = alarmService.alarmCount("user02");
+//        model.addAttribute("count", alarmCount);
+//        System.out.println("count check : " + alarmCount);
+//        // 수정한 부분 끝
         return "user/login";
-        //return "index";
-
+//        //return "index";
     }
 
     @GetMapping("/logout")
@@ -221,7 +219,7 @@ public class UserController {
             System.out.println(jsonObject.get("access_token"));
             System.out.println(jsonObject.get("refresh_token"));
             model.addAttribute("accessToken", jsonObject.get("access_token"));
-            HashMap map = getUserInfo((String)jsonObject.get("access_token"));
+            HashMap map = getUserInfo((String) jsonObject.get("access_token"));
             if ((int) map.get("check") == 0) {
                 model.addAttribute("userInfo", map.get("userInfo"));
                 return "user/kakao";
@@ -239,6 +237,7 @@ public class UserController {
         }
         return "";
     }
+
 
     public HashMap<String, Object> getUserInfo(String access_Token) throws Exception {
 
@@ -272,9 +271,9 @@ public class UserController {
             System.out.println(jsonObject.get("id"));
             int dbUser = userService.kakaoLogin(Integer.toString((Integer) jsonObject.get("id")));
             userInfo.put("userInfo", jsonObject);
-            System.out.println("userInfo 있나욤?"+jsonObject);
+            System.out.println("userInfo 있나욤?" + jsonObject);
             userInfo.put("check", dbUser);
-            System.out.println("dbUser안에 아뒤있나욤 1 나오면 있는거야?"+dbUser);
+            System.out.println("dbUser안에 아뒤있나욤 1 나오면 있는거야?" + dbUser);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -286,11 +285,12 @@ public class UserController {
     public String getUser(String userId, Model model, HttpSession session) throws Exception {
         System.out.println("getUser 내정보보기 Controller 시작");
 
-        session.setAttribute("userId", "gyuri");
+        //session.setAttribute("userId", userId);
+        User user = (User) session.getAttribute("user");
+        //User user = userService.getUser((session.getAttribute("userId")).toString());
 
-        User user = userService.getUser((session.getAttribute("userId")).toString());
         model.addAttribute("user", user);
-        System.out.println("userId 받아오나요" + userId);
+        //System.out.println("userId 받아오나요" + userId);
         System.out.println("user" + user);
         return "user/getUser";
     }
@@ -313,20 +313,7 @@ public class UserController {
         return "user/adminUser";
     }
 
-//    @GetMapping("updateUser")
-//    public String updateUser(@RequestParam("userId") String userId, Model model) throws Exception{
-//    	System.out.println("updateUser controller 시작 합니다");
-//
-//    	User user=userService.getUser(userId);
-//
-//    	model.addAttribute("user",user);
-//
-//    	System.out.println("updateUser에서 userId 확인"+userId);
-//
-//    	System.out.println("updateUser  확인"+user);
-//
-//    	return "user/updateUser";
-//    }
+
 
     @PostMapping("updateUser")
     public String updateuser(@RequestParam("userId") String userId, User user, Model model) throws Exception{
@@ -343,7 +330,7 @@ public class UserController {
     }
 
     @GetMapping("getWithdrawalReasonList")
-    public String getWithdrawalReasonList(Model model){
+    public String getWithdrawalReasonList(Model model) {
         System.out.println("getWithdrawalReasonList in userController start");
         List<User> list = userService.getWithdrawalReasonList();
         System.out.println("getWithdrawalReasonList : " + list);
@@ -352,12 +339,14 @@ public class UserController {
         return "user/getWithdrawalReasonList";
 
     }
+
     
     @PostMapping("withdrawal")
     public String withdrawal(User user) throws Exception{ 
     	System.out.println("withdrawal controller 시작 합니다");
     	
     	return "user/withdrawal";
+
     }
     
 }

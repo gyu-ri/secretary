@@ -33,6 +33,9 @@ public interface UserService{
     public User findUserPwd(String userName) throws Exception;
 
 
+    public boolean loginCheck(User user) throws Exception;
+
+
     public int kakaoLogin(String userId) throws Exception;
 
 

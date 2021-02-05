@@ -2,6 +2,8 @@ package com.nj.secretary.services.user.controller;
 
 import com.nj.secretary.services.alarm.domain.Alarm;
 import com.nj.secretary.services.alarm.service.AlarmService;
+import com.nj.secretary.services.monologue.domain.Monologue;
+import com.nj.secretary.services.monologue.service.MonologueService;
 import com.nj.secretary.services.user.domain.User;
 import com.nj.secretary.services.user.service.UserService;
 import org.json.JSONObject;
@@ -35,6 +37,20 @@ public class UserRestController {
         int count = userService.idCheck(userId);
         return userService.idCheck(userId);
     }
+
+    @ResponseBody
+    @PostMapping("/loginCheck")
+    public int loginCheck(@RequestParam("user") User user) throws Exception{
+        System.out.println("loginCheck rest시작"+user);
+
+        boolean result = userService.loginCheck(user);
+        if (result == false){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
 
     @PostMapping("/CheckMail")
     @ResponseBody //ajax이후 다시 응답을 보내는게 아니기 때문에 적어줘야함.

@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
+
 	namespace="com.nj.secretary.services.user.service.UserService">
 
 	<resultMap id="userSelectMap"
@@ -140,6 +141,11 @@
 		withdrawal_reason_type, withdrawal_reason_text)
 		VALUES
 		(withdrawalreasons_seq.NEXTVAL,#{withdrawalReasonType},#{withdrawalReasonText})
-
 	</insert>
+
+<select id="loginCheck" resultType="String">
+        SELECT user_name
+        FROM users
+        WHERE user_id = #{userId} AND password = #{password}
+</select>
 </mapper>
