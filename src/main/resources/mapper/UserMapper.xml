@@ -2,152 +2,166 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
-	namespace="com.nj.secretary.services.user.service.UserService">
+        namespace="com.nj.secretary.services.user.service.UserService">
 
-	<resultMap id="userSelectMap"
-		type="com.nj.secretary.services.user.domain.User">
+    <resultMap id="userSelectMap"
+               type="com.nj.secretary.services.user.domain.User">
 
-		<result property="userId" column="user_id" jdbcType="VARCHAR" />
-		<result property="withdrawalReasonId"
-			column="withdrawal_reason_id" jdbcType="INTEGER" />
-		<result property="motto" column="motto" jdbcType="VARCHAR" />
-		<result property="password" column="password"
-			jdbcType="VARCHAR" />
-		<result property="role" column="role" jdbcType="VARCHAR" />
-		<result property="isAlarmDiary" column="is_alarm_diary"
-			jdbcType="CHAR" />
-		<result property="isAlarmMonologue" column="is_alarm_monologue"
-			jdbcType="CHAR" />
-		<result property="userName" column="user_name"
-			jdbcType="VARCHAR" />
-		<result property="email" column="email" jdbcType="VARCHAR" />
-		<result property="blindCount" column="blind_count"
-			jdbcType="INTEGER" />
-		<result property="withdrawalDate" column="withdrawal_date"
-			jdbcType="DATE" />
-		<result property="withdrawalStatus" column="withdrawal_status"
-			jdbcType="CHAR" />
-		<result property="limitStartDate" column="limit_start_date"
-			jdbcType="DATE" />
-		<result property="isDisplayTime" column="is_display_time"
-			jdbcType="CHAR" />
-		<result property="isDisplayWeather" column="is_display_weather"
-			jdbcType="CHAR" />
-		<result property="isDisplayLocation"
-			column="is_display_location" jdbcType="CHAR" />
-		<result property="withdrawalReasonType"
-			column="withdrawal_reason_type" jdbcType="CHAR" />
-		<result property="withdrawalReasonText"
-			column="withdrawal_reason_text" jdbcType="VARCHAR" />
+        <result property="userId" column="user_id" jdbcType="VARCHAR"/>
+        <result property="withdrawalReasonId"
+                column="withdrawal_reason_id" jdbcType="INTEGER"/>
+        <result property="motto" column="motto" jdbcType="VARCHAR"/>
+        <result property="password" column="password"
+                jdbcType="VARCHAR"/>
+        <result property="role" column="role" jdbcType="VARCHAR"/>
+        <result property="isAlarmDiary" column="is_alarm_diary"
+                jdbcType="CHAR"/>
+        <result property="isAlarmMonologue" column="is_alarm_monologue"
+                jdbcType="CHAR"/>
+        <result property="userName" column="user_name"
+                jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="blindCount" column="blind_count"
+                jdbcType="INTEGER"/>
+        <result property="withdrawalDate" column="withdrawal_date"
+                jdbcType="DATE"/>
+        <result property="withdrawalStatus" column="withdrawal_status"
+                jdbcType="CHAR"/>
+        <result property="limitStartDate" column="limit_start_date"
+                jdbcType="DATE"/>
+        <result property="isDisplayTime" column="is_display_time"
+                jdbcType="CHAR"/>
+        <result property="isDisplayWeather" column="is_display_weather"
+                jdbcType="CHAR"/>
+        <result property="isDisplayLocation"
+                column="is_display_location" jdbcType="CHAR"/>
+        <result property="withdrawalReasonType"
+                column="withdrawal_reason_type" jdbcType="CHAR"/>
+        <result property="withdrawalReasonText"
+                column="withdrawal_reason_text" jdbcType="VARCHAR"/>
 
-	</resultMap>
+    </resultMap>
 
-	<insert id="addUser"
-		parameterType="com.nj.secretary.services.user.domain.User">
+    <insert id="addUser"
+            parameterType="com.nj.secretary.services.user.domain.User">
 
-		insert into
-		USERS(user_id, user_name, password, nickname, email, motto)
-		values(#{userId},#{userName},#{password},#{nickname},#{email},#{motto})
+        insert into USERS(user_id, user_name, password, nickname, email, motto)
+        values (#{userId}, #{userName}, #{password}, #{nickname}, #{email}, #{motto})
 
-	</insert>
+    </insert>
 
-	<select id="getUser" parameterType="string"
-		resultType="com.nj.secretary.services.user.domain.User">
+    <select id="getUser" parameterType="string"
+            resultType="com.nj.secretary.services.user.domain.User">
 
-		select user_name, user_id, password, nickname, email, motto
-		from users
-		where user_Id=#{userId}
+        SELECT user_name, user_id, password, nickname, email, motto
+        FROM users
+        WHERE user_Id = #{userId}
 
-	</select>
+    </select>
 
-	<select id="kakaoLogin" parameterType="string"
-		resultType="Integer">
+    <select id="loginCheck" resultType="String">
+        SELECT user_name
+        FROM users
+        WHERE user_id = #{userId} AND password = #{password}
+    </select>
 
-		select count(*)
-		from users
-		where user_id=#{userId}
+    <select id="kakaoLogin" parameterType="string"
+            resultType="Integer">
 
-	</select>
+        SELECT count(*)
+        FROM users
+        WHERE user_id = #{userId}
 
-	<select id="idCheck" parameterType="string" resultType="Integer">
+    </select>
 
-		select count(*)
-		from users
-		where user_id=#{userId}
+    <select id="idCheck" parameterType="string" resultType="Integer">
 
-	</select>
+        SELECT count(*)
+        FROM users
+        WHERE user_id = #{userId}
 
-	<select id="findUserId" parameterType="string"
-		resultType="com.nj.secretary.services.user.domain.User">
-		select user_Id, user_name, email
-		from users
-		where user_name=#{userName}
-	</select>
+    </select>
 
-	<select id="getBlindedUserList" resultMap="userSelectMap">
-		SELECT user_id, blind_count, limit_start_date, limit_end_date
-		FROM users
-		WHERE blind_count >= 1 AND limit_end_date IS NULL
-	</select>
+    <select id="findUserId" parameterType="string"
+            resultType="com.nj.secretary.services.user.domain.User">
+        select user_Id, user_name, email
+        from users
+        where user_name = #{userName}
+    </select>
 
-	<select id="getLimitedUserList" resultMap="userSelectMap">
-		SELECT user_id, blind_count, limit_start_date, limit_end_date
-		FROM users
-		WHERE blind_count >= 1 AND limit_start_date IS NOT NULL AND limit_end_date
-		> sysdate
-	</select>
+    <select id="getBlindedUserList" resultMap="userSelectMap">
+        SELECT user_id, blind_count, limit_start_date, limit_end_date
+        FROM users
+        WHERE blind_count >= 1
+          AND limit_end_date IS NULL
+    </select>
 
-	<select id="getLimitDateOverUser" resultMap="userSelectMap">
-		SELECT user_id, blind_count, limit_start_date, limit_end_date
-		FROM users
-		WHERE blind_count >= 1 AND limit_start_date IS NOT NULL AND sysdate >
-		limit_end_date
-	</select>
+    <select id="getLimitedUserList" resultMap="userSelectMap">
+        SELECT user_id, blind_count, limit_start_date, limit_end_date
+        FROM users
+        WHERE blind_count >= 1
+          AND limit_start_date IS NOT NULL
+          AND limit_end_date
+            > sysdate
+    </select>
 
-	<update id="setLimit" parameterType="hashMap">
-		UPDATE users
-		SET limit_start_date = TO_DATE(TO_CHAR(sysdate, 'YYYY/MM/DD')),
-		limit_end_date = TO_DATE(TO_CHAR(sysdate + #{period}, 'YYYY/MM/DD'))
-		WHERE user_id = #{userId}
-	</update>
+    <select id="getLimitDateOverUser" resultMap="userSelectMap">
+        SELECT user_id, blind_count, limit_start_date, limit_end_date
+        FROM users
+        WHERE blind_count >= 1
+          AND limit_start_date IS NOT NULL
+          AND sysdate >
+              limit_end_date
+    </select>
 
-	<update id="releaseShareLimit" parameterType="String">
-		UPDATE users
-		SET limit_start_date = null
-		WHERE user_id = #{value}
-	</update>
+    <update id="setLimit" parameterType="hashMap">
+        UPDATE users
+        SET limit_start_date = TO_DATE(TO_CHAR(sysdate, 'YYYY/MM/DD')),
+            limit_end_date   = TO_DATE(TO_CHAR(sysdate + #{period}, 'YYYY/MM/DD'))
+        WHERE user_id = #{userId}
+    </update>
 
-	<select id="getWithdrawalReasonList" resultMap="userSelectMap">
-		SELECT *
-		FROM withdrawalreasons
-	</select>
+    <update id="releaseShareLimit" parameterType="String">
+        UPDATE users
+        SET limit_start_date = null
+        WHERE user_id = #{value}
+    </update>
 
-	<update id="updateUser" parameterType="com.nj.secretary.services.user.domain.User">
-		UPDATE users
-		SET user_name=#{userName},nickname=#{nickname},email=#{email},motto=#{motto}
-		WHERE user_id=#{userId}
-	</update>
-	
-	<update id="changePassword" parameterType="com.nj.secretary.services.user.domain.User">
-		UPDATE users
-		SET password=#{password}
-		WHERE user_id=#{userId}
-	</update>
+    <select id="getWithdrawalReasonList" resultMap="userSelectMap">
+        SELECT *
+        FROM withdrawalreasons
+    </select>
 
-	<update id="withdrawal"
-		parameterType="com.nj.secretary.services.user.domain.User">
-		UPDATE users
-		SET withdrawal_status=1, withdrawal_DATE=SYSDATE
-		WHERE user_id=#{userId} AND password=#{password}
-	</update>
+    <update id="updateUser" parameterType="com.nj.secretary.services.user.domain.User">
+        UPDATE users
+        SET user_name=#{userName},
+            nickname=#{nickname},
+            email=#{email},
+            motto=#{motto}
+        WHERE user_id = #{userId}
+    </update>
 
-	<insert id="withdrawalReason"
-		parameterType="com.nj.secretary.services.user.domain.User">
-		INSERT
-		INTO WITHDRAWALREASONS(withdrawal_reason_id,
-		withdrawal_reason_type, withdrawal_reason_text)
-		VALUES
-		(withdrawalreasons_seq.NEXTVAL,#{withdrawalReasonType},#{withdrawalReasonText})
+    <update id="changePassword" parameterType="com.nj.secretary.services.user.domain.User">
+        UPDATE users
+        SET password=#{password}
+        WHERE user_id = #{userId}
+    </update>
 
-	</insert>
+    <update id="withdrawal"
+            parameterType="com.nj.secretary.services.user.domain.User">
+        UPDATE users
+        SET withdrawal_status=1,
+            withdrawal_DATE=SYSDATE
+        WHERE user_id = #{userId}
+          AND password = #{password}
+    </update>
+
+    <insert id="withdrawalReason"
+            parameterType="com.nj.secretary.services.user.domain.User">
+        INSERT
+        INTO WITHDRAWALREASONS(withdrawal_reason_id,
+                               withdrawal_reason_type, withdrawal_reason_text)
+        VALUES (withdrawalreasons_seq.NEXTVAL, #{withdrawalReasonType}, #{withdrawalReasonText})
+
+    </insert>
 </mapper>
