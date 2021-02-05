@@ -314,12 +314,11 @@ public class UserController {
 
         return "user/adminUser";
     }
-    @GetMapping("updateUser")
-    public String updateuser(User user, Model model) throws Exception{
+    @PostMapping("updateUserView")
+    public String updateuser(HttpSession session, Model model) throws Exception{
         System.out.println("updateUser controller 시작 합니다");
-        System.out.println("updateUser controller 시작 합니다2");
-        System.out.println("updateUser 확인::"+user);
-        User user01=userService.getUser(user.getUserId());
+        User user = (User)session.getAttribute("user");
+        User user01 = userService.getUser(user.getUserId());
         model.addAttribute("user",user01);
         return "user/updateUser";
     }
