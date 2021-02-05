@@ -37,7 +37,7 @@
         <result property="id" column="DIARY_ID" jdbcType="NUMERIC"/>
         <result property="username" column="USER_ID" jdbcType="VARCHAR"/>
         <result property="emotionNo" column="EMOTION_ID" jdbcType="NUMERIC"/>
-        <result property="imageUrl" column="WEATHER" jdbcType="VARCHAR"/>
+        <result property="imageUrl" column="EMOTION_IMG" jdbcType="VARCHAR"/>
         <result property="start" column="DIARY_DATE" jdbcType="DATE"/>
     </resultMap>
 
@@ -125,9 +125,9 @@
     </update>
 
     <select id="getDiaryEmotion" parameterType="com.nj.secretary.services.calendar.domain.Calendar" resultMap="diaryCalendar">
-        SELECT to_char(DIARY_DATE,'yyyy-mm-dd') DIARY_DATE, DIARY_ID, WEATHER
-        FROM DIARY
-        WHERE USER_ID = #{username} and DIARY_DATE &gt;= #{start} and DIARY_DATE &lt;=#{end} and DELETE_STATUS = '0'
+        SELECT to_char(d.DIARY_DATE,'yyyy-mm-dd') DIARY_DATE, d.DIARY_ID, e.EMOTION_IMG
+        FROM DIARY d, EMOTIONS e
+        WHERE d.USER_ID = #{username} and d.DIARY_DATE &gt;= #{start} and d.DIARY_DATE &lt;=#{end} and d.DELETE_STATUS = '0' and d.emotion_id = e.emotion_id
     </select>
 
     <select id="getBinList" parameterType="String" resultMap="diaryServiceMap">

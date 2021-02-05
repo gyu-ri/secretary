@@ -5,6 +5,8 @@
 <link rel="stylesheet" href='../../css/main/main.css' />
 <script src="../../js/user/login.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<link rel="stylesheet" href='../../css/main/menu.css' />
+<script src="../../js/main/menu.js"></script>
 
 <script>
     // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
@@ -39,9 +41,9 @@
 
     <div class="find_info">
 
-        <a id="findId" href="/user/findId">아이디찾기</a>
-        <a id="findPwd" href="/user/findPwd">비밀번호찾기</a>
-        <a id="signUp" href="/user/signUp">회원가입</a>
+        <a class="log" id="findId" href="/user/findId">아이디찾기</a>
+        <a class="log" id="findPwd" href="/user/findPwd">비밀번호찾기</a>
+        <a class="log" id="signUp" href="/user/signUp">회원가입</a>
 
     </div>
 
@@ -68,6 +70,7 @@
 </div>
 
 <div class="wrapper">
+
     <input type="checkbox" id="menuToggler" class="input-toggler" />
     <label for="menuToggler" class="menu-toggler">
         <span class="menu-toggler__line"></span>
@@ -77,11 +80,14 @@
     <aside class="sidebar">
         <ul class="menu">
             <li class="menu__item"><a class="menu__link" href="/user/login">Home</a></li>
-            <li class="menu__item"><a class="menu__link" href="#Blog">Profile</a></li>
+            <li class="menu__item"><a class="menu__link" href="/user/getUser">Profile</a></li>
             <li class="menu__item"><a class="menu__link" href="/diary/getDiaryList">Diary</a></li>
             <li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
             <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
+            <li class="menu__item"><a class="menu__link" href="/user/logout">Logout</a></li>
         </ul>
+
+
     </aside>
 </div>
 

@@ -119,7 +119,7 @@ input:focus{
 
 /* Link */
 
-a{
+.find_info .log{
     font-family: 'Open Sans Condensed', sans-serif;
     text-decoration: none;
     position: relative;
