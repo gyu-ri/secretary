@@ -81,8 +81,12 @@ public class DiaryController {
 
 
         if(diary.getDiaryText().contains("src=")){
-            System.out.println(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("width")-2));
-            diary.setFileName(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("width")-2));
+            if(diary.getDiaryText().contains("jpeg")){
+                diary.setFileName(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("src=")+65));
+            }else{
+                diary.setFileName(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("src=")+64));
+            }
+            System.out.println(diary.getFileName());
             diaryService.addImage(diary);
         }
 
