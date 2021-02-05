@@ -113,8 +113,9 @@ public class UserController {
 //        model.addAttribute("count", alarmCount);
 //        System.out.println("count check : " + alarmCount);
 //        // 수정한 부분 끝
-        return "user/login";
+//        return "user/login";
 //        //return "index";
+        return "/user/login";
     }
 
     @GetMapping("/logout")

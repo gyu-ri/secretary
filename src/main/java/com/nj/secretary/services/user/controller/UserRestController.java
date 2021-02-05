@@ -39,12 +39,16 @@ public class UserRestController {
     }
 
     @ResponseBody
-    @PostMapping("/loginCheck")
-    public int loginCheck(@RequestParam("user") User user) throws Exception{
-        System.out.println("loginCheck rest시작"+user);
+    @GetMapping("loginCheck")
+    public int loginCheck(@RequestParam("userId") String userId, @RequestParam("password") String password) throws Exception{
+        System.out.println("loginCheck rest시작 id : "+userId + "password : " + password);
+        User user = new User();
+        user.setUserId(userId);
+        user.setPassword(password);
 
-        boolean result = userService.loginCheck(user);
-        if (result == false){
+        int result = userService.loginCheck(user);
+        System.out.println("결과값 : " + result);
+        if (result == 0){
             return 0;
         }else{
             return 1;

@@ -57,8 +57,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean loginCheck(User user) throws Exception {
-        boolean result = userDAO.loginCheck(user);
+    public int loginCheck(User user) throws Exception {
+
         return userDAO.loginCheck(user);
     }
 
