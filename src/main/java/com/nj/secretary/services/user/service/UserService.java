@@ -33,6 +33,9 @@ public interface UserService{
     public User findUserPwd(String userName) throws Exception;
 
 
+    public boolean loginCheck(User user) throws Exception;
+
+
     public int kakaoLogin(String userId) throws Exception;
 
 
@@ -55,6 +58,9 @@ public interface UserService{
     
     //탈퇴사유
     public void withdrawalReason(User user) throws Exception;
+
+    //비번 체크
+    public User pwdCheck(User user) throws Exception;
     
     //비번 변경
     public void changePassword(User user) throws Exception;

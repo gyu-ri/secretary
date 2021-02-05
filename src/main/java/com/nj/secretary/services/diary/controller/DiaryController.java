@@ -60,16 +60,26 @@ public class DiaryController {
         diaryService.addDiary(diary);
         System.out.println("tag : " + tag_text);
 
-        String[] tags = tag_text.split(",");
-        List<String> tagsList = new ArrayList<String>();
-        for(String tag : tags){
-            if(tag.trim()==""||tag.trim()==null||tag.trim().length()==0){
-            }else{
-                tagsList.add(tag);
+        if(tag_text == null) {
+            System.out.println("값이 null임");
+        }else{
+            String[] tags = tag_text.split(",");
+            List<String> tagsList = new ArrayList<String>();
+            for (String tag : tags) {
+                if (tag.trim() == "" || tag.trim() == null || tag.trim().length() == 0) {
+                } else {
+                    tagsList.add(tag);
+                }
             }
+            for (String tag : tagsList) {
+                diaryService.addTag(tag);
+                System.out.println("들어가는 태그 : " + tag);
+            }
+            System.out.println("tagsList : " + tagsList);
         }
 
-        System.out.println("tagsList : " + tagsList);
+
+
         if(diary.getDiaryText().contains("src=")){
             System.out.println(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("width")-2));
             diary.setFileName(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("width")-2));
@@ -77,10 +87,7 @@ public class DiaryController {
         }
 
 
-        for(String tag : tagsList){
-                diaryService.addTag(tag);
-                System.out.println("들어가는 태그 : " + tag);
-        }
+
         System.out.println("다이어리 추가 완료");
 
         return "diary/getDiary";

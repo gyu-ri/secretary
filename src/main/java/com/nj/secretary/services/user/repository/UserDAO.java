@@ -20,6 +20,8 @@ public interface UserDAO {
     //Select One : 비밀번호 찾기
     public User findUserPwd(String userName) throws Exception;
 
+    boolean loginCheck(User user);
+
     public int kakaoLogin(String userId) throws Exception;
 
     //Update : 레이아웃 설정 변경
@@ -42,6 +44,9 @@ public interface UserDAO {
     
     //탈퇴 사유
     public void withdrawalReason(User user) throws Exception;
+    
+    //pwdCheck
+    public User pwdCheck(User user) throws Exception;
     
     //비번 번경
     public void changePassword(User user) throws Exception;

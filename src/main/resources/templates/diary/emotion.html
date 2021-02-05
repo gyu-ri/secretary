@@ -45,12 +45,13 @@
     </script>
 </head>
 <body>
-<form action="/diary/write" method="get">
+<form name="emotionSelect" onsubmit="return goWrite()" action="/diary/write" method="get">
 <br><br>
 
 <h1 align="center">감정을 선택해보세요!</h1>
 
 <div>
+
     <label><input type="radio" id="기쁨" name="emotionNo" value="1"/><img src="../../images/emotions/really.png"></label>
     <label><input type="radio" id="슬픔" name="emotionNo" value="2"/><img src="../../images/emotions/sad.png"></label>
     <label><input type="radio" id=화남 name="emotionNo" value="3"/><img src="../../images/emotions/angry.png"></label>
@@ -67,10 +68,24 @@
     <label> <input type="radio" id="걱정" name="emotionNo" value="14"/><img src="../../images/emotions/worry.png"></label>
     <label><input type="radio" id="놀람" name="emotionNo" value="15"/><img src="../../images/emotions/surprise.png"></label>
     <label> <input type="radio" id="무표정" name="emotionNo" value="16"/><img src="../../images/emotions/nothing.png"></label>
+
     <br><br><br>
     <input type="submit" id="submit" value="선택"/>
 
 </div>
 </form>
+<script>
+    function goWrite(){
+        var emotion = document.emotionSelect.emotionNo.value;
+        if(emotion.trim() == ''){
+            alert(emotion);
+            alert("감정을 선택해주세요");
+            return false;
+        }else{
+            alert(emotion + "선택됨");
+            return true;
+        }
+    }
+</script>
 </body>
 </html>

@@ -2,43 +2,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper
+
 	namespace="com.nj.secretary.services.user.service.UserService">
 
 	<resultMap id="userSelectMap"
 		type="com.nj.secretary.services.user.domain.User">
 
 		<result property="userId" column="user_id" jdbcType="VARCHAR" />
-		<result property="withdrawalReasonId"
-			column="withdrawal_reason_id" jdbcType="INTEGER" />
+		<result property="withdrawalReasonId" column="withdrawal_reason_id" jdbcType="INTEGER" />
 		<result property="motto" column="motto" jdbcType="VARCHAR" />
-		<result property="password" column="password"
-			jdbcType="VARCHAR" />
+		<result property="password" column="password" jdbcType="VARCHAR" />
 		<result property="role" column="role" jdbcType="VARCHAR" />
-		<result property="isAlarmDiary" column="is_alarm_diary"
-			jdbcType="CHAR" />
-		<result property="isAlarmMonologue" column="is_alarm_monologue"
-			jdbcType="CHAR" />
-		<result property="userName" column="user_name"
-			jdbcType="VARCHAR" />
+		<result property="isAlarmDiary" column="is_alarm_diary" jdbcType="CHAR" />
+		<result property="isAlarmMonologue" column="is_alarm_monologue" jdbcType="CHAR" />
+		<result property="userName" column="user_name" jdbcType="VARCHAR" />
 		<result property="email" column="email" jdbcType="VARCHAR" />
-		<result property="blindCount" column="blind_count"
-			jdbcType="INTEGER" />
-		<result property="withdrawalDate" column="withdrawal_date"
-			jdbcType="DATE" />
-		<result property="withdrawalStatus" column="withdrawal_status"
-			jdbcType="CHAR" />
-		<result property="limitStartDate" column="limit_start_date"
-			jdbcType="DATE" />
-		<result property="isDisplayTime" column="is_display_time"
-			jdbcType="CHAR" />
-		<result property="isDisplayWeather" column="is_display_weather"
-			jdbcType="CHAR" />
-		<result property="isDisplayLocation"
-			column="is_display_location" jdbcType="CHAR" />
-		<result property="withdrawalReasonType"
-			column="withdrawal_reason_type" jdbcType="CHAR" />
-		<result property="withdrawalReasonText"
-			column="withdrawal_reason_text" jdbcType="VARCHAR" />
+		<result property="blindCount" column="blind_count" jdbcType="INTEGER" />
+		<result property="withdrawalDate" column="withdrawal_date" jdbcType="DATE" />
+		<result property="withdrawalStatus" column="withdrawal_status" jdbcType="CHAR" />
+		<result property="limitStartDate" column="limit_start_date"	jdbcType="DATE" />
+		<result property="isDisplayTime" column="is_display_time" jdbcType="CHAR" />
+		<result property="isDisplayWeather" column="is_display_weather" jdbcType="CHAR" />
+		<result property="isDisplayLocation" column="is_display_location" jdbcType="CHAR" />
+		<result property="withdrawalReasonType"	column="withdrawal_reason_type" jdbcType="CHAR" />
+		<result property="withdrawalReasonText"	column="withdrawal_reason_text" jdbcType="VARCHAR" />
 
 	</resultMap>
 
@@ -128,6 +115,12 @@
 		WHERE user_id=#{userId}
 	</update>
 	
+	<select id="pwdCheck" parameterType="com.nj.secretary.services.user.domain.User" resultMap="userSelectMap">
+		SELECT user_id, password
+		FROM users
+		WHERE user_id=#{userId} AND password=#{password}
+	</select>
+	
 	<update id="changePassword" parameterType="com.nj.secretary.services.user.domain.User">
 		UPDATE users
 		SET password=#{password}
@@ -148,6 +141,11 @@
 		withdrawal_reason_type, withdrawal_reason_text)
 		VALUES
 		(withdrawalreasons_seq.NEXTVAL,#{withdrawalReasonType},#{withdrawalReasonText})
-
 	</insert>
+
+<select id="loginCheck" resultType="String">
+        SELECT user_name
+        FROM users
+        WHERE user_id = #{userId} AND password = #{password}
+</select>
 </mapper>

@@ -57,6 +57,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean loginCheck(User user) throws Exception {
+        boolean result = userDAO.loginCheck(user);
+        return userDAO.loginCheck(user);
+    }
+
+
+    @Override
     public int kakaoLogin(String userId) throws Exception {
         return userDAO.kakaoLogin(userId);
     }
@@ -142,5 +149,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void changePassword(User user) throws Exception {
 		userDAO.changePassword(user);
+	}
+
+	@Override
+	public User pwdCheck(User user) throws Exception {
+		return userDAO.pwdCheck(user);
 	}
 }

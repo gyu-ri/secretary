@@ -22,17 +22,19 @@
 
 <body>
 <div id="container" style="display: block; transform: matrix(1,0,0,1,0,0); left: 0px;">
-<h2>login</h2>
-<form action="login" id="login" method="post">
 
-    <input type="text" name="userId" placeholder="아이디를 입력해주세요" required/>  </br>
-    <input type="password" name="password" placeholder="비밀번호를 입력해주세요" required/>  </br>
+<h2>login</h2>
+<form action="login" onsubmit="return check()" id="login" method="post">
+
+    <input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요" required/>  </br>
+    <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요" required/>  </br>
     <!--<div class="error" id="error" aria-live="assertive">
         <p>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</p>
     </div>-->
-    <p id="error" class="error-msg" style="display: block">
+    <div class="check_font" id="loginCheck"></div>
+    <!--<p id="error" class="error-msg" style="display: block">
         가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.
-    </p>
+    </p>-->
     <input type="submit" value="로그인"/>
 
     <div class="find_info">
@@ -63,6 +65,24 @@
         />
     </a>
 </form>
+</div>
+
+<div class="wrapper">
+    <input type="checkbox" id="menuToggler" class="input-toggler" />
+    <label for="menuToggler" class="menu-toggler">
+        <span class="menu-toggler__line"></span>
+        <span class="menu-toggler__line"></span>
+        <span class="menu-toggler__line"></span>
+    </label>
+    <aside class="sidebar">
+        <ul class="menu">
+            <li class="menu__item"><a class="menu__link" href="/user/login">Home</a></li>
+            <li class="menu__item"><a class="menu__link" href="#Blog">Profile</a></li>
+            <li class="menu__item"><a class="menu__link" href="/diary/getDiaryList">Diary</a></li>
+            <li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
+            <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
+        </ul>
+    </aside>
 </div>
 
 <p id="token-result"></p>

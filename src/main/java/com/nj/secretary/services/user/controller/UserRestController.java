@@ -2,6 +2,8 @@ package com.nj.secretary.services.user.controller;
 
 import com.nj.secretary.services.alarm.domain.Alarm;
 import com.nj.secretary.services.alarm.service.AlarmService;
+import com.nj.secretary.services.monologue.domain.Monologue;
+import com.nj.secretary.services.monologue.service.MonologueService;
 import com.nj.secretary.services.user.domain.User;
 import com.nj.secretary.services.user.service.UserService;
 import org.json.JSONObject;
@@ -35,6 +37,20 @@ public class UserRestController {
         int count = userService.idCheck(userId);
         return userService.idCheck(userId);
     }
+
+    @ResponseBody
+    @PostMapping("/loginCheck")
+    public int loginCheck(@RequestParam("user") User user) throws Exception{
+        System.out.println("loginCheck rest시작"+user);
+
+        boolean result = userService.loginCheck(user);
+        if (result == false){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
 
     @PostMapping("/CheckMail")
     @ResponseBody //ajax이후 다시 응답을 보내는게 아니기 때문에 적어줘야함.
@@ -165,6 +181,17 @@ public class UserRestController {
 
         return 1;
     }
+    
+    @PostMapping("pwdCheck")
+    public String pwdCheck(@RequestBody User user, HttpSession session) throws Exception{
+    	System.out.println("UserRestController pwdCheck 시작"+user);
+    	session.setAttribute("user", "gyuri");
+    	user.setUserId((String)session.getAttribute("user"));
+    	userService.pwdCheck(user);
+    	
+    	return "비밀번호 확인 되었습니다.";
+    }
+    
 
     @PostMapping("changePassword")
     public String changePassword(@RequestBody User user) throws Exception{
@@ -173,6 +200,17 @@ public class UserRestController {
     	
     	return "변경이 완료 되었습니다.";
     }
+    
+    @PostMapping("withdrawal")
+    public String withdrawal(@RequestBody User user) throws Exception{
+    	
+    	
+    	System.out.println("withdrawal restController 시작합니다");
+    	userService.withdrawal(user);
+
+    	return "";
+    }
+    
     
     @PostMapping("withdrawalReason")
     public String withdrawalReason(@RequestBody User user) throws Exception {
