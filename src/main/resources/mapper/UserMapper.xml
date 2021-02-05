@@ -143,8 +143,8 @@
 		(withdrawalreasons_seq.NEXTVAL,#{withdrawalReasonType},#{withdrawalReasonText})
 	</insert>
 
-<select id="loginCheck" resultType="String">
-        SELECT user_name
+<select id="loginCheck" resultType="Integer" parameterType="com.nj.secretary.services.user.domain.User">
+        SELECT COUNT(*)
         FROM users
         WHERE user_id = #{userId} AND password = #{password}
 </select>

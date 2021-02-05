@@ -26,7 +26,7 @@
 <div id="container" style="display: block; transform: matrix(1,0,0,1,0,0); left: 0px;">
 
 <h2>login</h2>
-<form action="login" onsubmit="return check()" id="login" method="post">
+<form name="login" id="login" action="/user/login" method="post">
 
     <input type="text" name="userId" id="userId" placeholder="아이디를 입력해주세요" required/>  </br>
     <input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요" required/>  </br>
@@ -37,7 +37,7 @@
     <!--<p id="error" class="error-msg" style="display: block">
         가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.
     </p>-->
-    <input type="submit" value="로그인"/>
+    <input type="button" value="로그인" onclick="loginValiCheck()"/>
 
     <div class="find_info">
 

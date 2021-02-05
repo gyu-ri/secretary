@@ -38,11 +38,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public boolean loginCheck(User user) {
-        String name = sqlSession.selectOne("UserMapper.loginCheck", user);
-        return (name == null) ? false : true;
-//        return name != null;
-//       return sqlSession.selectOne("UserMapper.loginCheck", user);
+    public int loginCheck(User user) {
+        int count = sqlSession.selectOne("UserMapper.loginCheck", user);
+
+        return count;
     }
 
     @Override

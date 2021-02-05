@@ -20,7 +20,7 @@ public interface UserDAO {
     //Select One : 비밀번호 찾기
     public User findUserPwd(String userName) throws Exception;
 
-    boolean loginCheck(User user);
+    public int loginCheck(User user);
 
     public int kakaoLogin(String userId) throws Exception;
 
