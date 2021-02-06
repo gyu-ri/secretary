@@ -7,8 +7,139 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <title>내 정보 수정</title>
-    
-    
+
+	<style>
+		body {
+			background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+
+		#container{
+			position: relative;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: 10% 30% 10%;
+			width: 600px;
+			height:660px;
+			border-radius: 5px;
+			background: rgba(3, 3, 3, 0.25);
+			box-shadow: 1px 1px 50px #000;
+		}
+
+		.close-btn{
+			position: absolute;
+			cursor: pointer;
+			font-family: 'Open Sans Condensed', sans-serif;
+			line-height: 18px;
+			top: 3px;
+			right: 3px;
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			border-radius: 10px;
+			opacity: .2;
+			-webkit-transition: all 2s ease-in-out;
+			-moz-transition: all 2s ease-in-out;
+			-o-transition: all 2s ease-in-out;
+			transition: all 0.2s ease-in-out;
+		}
+
+		img{
+			display: block;
+			margin: auto;
+			width: 100%;
+			height: auto;
+		}
+
+		.details{
+			clear: both;
+			display: inline;
+			width: 100%;
+			margin-left: 3%;
+			margin-bottom: 15%;
+		}
+
+		a,
+		input, button{
+			font-family: 'Open Sans Condensed', sans-serif;
+			text-decoration: none;
+			position: relative;
+			width: 60%;
+			display: inline-block;
+			margin-left: 8%;
+			margin-top: 9px;
+			margin-bottom: 15px;
+			font-size: 17px;
+			color: #fff;
+			padding: 8px;
+			border-radius: 6px;
+			border: none;
+			background: rgba(3,3,3,.1);
+			-webkit-transition: all 2s ease-in-out;
+			-moz-transition: all 2s ease-in-out;
+			-o-transition: all 2s ease-in-out;
+			transition: all 0.2s ease-in-out;
+		}
+
+		h1{
+			font-family: 'Open Sans Condensed', sans-serif;
+			position: relative;
+			margin-top: 0px;
+			margin-bottom: 100px;
+			text-align: center;
+			font-size: 40px;
+			color: #ddd;
+			text-shadow: 3px 3px 10px #000;
+		}
+
+		input:focus{
+			outline: none;
+			box-shadow: 3px 3px 10px #333;
+			background: rgba(3,3,3,.18);
+		}
+
+		/* Placeholders */
+		::-webkit-input-placeholder {
+			color: #e5dada;  }
+		:-moz-placeholder { /* Firefox 18- */
+			color: red;  }
+		::-moz-placeholder {  /* Firefox 19+ */
+			color: red;  }
+		:-ms-input-placeholder {
+			color: #333;  }
+
+		/* Link */
+		a{
+			font-family: 'Open Sans Condensed', sans-serif;
+			text-align: center;
+			padding: 4px 8px;
+			background: rgb(125, 138, 172);
+		}
+
+		a:hover{
+			opacity: 0.7;
+		}
+
+		.buttons{
+			cursor: pointer;
+			transition: 1s;
+			margin-left: 20%;
+			margin-bottom: 5px;
+		}
+
+		.buttons:hover{
+			background-color: rgb(125, 138, 172);;
+			transition: 1s;
+		}
+
+		#mainText{
+			padding-bottom: 5%;
+		}
+	</style>
      
 <script>
 $(function(){
@@ -46,23 +177,27 @@ $("#password-modal-open").on("click",function(){
 
 </head>
 <body>
-
+<div id="container">
+    <span class="close-btn">
+        <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
+      </span>
 <h1> 내  정보 수정</h1>
 <form action="updateUser" method="post">
 <input type="hidden" name="password" th:value="${user.password}"/>
 <input type="hidden" name="userId" th:value="${user.userId}" id="userId"/>
 
-
-이름 : <input type="text" th:value = "${user.userName}" name="userName"/></br>
-닉네임 : <input type="text" th:value = "${user.nickname}" name="nickname"/></br>
-이메일 : <input type="text" th:value = "${user.email}" name="email"></br>
-좌우명 : <input type="text" th:value = "${user.motto}" name="motto"/></br>
-<input type="submit" value="수정완료">
+	<div id="mainText">
+		<div class="details">이&nbsp;&nbsp;&nbsp;&nbsp;름 : <input type="text" th:value = "${user.userName}" name="userName"/></div></br>
+		<div class="details">닉네임 : <input type="text" th:value = "${user.nickname}" name="nickname"/></div></br>
+		<div class="details">이메일 : <input type="text" th:value = "${user.email}" name="email"></div></br>
+		<div class="details">좌우명 : <input type="text" th:value = "${user.motto}" name="motto"/></div></br>
+	</div>
+		<input class="buttons" type="submit" value="수정완료">
 
 
 </form>
 
-<button type="button" id="password-modal-open">☆비밀번호변경☆</button>
+<button type="button" class="buttons" id="password-modal-open">☆비밀번호변경☆</button>
 <div id="password-modal" class="modal fade" tabindex="-1" role="dialog">
 <div class="modal-dialog" role="document">
 	<div class="modal-content">
@@ -88,7 +223,7 @@ $("#password-modal-open").on("click",function(){
 <form action="withdrawal" method="post">
 <input type="hidden" name="password" th:value="${user.password}"/>
 <input type="hidden" name="userId" th:value="${user.userId}"/>
-<input type="submit" value="회원탈퇴">
+<input type="submit" class="buttons" value="회원탈퇴">
 
 </form>
 
