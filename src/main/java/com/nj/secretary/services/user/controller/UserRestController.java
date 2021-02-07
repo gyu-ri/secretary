@@ -60,7 +60,7 @@ public class UserRestController {
         }
     }
 
-
+    //아이디 찾기 : 메일전송
     @PostMapping("findId")
     public String findId(@RequestBody Map<String, Object> paramMap, User user)
             throws Exception {
@@ -76,7 +76,7 @@ public class UserRestController {
         System.out.println(dbUser);
         if (email.equals(dbUser.getEmail())) {
             String userId = dbUser.getUserId();
-            System.out.println(userId);
+            System.out.println("낰낰 userId이써여?"+userId);
             try {
                 MimeMessage msg = mailSender.createMimeMessage();
                 MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
@@ -92,9 +92,28 @@ public class UserRestController {
             }return "이메일 전송이 완료되었습니다.";
         } else {
             System.out.println("일치하는 정보 없음");
-            return "일치하는 회원정보가 없습니다.";
         }
+        System.out.println("일치하는 정보 없음");
+        return "일치하는 회원정보가 없습니다.";
         //return "user/emailSuccess";
+    }
+
+    //아이디 찾기 회원정보 일치여부
+    @ResponseBody
+    @GetMapping("userInfoCheck")
+    public int userInfoCheck(@RequestParam("userName") String userName, @RequestParam("email") String email) throws Exception{
+        System.out.println("userInfoCheck rest시작 name : "+userName + "email : " + email);
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword(email);
+
+        int result = userService.userInfoCheck(user);
+        System.out.println("결과값 : " + result);
+        if (result == 0){
+            return 0;
+        }else{
+            return 1;
+        }
     }
 
 

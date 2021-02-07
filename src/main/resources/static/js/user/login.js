@@ -71,17 +71,24 @@ $(function() {
             email : $("#email").val()
         };
         $.ajax({
-            url : "/restUser/findId",
-            type : "POST",
-            data :JSON.stringify(text),
+            url: "/restUser/findId",
+            type: "POST",
+            data: JSON.stringify(text),
             contentType: "application/json",
-            success: function (response){
+            success: function (response) {
                 alert(response);
+            }, error: function () {
+                console.log("실패실패");
+                alert()
+                $('#message').remove();
+                $('.check_info').append("<div id='message'>회원정보가 일치하지 않습니다.</div>")
+                $('.check_info').css("color", "#ae0f11")
+                $('#sendEmail').preventDefault();
             }
-        });
+        })
         //$("#updateUser").submit();
         //location.href="/user/login";
 
     })
 
-});
+})

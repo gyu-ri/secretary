@@ -17,6 +17,9 @@ public interface UserDAO {
     //Select One : 아이디 찾기
     public User findUserId(User user) throws Exception;
 
+    //사용자 정보 체크
+    public int userInfoCheck(User user) throws Exception;
+
     //Select One : 비밀번호 찾기
     public User findUserPwd(String userName) throws Exception;
 
@@ -63,4 +66,6 @@ public interface UserDAO {
     public int releaseShareLimit(String userId);
 
     public List<User> getWithdrawalReasonList();
+
+    void addKakaoUser(User user) throws Exception;
 }

@@ -222,12 +222,36 @@ public class UserController {
             model.addAttribute("accessToken", jsonObject.get("access_token"));
             HashMap map = getUserInfo((String) jsonObject.get("access_token"));
             if ((int) map.get("check") == 0) {
+                JSONObject abc = (JSONObject) map.get("userInfo");
+                JSONObject nick = (JSONObject)abc.get("kakao_account");
+                JSONObject nickname = (JSONObject) nick.get("profile");
                 model.addAttribute("userInfo", map.get("userInfo"));
+                model.addAttribute("userId",abc.get("id"));
+                System.out.println(nick);
+                model.addAttribute("nickname",nickname.get("nickname"));
+                model.addAttribute("email",nick.get("email"));
+
                 return "user/kakao";
             } else {
                 JSONObject abc = (JSONObject) map.get("userInfo");
-                session.setAttribute("user", abc.get("id"));
-                return "user/login";
+                User dbUser = userService.getUser(""+abc.get("id"));
+                session.setAttribute("user", dbUser);
+                Random random = new Random();
+                System.out.println(dbUser);
+                Monologue monologue = new Monologue();
+                monologue.setUserId(dbUser.getUserId());
+                    while (true) {
+                        int ran = random.nextInt(100) + 1;
+                        monologue.setQuestionId(ran);
+                        if (monologueService.randomCheck(monologue) == 0) {
+                            model.addAttribute("question", monologueService.getQuestionText(ran));
+                            return "user/afterLogin";
+                        }
+                        if (monologueService.randomCheck(monologue) == 100) {
+                            return "user/afterLogin";
+                        }
+                    }
+
             }
 
         } catch (IOException e) {
@@ -279,6 +303,18 @@ public class UserController {
             e.printStackTrace();
         }
         return userInfo;
+    }
+
+    @PostMapping("/kakaoSignUp")
+    public String kakaoSignUp(User user,HttpSession session, Model model) throws Exception {
+        userService.addKakaoUser(user);
+        session.setAttribute("user",user);
+        Monologue monologue = new Monologue();
+        monologue.setUserId(user.getUserId());
+        monologue.setQuestionId(1);
+        model.addAttribute("question", monologueService.getQuestionText(1));
+
+        return "user/afterLogin";
     }
 
 

@@ -33,6 +33,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public int userInfoCheck(User user) throws Exception {
+        return sqlSession.selectOne("UserMapper.userInfoCheck", user);
+    }
+
+    @Override
     public User findUserPwd(String userName) throws Exception {
         return sqlSession.selectOne("UserMapper.findUserId", userName);
     }
@@ -112,7 +117,12 @@ public class UserDAOImpl implements UserDAO {
         return sqlSession.selectList("UserMapper.getWithdrawalReasonList");
     }
 
-	@Override
+    @Override
+    public void addKakaoUser(User user) throws Exception {
+        sqlSession.insert("UserMapper.addKakaoUser",user);
+    }
+
+    @Override
 	public void withdrawal(User user) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.update("UserMapper.withdrawal", user);
