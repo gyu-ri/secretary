@@ -96,7 +96,6 @@ function validate(){
     let getPwd = RegExp()
 }
 //Kakao.init('b924b1b6cefccb2c71d88231552b32a8');
-
 /*
 $(document).ready(function (){
     Kakao.init('b924b1b6cefccb2c71d88231552b32a8');

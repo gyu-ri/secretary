@@ -47,8 +47,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserId(String userName) throws Exception {
-        return userDAO.findUserId(userName);
+    public User findUserId(User user) throws Exception {
+        return userDAO.findUserId(user);
+    }
+
+    @Override
+    public int userInfoCheck(User user) throws Exception {
+        return userDAO.userInfoCheck(user);
     }
 
     @Override
@@ -133,7 +138,12 @@ public class UserServiceImpl implements UserService {
         return userDAO.getWithdrawalReasonList();
     }
 
-	@Override
+    @Override
+    public void addKakaoUser(User user) throws Exception {
+        userDAO.addKakaoUser(user);
+    }
+
+    @Override
 	public void withdrawal(User user) throws Exception {
 		userDAO.withdrawal(user);
 		
