@@ -74,6 +74,9 @@ public class UserRestController {
         user.setEmail(email);
         User dbUser = userService.findUserId(user);
         System.out.println(dbUser);
+        if (dbUser==null){
+            return "0";
+        }
         if (email.equals(dbUser.getEmail())) {
             String userId = dbUser.getUserId();
             System.out.println("낰낰 userId이써여?"+userId);
@@ -94,7 +97,7 @@ public class UserRestController {
             System.out.println("일치하는 정보 없음");
         }
         System.out.println("일치하는 정보 없음");
-        return "일치하는 회원정보가 없습니다.";
+        return "0";
         //return "user/emailSuccess";
     }
 
@@ -113,6 +116,18 @@ public class UserRestController {
             return 0;
         }else{
             return 1;
+        }
+    }
+
+    @PostMapping("kakaoCheck")
+    public String kakaoCheck(@RequestBody User user, HttpSession session) throws Exception{
+        System.out.println("UserRestController kakaoCheck 시작"+user);
+        User user01 = (User)session.getAttribute("user");
+        user01 = userService.getUser(user01.getUserId());
+        if(user.getEmail().equals(user01.getEmail())){
+            return "이메일 확인 되었습니다.";
+        }else{
+            return "이메일이 틀렸습니다.";
         }
     }
 

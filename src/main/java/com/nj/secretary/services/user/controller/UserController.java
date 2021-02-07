@@ -327,9 +327,11 @@ public class UserController {
         //User user = userService.getUser((session.getAttribute("userId")).toString());
 
         model.addAttribute("user", user);
-        //System.out.println("userId 받아오나요" + userId);
-        System.out.println("user" + user);
-        return "user/getUser";
+        if (user.getKakao()==0){
+            return "user/getUser";
+        }else{
+            return "user/kakaoProfile";
+        }
     }
     
     @PostMapping("getUser")
@@ -350,6 +352,7 @@ public class UserController {
 
         return "user/adminUser";
     }
+
     @PostMapping("updateUserView")
     public String updateuser(HttpSession session, Model model) throws Exception{
         System.out.println("updateUser controller 시작 합니다");
@@ -358,7 +361,6 @@ public class UserController {
         model.addAttribute("user",user01);
         return "user/updateUser";
     }
-
 
 
     @PostMapping("updateUser")
