@@ -43,6 +43,12 @@ public class UserRestController {
         return userService.idCheck(userId);
     }
 
+    @ResponseBody//서버로 보낸 json데이터를 자바 객체로 매핑
+    @GetMapping("/emailCheck")
+    public int emailCheck(@RequestParam("email") String email) throws Exception{
+        return userService.emailCheck(email);
+    }
+
     @ResponseBody
     @GetMapping("loginCheck")
     public int loginCheck(@RequestParam("userId") String userId, @RequestParam("password") String password) throws Exception{
@@ -84,6 +90,7 @@ public class UserRestController {
                 MimeMessage msg = mailSender.createMimeMessage();
                 MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
 
+                messageHelper.setFrom("gydms741@gmail.com", "Secretary");
                 messageHelper.setSubject(userName + "님 아이디찾기 메일입니다.");//메일 제목
                 messageHelper.setText("아이디는" + userId + "입니다.");//메일 내용
                 messageHelper.setTo(email);
@@ -151,6 +158,7 @@ public class UserRestController {
         message.setSubject("Secretary 회원가입용 인증번호입니다.");
         message.setText("인증번호 : "+key);
         mailSender.send(message);
+        message.setFrom("gydms741@gmail.com");
         return key;
     }
 
