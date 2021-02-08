@@ -26,19 +26,52 @@ function idCheck() {
     });
 }
 
+function emailCheck(){
+    let email = $("#email").val();
+    if (email == "") {
+        alert("메일 주소가 입력되지 않았습니다.");
+    }else {
+    $.ajax({
+        url: '/restUser/emailCheck',
+        type: 'get',
+        data: {email: email},
+        contentType: "application/json",
+        success: function (data) {
+            console.log("1=중복/0=중복아님" + data);
+            if (data == 1) {
+                alert("이미 가입된 이메일입니다.")
+                $("#submit").attr("disabled", true);
+            } else {
+                $.ajax({
+                    type: 'post',
+                    url: '/restUser/sendMail',
+                    data: {email: email},
+                    dataType: 'json',
+                    success: function (key) {
+                        alert("인증번호가 전송되었습니다.")
+                        $('#check').attr("value", key);
+                    }
+                });
+            }
+
+        }, error: function () {
+            console.log("실패");
+        }
+    });
+    }
+}
 //회원가입 본인인증
-function sendMail() {// 메일 입력 유효성 검사
+/*function sendMail() {// 메일 입력 유효성 검사
     let mail = $("#email").val(); //사용자의 이메일 입력값.
     if (mail == "") {
         alert("메일 주소가 입력되지 않았습니다.");
-    } else {
+    }
+    else {
         //mail = mail+"@"+$(".domain").val(); //셀렉트 박스에 @뒤 값들을 더함.
         $.ajax({
             type: 'post',
             url: '/restUser/CheckMail',
-            data: {
-                mail: mail
-            },
+            data: {mail: mail},
             dataType: 'json',
             success: function (key) {
                 alert("인증번호가 전송되었습니다.")
@@ -48,7 +81,7 @@ function sendMail() {// 메일 입력 유효성 검사
 
         // isCertification = true; //추후 인증 여부를 알기위한 값
     }
-}
+}*/
 
 function checkCertificationNo() {
     alert("인증번호 맞는지 확인할게욥")
@@ -91,10 +124,11 @@ function pwdCheck(){
     }
 }
 
-function validate(){
+/*function validate(){
     let getUserId = RegExp()
     let getPwd = RegExp()
-}
+}*/
+
 //Kakao.init('b924b1b6cefccb2c71d88231552b32a8');
 /*
 $(document).ready(function (){

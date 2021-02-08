@@ -55,6 +55,8 @@ public interface UserService{
 
     //idCheck
     public int idCheck(String userId) throws Exception;
+
+    public int emailCheck(String email) throws Exception;
     
     //탈퇴
     public void withdrawal(User user) throws Exception;
