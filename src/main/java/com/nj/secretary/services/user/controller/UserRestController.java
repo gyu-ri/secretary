@@ -60,6 +60,7 @@ public class UserRestController {
         }
     }
 
+
     //아이디 찾기 : 메일전송
     @PostMapping("findId")
     public String findId(@RequestBody Map<String, Object> paramMap, User user)
@@ -111,6 +112,7 @@ public class UserRestController {
         user.setPassword(email);
 
         int result = userService.userInfoCheck(user);
+
         System.out.println("결과값 : " + result);
         if (result == 0){
             return 0;
