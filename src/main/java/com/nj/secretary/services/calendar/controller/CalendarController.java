@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/calendar/*")
 public class CalendarController {
@@ -19,7 +21,7 @@ public class CalendarController {
     CalendarService calendarService;
 
     @GetMapping("mainCalendar")
-    public String mainCalendarView(){
+    public String mainCalendarView(HttpSession session){
 
         return "calendar/index";
     }

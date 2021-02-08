@@ -250,8 +250,9 @@
     <script th:inline="javascript">
         document.addEventListener("DOMContentLoaded", function(){
             var role = [[${role}]];
+            var user = [[${user}]];
             console.log("role : "+role);
-
+            console.log("user : "+user);
            if(role == "admin"){
                //alert("admin이다! admin이 나타났다~!!");
                $("#forAdmin").append(
@@ -260,6 +261,12 @@
            } else{
                // alert("user 쫌생이다! user 쫌생이가 나타났다~!!")
            }
+            if(user == '0'){
+                $("#like").remove();
+                $("#report").remove();
+            }else if(user=='1'){
+                $("#modifyDiary").remove();
+            }
 
 
         });

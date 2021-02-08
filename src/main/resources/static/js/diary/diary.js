@@ -27,7 +27,7 @@ $(function(){
                             "<h3 class='name'>"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i onclick=\"deleteDiary("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i  class='fas fa-trash-restore-alt'></i></a><a href='#'><i class='fa fa-instagram' onclick=\"recoverDiary("+item.diaryId+")\"></i></a></div>" +
+                            "<div class='social'><a href='#'><i onclick=\"deleteDiary("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i class='fas fa-trash-restore' onclick=\"recoverDiary("+item.diaryId+")\"></i></a></div>" +
                             "</div>" +
                             "</a>"+
                             "</div>"+
@@ -42,7 +42,7 @@ $(function(){
                             "<h3 class='name'>"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i onclick=\"deleteDiary("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'><a href='#'><i onclick=\"deleteDiary("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i class='fas fa-trash-restore' onclick=\"recoverDiary("+item.diaryId+")\"></i></a></div>" +
                             "</div>" +
                             "</a>"+
                             "</div>"+
@@ -93,7 +93,7 @@ $(function(){
                             "<h3 class='name'>"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
                             "</div>" +
                             "</a>"+
                             "</div>"+
@@ -108,7 +108,7 @@ $(function(){
                             "<h3 class='name'>"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
                             "</div>" +
                             "</a>"+
                             "</div>"+
@@ -311,7 +311,7 @@ $(function(){
                             "<h3 class='name'>"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
                             "</div>" +
                             "</a>"+
                             "</div>"+
@@ -326,7 +326,7 @@ $(function(){
                             "<h3 class='name'>"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
                             "</div>" +
                             "</a>"+
                             "</div>"+

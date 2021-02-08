@@ -77,6 +77,7 @@ public class UserController {
             monologue.setQuestionId(ran);
             if (monologueService.randomCheck(monologue) == 0) {
                 model.addAttribute("question", monologueService.getQuestionText(ran));
+                model.addAttribute("user", login);
                 return "user/afterLogin";
             }
             if (monologueService.randomCheck(monologue) == 100) {
@@ -101,9 +102,11 @@ public class UserController {
                 monologue.setQuestionId(ran);
                 if (monologueService.randomCheck(monologue) == 0) {
                     model.addAttribute("question", monologueService.getQuestionText(ran));
+                    model.addAttribute("user", dbUser);
                     return "user/afterLogin";
                 }
                 if (monologueService.randomCheck(monologue) == 100) {
+                    model.addAttribute("user", dbUser);
                     return "user/afterLogin";
                 }
             }
