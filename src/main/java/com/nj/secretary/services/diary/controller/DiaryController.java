@@ -196,9 +196,9 @@ public class DiaryController {
 
     @GetMapping("binDiaryList")
     public String binDiaryList(HttpSession session,Model model){
-        session.setAttribute("user","윤도영");
+        User user = (User)session.getAttribute("user");
 
-        model.addAttribute("diaryList",diaryService.getBinList((String) session.getAttribute("user")));
+        model.addAttribute("diaryList",diaryService.getBinList(user.getUserId()));
         return "diary/binDiary";
     }
 

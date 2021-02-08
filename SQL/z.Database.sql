@@ -82,7 +82,7 @@ create table Image
     IMAGE_NAME VARCHAR2(100)
 )
 
-create table LIKE
+create table LIKES
 (
     LIKE_ID      NUMBER(8) not null
         constraint LIKE_PK
@@ -93,27 +93,29 @@ create table LIKE
 )
 
 
-CREATE TABLE USERS2
+create table USERS
 (
-    USER_ID VARCHAR2(30) NOT NULL PRIMARY KEY,
-    PASSWORD VARCHAR2(30) NOT NULL,
-    USER_NAME VARCHAR2(30) NOT NULL,
-    ROLE VARCHAR2(20) DEFAULT 'USER',
-    NICKNAME VARCHAR2(30),
-    EMAIL VARCHAR2(100) NOT NULL ,
+    USER_ID              VARCHAR2(30)  not null
+        primary key,
+    PASSWORD             VARCHAR2(30)  not null,
+    USER_NAME            VARCHAR2(30)  not null,
+    ROLE                 VARCHAR2(20) default 'USER',
+    NICKNAME             VARCHAR2(30),
+    EMAIL                VARCHAR2(100) not null,
     WITHDRAWAL_REASON_ID NUMBER(8),
-    MOTTO VARCHAR2(100),
-    IS_ALARM_DIARY CHAR(1) DEFAULT 1,
-    IS_ALARM_MONOLOGUE CHAR(1) DEFAULT 1,
-    BLIND_COUNT NUMBER(2),
-    WITHDRAWAL_DATE DATE,
-    WITHDRAWAL_STATUS CHAR(1) DEFAULT 0,
-    LIMIT_START_DATE DATE DEFAULT NULL,
-    LIMIT_END_DATE DATE DEFAULT NULL,
-    IS_DISPLAY_TIME CHAR(1) DEFAULT 1,
-    IS_DISPLAY_WEATHER CHAR(1) DEFAULT 1,
-    IS_DISPLAY_LOCATION CHAR(1) DEFAULT 1
-);
+    MOTTO                VARCHAR2(100),
+    IS_ALARM_DIARY       CHAR         default 1,
+    IS_ALARM_MONOLOGUE   CHAR         default 1,
+    BLIND_COUNT          NUMBER(2),
+    WITHDRAWAL_DATE      DATE,
+    WITHDRAWAL_STATUS    CHAR         default 0,
+    LIMIT_START_DATE     DATE,
+    LIMIT_END_DATE       DATE,
+    IS_DISPLAY_TIME      CHAR         default 1,
+    IS_DISPLAY_WEATHER   CHAR         default 1,
+    IS_DISPLAY_LOCATION  CHAR         default 1,
+    KAKAO                NUMBER       default 0
+)
 
 CREATE TABLE DIARY
 (
@@ -192,7 +194,6 @@ CREATE TABLE WITHDRAWALREASONS
     WITHDRAWAL_REASON_TEXT	VARCHAR2(1000)
 );
 
-
 CREATE TABLE GOALS
 (
     GOAL_ID	NUMBER(8)	PRIMARY KEY,
@@ -208,23 +209,6 @@ CREATE TABLE EMOTIONS
     EMOTION_NAME	VARCHAR2(20) NOT NULL,
     EMOTION_IMG	VARCHAR2(100) NOT NULL
 );
-
-INSERT INTO emotions VALUES(1, '기쁨', '&#128512;');
-INSERT INTO emotions VALUES(2, '슬픔', '&#128549;');
-INSERT INTO emotions VALUES(3, '화남', '&#128545;');
-INSERT INTO emotions VALUES(4, '무표정', '&#128528;');
-INSERT INTO emotions VALUES(5, '심각', '&#128512;');
-INSERT INTO emotions VALUES(6, '힘듦', '&#128555;');
-INSERT INTO emotions VALUES(7, '짜증', '&#128548;');
-INSERT INTO emotions VALUES(8, '신나', '&#128537;');
-INSERT INTO emotions VALUES(9, '멘붕', '&#128552;');
-INSERT INTO emotions VALUES(10, '설렘', '&#128525;');
-INSERT INTO emotions VALUES(11, '좌절', '&#128557;');
-INSERT INTO emotions VALUES(12, '공포', '&#128561;');
-INSERT INTO emotions VALUES(13, '놀람', '&#128562;');
-INSERT INTO emotions VALUES(14, '당황', '&#128527;');
-INSERT INTO emotions VALUES(15, '민망', '&#128517;');
-INSERT INTO emotions VALUES(16, '아픔', '&#129298;');
 
 
 CREATE TABLE REPORT
