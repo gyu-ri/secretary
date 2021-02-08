@@ -9,6 +9,7 @@
 		type="com.nj.secretary.services.user.domain.User">
 
 		<result property="userId" column="user_id" jdbcType="VARCHAR" />
+		<result property="kakao" column="kakao" jdbcType="INTEGER" />
 		<result property="withdrawalReasonId" column="withdrawal_reason_id" jdbcType="INTEGER" />
 		<result property="motto" column="motto" jdbcType="VARCHAR" />
 		<result property="password" column="password" jdbcType="VARCHAR" />
@@ -38,10 +39,19 @@
 
 	</insert>
 
+	<insert id="addKakaoUser"
+			parameterType="com.nj.secretary.services.user.domain.User">
+
+		insert into
+			USERS(user_id, user_name, password, nickname, email, motto,kakao)
+		values(#{userId},#{userName},#{password},#{nickname},#{email},#{motto},1)
+
+	</insert>
+
 	<select id="getUser" parameterType="string"
 		resultType="com.nj.secretary.services.user.domain.User">
 
-		select user_name, user_id, password, nickname, email, motto
+		select user_name, user_id, password, nickname, email, motto, kakao
 		from users
 		where user_Id=#{userId}
 
@@ -64,11 +74,17 @@
 
 	</select>
 
-	<select id="findUserId" parameterType="string"
-		resultType="com.nj.secretary.services.user.domain.User">
+	<select id="findUserId" parameterType="com.nj.secretary.services.user.domain.User"
+			resultMap="userSelectMap">
 		select user_Id, user_name, email
 		from users
-		where user_name=#{userName}
+		where  user_name=#{userName} and  email=#{email}
+	</select>
+
+	<select id="userInfoCheck" resultType="Integer" parameterType="com.nj.secretary.services.user.domain.User">
+		SELECT COUNT(*)
+		FROM users
+		WHERE user_id = #{userName} AND email = #{email}
 	</select>
 
 	<select id="getBlindedUserList" resultMap="userSelectMap">

@@ -3,43 +3,40 @@
 <head>
     <title>signUp</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../css/user/user.css">
+    <link rel="stylesheet" href="../../css/user/addUser.css">
+    <link rel="stylesheet" href="../../css/main/main.css">
     <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
-    <script src="../../js/user/user.js"></script>
+    <script src="../../js/user/addUser.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 </head>
 <body>
 <h3>signUp</h3>
 
-<form th:action="@{signUp}" method="post" onsubmit="return submitCheck();">
+<div id="container" style="display: block; transform: matrix(1,0,0,1,0,0); left: 0px;">
+        <span class="close-btn">
+    <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
+  </span>
+    <h2>회원가입</h2>
+    <form action="/user/kakaoSignUp" method="post">
 
-    <div class="form-group">
-        <label for="userId"></label>
-        id : <input type="text" onkeyup="idCheck()" class="form-control" id="userId" name="userId"
-                    placeholder="아이디를 입력해주세요" required><!-- keyup method 사용하면 안좋음 변경가능 메서드 찾기 -->
-        <div class="check_font" id="idCheck"></div><!--경고문이 들어갈 공간 -->
-        <!-- <div class="col-lg-6">
-             <span id="5char" class="glyphicon glyphicon-remove" style="color:#ff0004"></span>5글자 이상
-         </div>-->
-    </div>
+        <input type="hidden" th:value="${userId}" id="userId" name="userId"></br>
 
-    PW : <input type="password" class="input-lg form-control" id="password01" name="password"
-                placeholder="새 비밀번호를 입력해주세요" autocomplete="off" required></br>
+        <input type="hidden" th:value="${userId}" id="password01" name="password"></br>
 
-    name : <input type="text" id="userName" name="userName" placeholder="이름을 입력해주세요" required></br>
+        <input type="hidden" th:value="${nickname}" name="userName"></br>
 
-    email : <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required></br>
+        <input type="hidden" th:value="${email}" id="email" name="email"></br>
 
-    nickname : <input type="text" id="nickname" name="nickname" placeholder="닉네임을 입력해주세요"></br>
+        <input type="text" name="nickname" placeholder="닉네임"></br>
 
-    motto : <input type="text" id="motto" name="motto" placeholder="나의 좌우명을 입력해주세요"></br>
+        <input type="text" name="motto" placeholder="나의 좌우명"></br>
 
-    <input type="submit" value="회원가입">
+        <input type="submit" value="회원가입">
 
-</form>
+    </form>
+</div>
 
-<input type="hidden" id="check" value=""><!--아이디 중복체크-->
-<!--<h3 th:text="${userInfo}"></h3>-->
+<!--<input type="hidden" id="check" value="">&lt;!&ndash;아이디 중복체크&ndash;&gt;-->
 <!--<input type="hidden" id="token" th:value="${accessToken}">--><!--카카오 로그인 사용자 정보 불러오기-->
 
 </body>

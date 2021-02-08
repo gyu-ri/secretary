@@ -6,10 +6,12 @@ import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.service.MonologueService;
 import com.nj.secretary.services.user.domain.User;
 import com.nj.secretary.services.user.service.UserService;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +20,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 @RestController//반환 값이 단순 문자열과 Json이다.
@@ -52,6 +57,77 @@ public class UserRestController {
             return 0;
         }else{
             return 1;
+        }
+    }
+
+    //아이디 찾기 : 메일전송
+    @PostMapping("findId")
+    public String findId(@RequestBody Map<String, Object> paramMap, User user)
+            throws Exception {
+
+        System.out.println(paramMap+"paramMap입니다.");
+        String userName = (String) paramMap.get("userName");
+        String email = (String) paramMap.get("email");
+        System.out.println(userName);
+        System.out.println("email이 찍혀요?"+email);
+        user.setUserName(userName);
+        user.setEmail(email);
+        User dbUser = userService.findUserId(user);
+        System.out.println(dbUser);
+        if (dbUser==null){
+            return "0";
+        }
+        if (email.equals(dbUser.getEmail())) {
+            String userId = dbUser.getUserId();
+            System.out.println("낰낰 userId이써여?"+userId);
+            try {
+                MimeMessage msg = mailSender.createMimeMessage();
+                MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
+
+                messageHelper.setSubject(userName + "님 아이디찾기 메일입니다.");//메일 제목
+                messageHelper.setText("아이디는" + userId + "입니다.");//메일 내용
+                messageHelper.setTo(email);
+                msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email));
+                mailSender.send(msg);
+            } catch (MessagingException e) {
+                System.out.println("MessagingException");
+                e.printStackTrace();
+            }return "이메일 전송이 완료되었습니다.";
+        } else {
+            System.out.println("일치하는 정보 없음");
+        }
+        System.out.println("일치하는 정보 없음");
+        return "0";
+        //return "user/emailSuccess";
+    }
+
+    //아이디 찾기 회원정보 일치여부
+    @ResponseBody
+    @GetMapping("userInfoCheck")
+    public int userInfoCheck(@RequestParam("userName") String userName, @RequestParam("email") String email) throws Exception{
+        System.out.println("userInfoCheck rest시작 name : "+userName + "email : " + email);
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword(email);
+
+        int result = userService.userInfoCheck(user);
+        System.out.println("결과값 : " + result);
+        if (result == 0){
+            return 0;
+        }else{
+            return 1;
+        }
+    }
+
+    @PostMapping("kakaoCheck")
+    public String kakaoCheck(@RequestBody User user, HttpSession session) throws Exception{
+        System.out.println("UserRestController kakaoCheck 시작"+user);
+        User user01 = (User)session.getAttribute("user");
+        user01 = userService.getUser(user01.getUserId());
+        if(user.getEmail().equals(user01.getEmail())){
+            return "이메일 확인 되었습니다.";
+        }else{
+            return "이메일이 틀렸습니다.";
         }
     }
 
@@ -189,10 +265,13 @@ public class UserRestController {
     @PostMapping("pwdCheck")
     public String pwdCheck(@RequestBody User user, HttpSession session) throws Exception{
     	System.out.println("UserRestController pwdCheck 시작"+user);
-        user = (User)session.getAttribute("user");
-    	userService.pwdCheck(user);
-    	
-    	return "비밀번호 확인 되었습니다.";
+    	User user01 = (User)session.getAttribute("user");
+        user01 = userService.getUser(user01.getUserId());
+    	if(user.getPassword().equals(user01.getPassword())){
+    	    return "비밀번호 확인 되었습니다.";
+        }else{
+    	    return "비밀번호가 틀립니다.";
+        }
     }
     
 

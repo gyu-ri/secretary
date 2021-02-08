@@ -124,19 +124,19 @@ public class UserController {
         return "user/login";
     }
 
-    @GetMapping("/findId")
+    /*@GetMapping("/findId")
     public String findId() throws Exception {
         return "user/findId";
     }
 
     @PostMapping("findId")
-    public String findIdMailSend(@RequestParam Map<String, Object> paramMap)
+    public String findIdMailSend(@RequestParam Map<String, Object> paramMap, User user)
             throws Exception {
 
         String userName = (String) paramMap.get("userName");
         String email = (String) paramMap.get("email");
         System.out.println(userName);
-        User dbUser = userService.findUserId(userName);
+        User dbUser = userService.findUserId(user);
         System.out.println(dbUser);
         if (email.equals(dbUser.getEmail())) {
             String userId = dbUser.getUserId();
@@ -158,7 +158,7 @@ public class UserController {
             System.out.println("일치하는 정보 없음");
         }
         return "user/emailSuccess";
-    }
+    }*/
 
     @GetMapping("/findPwd")
     public String findPwd() throws Exception {
@@ -222,12 +222,36 @@ public class UserController {
             model.addAttribute("accessToken", jsonObject.get("access_token"));
             HashMap map = getUserInfo((String) jsonObject.get("access_token"));
             if ((int) map.get("check") == 0) {
+                JSONObject abc = (JSONObject) map.get("userInfo");
+                JSONObject nick = (JSONObject)abc.get("kakao_account");
+                JSONObject nickname = (JSONObject) nick.get("profile");
                 model.addAttribute("userInfo", map.get("userInfo"));
+                model.addAttribute("userId",abc.get("id"));
+                System.out.println(nick);
+                model.addAttribute("nickname",nickname.get("nickname"));
+                model.addAttribute("email",nick.get("email"));
+
                 return "user/kakao";
             } else {
                 JSONObject abc = (JSONObject) map.get("userInfo");
-                session.setAttribute("user", abc.get("id"));
-                return "user/login";
+                User dbUser = userService.getUser(""+abc.get("id"));
+                session.setAttribute("user", dbUser);
+                Random random = new Random();
+                System.out.println(dbUser);
+                Monologue monologue = new Monologue();
+                monologue.setUserId(dbUser.getUserId());
+                    while (true) {
+                        int ran = random.nextInt(100) + 1;
+                        monologue.setQuestionId(ran);
+                        if (monologueService.randomCheck(monologue) == 0) {
+                            model.addAttribute("question", monologueService.getQuestionText(ran));
+                            return "user/afterLogin";
+                        }
+                        if (monologueService.randomCheck(monologue) == 100) {
+                            return "user/afterLogin";
+                        }
+                    }
+
             }
 
         } catch (IOException e) {
@@ -281,6 +305,18 @@ public class UserController {
         return userInfo;
     }
 
+    @PostMapping("/kakaoSignUp")
+    public String kakaoSignUp(User user,HttpSession session, Model model) throws Exception {
+        userService.addKakaoUser(user);
+        session.setAttribute("user",user);
+        Monologue monologue = new Monologue();
+        monologue.setUserId(user.getUserId());
+        monologue.setQuestionId(1);
+        model.addAttribute("question", monologueService.getQuestionText(1));
+
+        return "user/afterLogin";
+    }
+
 
     @GetMapping("/getUser")
     public String getUser(String userId, Model model, HttpSession session) throws Exception {
@@ -291,9 +327,11 @@ public class UserController {
         //User user = userService.getUser((session.getAttribute("userId")).toString());
 
         model.addAttribute("user", user);
-        //System.out.println("userId 받아오나요" + userId);
-        System.out.println("user" + user);
-        return "user/getUser";
+        if (user.getKakao()==0){
+            return "user/getUser";
+        }else{
+            return "user/kakaoProfile";
+        }
     }
     
     @PostMapping("getUser")
@@ -314,16 +352,15 @@ public class UserController {
 
         return "user/adminUser";
     }
-    @GetMapping("updateUser")
-    public String updateuser(User user, Model model) throws Exception{
+
+    @PostMapping("updateUserView")
+    public String updateuser(HttpSession session, Model model) throws Exception{
         System.out.println("updateUser controller 시작 합니다");
-        System.out.println("updateUser controller 시작 합니다2");
-        System.out.println("updateUser 확인::"+user);
-        User user01=userService.getUser(user.getUserId());
+        User user = (User)session.getAttribute("user");
+        User user01 = userService.getUser(user.getUserId());
         model.addAttribute("user",user01);
         return "user/updateUser";
     }
-
 
 
     @PostMapping("updateUser")

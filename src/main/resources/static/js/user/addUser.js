@@ -1,4 +1,5 @@
 //아이디 유효성 검사
+let isCertification = false;
 function idCheck() {
     let userId = $('#userId').val();
     $.ajax({
@@ -45,7 +46,7 @@ function sendMail() {// 메일 입력 유효성 검사
             }
         });
 
-        isCertification = true; //추후 인증 여부를 알기위한 값
+        // isCertification = true; //추후 인증 여부를 알기위한 값
     }
 }
 
@@ -66,11 +67,14 @@ function checkCertificationNo() {
 }
 
 function submitCheck(){
-    if (isCertification == false){
+    if (isCertification == true){
+        return true;
+    }else{
         alert("메일 인증이 완료되지 않았습니다.");
         return false;
-    }else true;
+    }
 }
+
 
 function pwdCheck(){
 
@@ -92,7 +96,6 @@ function validate(){
     let getPwd = RegExp()
 }
 //Kakao.init('b924b1b6cefccb2c71d88231552b32a8');
-
 /*
 $(document).ready(function (){
     Kakao.init('b924b1b6cefccb2c71d88231552b32a8');

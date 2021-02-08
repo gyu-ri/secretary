@@ -9,7 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SecretaryApplication {
 
     public static void main(String[] args) {
+        String path = System.getProperty("user.dir");
+        System.out.println("path : "+path);
         SpringApplication.run(SecretaryApplication.class, args);
+
     }
 
 }

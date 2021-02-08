@@ -28,6 +28,8 @@ public class User {
     @Email(message = "Email should be valid")
     private String email;//이메일 : 본인인증을 위한 수단
 
+    private int kakao;
+
     private String motto;//좌우명
     private int certificationNo;//인증번호
     private String role;//사용자권한부여
