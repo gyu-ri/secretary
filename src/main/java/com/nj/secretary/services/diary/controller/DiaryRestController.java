@@ -40,6 +40,9 @@ public class DiaryRestController {
 
     @GetMapping("getOthersDiaryList")
     public List<Diary> getOthersDiaryList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model,HttpSession session){
+        if(session.getAttribute("user")==null){
+
+        }
         System.out.println("getOthersDiaryList start in controller");
         System.out.println("test : " + shareStatus + userId);
         List<Diary> list = diaryService.getOthersDiaryList(userId);

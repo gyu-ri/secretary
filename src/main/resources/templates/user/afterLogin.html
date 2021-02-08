@@ -83,16 +83,14 @@
             <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
             <li class="menu__item"><a class="menu__link" href="/user/logout">Logout</a></li>
         </ul>
-
-
     </aside>
 
     <main class="content">
-
-
         <div>
-            <h1 id="question" th:value="${question.questionId}" th:text="${question.questionText}"></h1><br/>
-            <p>Something you can add here</p>
+            <h1 class="intro" th:text="|${user.userName}님 환영합니다.|" hidden></h1>
+            <input type="hidden" id="questionNo" th:value="${question.questionId}">
+            <h1 id="question" th:text="${question.questionText}"></h1><br/>
+            <input type="text" id="answer">
         </div>
 
 
@@ -103,9 +101,6 @@
     </main>
 
 </div>
-
-
-
 
 </body>
 </html>

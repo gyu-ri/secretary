@@ -1,3 +1,5 @@
+
+
 //Clock
 $(document).ready(function(){
     $(".wrapper").load("../main/menu.html");
@@ -324,3 +326,43 @@ $(function geoFindMe() {
             });
     }
 });
+
+$(function(){
+    $('#answer').on('keydown', function(event) {
+        console.log($("#question").val());
+        const monologue = {
+            questionId: $("#questionNo").val(),
+            questionText: $("#question").text(),
+            monologueText: $("#answer").val()
+        };
+        if (event.keyCode === 13){
+            if (!event.shiftKey){
+                alert("enter");
+                console.log(monologue);
+                event.preventDefault();
+                $.ajax({
+                    url : "/restMonologue/addMonologue",
+                    type : "POST",
+                    dataType : "json",
+                    data : JSON.stringify(monologue),
+                    contentType: "application/json",
+                    success : function (response){
+                        console.log(response);
+                        function complete(){
+                            $("#question").remove();
+                            $("#answer").remove();
+                            $(".intro").fadeIn("slow");
+                        }
+                        $("#question").fadeOut("slow");
+                        $("#answer").fadeOut("slow",complete);
+
+
+                    }
+                })
+            }else{
+
+            }
+        }
+
+    });
+})

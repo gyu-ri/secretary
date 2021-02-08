@@ -49,6 +49,9 @@ public class DiaryController {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam("tag_text") String tag_text,HttpSession session){
         System.out.println("shareStatus : " + diary.getShareStatus());
+        if(session.getAttribute("user")==null){
+            return "user/login";
+        }
         User user = (User)session.getAttribute("user");
         diary.setUserId(user.getUserId());
         if(diary.getShareStatus().trim().equals("0,1")) {
@@ -144,7 +147,9 @@ public class DiaryController {
 
     @GetMapping(value = "getDiaryList")
     public String listDiary(HttpSession session, Model model){
-
+        if(session.getAttribute("user")==null){
+            return "user/login";
+        }
         System.out.println("listDiary start in controller");
 
 
@@ -160,8 +165,15 @@ public class DiaryController {
 
 
     @GetMapping("getDiary")
-    public String getDiary(@RequestParam("diaryNo") int diaryNo,Model model){
+    public String getDiary(@RequestParam("diaryNo") int diaryNo,Model model,HttpSession session){
         System.out.println(diaryNo);
+        User user = (User)session.getAttribute("user");
+        System.out.println(user);
+        if(user.getUserId().equals(diaryService.getDiary(diaryNo).getUserId())){ //본인
+            model.addAttribute("user", "0");
+        }else{ //타인
+            model.addAttribute("user", "1");
+        }
         System.out.println(diaryService.getDiary(diaryNo));
         model.addAttribute("diary",diaryService.getDiary(diaryNo));
         model.addAttribute("role", "admin");
@@ -170,7 +182,10 @@ public class DiaryController {
 
 
     @GetMapping("updateDiary")
-    public String updateDiary(@RequestParam("diaryId") int diaryNo, Model model){
+    public String updateDiary(@RequestParam("diaryId") int diaryNo, Model model,HttpSession session){
+        if(session.getAttribute("user")==null){
+            return "user/login";
+        }
         System.out.println(diaryNo);
         System.out.println("update Diary");
 
@@ -180,8 +195,11 @@ public class DiaryController {
 
 
     @PostMapping("updateDiary")
-    public String updateDiary(@ModelAttribute("diary") Diary diary, Model model){
+    public String updateDiary(@ModelAttribute("diary") Diary diary, HttpSession session){
         System.out.println("shareStatus : " + diary.getShareStatus());
+        if(session.getAttribute("user")==null){
+            return "user/login";
+        }
 
         if(diary.getShareStatus().trim().equals("0,1")) {
             diary.setShareStatus("1");
@@ -197,6 +215,9 @@ public class DiaryController {
     @GetMapping("binDiaryList")
     public String binDiaryList(HttpSession session,Model model){
         User user = (User)session.getAttribute("user");
+        if(session.getAttribute("user")==null){
+            return "user/login";
+        }
 
         model.addAttribute("diaryList",diaryService.getBinList(user.getUserId()));
         return "diary/binDiary";

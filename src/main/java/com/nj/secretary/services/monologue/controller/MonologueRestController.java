@@ -6,6 +6,7 @@ import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.diary.domain.Translate;
 import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.service.MonologueService;
+import com.nj.secretary.services.user.domain.User;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -42,6 +43,17 @@ public class MonologueRestController {
 
         return monologueList;
     }
+
+    @PostMapping("addMonologue")
+    public String addMonologue(@RequestBody Monologue monologue,HttpSession session) throws Exception {
+        User user = (User)session.getAttribute("user");
+        monologue.setUserId(user.getUserId());
+        monologue.setShareStatus("0");
+        System.out.println(monologue);
+        monologueService.addMonologue(monologue);
+        return "테스트중입니다.";
+    }
+
 
     @PostMapping("setBlindMonologue")
     public int setBlindMonologue(@RequestBody String json){
