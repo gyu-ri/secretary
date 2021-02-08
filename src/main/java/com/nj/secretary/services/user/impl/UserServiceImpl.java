@@ -100,6 +100,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public int emailCheck(String email) throws Exception {
+        return userDAO.emailCheck(email);
+    }
+
+    @Override
     public List<User> getBlindedUserList(){
 
         List<User> list = userDAO.getBlindedUserList();

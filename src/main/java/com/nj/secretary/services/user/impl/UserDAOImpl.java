@@ -60,6 +60,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public int emailCheck(String email) throws Exception {
+        return sqlSession.selectOne("UserMapper.emailCheck",email);
+    }
+
+    @Override
     public void settingUser() throws Exception {
 
     }

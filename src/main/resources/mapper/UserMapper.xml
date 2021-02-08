@@ -74,6 +74,14 @@
 
 	</select>
 
+	<select id="emailCheck" parameterType="string" resultType="Integer">
+
+		select count(*)
+		from users
+		where email=#{email}
+
+	</select>
+
 	<select id="findUserId" parameterType="com.nj.secretary.services.user.domain.User"
 			resultMap="userSelectMap">
 		select user_Id, user_name, email

@@ -41,6 +41,8 @@ public interface UserDAO {
 
     //idCheck
     public int idCheck(String userId) throws Exception;
+
+    int emailCheck(String email) throws Exception;
     
     //탈퇴
     public void withdrawal(User user) throws Exception;
@@ -68,4 +70,5 @@ public interface UserDAO {
     public List<User> getWithdrawalReasonList();
 
     void addKakaoUser(User user) throws Exception;
+
 }
