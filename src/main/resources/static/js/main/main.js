@@ -11,7 +11,7 @@ $(function() {
         var hour = nTime.getHours();
         var minutes = nTime.getMinutes();
         var time = (hour >= 12 ? "PM  " : "AM  ")
-            + (hour < 10 ? "0" + hour : (hour<=12 ? hour : "0"+(hour-12))) + ":"
+            + (hour < 10 ? "0" + hour : (hour<=12 ? hour : ((hour-12).length>1) ? "0"+hour-12 : hour-12 )) + ":"
 
             + (minutes >= 10 ? minutes : "0" + minutes);
 
