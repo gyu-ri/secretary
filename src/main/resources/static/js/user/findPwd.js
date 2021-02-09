@@ -45,7 +45,6 @@ function checkCertificationNo() {
 
 function submitCheck(){
     if (isCertification == true){
-    	
         return true;
     }else{
         alert("메일 인증이 완료되지 않았습니다.");
@@ -53,37 +52,37 @@ function submitCheck(){
     }
 }
 
+function passwordChange(){
+	if(submitCheck() == true){
+		$("#password-modal").modal("show");
+	 $("#sendPassword").on("click",function(e){
 
-$(function(){
-$("#password-modal-open").on("click",function(){
-	$("#password-modal").modal("show");
-	})
+	                if($("#password01").val() == $("#password02").val()){
+	                	let text = {
+	                        	password : $("#password02").val(),
+	                        	userId : $("#userId").val()
+	                        };
+	                    $.ajax({
+	                        url : "/restUser/changePassword",
+	                        type : "POST",
+	                        data :JSON.stringify(text),
+	                        contentType: "application/json",
+	                        //async: false,
+	                        success: function (response){
+	                            alert(response);
+	                        }
+	                    });
+	                
+	                }else{
+	                    alert("입력하신 비밀번호가 일치하지 않습니다.")
+	                  
+	                }
 
- $("#sendPassword").on("click",function(e){
+	            })
+					
+		}
+}
 
-                if($("#password01").val() == $("#password02").val()){
-                	let text = {
-                        	password : $("#password02").val(),
-                        	userId : $("#userId").val()
-                        };
-                    $.ajax({
-                        url : "/restUser/changePassword",
-                        type : "POST",
-                        data :JSON.stringify(text),
-                        contentType: "application/json",
-                        //async: false,
-                        success: function (response){
-                            alert(response);
-                        }
-                    });
-                }else{
-                    alert("입력하신 비밀번호가 일치하지 않습니다.")
-                  
-                }
-
-            })
-    
-        });
 
 
 

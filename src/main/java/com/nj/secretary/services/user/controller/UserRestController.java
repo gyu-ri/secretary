@@ -293,6 +293,7 @@ public class UserRestController {
     	return "변경이 완료 되었습니다.";
     }
     
+    
     @PostMapping("withdrawal")
     public String withdrawal(@RequestBody User user) throws Exception{
     	

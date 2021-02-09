@@ -172,15 +172,15 @@ $("#password-modal-open").on("click",function(){
         <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
       </span>
     <h2>비밀번호 찾기</h2>
-    <form action="findPwd" method="post" onsubmit="return submitCheck();">
+    <form action="changePassword" method="post" onsubmit="return submitCheck();">
 
-        <input type="text" name="userName" placeholder="이름을 입력해주세요" required/>  </br>
+        <input type="text" id="userId" name="userId" placeholder="아이디를 입력해주세요" required/>  </br>
         <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required/>
         <a id="checkEmail" value="email"  href="#" onclick=javascript:emailCheck()>인증번호 전송</a> </br>
         <input type="text" id="certificationNo" placeholder="인증번호를 입력해주세요" required/> </br>
         <a id="checkCertificationNo" href="#" value="certificationNo" onclick=javascript:checkCertificationNo()>인증확인</a>
 
-        <input id="password-modal-open" type="submit" value="비밀번호 변경">
+        <input id="password-modal-open" type="submit" value="비밀번호 변경" onclick=javascript:passwordChange()>
 <div id="password-modal" class="modal fade" tabindex="-1" role="dialog">
 <div class="modal-dialog" role="document">
 	<div class="modal-content">
@@ -204,30 +204,6 @@ $("#password-modal-open").on("click",function(){
 </div>
     </form>
     <input type="hidden" id="check" value="">
-
-    <div id="password-modal" class="modal fade" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
-                <p>비밀번호를 입력해주세요</p>
-                <input type="password" class="input-lg form-control" th:value=${password}
-                       name="password" id="password01" placeholder="새 비밀번호를 입력해주세요" autocomplete="off" required>
-                <input type="password" class="input-lg form-control" onkeyup="pwdCheck()" id="password02"
-                       placeholder="비밀번호를 재입력해주세요" autocomplete="off" required>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#2E2F34;">비밀번호 확인</span>
-                    </div>
-                </div>
-                <div class="password-modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="sendPassword">OK</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
 
