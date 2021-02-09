@@ -72,6 +72,7 @@ public class UserController {
         if (session.getAttribute("user") != null) {
             User login = (User)session.getAttribute("user");
             Monologue monologue = new Monologue();
+            monologue.setUserId(login.getUserId());
             if(monologueService.checkMonologue(login.getUserId())>0){
                 System.out.println("Already wrote Monologue");
                 Question question = new Question();
