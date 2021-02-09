@@ -9,7 +9,6 @@ function idCheck() {
         contentType: "application/json",
         success: function (data) {
             console.log("1=중복/0=중복아님" + data);
-
             if (data == 1) {
                 $("#idCheck").text("이미 존재하는 아이디입니다.");
                 $("#idCheck").css("color", "#ae0f11");
@@ -19,12 +18,12 @@ function idCheck() {
                 $("#idCheck").css("color", "#0029a4");
                 $("#submit").attr("disabled", true);
             }
-
         }, error: function () {
             console.log("실패");
         }
     });
 }
+
 
 function emailCheck(){
     let email = $("#email").val();
@@ -62,6 +61,8 @@ function emailCheck(){
     }
 
 }
+
+
 //회원가입 본인인증
 /*function sendMail() {// 메일 입력 유효성 검사
     let mail = $("#email").val(); //사용자의 이메일 입력값.
@@ -85,11 +86,14 @@ function emailCheck(){
     }
 }*/
 
+
 function checkCertificationNo() {
     alert("인증번호 맞는지 확인할게욥")
 
     let checkKey = $('#check').val();
-    if ($("#certificationNo").val() == checkKey) { //인증 키 값의 비교를 위해 텍스트인풋과 벨류를 비교
+    if (checkKey == ""){
+        alert("인증번호를 입력해주세요")
+    }else if ($("#certificationNo").val() == checkKey) { //인증 키 값의 비교를 위해 텍스트인풋과 벨류를 비교
         console.log("key" + checkKey);
         $("#certificationNo").text("인증완료").css("color", "blue");
         alert("인증이 완료되었습니다.")
@@ -100,6 +104,7 @@ function checkCertificationNo() {
         alert("인증이 실패했습니다.")
     }
 }
+
 
 function submitCheck(){
     if (isCertification == true){
@@ -125,6 +130,7 @@ function pwdCheck(){
         $("#pwmatch").css("color","#ae0f11");
     }
 }
+
 
 /*function validate(){
     let getUserId = RegExp()
@@ -159,6 +165,8 @@ $(document).ready(function (){
             }
         });
 })*/
+
+
 function close(){
     location.href="/user/login";
 }
