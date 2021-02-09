@@ -25,7 +25,8 @@ public interface MonologueService {
 	public List<Question> getQuestionList() throws Exception;
 
 	public int randomCheck(Monologue monologue) throws Exception;
-	
+
+	public int checkMonologue(String userId) throws Exception;
 	
 	//Monologue
 	public void addMonologue(Monologue monologue) throws Exception;

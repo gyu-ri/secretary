@@ -10,7 +10,6 @@ $(function() {
         var nTime = new Date();
         var hour = nTime.getHours();
         var minutes = nTime.getMinutes();
-
         var time = (hour >= 12 ? "PM  " : "AM  ")
             + (hour < 10 ? "0" + hour : (hour<=12 ? hour : "0"+(hour-12))) + ":"
 
@@ -328,6 +327,7 @@ $(function geoFindMe() {
 });
 
 $(function(){
+
     $('#answer').on('keydown', function(event) {
         console.log($("#question").val());
         const monologue = {

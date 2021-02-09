@@ -76,13 +76,13 @@ $(function(){
             data :{userId:$("#userId").val()},
             success: function (list){
                 console.log(list);
-                let rev = list.reverse();
+
                 $("div [name='listSet']").remove();
                 document.getElementById('fisrtTab').setAttribute('class', 'active');
                 document.getElementById('secondTab').setAttribute('class', '');
                 document.getElementById('thirdTab').setAttribute('class', '');
                 document.getElementById('deleteBtn').setAttribute('class', '');
-                $.each(rev,function(i,item){
+                $.each(list,function(i,item){
                     console.log(item);
                     if (item.imageName!=null) {
                         $(".listDiary").append(
@@ -141,7 +141,7 @@ $(function(){
                 document.getElementById('secondTab').setAttribute('class', '');
                 document.getElementById('deleteBtn').setAttribute('class', '');
                 document.getElementById('thirdTab').setAttribute('class', 'active');
-                $.each(list,function(i,item){
+                $.each(list.reverse(),function(i,item){
                     console.log(item);
                     if (item.imageName!=null) {
                         $(".listDiary").append(

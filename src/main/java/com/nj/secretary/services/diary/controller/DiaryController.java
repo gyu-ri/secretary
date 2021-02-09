@@ -62,7 +62,6 @@ public class DiaryController {
 
         diaryService.addDiary(diary);
         System.out.println("tag : " + tag_text);
-
         if(tag_text == null) {
             System.out.println("값이 null임");
         }else{
@@ -81,8 +80,6 @@ public class DiaryController {
             System.out.println("tagsList : " + tagsList);
         }
 
-
-
         if(diary.getDiaryText().contains("src=")){
             if(diary.getDiaryText().contains("jpeg")){
                 diary.setFileName(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("src=")+65));
@@ -92,6 +89,7 @@ public class DiaryController {
             System.out.println(diary.getFileName());
             diaryService.addImage(diary);
         }
+        model.addAttribute("user", "0");
 
 
 
@@ -183,9 +181,6 @@ public class DiaryController {
 
     @GetMapping("updateDiary")
     public String updateDiary(@RequestParam("diaryId") int diaryNo, Model model,HttpSession session){
-        if(session.getAttribute("user")==null){
-            return "user/login";
-        }
         System.out.println(diaryNo);
         System.out.println("update Diary");
 
@@ -195,14 +190,20 @@ public class DiaryController {
 
 
     @PostMapping("updateDiary")
-    public String updateDiary(@ModelAttribute("diary") Diary diary, HttpSession session){
+    public String updateDiary(@ModelAttribute("diary") Diary diary, HttpSession session,Model model){
         System.out.println("shareStatus : " + diary.getShareStatus());
+        Diary diary2 = diaryService.getDiary(diary.getDiaryId());
         if(session.getAttribute("user")==null){
             return "user/login";
         }
-
+        User user = (User)session.getAttribute("user");
         if(diary.getShareStatus().trim().equals("0,1")) {
             diary.setShareStatus("1");
+        }
+        if(user.getUserId().equals(diary2.getUserId())){ //본인
+            model.addAttribute("user", "0");
+        }else{ //타인
+            model.addAttribute("user", "1");
         }
         System.out.println("diary : " + diary);
         System.out.println("다이어리 내용들 : " + diary.getDiaryTitle() + diary.getDiaryText());
@@ -210,7 +211,8 @@ public class DiaryController {
         System.out.println("다이어리 추가 완료");
 
         return "diary/getDiary";
-    }
+
+                    }
 
     @GetMapping("binDiaryList")
     public String binDiaryList(HttpSession session,Model model){

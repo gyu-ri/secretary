@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.nj.secretary.services.alarm.service.AlarmService;
 import com.nj.secretary.services.monologue.domain.Monologue;
+import com.nj.secretary.services.monologue.domain.Question;
 import com.nj.secretary.services.monologue.service.MonologueService;
 import com.nj.secretary.services.user.impl.UserDAOImpl;
 import org.json.JSONObject;
@@ -71,17 +72,28 @@ public class UserController {
         if (session.getAttribute("user") != null) {
             User login = (User)session.getAttribute("user");
             Monologue monologue = new Monologue();
-            Random random = new Random();
-            monologue.setUserId(login.getUserId());
-            int ran = random.nextInt(100) + 1;
-            monologue.setQuestionId(ran);
-            if (monologueService.randomCheck(monologue) == 0) {
-                model.addAttribute("question", monologueService.getQuestionText(ran));
+            if(monologueService.checkMonologue(login.getUserId())>0){
+                System.out.println("Already wrote Monologue");
+                Question question = new Question();
                 model.addAttribute("user", login);
+                model.addAttribute("question", question);
                 return "user/afterLogin";
-            }
-            if (monologueService.randomCheck(monologue) == 100) {
-                return "user/afterLogin";
+            }else{
+                Random random = new Random();
+                System.out.println("didn't write Monologue");
+                while (true) {
+                    int ran = random.nextInt(100) + 1;
+                    monologue.setQuestionId(ran);
+                    if (monologueService.randomCheck(monologue) == 0) {
+                        model.addAttribute("question", monologueService.getQuestionText(ran));
+                        model.addAttribute("user", login);
+                        return "user/afterLogin";
+                    }
+                    if (monologueService.randomCheck(monologue) == 100) {
+                        model.addAttribute("user", login);
+                        return "user/afterLogin";
+                    }
+                }
             }
         }
         return "user/login";
@@ -93,23 +105,32 @@ public class UserController {
         User dbUser = userService.getUser(user.getUserId());
         Random random = new Random();
         System.out.println(user + " : " + monologue);
-
+        System.out.println("count : "+monologueService.checkMonologue(dbUser.getUserId()));
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
-
-            while (true) {
-                int ran = random.nextInt(100) + 1;
-                monologue.setQuestionId(ran);
-                if (monologueService.randomCheck(monologue) == 0) {
-                    model.addAttribute("question", monologueService.getQuestionText(ran));
-                    model.addAttribute("user", dbUser);
-                    return "user/afterLogin";
-                }
-                if (monologueService.randomCheck(monologue) == 100) {
-                    model.addAttribute("user", dbUser);
-                    return "user/afterLogin";
+            if(monologueService.checkMonologue(dbUser.getUserId())>0){
+                System.out.println("Already wrote Monologue");
+                Question question = new Question();
+                model.addAttribute("user", dbUser);
+                model.addAttribute("question", question);
+                return "user/afterLogin";
+            }else{
+                System.out.println("didn't write Monologue");
+                while (true) {
+                    int ran = random.nextInt(100) + 1;
+                    monologue.setQuestionId(ran);
+                    if (monologueService.randomCheck(monologue) == 0) {
+                        model.addAttribute("question", monologueService.getQuestionText(ran));
+                        model.addAttribute("user", dbUser);
+                        return "user/afterLogin";
+                    }
+                    if (monologueService.randomCheck(monologue) == 100) {
+                        model.addAttribute("user", dbUser);
+                        return "user/afterLogin";
+                    }
                 }
             }
+
         }
 //        // 수정한 부분 시작
 //        int alarmCount = alarmService.alarmCount("user02");
