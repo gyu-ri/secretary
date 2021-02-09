@@ -41,6 +41,7 @@ public class DiaryController {
 
     @GetMapping("addDiary")
     public String addDiary(){
+        System.out.println("addDiary Start");
         return "diary/emotion";
     }
 

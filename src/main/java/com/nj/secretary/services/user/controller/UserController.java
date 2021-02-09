@@ -90,6 +90,9 @@ public class UserController {
                         return "user/afterLogin";
                     }
                     if (monologueService.randomCheck(monologue) == 100) {
+                        Question question = new Question();
+                        model.addAttribute("user", login);
+                        model.addAttribute("question", question);
                         model.addAttribute("user", login);
                         return "user/afterLogin";
                     }
@@ -125,6 +128,9 @@ public class UserController {
                         return "user/afterLogin";
                     }
                     if (monologueService.randomCheck(monologue) == 100) {
+                        Question question = new Question();
+                        model.addAttribute("user", dbUser);
+                        model.addAttribute("question", question);
                         model.addAttribute("user", dbUser);
                         return "user/afterLogin";
                     }
@@ -260,21 +266,35 @@ public class UserController {
                 JSONObject abc = (JSONObject) map.get("userInfo");
                 User dbUser = userService.getUser(""+abc.get("id"));
                 session.setAttribute("user", dbUser);
-                Random random = new Random();
-                System.out.println(dbUser);
-                Monologue monologue = new Monologue();
-                monologue.setUserId(dbUser.getUserId());
+                if(monologueService.checkMonologue(dbUser.getUserId())>0){
+                    System.out.println("Already wrote Monologue");
+                    Question question = new Question();
+                    model.addAttribute("user", dbUser);
+                    model.addAttribute("question", question);
+                    return "user/afterLogin";
+                }else{
+                    Random random = new Random();
+                    System.out.println(dbUser);
+                    Monologue monologue = new Monologue();
+                    monologue.setUserId(dbUser.getUserId());
+                    System.out.println("didn't write Monologue");
                     while (true) {
                         int ran = random.nextInt(100) + 1;
                         monologue.setQuestionId(ran);
                         if (monologueService.randomCheck(monologue) == 0) {
                             model.addAttribute("question", monologueService.getQuestionText(ran));
+                            model.addAttribute("user", dbUser);
                             return "user/afterLogin";
                         }
                         if (monologueService.randomCheck(monologue) == 100) {
+                            model.addAttribute("user", dbUser);
+                            Question question = new Question();
+                            model.addAttribute("user", dbUser);
+                            model.addAttribute("question", question);
                             return "user/afterLogin";
                         }
                     }
+                }
 
             }
 
