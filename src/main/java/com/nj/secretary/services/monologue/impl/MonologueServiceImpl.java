@@ -60,6 +60,11 @@ public class MonologueServiceImpl implements MonologueService {
 		return monologueDAO.randomCheck(monologue);
 	}
 
+	@Override
+	public int checkMonologue(String userId) throws Exception {
+		return monologueDAO.checkMonologue(userId);
+	}
+
 
 	//==============================Monologue===============================
 

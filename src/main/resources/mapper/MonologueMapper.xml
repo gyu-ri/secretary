@@ -184,6 +184,13 @@
 		INTO REPORT(report_id, report_reason_id, monologue_id, report_date, report_text, reporter_id)                                               
 		VALUES(report_seq.NEXTVAL,#{reportReasonId}, #{monologueId},SYSDATE, #{reportText}, #{reporterId})
  	</insert>
+
+	<select id="checkMonologue" parameterType="String" resultType="integer">
+		SELECT COUNT(*)
+		FROM MONOLOGUE
+		WHERE USER_ID = #{userId}
+		  AND to_char(MONOLOGUE_DATE,'YYYY-MM-DD') = to_char(SYSDATE,'YYYY-MM-DD')
+	</select>
 </mapper>
 
 
