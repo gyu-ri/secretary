@@ -19,7 +19,7 @@ $(function(){
                 $.each(list.reverse(),function(i,item){
                     console.log(item);
                     if (item.imageName!=null) {
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -34,7 +34,7 @@ $(function(){
                             "</div>"
                         )
                     }else{
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -85,7 +85,7 @@ $(function(){
                 $.each(rev,function(i,item){
                     console.log(item);
                     if (item.imageName!=null) {
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -100,7 +100,7 @@ $(function(){
                             "</div>"
                         )
                     }else{
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -144,7 +144,7 @@ $(function(){
                 $.each(list,function(i,item){
                     console.log(item);
                     if (item.imageName!=null) {
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -159,7 +159,7 @@ $(function(){
                             "</div>"
                         )
                     }else{
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -215,7 +215,7 @@ $(function(){
                     $.each(list.reverse(),function(i,item){
                         console.log(item);
                         if (item.imageName!=null) {
-                            $(".listDiary").prepend(
+                            $(".listDiary").append(
                                 "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                                 "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
                                 "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -230,7 +230,7 @@ $(function(){
                                 "</div>"
                             )
                         }else{
-                            $(".listDiary").prepend(
+                            $(".listDiary").append(
                                 "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                                 "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
                                 "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -275,7 +275,7 @@ $(function(){
                 $.each(list,function(i,item){
                     console.log(item);
 
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div name=\"listSet\" id='thisTag' value='"+item.fileName+"' class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
                             "<div class='cover'>" +
@@ -303,7 +303,7 @@ $(function(){
                 $("div [name='listSet']").remove();
                 $.each(list.reverse(),function(i,item) {
                     if (item.imageName!=null) {
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -318,7 +318,7 @@ $(function(){
                             "</div>"
                         )
                     }else{
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -481,7 +481,7 @@ function moveToBin(diaryId){
                 $.each(list.reverse(),function(i,item){
                     console.log(item);
                     if (item.imageName!=null) {
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -496,7 +496,7 @@ function moveToBin(diaryId){
                             "</div>"
                         )
                     }else{
-                        $(".listDiary").prepend(
+                        $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
                             "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
@@ -512,7 +512,6 @@ function moveToBin(diaryId){
 
                         )
                     }
-
                 })
             }
         });

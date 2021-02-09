@@ -47,7 +47,7 @@ public class DiaryController {
 
     @PostMapping("addDiarys")
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam("tag_text") String tag_text,HttpSession session){
+    public String addDiary(@ModelAttribute("diary") Diary diary, Model model, @RequestParam(required = false) String tag_text,HttpSession session){
         System.out.println("shareStatus : " + diary.getShareStatus());
         if(session.getAttribute("user")==null){
             return "user/login";

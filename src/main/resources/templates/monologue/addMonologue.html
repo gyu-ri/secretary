@@ -1,120 +1,175 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-  xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
-  
+<html xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
 <head>
-<meta charset="UTF-8">
-<title>ADD MONOLOGUE</title>
+    <meta charset="UTF-8">
+    <title>ADD MONOLOGUE</title>
 
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<style type="text/css">
-body{
-     background-image:url("/images/0101.jpg");
-     background-repeat:no-repeat;
-     background-size:auto;
-     background-position:center;
-     background-color:#b194e0;
-     background-attachment: fixed;
-}
+    <style type="text/css">
+        body{
+            width: 100%;
+            height: 100%;
+            background-image:url("https://source.unsplash.com/1920x1080/?nature");
+            background-size: cover;
+            text-align: center;
 
-</style>
+        }
 
-<style type="text/css">
-.switch {
-	position: relative;
-	display: inline-block;
-	width: 60px;
-	height: 34px;
-	vertical-align: middle;
-}
+        h1{
+            text-align: center;
+            margin-top: 7%;
+            font-size: 80px;
+            color: white;
+            text-shadow: 1px 1px black;
+        }
 
-.switch input {
-	display: none;
-}
+        #container{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr ;
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-auto-rows: auto;
+            width: 60%;
+            margin-top: 15%;
+            margin-left: 20%;
+            text-align: center;
+            place-content: center;
+            gap: 30px;
+        }
 
-.slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #ccc;
-	-webkit-transition: 1s;
-	transition: 1s;
-}
+        #monologueText{
+            grid-column: 1 / 4;
+            width: 60%;
+            height: 50px;
+            margin-left: 20%;
+            background-color: transparent;
+            border: 1px solid white;
+            border-radius: 5px;
+            font-size: 25px;
+            color: white;
+        }
 
-.slider:before {
-	position: absolute;
-	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
-	background-color: white;
-	-webkit-transition: .3s;
-	transition: .3s;
-}
+        #toggleBtn{
+            grid-column: 2/3;
+            grid-row: 2/3;
+        }
 
-input:checked+.slider {
-	background-color: #2196F3;
-}
+        #submit{
+            grid-column: 2/3;
+            background-color: transparent;
+            border: 2px solid white;
+            border-radius: 5px;
+            width: 40%;
+            height: 70%;
+            margin-left: 30%;
+            transition: 1s;
+        }
 
-input:focus+.slider {
-	box-shadow: 0 0 1px #2196F3;
-}
+        #submit:hover{
+            background-color: #b194e0;
+            border: 2px solid #b194e0;
+            color: white;
+            transition: 1s;
+        }
 
-input:checked+.slider:before {
-	-webkit-transform: translateX(26px);
-	-ms-transform: translateX(26px);
-	transform: translateX(26px);
-}
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            vertical-align: middle;
+        }
 
-.slider.round {
-	border-radius: 34px;
-}
+        .switch input {
+            display: none;
+        }
 
-.slider.round:before {
-	border-radius: 50%;
-}
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: 1s;
+            transition: 1s;
+        }
 
-p {
-	margin: 0px;
-	display: inline-block;
-	font-size: 15px;
-	font-weight: bold;
-}
-</style>
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .3s;
+            transition: .3s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+
+        p {
+            margin: 0px;
+            display: inline-block;
+            font-size: 15px;
+            font-weight: bold;
+        }
+    </style>
 
 </head>
 <body>
 
-<h1>여기는 모노로그으으으으으으 추가아아아아아</h1>
+<h1>Monologue 작성</h1>
 
 <!-- <h2 th:text="${randomQuestionId}"/> -->
 
 <form action="addMonologue"  method="post">
-     <input type="hidden" name="questionId" value="4">
-     <input type="hidden" name="shareStatus" value="0">
-    monologue <input type="text" name="monologueText"> </br>
+    <div id="container">
+        <input type="hidden" name="questionId" value="4">
+        <input type="hidden" name="shareStatus" value="0">
+        <input type="text" id="monologueText" name="monologueText" placeholder="1문을 작성해주세요."> </br>
 
-  <input type="submit" value="저장~☆">
-
+        <input type="submit" id="submit" value="저장~☆">
+        <span id="toggleBtn">
 <label class="switch">
   <input type="checkbox" name="shareStatus" class="checkbox" value="1"/>
   <span class="slider round"/>
 </label>
 <p class="toggle" value="0">공유 OFF</p><p class="toggle" style="display:none;" value="1">공유 ON</p>
+</span>
+    </div>
 </form>
 
 <script type="text/javascript">
-const check=$("input[type='checkbox']");
-check.click(function(){
-	$("p.toggle").toggle();
-	
-});
+    const check=$("input[type='checkbox']");
+    check.click(function(){
+        $("p.toggle").toggle();
+
+    });
 
 </script>
 

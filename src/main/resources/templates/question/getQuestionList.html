@@ -8,18 +8,53 @@
 
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
 
-<style type="text/css">
-body{
-     background-image:url("/images/0101.jpg");
-     background-repeat:no-repeat;
-     background-size:auto;
-     background-position:center;
-     background-color:#b194e0;
-     background-attachment: fixed;
-}
+ <style type="text/css">
+  body{
+   background-image:url("https://source.unsplash.com/1920x1080/?nature");
+   background-size: cover;
+   text-align: center;
+   font-family: 'Stylish', sans-serif;
+  }
 
-</style>
+  h1{
+   text-align: center;
+   font-size: 60px;
+   margin-top: 10%;
+   color: whitesmoke;
+   text-shadow: 1px 1px black;
+  }
+
+  .questionList{
+   background-color: rgba(255, 255, 255, 0.5);
+   text-align: center;
+   width: 60%;
+   margin: auto;
+   margin-top: 5%;
+   padding: 5%;
+  }
+
+  input{
+   background: transparent;
+   border: 1px solid;
+   border-radius: 3px;
+   cursor: pointer;
+   transition: 1s;
+  }
+  input:hover{
+   background-color: white;
+   color: purple;
+   transition: 1s;
+  }
+
+  div{
+   padding-bottom: 10px;
+  }
+  span{
+   font-size: 30px;
+  }
+ </style>
 
 
 
@@ -27,29 +62,21 @@ body{
 
 </head>
 <body>
-
-<h1>여기는 1문 list 보기</h1>
-
-<div th:each="question : ${questionList}">
-
 <form action="deleteQuestion" method="post">
+    <h1>여기는 1문 list 보기</h1>
+<div class="questionList">
+    <div th:each="question : ${questionList}">
 
-<input type="hidden" th:value=${question.questionId} name="questionId"/>
+         <input type="hidden" th:value=${question.questionId} name="questionId"/>
 
-<span th:text=${question.questionId}/>
-<span th:text=${question.questionText}/>
+     <span th:text=${question.questionId}></span>
+     <span th:text=${question.questionText}></span>
+         <span>
+          <input type="submit" name="deleteQuestion" value="삭제하기"/>
+         </span>
 
-<span><input type="submit" name="deleteQuestion" value="삭제하기">
- 
-</form>
-
-
-
-
+    </div>
 </div>
-
-
-
-
+</form>
 </body>
 </html>

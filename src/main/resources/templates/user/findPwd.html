@@ -58,41 +58,155 @@
         background-attachment: fixed;
         background-size: cover;
     }
+
+    #container{
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 10% 30% 10%;
+        width: 600px;
+        height:550px;
+        border-radius: 5px;
+        background: rgba(3, 3, 3, 0.25);
+        box-shadow: 1px 1px 50px #000;
+    }
+
+    .close-btn{
+        position: absolute;
+        cursor: pointer;
+        font-family: 'Open Sans Condensed', sans-serif;
+        line-height: 18px;
+        top: 3px;
+        right: 3px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        border-radius: 10px;
+        opacity: .2;
+        -webkit-transition: all 2s ease-in-out;
+        -moz-transition: all 2s ease-in-out;
+        -o-transition: all 2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+
+    img{
+        display: block;
+        margin: auto;
+        width: 100%;
+        height: auto;
+    }
+
+    a,
+    input{
+        font-family: 'Open Sans Condensed', sans-serif;
+        text-decoration: none;
+        position: relative;
+        width: 60%;
+        display: block;
+        margin-top: 9px;
+        margin-left: 20%;
+        font-size: 17px;
+        color: #fff;
+        padding: 8px;
+        border-radius: 6px;
+        border: none;
+        background: rgba(3,3,3,.1);
+        -webkit-transition: all 2s ease-in-out;
+        -moz-transition: all 2s ease-in-out;
+        -o-transition: all 2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+    }
+
+    h2{
+        font-family: 'Open Sans Condensed', sans-serif;
+        position: relative;
+        margin-top: 0px;
+        margin-bottom: 100px;
+        text-align: center;
+        font-size: 40px;
+        color: #ddd;
+        text-shadow: 3px 3px 10px #000;
+    }
+
+    input:focus{
+        outline: none;
+        box-shadow: 3px 3px 10px #333;
+        background: rgba(3,3,3,.18);
+    }
+
+    /* Placeholders */
+    ::-webkit-input-placeholder {
+        color: #e5dada;  }
+    :-moz-placeholder { /* Firefox 18- */
+        color: red;  }
+    ::-moz-placeholder {  /* Firefox 19+ */
+        color: red;  }
+    :-ms-input-placeholder {
+        color: #333;  }
+
+    /* Link */
+    a{
+        font-family: 'Open Sans Condensed', sans-serif;
+        text-align: center;
+        padding: 4px 8px;
+        background: rgb(125, 138, 172);
+    }
+
+    a:hover{
+        opacity: 0.7;
+    }
+
+    #submit{
+        cursor: pointer;
+        margin-top: 50px;
+        transition: 1s;
+    }
+
+    #submit:hover{
+        background-color: rgb(125, 138, 172);;
+        transition: 1s;
+    }
 </style>
 <body>
-<h3>비밀번호 찾기</h3>
-<form action="findPwd" method="post">
+<div id="container">
+    <span class="close-btn">
+        <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
+      </span>
+    <h2>비밀번호 찾기</h2>
+    <form action="findPwd" method="post">
 
-    name  : <input type="text" name="userName" placeholder="이름을 입력해주세요" required/>  </br>
-    email : <input type="email" name="email" placeholder="이메일을 입력해주세요" required/>
-    <a id="checkEmail" value="email" href="#" onclick=javascript:sendMail()>인증요청</a> </br>
-    certificationNo  : <input type="text" name="certificationNo" placeholder="인증번호를 입력해주세요" required/> </br>
+        <input type="text" name="userName" placeholder="이름을 입력해주세요" required/>  </br>
+        <input type="email" name="email" placeholder="이메일을 입력해주세요" required/>
+        <a id="checkEmail" value="email" href="#" onclick=javascript:sendMail()>인증요청</a> </br>
+        <input type="text" name="certificationNo" placeholder="인증번호를 입력해주세요" required/> </br>
 
-    <input type="submit" value="인증확인">
-</form>
-<input type="hidden" id="check" value="">
+        <input id="submit" type="submit" value="인증확인">
+    </form>
+    <input type="hidden" id="check" value="">
 
-<div id="password-modal" class="modal fade" tabindex="-1" role="dialog">
-<div class="modal-dialog" role="document">
-	<div class="modal-content">
-	
-	<p>비밀번호를 입력해주세요</p>
-	<input type="password" class="input-lg form-control" th:value=${password} 
-			name="password" id="password01" placeholder="새 비밀번호를 입력해주세요" autocomplete="off" required>
-	<input type="password" class="input-lg form-control" onkeyup="pwdCheck()" id="password02"
-			placeholder="비밀번호를 재입력해주세요" autocomplete="off" required>
-	     <div class="row">
-            <div class="col-sm-12">
-                <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#2E2F34;">비밀번호 확인</span>
+    <div id="password-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <p>비밀번호를 입력해주세요</p>
+                <input type="password" class="input-lg form-control" th:value=${password}
+                       name="password" id="password01" placeholder="새 비밀번호를 입력해주세요" autocomplete="off" required>
+                <input type="password" class="input-lg form-control" onkeyup="pwdCheck()" id="password02"
+                       placeholder="비밀번호를 재입력해주세요" autocomplete="off" required>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#2E2F34;">비밀번호 확인</span>
+                    </div>
+                </div>
+                <div class="password-modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="sendPassword">OK</button>
+                </div>
             </div>
         </div>
-	<div class="password-modal-footer">
-		<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-		<button type="button" class="btn btn-primary" data-dismiss="modal" id="sendPassword">OK</button>
-	</div>
+    </div>
 </div>
-</div>
-</div>
-
 </body>
 </html>

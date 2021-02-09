@@ -185,3 +185,19 @@ a:hover{
 .orange-btn{
     background: rgba(87,198,255,.5);
 }
+
+#changeUser{
+    cursor: pointer;
+    margin-top: 50px;
+    transition: 1s;
+}
+
+#changeUser:hover{
+    background-color: rgb(125, 138, 172);;
+    transition: 1s;
+}
+
+.profile{
+    margin-top: 10%;
+    text-align: center;
+}
