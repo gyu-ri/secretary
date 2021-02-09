@@ -18,7 +18,18 @@
     <script src="../../js/main/main.js"></script>
     <script src="../../js/main/menu.js"></script>
     <script src="https://use.fontawesome.com/b51c131c86.js"></script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
 
+        var flag = [[${question.questionId}]];
+        window.onload = function() {
+            if(flag===0){
+                $(".intro").fadeIn("slow");
+            }
+        };
+
+        /*]]>*/
+    </script>
 </head>
 
 <body>
@@ -87,10 +98,11 @@
 
     <main class="content">
         <div>
-            <h1 class="intro" th:text="|${user.userName}님 환영합니다.|" hidden></h1>
+            <h1 class="intro" th:text="|${user.nickname}님 환영합니다.|" hidden></h1>
             <input type="hidden" id="questionNo" th:value="${question.questionId}">
-            <h1 id="question" th:text="${question.questionText}"></h1><br/>
-            <input type="text" id="answer">
+
+            <h1 th:if="${question.questionId} != 0" id="question" th:text="${question.questionText}"></h1><br/>
+            <input th:if="${question.questionId} != 0" type="text" id="answer">
         </div>
 
 

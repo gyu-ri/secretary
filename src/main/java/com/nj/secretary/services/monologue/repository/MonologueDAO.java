@@ -20,8 +20,8 @@ public interface MonologueDAO {
 	public List<Question> getQuestionList() throws Exception;
 
 	public int randomCheck(Monologue monologue) throws Exception;
-	
-	
+
+	public int checkMonologue(String userId) throws Exception;
 	
 	//monologue
 	

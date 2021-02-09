@@ -49,6 +49,11 @@ public class MonologueDAOImpl implements MonologueDAO{
 		return sqlsession.selectOne("MonologueMapper.randomCheck",monologue);
 	}
 
+	@Override
+	public int checkMonologue(String userId) throws Exception {
+		return sqlsession.selectOne("MonologueMapper.checkMonologue",userId);
+	}
+
 
 	@Override
 	public Question getQuestionText(int questionId) throws Exception {
