@@ -53,7 +53,7 @@
 
 		select user_name, user_id, password, nickname, email, motto, kakao
 		from users
-		where user_Id=#{userId}
+		where user_Id=#{userId} AND withdrawal_status=0
 
 	</select>
 

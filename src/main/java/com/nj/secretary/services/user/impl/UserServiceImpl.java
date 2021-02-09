@@ -163,7 +163,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void changePassword(User user) throws Exception {
-		userDAO.changePassword(user);
+		 userDAO.changePassword(user);
 	}
 
 	@Override
