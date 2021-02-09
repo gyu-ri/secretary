@@ -275,7 +275,6 @@ public class UserController {
                             return "user/afterLogin";
                         }
                     }
-
             }
 
         } catch (IOException e) {
@@ -383,6 +382,7 @@ public class UserController {
         User user = (User)session.getAttribute("user");
         User user01 = userService.getUser(user.getUserId());
         model.addAttribute("user",user01);
+
         return "user/updateUser";
     }
 
@@ -396,7 +396,12 @@ public class UserController {
     	System.out.println("updateUser 확인::"+user);
         User user01=userService.getUser(userId);
         model.addAttribute("user",user01);
-    	return "user/getUser";
+        if (user01.getKakao()==0){
+            return "user/getUser";
+        }else{
+            return "user/kakaoProfile";
+        }
+    	//return "user/getUser";
     }
 
     @GetMapping("getWithdrawalReasonList")
