@@ -8,6 +8,13 @@ lowerLayerBurger.addEventListener("animationend", function(evt) {
     content.style.visibility = "visible";
 });
 
+function goLogin(str){
+    location.href=str;
+}
+
+document.on("click", "#login", function (){
+    location.href="/user/login"
+})
 // Add click listeners to the menu on the sidebar
 // document.getElementsByTagName("ul")[0].addEventListener("click", function(evt) {
 //     // when a menu item is clicked hide the sidebar by unchecking the input

@@ -23,7 +23,7 @@ html {
 
 .sidebar {
     width: var(--sidebar-width);
-    height: 1600px;
+    height: 100%;
     transform: translateX(calc(var(--sidebar-width) * -1));
     background: linear-gradient(to bottom right, #ffffff, #424141);
     background-size: 400% 400%;
@@ -145,4 +145,58 @@ html {
 @keyframes slidein {
     from {left: -100%; right:100%;}
     to {left: 10%; right: 10%;}
+}
+
+.Logintooltip{
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    display:inline-block;
+    cursor:pointer;
+}
+
+.Logintooltip:hover .tip{
+    opacity:1;
+    margin-left:0;
+    transition:1s;
+}
+.Logintooltip:hover .arrow{
+    opacity:1;
+    margin-left:0;
+    transition:1s;
+}
+
+.tip{
+    position: absolute; left: 100%; top: 50%; padding:5px 20px 0px; font-size: 0.8em;
+    font-weight: normal; background: #34495e; border-radius: 1em; color: #fff;
+    white-space: nowrap; transform:translateY(-50%);
+    opacity:0;
+    margin-left: 20px;
+    transition: 1s;
+}
+
+.tip ul{
+    list-style: none;
+}
+
+.arrow{
+    position:absolute;
+    content:'';
+    width:0; height:0;
+    border-style:solid;
+    border-width:10px;
+    right:100%;
+    top:27%;
+    border-color:transparent #34495e transparent transparent;
+    opacity:0;
+    padding-left: 20px;
+    transition: 1s;
+}
+
+#login, #logout{
+    cursor: pointer;
+}
+
+#login:hover, #logout:hover{
+    text-decoration: underline;
 }
