@@ -3,52 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+    <script src="../../js/user/findPwd.js"></script>
+    <script src="../../js/user/passwordCheck.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-    <script type="text/javascript">
+    
+    
+<!-- <script>
+$(function(){
+$("#password-modal-open").on("click",function(){
+	$("#password-modal").modal("show");
+	})
 
-        //비밀번호 찾기 본인인증
-        function sendMail() {// 메일 입력 유효성 검사
-            alert("인증요청이 되는건가요?")
-            let mail = $("#email").val(); //사용자의 이메일 입력값.
-            if (mail == "") {
-                alert("메일 주소가 입력되지 않았습니다.");
-            } else {
-                $.ajax({
-                    type : 'post',
-                    url : '/restUser/CheckCertification',
-                    data : {
-                        mail:mail
-                    },
-                    dataType :'json',
-                    success : function (key){
-                        alert("인증번호가 전송되었습니다.")
-                        $('#check').attr("value", key);
-                    }
-                });
+ $("#sendPassword").on("click",function(e){
 
-                isCertification=true; //추후 인증 여부를 알기위한 값
-            }
-        };
+                if($("#password01").val() == $("#password02").val()){
+                	let text = {
+                        	password : $("#password02").val(),
+                        	userId : $("#userId").val()
+                        };
+                    $.ajax({
+                        url : "/restUser/changePassword",
+                        type : "POST",
+                        data :JSON.stringify(text),
+                        contentType: "application/json",
+                        //async: false,
+                        success: function (response){
+                            alert(response);
+                        }
+                    });
+                }else{
+                    alert("입력하신 비밀번호가 일치하지 않습니다.")
+                  
+                }
 
-        function checkCertificationNo(){
-            alert("인증번호 맞는지 확인할게욥")
+            })
+    
+        });
 
-            let checkKey = $('#check').val();
-            if($("#certificationNo").val()==checkKey){ //인증 키 값의 비교를 위해 텍스트인풋과 벨류를 비교
-                console.log("key"+checkKey);
-                $("#certificationNo").text("인증완료").css("color","blue");
-                alert("인증이 완료되었습니다.")
-                isCertification = true; //인증성공여부 check
-                $("#password-modal").modal("show");
-            }else {
-                $("#certificationNo").text("불일치").css("color","red");
-                isCertification = false; //인증실패
-                alert("인증이 실패했습니다.")
-            }
-        };
+</script> -->
 
-    </script>
+    
+    
+    
     <title>비밀번호 찾기</title>
 </head>
 <style>
@@ -175,14 +172,36 @@
         <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
       </span>
     <h2>비밀번호 찾기</h2>
-    <form action="findPwd" method="post">
+    <form action="findPwd" method="post" onsubmit="return submitCheck();">
 
         <input type="text" name="userName" placeholder="이름을 입력해주세요" required/>  </br>
-        <input type="email" name="email" placeholder="이메일을 입력해주세요" required/>
-        <a id="checkEmail" value="email" href="#" onclick=javascript:sendMail()>인증요청</a> </br>
-        <input type="text" name="certificationNo" placeholder="인증번호를 입력해주세요" required/> </br>
+        <input type="email" id="email" name="email" placeholder="이메일을 입력해주세요" required/>
+        <a id="checkEmail" value="email"  href="#" onclick=javascript:emailCheck()>인증번호 전송</a> </br>
+        <input type="text" id="certificationNo" placeholder="인증번호를 입력해주세요" required/> </br>
+        <a id="checkCertificationNo" href="#" value="certificationNo" onclick=javascript:checkCertificationNo()>인증확인</a>
 
-        <input id="submit" type="submit" value="인증확인">
+        <input id="password-modal-open" type="submit" value="비밀번호 변경">
+<div id="password-modal" class="modal fade" tabindex="-1" role="dialog">
+<div class="modal-dialog" role="document">
+	<div class="modal-content">
+	
+	<p>비밀번호를 입력해주세요</p>
+	<input type="password"  th:value=${password} 
+			name="password" id="password01" placeholder="새 비밀번호를 입력해주세요" autocomplete="off" required>
+	<input type="password"  onkeyup="pwdCheck()" id="password02"
+			placeholder="비밀번호를 재입력해주세요" autocomplete="off" required>
+	     <div class="row">
+            <div class="col-sm-12">
+                <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#2E2F34;">비밀번호 확인</span>
+            </div>
+        </div>
+	<div class="password-modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+		<button type="button" class="btn btn-primary" data-dismiss="modal" id="sendPassword">OK</button>
+	</div>
+</div>
+</div>
+</div>
     </form>
     <input type="hidden" id="check" value="">
 
@@ -208,5 +227,10 @@
         </div>
     </div>
 </div>
+
+
+
+
+
 </body>
 </html>
