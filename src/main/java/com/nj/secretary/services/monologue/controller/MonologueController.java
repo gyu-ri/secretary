@@ -44,7 +44,6 @@ public class MonologueController {
 		
 		return "question/addQuestion";
 	}
-	
 
 	@PostMapping("addQuestion")
 	public String addQuestion(String questionText, Model model) throws Exception {
@@ -60,8 +59,7 @@ public class MonologueController {
 		return "question/getQuestionList";
 
 	}
-	
-	
+
 	@GetMapping("getQuestionList")
 	public String getQuestionList(Model model, HttpSession session) throws Exception{
 		
@@ -80,8 +78,7 @@ public class MonologueController {
 		return "question/getQuestionList";
 		
 	}
-		
-	
+
 	@PostMapping("deleteQuestion")
 	public String deleteQuestion(@RequestParam("questionId") int questionId, Model model) throws Exception{
 		
@@ -95,14 +92,8 @@ public class MonologueController {
 		
 		return "question/getQuestionList";
 	}
-	
 
-
-	
-	
-	
 	//=======================Monologue=========================
-	
 	@GetMapping("addMonologue")
 	public String addMonologue() throws Exception{
 		System.out.println("monologueController addMonologueText 시작");
@@ -117,8 +108,7 @@ public class MonologueController {
 //		random.nextInt(questionList.size());
 //		model.addAttribute("randomQuestionId", random);
     // 	System.out.println("랜덤으로 뿌려준 questionId 확인"+random);			
-		
-		
+
 		monologue.getShareStatus();
 		
 		if(monologue.getShareStatus().trim().equals("0,1")) {
@@ -146,7 +136,6 @@ public class MonologueController {
 		return "monologue/addMonologue";
 		
 	}
-
 	
 	@GetMapping("getMonologueList")
 	public String getMonologueList(Model model, HttpSession session, String questionText) throws Exception{
@@ -168,7 +157,6 @@ public class MonologueController {
 		return "monologue/getMonologueList";
 		
 	}
-	
 	
 	@GetMapping("getShareMonologueList")
 	public String getShareMonologueList(Model model, HttpSession session) throws Exception{
@@ -210,7 +198,6 @@ public class MonologueController {
 		
 	}
 
-	
 	@GetMapping("getMonologue")
 	public String getMonologue(Model model, int monologueId, int questionId) throws Exception{
 						
@@ -229,8 +216,7 @@ public class MonologueController {
 		return "monologue/getMonologue";
 		
 	}
-	
-	
+
 	@GetMapping("deleteMonologue")
 	public String deleteMonologue( Model model, HttpSession session) throws Exception{
 		System.out.println("deleteMonologue GepMapping 시작 합니다잉~~");
@@ -249,8 +235,7 @@ public class MonologueController {
 		
 		return "monologue/deleteMonologue";
 	}
-	
-	
+
 	@PostMapping("deleteMonologue")
 	public String deleteMonologue(@RequestParam("monologueId") int monologueId, Model model, HttpSession session) throws Exception{
 		System.out.println("deleteMonologue PostMapping 시작 합니다잉~~");
@@ -300,9 +285,6 @@ public class MonologueController {
 		return "monologue/getMonologue";
 		
 	}
-	
-	
-	
 }
 
 
