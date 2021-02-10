@@ -4,9 +4,16 @@
 <head>
 <meta charset="UTF-8">
 <title>MONOLOGUE LIST</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 
- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ 	<link rel="stylesheet" href='../../css/monologue/monologueList.css'/>
+    <script src="../../js/monologue/monologueList.js"></script>
+
+
+    <link rel="stylesheet" href='../../css/main/menu.css' />
+    <script src="../../js/main/main.js"></script>
+
 
 <style type="text/css">
 body{
@@ -60,22 +67,82 @@ body{
 
 <h1>여기는 모노로그그으으으으으 목록 보기이이이이</h1>
 
+<input type="checkbox" id="menuToggler" class="input-toggler" />
+<label for="menuToggler" class="menu-toggler">
+    <span class="menu-toggler__line"></span>
+    <span class="menu-toggler__line"></span>
+    <span class="menu-toggler__line"></span>
+</label>
+<aside class="sidebar">
+    <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href="/user/login">Home</a></li>
+        <li class="menu__item"><a class="menu__link" href="/user/getUser">Profile</a></li>
+        <li class="menu__item"><a class="menu__link" href="/diary/getDiaryList">Diary</a></li>
+        <li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
+        <li class="menu__item"><a class="menu__link" href="/monologue/getMonologueList">Monologue</a></li>
+        <li class="menu__item"><a class="menu__link" href="/user/logout">Logout</a></li>
+    </ul>
 
-      <div th:each="monologue : ${monologueList}" id="test02">
+
+</aside>
+
+
+
+
+
+
+<!--
+<input type="button" id="test" value="확인"/>
+-->
+
+
+
+<div data-tabs class="tabs">    
+   <div class="tab">
+      <input type="radio" name="tabgroup" id="tab-1" checked>
+      <label for="tab-1">Tab 1</label>
+      <div class="tab__content">
+         <h4>Tab heading 1</h4>
+            <div th:each="monologue : ${monologueList}" id="test02">
 
     <input type="hidden" th:value=${monologue.monologueId} name="monologueId"/>
     <input type="hidden" th:value=${monologue.questionId} name="questionId"/>
     <a th:href="@{./getMonologue(monologueId=${monologue.monologueId},questionId=${monologue.questionId})}"/>
     <span th:text=${monologue.questionText}/>
 
-
-
       </div>
+      </div> 
+   </div>
+   <div class="tab">
+      <input type="radio" name="tabgroup" id="tab-2">
+      <label for="tab-2">Tab 2</label>
+      <div class="tab__content">
+         <h4>Tab heading 2</h4>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur odio cum eveniet excepturi eum provident molestias ad ipsa unde dignissimos illo porro animi earum aliquam perspiciatis id omnis, adipisci incidunt. Qui, beatae. Beatae animi totam obcaecati at quae, iste facere fuga nemo pariatur esse nihil?</p>
+         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque commodi eos voluptatem numquam pariatur deleniti repellat fugiat eligendi nulla molestiae sunt praesentium vero sequi distinctio error quibusdam maiores natus magnam, explicabo hic sed alias dolores, quis eum! Reprehenderit atque cupiditate dolorum? Saepe, doloribus veniam? Nulla!</p>
+      </div> 
+   </div>
+   <div class="tab">
+      <input type="radio" name="tabgroup" id="tab-3">
+      <label for="tab-3">Tab 3</label>
+      <div class="tab__content">
+         <h4>Tab heading 3</h4>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam officiis voluptas maiores deserunt ullam aliquam?</p>
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, officia accusantium quod fuga porro eius animi earum excepturi omnis! Reprehenderit!</p>
+      </div> 
+   </div>
+   <div class="tab">
+      <input type="radio" name="tabgroup" id="tab-4">
+      <label for="tab-4">Tab 4</label>
+      <div class="tab__content">
+         <h4>Tab heading 4</h4>
+         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia exercitationem veritatis vero eaque. Nam totam dolorem sapiente ullam non sed nostrum praesentium voluptatem, ad quam libero deserunt nemo fuga hic repudiandae veritatis cupiditate, mollitia recusandae!</p>
+      </div> 
+   </div>
+</div>
 
 
-<!--
-<input type="button" id="test" value="확인"/>
--->
+
 
 
 </body>
