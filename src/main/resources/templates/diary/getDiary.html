@@ -84,7 +84,7 @@
             grid-row: 2/4;
         }
 
-        .translate{
+        .translateSelect{
             grid-column: 2/3;
             grid-row: 3/4;
             display: inline-block;
@@ -127,6 +127,15 @@
             font-size: 60px;
             height: 60px;
             color: #314e52;
+        }
+
+        #modifyDiary, #report, #like{
+            cursor: pointer;
+            transition: 1s;
+        }
+        #modifyDiary:hover, #report:hover, #like:hover{
+            transform: scale(1.2);
+            transition: 1s;
         }
 
 
@@ -246,7 +255,7 @@
                             alert("이미 번역되었습니다.");
                         }else{
                             $(".translatedText").remove();
-                            $("#text").after("<div class='translatedText'>"+JSON.parse(response).message.result.translatedText+"</div> ");
+                            $("#text").append("<div class='translatedText'>"+JSON.parse(response).message.result.translatedText+"</div> ");
                             $("#text").attr('name',$("#target option:selected").val());
                         }
 
@@ -342,7 +351,7 @@
         <div class="text" id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
         <input type="hidden" name="shareStatus" value="0">
 
-        <div class="translate">
+        <div class="translateSelect">
             <select id="source">
                 <option value="ko">한국어</option>
                 <option value="en">영어</option>
@@ -358,7 +367,7 @@
                 <option value="zh-CN">중국어-간체</option>
                 <option value="zh-TW">중국어-번체</option>
             </select>
-            <img class="translateImg" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
+            <img class="translate" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
         </div>
 
     </div>
