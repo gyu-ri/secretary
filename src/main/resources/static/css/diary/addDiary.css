@@ -1,0 +1,206 @@
+
+/*h2{*/
+/*    font-family: 'Poor Story', cursive;*/
+/*    font-size: 70px;*/
+/*    text-shadow: 3px 3px 0px #FFFFFF;*/
+/*}*/
+/*#addTag, #subBtn, #shareBtn{*/
+/*    font-family: 'Poor Story', cursive;*/
+/*}*/
+/*body {*/
+/*    position: relative;*/
+/*    background-image: url("https://source.unsplash.com/1920x1080/?nature");*/
+/*    background-repeat: no-repeat;*/
+/*    background-attachment: fixed;*/
+/*    background-size: cover;*/
+/*    text-align: center;*/
+/*}*/
+#background_cover{
+    background-color: rgb(55,66,09);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index: 100000;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    vertical-align:middle;
+}
+
+#diaryTitle{
+    border: none;
+    border-bottom: 1px solid white;
+    display: inline-block;
+    width: 100%;
+    height: 43px;
+    font-size: 15px;
+    background: none;
+    -webkit-writing-mode: horizontal-tb !important;
+    color: white;
+    text-shadow: 1px 1px 0px black;
+}
+#diaryTitle::placeholder{
+    color: white;
+    text-shadow: 1px 1px 0px black;
+}
+
+#date{
+    border: none;
+    border-bottom: 1px solid white;
+    border-left: 30%;
+    width: 40%;
+    color: white;
+    height: 43px;
+    font-size: 15px;
+    background: none;
+    text-shadow: 1px 1px 0px black;
+}
+#date::placeholder{
+    color: white;
+}
+
+
+
+#addTag{
+    margin-top: 10px;
+    float: right;
+    margin-right: 20%;
+    cursor: pointer;
+    color: white;
+    text-shadow: 1px 1px 0px black;
+}
+
+ol{
+    position: absolute;
+    top: 35%;
+    right: 5%;
+    padding: 0;
+    margin: 0;
+
+
+}
+
+li{
+    font-size: 0;
+}
+
+.tagText{
+
+
+    border: 1px solid white;
+    border-radius: 3px;
+    height: 30px;
+    font-size: 15px;
+    background: none;
+    width: 100%;
+}
+
+
+#deleteTag{
+    font-size: 8px;
+    color: white;
+    font-family: 'Poor Story', cursive;
+    text-shadow: 1px 1px 0px black;
+}
+
+
+
+.note-editor{
+    width: 60%;
+    margin: auto;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input.checkbox:checked + .slider {
+    background-color: #2196F3;
+}
+
+input.checkbox:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input.checkbox:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+p.toggle {
+    margin:0px;
+    display:inline-block;
+    font-size:15px;
+    font-weight:bold;
+}
+
+#shareGroup{
+    margin-right: 20%;
+    margin-top: 10px;
+    text-shadow: 1px 1px 0px black;
+}
+
+#subBtn{
+    width: 100px;
+    height: 40px;
+    margin-left: 29%;
+    margin-top: 30px;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    transition: 1s;
+    -webkit-transition: 1s;
+    text-shadow: 1px 1px 0px black;
+}
+#subBtn:hover{
+    width: 125px;
+    height: 50px;
+    margin-left: 29%;
+    margin-top: 30px;
+    background-color: white;
+    color: black;
+    border: 1px solid white;
+    border-radius: 3px;
+    font-weight: bold;
+    text-decoration: underline;
+}

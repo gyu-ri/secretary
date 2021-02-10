@@ -18,10 +18,10 @@
     <title>Title</title>
     <link rel="stylesheet" href='../../css/diary/diary.css' />
     <script src="../../js/diary/diary.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../../css/diary/list.css">
-    <link rel="stylesheet" href='../../css/main/main.css' />
+<!--    <link rel="stylesheet" href='../../css/main/main.css' />-->
     <link rel="stylesheet" href='../../css/main/menu.css' />
     <script src="../../js/main/main.js"></script>
     <script src="../../js/main/menu.js"></script>
@@ -47,10 +47,10 @@
 
     <div class="tabs">
         <ul class="tab-links">
-            <li id="fisrtTab" class="active"><a href="#tab1" id="getDiaryList" style="font-size: 30px; text-decoration: none">&#128198;</a></li>
-            <li id="secondTab"><a href="#" id="getTagDiaryList" style="font-size: 30px">&#128172;</a></li>
-            <li id="thirdTab"><a href="#"  id="getOthersDiaryList" style="font-size: 30px">&#128107;</a></li>
-            <li id="deleteBtn"><a href="#" style="font-size: 30px">&#128194; &#9989;</a></li>
+            <li id="fisrtTab" class="active"><a href="#tab1" id="getDiaryList" >&#128198;</a></li>
+            <li id="secondTab"><a href="#" id="getTagDiaryList" >&#128172;</a></li>
+            <li id="thirdTab"><a href="#"  id="getOthersDiaryList" >&#128107;</a></li>
+            <li id="deleteBtn"><a href="#" >&#128194; &#9989;</a></li>
         </ul>
     </div>
 
@@ -68,24 +68,21 @@
                         <div name="listSet" class="col-md-4 col-lg-3 item" th:each="diary : ${list}">
 <!--                            <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left;" hidden/>-->
                             <div class="box" th:if="${diary.imageName} != null" th:style="'background-image:url('+${diary.imageName}+'); background-repeat:no-repeat; background-size: cover;'">
-                                <a  th:href="@{/diary/getDiary(diaryNo=${diary.diaryId})}">
                                     <div class="cover">
-                                        <h3 class="name" th:text="${diary.diaryTitle}">제목</h3>
+                                        <h3 class="name" th:onclick="getDiary([[${diary.diaryId}]])" th:text="${diary.diaryTitle}">제목</h3>
                                         <p class="title" th:text="${diary.diaryDate}">날짜</p>
                                         <img th:src="${diary.weather}" width="45px" height="45px"/>
                                         <div class="social"><a href="#"><i th:onclick="moveToBin([[${diary.diaryId}]])" class="fas fa-trash-alt"></i></a></div>
                                     </div>
-                                </a>
                             </div>
-                            <div class="box" th:if="${diary.imageName} == null" th:style="'background-image:url(/images/icon/book.png); background-repeat:no-repeat; background-size: cover;'">
-                                <a  th:href="@{/diary/getDiary(diaryNo=${diary.diaryId})}">
+                            <div class="box" th:if="${diary.imageName} == null" th:style="'background-image:url(/images/icon/rectangle.png); background-repeat:no-repeat; background-size: cover;'">
                                 <div class="cover">
-                                    <h3 class="name" th:text="${diary.diaryTitle}">제목</h3>
+                                    <h3 class="name" th:onclick="getDiary([[${diary.diaryId}]])" th:text="${diary.diaryTitle}">제목</h3>
                                     <p class="title" th:text="${diary.diaryDate}">날짜</p>
                                     <img th:src="${diary.weather}" width="45px" height="45px"/>
                                     <div class="social"><a href="#"><i th:onclick="moveToBin([[${diary.diaryId}]])" class="fas fa-trash-alt"></i></a></div>
                                 </div>
-                                </a>
+
                             </div>
                         </div>
                     </div>
