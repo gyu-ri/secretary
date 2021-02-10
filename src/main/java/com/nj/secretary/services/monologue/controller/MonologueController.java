@@ -255,7 +255,7 @@ public class MonologueController {
 
 	
 	@GetMapping("updateMonologue")
-	public String updateMonologue(@RequestParam("monologueId") int monologueId, Model model) throws Exception{
+	public String updateMonologue(@RequestParam("monologueId") int monologueId, Model model, HttpSession session) throws Exception{
 		System.out.println("updateMonologue 시작 합니다!");
 		
         Monologue monologue=monologueService.getMonologue(monologueId);

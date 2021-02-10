@@ -108,7 +108,12 @@ body{
 
 <h1>여기는 모노로그으으으으으으 상세보기이이이이이이이</h1>
 
+
+
+
 <form action="updateMonologue" method="get">
+<input type="hidden" th:value="${monologue.monologueId}" name="monologueId" id="monologueId"/>
+<input type="hidden" th:value="${monologue.questionId}" name="questionId"/>
 
 <span>질문 : <span id="questionText" th:text="${monologue.questionText}"/></span>
 <h2 id="monologueText" th:text="${monologue.monologueText}"/>
