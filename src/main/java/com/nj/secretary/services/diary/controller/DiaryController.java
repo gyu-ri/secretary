@@ -191,7 +191,7 @@ public class DiaryController {
 
 
     @PostMapping("updateDiary")
-    public String updateDiary(@ModelAttribute("diary") Diary diary, HttpSession session,Model model){
+    public String updateDiary(@ModelAttribute Diary diary, HttpSession session,Model model){
         System.out.println("shareStatus : " + diary.getShareStatus());
         Diary diary2 = diaryService.getDiary(diary.getDiaryId());
         if(session.getAttribute("user")==null){
@@ -213,7 +213,7 @@ public class DiaryController {
 
         return "diary/getDiary";
 
-                    }
+    }
 
     @GetMapping("binDiaryList")
     public String binDiaryList(HttpSession session,Model model){

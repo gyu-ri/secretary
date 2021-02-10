@@ -31,7 +31,9 @@ function checkCertificationNo() {
     alert("인증번호 맞는지 확인할게욥")
 
     let checkKey = $('#check').val();
-    if ($("#certificationNo").val() == checkKey) { //인증 키 값의 비교를 위해 텍스트인풋과 벨류를 비교
+    if (checkKey == ""){
+        alert("인증번호를 입력해주세요")
+    }else if ($("#certificationNo").val() == checkKey) { //인증 키 값의 비교를 위해 텍스트인풋과 벨류를 비교
         console.log("key" + checkKey);
         $("#certificationNo").text("인증완료").css("color", "blue");
         alert("인증이 완료되었습니다.")
