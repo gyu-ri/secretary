@@ -195,6 +195,7 @@ html {
 
 #login, #logout{
     cursor: pointer;
+    font-size: 15px;
 }
 
 #login:hover, #logout:hover{
