@@ -23,6 +23,7 @@
     <!--<link rel="stylesheet" href="/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css"> -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../../js/calendar/moment.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
 
     <title>글쓰기</title>
@@ -235,6 +236,9 @@
     </style>
     <script type="text/javascript">
         $(document).ready(function() {
+            $("#date").val(moment().format("YYYY-MM-DD"));
+            console.log("today  "+moment().format("YYYY-MM-DD"));
+
             $('#summernote').summernote({
                 maximumImageFileSize: 10520000,
                 placeholder: 'content',
@@ -375,7 +379,6 @@
             $("#tag").prepend("<input type=\"text\" name=\"tag_text\">");
         });
 
-
     </script>
 
 
@@ -400,7 +403,7 @@
 
 
         <input type="text" id="diaryTitle" name="diaryTitle" style="width: 40%;" placeholder="제목" required/><br/>
-        <input type="date" id="date" name="diaryDate" required pattern="\d{4}-\d{2}-\d{2}"/><br/>
+        <input type="date" id="date" name="diaryDate"  required pattern="\d{4}-\d{2}-\d{2}"/><br/>
 
     <span id="addTag">태그 추가 &#10133;</span><br/>
 

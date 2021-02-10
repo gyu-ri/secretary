@@ -3,6 +3,7 @@ package com.nj.secretary.services.diary.controller;
 
 import com.nj.secretary.services.alarm.domain.Alarm;
 import com.nj.secretary.services.alarm.service.AlarmService;
+import com.nj.secretary.services.calendar.domain.Calendar;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.diary.domain.Translate;
@@ -51,6 +52,7 @@ public class DiaryRestController {
         model.addAttribute("list", list);
         return list;
     }
+
 
     @PostMapping("moveToBin")
     public List<Diary> moveToBin(@RequestBody Diary diary, HttpSession session){
