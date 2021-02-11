@@ -1,14 +1,23 @@
-(function($, document) {
-    
-      // get tallest tab__content element
-      let height = -1;
-
-		$('.tab__content').each(function() {
-			height = height > $(this).outerHeight() ? height : $(this).outerHeight();
-         $(this).css('position', 'absolute');
-		});
-      
-      // set height of tabs + top offset
-		$('[data-tabs]').css('min-height', height + 40 + 'px');
-   
-}(jQuery, document));
+$("#tab2").on("click", function(){
+	var otherMonologueList=[];
+	$.ajax({
+		url: "/restMonologue/getOtherMonologueList",
+        method: "get",
+        dataType: "json",
+        data:{shareStatus:"1", userId:$("#userId").val()},
+		success:function(otherMonologueList){
+			console.log(otherMonologueList);
+			$.each(otherMonologueList,function(index,item){
+				console.log(index+"="+item.monologueText);
+				$("#otherMonologue").appen("item.monologueText");
+			})
+		},
+		  error: function(xhr, status, error) {
+              alert(error);
+          }
+		
+	
+	
+            
+	})
+})
