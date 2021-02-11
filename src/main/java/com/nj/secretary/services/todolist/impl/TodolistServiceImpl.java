@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("todolistServiceImpl")
 public class TodolistServiceImpl implements TodolistService {
 
@@ -15,27 +17,23 @@ public class TodolistServiceImpl implements TodolistService {
     private TodolistDAO todolistDAO;
 
     @Override
-    public void addTodolist(Todolist todolist) throws Exception {
-        todolistDAO.addTodolist(todolist);
+    public void addTodo(Todolist todolist) throws Exception {
+        todolistDAO.addTodo(todolist);
     }
 
     @Override
-    public Todolist getTodoList(String userId) throws Exception {
-        return todolistDAO.getTodoList(userId);
+    public List<Todolist> getTodo(String userId) throws Exception {
+        return todolistDAO.getTodo(userId);
     }
 
     @Override
-    public void updateTodolist(String todolistId) throws Exception {
-        todolistDAO.updateTodolist(todolistId);
+    public int deleteTodo(int todolistId) throws Exception {
+        return todolistDAO.deleteTodo(todolistId);
     }
 
-    @Override
-    public int deleteTodolist(String todolistId) throws Exception {
-        return todolistDAO.deleteTodolist(todolistId);
-    }
 
     @Override
-    public boolean finishTodolist() throws Exception {
-        return false;
+    public int doneTodo(int finishStatus) throws Exception {
+        return 0;
     }
 }

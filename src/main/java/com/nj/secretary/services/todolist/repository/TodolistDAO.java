@@ -2,16 +2,16 @@ package com.nj.secretary.services.todolist.repository;
 
 import com.nj.secretary.services.todolist.domain.Todolist;
 
+import java.util.List;
+
 public interface TodolistDAO {
 
-    public void addTodolist(Todolist todolist) throws Exception;
+    public void addTodo(Todolist todolist) throws Exception;
 
-    public Todolist getTodoList(String userId) throws Exception;
+    public List<Todolist> getTodo(String userId) throws Exception;
 
-    public void updateTodolist(String todolistId) throws Exception;
+    public int deleteTodo(int todolistId) throws Exception;
 
-    public int deleteTodolist(String todolistId) throws Exception;
-
-    public boolean finishTodolist() throws Exception;
+    public int doneTodo(int finishStatus) throws Exception;
 
 }

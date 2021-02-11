@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository("TodolistDAOImpl")
 public class TodolistDAOImpl implements TodolistDAO {
 
@@ -13,29 +15,24 @@ public class TodolistDAOImpl implements TodolistDAO {
     private SqlSession sqlSession;
 
     @Override
-    public void addTodolist(Todolist todolist) throws Exception {
+    public void addTodo(Todolist todolist) throws Exception {
         System.out.println("addTodolist TodolistDAOImpl start");
         sqlSession.insert("TodolistMapper.addTodolist", todolist);
     }
 
     @Override
-    public Todolist getTodoList(String userId) throws Exception {
-        return sqlSession.selectOne("TodolistMapper.getTodolist",userId);
+    public List<Todolist> getTodo(String userId) throws Exception {
+        return sqlSession.selectList("TodolistMapper.getTodo",userId);
     }
 
     @Override
-    public void updateTodolist(String todolistId) throws Exception {
-        System.out.println("updateTodolist TodolistDAOImpl start");
-        sqlSession.update("TodolistMapper.updateTodolist",todolistId);
-    }
-
-    @Override
-    public int deleteTodolist(String todolistId) throws Exception {
+    public int deleteTodo(int todolistId) throws Exception {
         return sqlSession.delete("TodolistMapper.deleteTodolist",todolistId);
     }
 
     @Override
-    public boolean finishTodolist() throws Exception {
-        return false;
+    public int doneTodo(int finishStatus) throws Exception {
+        return sqlSession.update("TodolistMapper.doneTodo",finishStatus);
     }
+
 }

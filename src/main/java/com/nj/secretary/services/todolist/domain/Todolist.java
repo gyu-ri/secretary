@@ -8,7 +8,7 @@ public class Todolist {
     private String userId;
     private String todolist;
     private Date todolistDate;
-    private boolean finishStatus;
+    private int finishStatus;
 
     public int getTodolistId() {
         return todolistId;
@@ -42,11 +42,11 @@ public class Todolist {
         this.todolistDate = todolistDate;
     }
 
-    public boolean isFinishStatus() {
+    public int isFinishStatus() {
         return finishStatus;
     }
 
-    public void setFinishStatus(boolean finishStatus) {
+    public void setFinishStatus(int finishStatus) {
         this.finishStatus = finishStatus;
     }
 
