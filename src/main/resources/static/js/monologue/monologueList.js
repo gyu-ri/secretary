@@ -68,6 +68,7 @@ $("#getMonologueList").click(function(){
             console.log(list);
 
             $("div [name='listSet']").remove();
+            $("div [name='listSet']").remove();
             document.getElementById('fisrtTab').setAttribute('class', 'active');
             document.getElementById('secondTab').setAttribute('class', '');
             document.getElementById('thirdTab').setAttribute('class', '');
@@ -101,6 +102,7 @@ $("#getOthersMonologueList").on("click", function () {
             document.getElementById('thirdTab').setAttribute('class', '');
             $.each(list.reverse(),function(i,item){
                 console.log(item);
+                $("#monologueList").append(item.questionText);
 
             })
         }
