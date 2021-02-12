@@ -1,7 +1,8 @@
-ul {
+#todo {
     list-style: none;
     margin: 0;
-    padding: 0
+    padding: 0;
+    width: 100%;
 }
 
 h3 {
@@ -21,22 +22,22 @@ h3 {
 }
 
 
-.itemList {
+li[name='itemList'] {
     background: #fff;
-    height: 10px;
-    line-height: 18px;
+    height: 25px;
+    line-height: 30px;
     color: #666;
     margin-bottom: 3px;
     width: 100%;
 }
 
-.itemList:nth-child(2n) {
+li[name='itemList']:nth-child(2n) {
     background: #f7f7f7
 }
 
 .trash {
     background: #e74c3c;
-    height: 18px;
+    height: 25px;
     margin-right: 20px;
     text-align: center;
     color: white;
@@ -46,7 +47,7 @@ h3 {
     opacity: 0
 }
 
-.itemList:hover .trash {
+li[name='itemList']:hover .trash {
     width: 40px;
     opacity: 1.0
 }

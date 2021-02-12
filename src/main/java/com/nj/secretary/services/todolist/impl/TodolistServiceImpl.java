@@ -22,6 +22,11 @@ public class TodolistServiceImpl implements TodolistService {
     }
 
     @Override
+    public Todolist getTodoOne(String userId) throws Exception {
+        return todolistDAO.getTodoOne(userId);
+    }
+
+    @Override
     public List<Todolist> getTodo(String userId) throws Exception {
         return todolistDAO.getTodo(userId);
     }
@@ -35,5 +40,10 @@ public class TodolistServiceImpl implements TodolistService {
     @Override
     public int doneTodo(int todolistId) throws Exception {
         return todolistDAO.doneTodo(todolistId);
+    }
+
+    @Override
+    public int undoTodo(int todolistId) throws Exception {
+        return todolistDAO.undoTodo(todolistId);
     }
 }

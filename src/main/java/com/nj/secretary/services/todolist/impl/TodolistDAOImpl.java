@@ -21,6 +21,11 @@ public class TodolistDAOImpl implements TodolistDAO {
     }
 
     @Override
+    public Todolist getTodoOne(String userId) throws Exception {
+        return sqlSession.selectOne("TodolistMapper.getTodoOne",userId);
+    }
+
+    @Override
     public List<Todolist> getTodo(String userId) throws Exception {
         return sqlSession.selectList("TodolistMapper.getTodo",userId);
     }
@@ -33,6 +38,11 @@ public class TodolistDAOImpl implements TodolistDAO {
     @Override
     public int doneTodo(int todolistId) throws Exception {
         return sqlSession.update("TodolistMapper.doneTodo",todolistId);
+    }
+
+    @Override
+    public int undoTodo(int todolistId) throws Exception {
+        return sqlSession.update("TodolistMapper.undoTodo",todolistId);
     }
 
 }

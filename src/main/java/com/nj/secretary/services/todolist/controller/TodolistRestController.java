@@ -17,7 +17,7 @@ public class TodolistRestController {
     TodolistService todolistService;
 
     @PostMapping("addTodo")
-    public String addTodo(@RequestBody Todolist todolist, HttpSession session) throws Exception {
+    public Todolist addTodo(@RequestBody Todolist todolist, HttpSession session) throws Exception {
         //Todolist todolist = new Todolist();
 
         User user = (User)session.getAttribute("user");
@@ -26,7 +26,8 @@ public class TodolistRestController {
         todolist.setFinishStatus(0);
         System.out.println("addTodo restController 시작"+todolist);
         todolistService.addTodo(todolist);
-        return "TodoList test";
+        todolist = todolistService.getTodoOne(user.getUserId());
+        return todolist;
     }
 
     @GetMapping("getTodo")
@@ -51,6 +52,17 @@ public class TodolistRestController {
     public String doneTodo(@RequestParam("todolistId") int todolistId) throws Exception{
         System.out.println("끝낸 todolistId가 뭐요?"+todolistId);
         int doneTodo = todolistService.doneTodo(todolistId);
+        if (doneTodo==0){
+            return "failed";
+        }else{
+            return "success";
+        }
+    }
+
+    @GetMapping("undoTodo")
+    public String undoTodo(@RequestParam("todolistId") int todolistId) throws Exception{
+        System.out.println("끝낸 todolistId가 뭐요?"+todolistId);
+        int doneTodo = todolistService.undoTodo(todolistId);
         if (doneTodo==0){
             return "failed";
         }else{

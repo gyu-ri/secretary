@@ -20,6 +20,17 @@
 
     </insert>
 
+    <select id="getTodoOne" parameterType="string" resultMap="todolistSelectMap">
+
+        SELECT ROWNUM, a.TODOLIST_ID, a.USER_ID, a.TODOLIST_TEXT, a.TODOLIST_DATE, a.FINISH_STATUS
+        FROM (select todolist_id, user_id, todolist_text, todolist_date, finish_status
+              from todolist
+              where user_id = #{userId}
+              order by todolist_id desc) a
+        where rownum = 1
+
+    </select>
+
      <select id="getTodo" parameterType="String" resultMap="todolistSelectMap">
 
      select todolist_id, user_id, todolist_text, todolist_date, finish_status
@@ -38,6 +49,14 @@
     </update>
 
     <update id="doneTodo" parameterType="integer">
+
+        update todolist
+        set finish_status='1'
+        where todolist_id = #{todolistId}
+
+    </update>
+
+    <update id="undoTodo" parameterType="integer">
 
         update todolist
         set finish_status='0'

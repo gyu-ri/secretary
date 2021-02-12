@@ -10,10 +10,14 @@ public interface TodolistService {
 
     public void addTodo(Todolist todolist) throws Exception;
 
+    public Todolist getTodoOne(String userId)throws Exception;
+
     public List<Todolist> getTodo(String userId) throws Exception;
 
     public int deleteTodo(int todolistId) throws Exception;
 
     public int doneTodo(int todolistId) throws Exception;
+
+    public int undoTodo(int todolistId) throws Exception;
 
 }
