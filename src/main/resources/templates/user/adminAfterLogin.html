@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>secretary</title>
+
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <link rel="stylesheet" href='../../css/main/main.css' />
+    <link rel="stylesheet" href='../../css/main/menu.css' />
+    <script src="../../js/main/main.js"></script>
+    <script src="../../js/main/menu.js"></script>
+    <script src="https://use.fontawesome.com/b51c131c86.js"></script>
+
+</head>
+
+<body>
+<!--<audio id="myaudio" controls autoplay="autoplay">-->
+<!--    <source id="main">-->
+<!--    <source src="../music/sb_growingup.mp3">-->
+<!--    <source src="../music/Charms - 02 Train by Sergey Cheremisinov.mp3">-->
+<!--    <source src="../music/Childhood by Scott Buckley (Music promoted by Audio Library).mp3">-->
+<!--    <source src="../music/Clarion – Scott Buckley (No Copyright Music).mp3">-->
+<!--    <source src="../music/close your eyes – Rexlambo (No Copyright Music).mp3">-->
+<!--    <source src="../music/Home – Neutrin05 (No Copyright Music).mp3">-->
+<!--    <source src="../music/kv-ocean.mp3">-->
+<!--    <source src="../music/Reverie - Scott Buckley (Music promoted by Audio Library).mp3">-->
+<!--    <source src="../music/To Count The Stars – Sapajou (No Copyright Music).mp3">-->
+<!--    <source src="../music/Wistful Rain by Ghostrifter Official · [Free Copyright-safe Music].mp3">-->
+<!--</audio>-->
+<!--<button id='play-next'>&#9654;</button>-->
+
+
+
+
+
+<!--------------------- 알람 관련------------------------->
+
+<!--<br>-->
+<!--<p class="docbtn">-->
+<!--    <a href="#" onclick="getAlarmList()" id="alarmBtn" class="button" style="width:50px; position: absolute;">&#128276;<span class="nav-counter" th:text="${count}"></span></a>-->
+<!--    <ul id="alarmLi">-->
+
+<!--    </ul>-->
+<!--</p>-->
+
+<!--<div id="my_modal">-->
+<!--    <a class="modal_close_btn" hidden>닫기</a>-->
+
+<!--</div>-->
+
+<!-------------------- 알람 관련 끝------------------------>
+<p id = "status"></p>
+<a id = "map-link" target="_blank"></a>
+<div id="tempIcon" >	&#8451;</div> &nbsp;
+<div id="temparature"></div>
+<img src="" id="img"/>
+<div id="location" >&#127759;          </div>
+<header>
+    <div id="clock"></div>
+</header>
+<div class="wrapper">
+
+    <input type="checkbox" id="menuToggler" class="input-toggler" />
+    <label for="menuToggler" class="menu-toggler">
+        <span class="menu-toggler__line"></span>
+        <span class="menu-toggler__line"></span>
+        <span class="menu-toggler__line"></span>
+    </label>
+    <aside class="sidebar">
+        <ul class="menu">
+            <li class="menu__item"><a class="menu__link" href="/user/login">Home</a></li>
+            <li class="menu__item"><a class="menu__link" href="/user/getUser">Profile</a></li>
+            <li class="menu__item"><a class="menu__link" href="/diary/getDiaryList">Diary</a></li>
+            <li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
+            <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
+            <li class="menu__item"><a class="menu__link" href="/user/adminUser">admin User</a></li>
+            <li class="menu__item"><a class="menu__link" href="/diary/adminPost">admin Post</a></li>
+            <li class="menu__item"><a class="menu__link" href="/user/logout">Logout</a></li>
+        </ul>
+    </aside>
+
+    <main class="content">
+        <div>
+            <h1 class="intro" th:text="|${user.nickname}님 환영합니다.|" hidden></h1>
+        </div>
+
+
+        <!--        <div id="Home">-->
+        <!--            <h1>Home</h1>-->
+        <!--            <p>This is the home page.</p>-->
+        <!--        </div>-->
+    </main>
+
+</div>
+
+</body>
+</html>
