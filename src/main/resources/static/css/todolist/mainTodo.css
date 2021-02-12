@@ -5,7 +5,7 @@
     width: 100%;
 }
 
-h3 {
+h5 {
     float: right;
     color: white;
     margin: 0;
@@ -17,27 +17,30 @@ h3 {
 
 .region{
     position: absolute;
+    height: auto;
+    width: 320px;
     bottom: 8px;
-    right: 16px;
+    right: 10px;
 }
 
 
 li[name='itemList'] {
     background: #fff;
-    height: 25px;
-    line-height: 30px;
+    height: 30px;
+    font-size: 15px;
+    line-height: 40px;
     color: #666;
     margin-bottom: 3px;
     width: 100%;
 }
 
-li[name='itemList']:nth-child(2n) {
+/*li[name='itemList']:nth-child(2n) {
     background: #f7f7f7
-}
+}*/
 
 .trash {
     background: #e74c3c;
-    height: 25px;
+    height: 30px;
     margin-right: 20px;
     text-align: center;
     color: white;
@@ -53,7 +56,7 @@ li[name='itemList']:hover .trash {
 }
 
 #addTodo {
-    font-size: 18px;
+    font-size: 17px;
     color: #2980b9;
     background-color: #f7f7f7;
     width: 100%;
@@ -64,7 +67,7 @@ li[name='itemList']:hover .trash {
 
 #addTodo:focus {
     background: #fff;
-    border: 3px solid #2980b9;
+    border: 3px solid #2e8fcf;
     outline: none
 }
 
