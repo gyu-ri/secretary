@@ -9,7 +9,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/monologue/monologueList.js"></script>
 	<link rel="stylesheet" href='../../css/diary/diary.css' />
-	<link rel="stylesheet" href='../../css/monologue/monologue.css' />
+	<link rel="stylesheet" href='../../css/monologue/monologueList.css' />
     <link rel="stylesheet" href='../../css/main/menu.css' />
     <script src="../../js/main/main.js"></script>
     <!--<script type="text/javascript">
@@ -66,9 +66,8 @@
 	<div class="tabs">
 		<ul class="tab-links">
 			<li id="fisrtTab" class="active"><a href="#tab1" id="getMonologueList" >&#128198;</a></li>
-			<li id="secondTab"><a href="#" id="getList" >&#128172;</a></li>
-			<li id="thirdTab"><a href="#"  id="getOthersMonologueList" >&#128107;</a></li>
-			<li id="deleteBtn"><a href="#" >&#128194; &#9989;</a></li>
+			<li id="secondTab"><a href="#" id="getOthersMonologueList" >&#128172;</a></li>
+			<li id="thirdTab"><a href="#"  id="deleteMonologue" >&#128107;</a></li>
 		</ul>
 	</div>
 
@@ -84,8 +83,7 @@
 				<div class="monologueList">
 					<div name="listSet" class="col-md-4 col-lg-3 item" th:each="monologue : ${monologueList}">
 						<!--                            <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left;" hidden/>-->
-						<div th:text="${monologue.questionText}"></div>
-						<div th:text="${monologue.monologueText}"></div>
+						<div th:text="${monologue.questionText}" th:onclick="getMonologue([[${monologue.monologueId}]],[[${monologue.questionId}]])" style="cursor:pointer;"></div>
 						<br>
 					</div>
 				</div>

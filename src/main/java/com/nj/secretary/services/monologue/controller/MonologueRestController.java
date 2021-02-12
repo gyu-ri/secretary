@@ -212,4 +212,15 @@ public class MonologueRestController {
 		
 	}
     
+    @GetMapping("getMonologueList")
+	public List<Monologue> getMonologueList(@RequestParam("userId") String user) throws Exception{
+    	System.out.println("monologueList restController 시작");
+		
+		List<Monologue> monologueList=monologueService.getMonologueList(user);
+				
+		System.out.println("monologue restController getMonologueList  ::  " + monologueList);
+	
+		return monologueList;
+		
+	}
 }
