@@ -54,11 +54,32 @@ $(function geoFindMe() {
 });
 
 
-function getMonologue(monologueId,questionId){
-    location.href= "/monologue/getMonologue?monologueId="+monologueId+'&questionId='+questionId;
-}
 
 
+$(function(){
+	
+$("#getMonologueList").click(function(){
+
+    $.ajax({
+        url : "/restMonologue/getOtherMonologueList",
+        type : "GET",
+        data :{userId:$("#userId").val()},
+        success: function (list){
+            console.log(list);
+
+            $("div [name='listSet']").remove();
+            document.getElementById('fisrtTab').setAttribute('class', 'active');
+            document.getElementById('secondTab').setAttribute('class', '');
+            document.getElementById('thirdTab').setAttribute('class', '');
+            $.each(list,function(i,item){
+                   console.log(item);
+            })
+        }
+})
+})
+
+                    	
+    
 
 $("#getOthersMonologueList").on("click", function () {
     var list = [];
@@ -80,18 +101,6 @@ $("#getOthersMonologueList").on("click", function () {
             document.getElementById('thirdTab').setAttribute('class', '');
             $.each(list.reverse(),function(i,item){
                 console.log(item);
-                if (item.imageName!=null) {
-                    $(".monologueList").append(
-                        "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                        "</div>"
-                    )
-                }else{
-                    $(".monologueList").append(
-                        "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                        "</div>"
-
-                    )
-                }
 
             })
         }
@@ -100,53 +109,9 @@ $("#getOthersMonologueList").on("click", function () {
     return list;
 });
 
-
-
-$("#getMonologueList").click(function(){
-
-    $.ajax({
-        url : "/restMonologue/getOtherMonologueList",
-        type : "GET",
-        data :{userId:$("#userId").val()},
-        success: function (list){
-            console.log(list);
-
-            $("div [name='listSet']").remove();
-            document.getElementById('fisrtTab').setAttribute('class', 'active');
-            document.getElementById('secondTab').setAttribute('class', '');
-            document.getElementById('thirdTab').setAttribute('class', '');
-            document.getElementById('deleteBtn').setAttribute('class', '');
-            $.each(list,function(i,item){
-                console.log(item);
-                if (item.imageName!=null) {
-                    $(".listDiary").append(
-                        "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                        "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
-                        "<div class='cover'>" +
-                        "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
-                        "<p class='title'>"+item.diaryDate+"</p>" +
-                        "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                        "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
-                        "</div>" +
-                        "</div>"+
-                        "</div>"
-                    )
-                }else{
-                    $(".listDiary").append(
-                        "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                        "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
-                        "<div class='cover'>" +
-                        "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
-                        "<p class='title'>"+item.diaryDate+"</p>" +
-                        "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                        "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
-                        "</div>" +
-                        "</div>"+
-                        "</div>"
-
-                    )
-                }
-            })
-        }
-    });
 })
+
+
+function getMonologue(monologueId,questionId){
+    location.href= "/monologue/getMonologue?monologueId="+monologueId+'&questionId='+questionId;
+}
