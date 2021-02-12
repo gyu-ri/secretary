@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <title>secretary</title>
 
-
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css'>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js'></script>
+    <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css'>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -18,6 +20,8 @@
     <script src="../../js/main/main.js"></script>
     <script src="../../js/main/menu.js"></script>
     <script src="https://use.fontawesome.com/b51c131c86.js"></script>
+    <script src="../../js/todolist/mainTodo.js"></script>
+    <link rel="stylesheet" href="../../css/todolist/mainTodo.css"/>
     <script th:inline="javascript">
         /*<![CDATA[*/
 
@@ -110,6 +114,15 @@
         <!--            <h1>Home</h1>-->
         <!--            <p>This is the home page.</p>-->
         <!--        </div>-->
+
+        <a class="region" id="todoContainer">
+            <h3 class="todolist">TODO</h3>
+            <div class="todo">
+                <label for="addTodo"></label><input type="text" id="addTodo" name="addTodo" placeholder="Add new Todo">
+            <ul id="todo">
+            </ul>
+            </div>
+        </a>
     </main>
 
 </div>

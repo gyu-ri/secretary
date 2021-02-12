@@ -411,7 +411,7 @@ public class UserController {
 
 
     @PostMapping("updateUser")
-    public String updateuser(@RequestParam("userId") String userId, User user, Model model) throws Exception{
+    public String updateuser(@RequestParam("userId") String userId, User user, Model model,HttpSession session) throws Exception{
     	System.out.println("updateUser controller 시작 합니다");
     	
     	userService.updateUser(user);
@@ -419,6 +419,7 @@ public class UserController {
     	System.out.println("updateUser 확인::"+user);
         User user01=userService.getUser(userId);
         model.addAttribute("user",user01);
+        session.setAttribute("user",user01);
         if (user01.getKakao()==0){
             return "user/getUser";
         }else{

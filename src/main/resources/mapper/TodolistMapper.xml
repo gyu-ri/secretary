@@ -13,35 +13,62 @@
 
     </resultMap>
 
-    <insert id="addTodolist" parameterType="com.nj.secretary.services.todolist.domain.Todolist">
+    <insert id="addTodo" parameterType="com.nj.secretary.services.todolist.domain.Todolist">
 
         Insert into todolist(todolist_id, user_id, todolist_text, todolist_date)
-        values (todolist_seq.nextval, #{userId}, #{todolist}, sysdate);
+        values (todolist_seq.nextval, #{userId}, #{todolist}, sysdate)
 
     </insert>
 
-    <!-- <select id="getTodolist" resultType="todolistSelectMap">
+    <select id="getTodoOne" parameterType="string" resultMap="todolistSelectMap">
+
+        SELECT ROWNUM, a.TODOLIST_ID, a.USER_ID, a.TODOLIST_TEXT, a.TODOLIST_DATE, a.FINISH_STATUS
+        FROM (select todolist_id, user_id, todolist_text, todolist_date, finish_status
+              from todolist
+              where user_id = #{userId}
+              order by todolist_id desc) a
+        where rownum = 1
+
+    </select>
+
+     <select id="getTodo" parameterType="String" resultMap="todolistSelectMap">
 
      select todolist_id, user_id, todolist_text, todolist_date, finish_status
      from todolist
-     where user_id = #{userId};
+     where user_id = #{userId}
 
-     </select>-->
+     </select>
 
-    <update id="updateTodolist" parameterType="com.nj.secretary.services.todolist.domain.Todolist">
+    <update id="updateTodo" parameterType="com.nj.secretary.services.todolist.domain.Todolist">
 
         update todolist
         set todolist_text=#{todolistText},
             finish_status=#{finishStatus}
-        where todolist_id = #{todolistId};
+        where todolist_id = #{todolistId}
 
     </update>
 
-    <delete id="deleteTodolist" parameterType="integer">
+    <update id="doneTodo" parameterType="integer">
+
+        update todolist
+        set finish_status='1'
+        where todolist_id = #{todolistId}
+
+    </update>
+
+    <update id="undoTodo" parameterType="integer">
+
+        update todolist
+        set finish_status='0'
+        where todolist_id = #{todolistId}
+
+    </update>
+
+    <delete id="deleteTodo" parameterType="integer">
 
         delete
         from todolist
-        where todolist_id = #{todolistId};
+        where todolist_id = #{todolistId}
 
     </delete>
 
