@@ -42,7 +42,7 @@ public class Todolist {
         this.todolistDate = todolistDate;
     }
 
-    public int isFinishStatus() {
+    public int getFinishStatus() {
         return finishStatus;
     }
 

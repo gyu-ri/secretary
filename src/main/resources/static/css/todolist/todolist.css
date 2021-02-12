@@ -1,64 +1,82 @@
-
-
-.container {
-    background-color: #1b6d85;
-    display: flex; /* flex를 이용하면 요소들을 중앙에 두는데 편함 */
-    flex-direction: column; /* class안에 있는 요소들이 위에서 아래로 쌓이게 해줌 */
-    padding: 32px 0; /* 여백 32픽셀 */
-}
-
-body{
-    background-image: linear-gradient(180deg, #487eb0, #FFFFFF);
-    min-height: 100vh;
-}
-
-.input-container {
-    width: 80%;
-    display: flex;
-    align-self: center;
-    justify-content: space-between; /* 자식 요소 자동 거리두기 */
-}
-
-#input {
-    width: 70%;
-    padding: 8px 12px;
-    border-radius: 4px; /* 모서리 둥글게 */
-    border: 1px solid #eaeaea;
-}
-
-#button {
-    width: 20%;
-    background-color: #66afe9;
-    border-radius: 4px;
-    border: 1px solid #41a3fe;
-    color: white;
-}
-
-.list-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 48px;
-    width: 80%;
-    align-self: center;
-    border-radius: 4px;
-    border: 1px solid #eaeaea;
-    background-color: white;
-}
-
-h1 {
-    padding: 16px 24px;
+ul {
+    list-style: none;
     margin: 0;
-    font-size: 16px;
-    border-bottom: 1px solid #eaeaea;
+    padding: 0
 }
 
-#list {
-    margin: 32px 0;
+h3 {
+    float: right;
+    color: white;
+    margin: 0;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-size: 24px;
+    font-weight: normal
 }
 
-.list-item {
-    border-bottom: 1px solid #eaeaea;
-    margin-right: 32px;
-    padding: 16px 0;
-    font-size: 14px;
+.region{
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    cursor: pointer;
+}
+
+.fa-plus {
+    float: right
+}
+
+.itemList {
+    background: #fff;
+    height: 10px;
+    line-height: 18px;
+    color: #666
+}
+
+.itemList:nth-child(2n) {
+    background: #f7f7f7
+}
+
+.trash {
+    background: #e74c3c;
+    height: 18px;
+    margin-right: 20px;
+    text-align: center;
+    color: white;
+    width: 0;
+    display: inline-block;
+    transition: 0.2s linear;
+    opacity: 0
+}
+
+.itemList:hover .trash {
+    width: 40px;
+    opacity: 1.0
+}
+
+#addTodo {
+    font-size: 18px;
+    color: #2980b9;
+    background-color: #f7f7f7;
+    width: 100%;
+    padding: 13px 13px 13px 20px;
+    box-sizing: border-box;
+    border: 3px solid rgba(0, 0, 0, 0)
+}
+
+input:focus {
+    background: #fff;
+    border: 3px solid #2980b9;
+    outline: none
+}
+
+#container {
+    width: 360px;
+    margin: 100px auto;
+    background: #f7f7f7;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1)
+}
+
+.completed {
+    color: gray;
+    text-decoration: line-through
 }

@@ -31,8 +31,8 @@ public class TodolistDAOImpl implements TodolistDAO {
     }
 
     @Override
-    public int doneTodo(int finishStatus) throws Exception {
-        return sqlSession.update("TodolistMapper.doneTodo",finishStatus);
+    public int doneTodo(int todolistId) throws Exception {
+        return sqlSession.update("TodolistMapper.doneTodo",todolistId);
     }
 
 }

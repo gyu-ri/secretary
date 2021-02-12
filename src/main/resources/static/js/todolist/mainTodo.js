@@ -6,24 +6,33 @@ $(document).ready(function(){
         success:function (data) {
             $.each(data, function(index, item){
                 console.log(index+":"+item.todolist);
-                $("#todo").append("<li><span><i class='fa fa-trash'></i></span> " + item.todolist + "</li>")
+                $("#todo").append("<li class='itemList'><span onclick='doneTodo("+item.todolistId+")'><i class='fa fa-trash'></i></span> " + item.todolist + "</li>")
+
             });
         }
     })
 
 
-    $("#todo").on("click", "li", function(){
-        $(this).toggleClass("completed");
+
+
+
+    /*$("#todo").on("click", "li", function(){
+        let doneTodo = {todolistId:$('#todo').val()};
+        console.log(doneTodo);
+         $(this).toggleClass("completed");
         $.ajax({
-            url: "/restTodolist/updateTodo",
+            url: "/restTodolist/doneTodo",
             type: "get",
+            data: doneTodo,
+            contentType: "application/text",
             success:function (data) {
                 console.log("todo적용쓰"+data);
+                $(this).toggleClass("completed");
             },error: function (data) {
                 console.log("실패"+data);
             }
         })
-    });
+    });*/
 
 
     $("#todo").on("click", "span", function(event){
@@ -38,29 +47,69 @@ $(document).ready(function(){
             alert("enter");
             let addTodo ={todolist: $('#addTodo').val()};
             console.log('addTodo',addTodo);
-            // $('#addTodo').val("");
+            //$('#addTodo').val();
             $.ajax({
                 url: "/restTodolist/addTodo",
                 type: "POST",
                 //dataType : "json",
-                //data : $('#addTodo').val(),
-                //data : {addTodo:addTodo},
                 data:JSON.stringify(addTodo),
                 contentType: "application/json",
                 success:function (data) {
                     console.log("todo적용쓰"+data);
-                    $('#todo').append("<li><span><i class='fa fa-trash'></i></span> " + $('#addTodo').val() + "</li>")
+                    $('#todo').append("<li class='itemList'><span><i class='fa fa-trash'></i></span> " + $('#addTodo').val() + "</li>")
                 },error: function (data) {
                     console.log("실패"+data);
                 }
             })
-             // $("ul").append("<li><span><i class='fa fa-trash'></i></span> " + addTodo + "</li>")
         }
     });
 
 
-    $(".fa-plus").click(function(){
-        $("#addTodo").fadeToggle();
+    /*$(".fa-plus").click(function(){
+        $("#addTodo").fadeIn();
+    });*/
+
+
+    $(".todolist").click(function(){
+        $(".todo").fadeToggle();
     });
 
 });
+
+function doneTodo(id){
+    let todoData = {todolistId:id};
+    console.log(todoData);
+    $(this).toggleClass("completed");
+    $.ajax({
+        url: "/restTodolist/doneTodo",
+        type: "get",
+        data: todoData,
+        contentType: "application/text",
+        success:function (data) {
+            console.log("todo적용쓰"+data);
+            $(this).toggleClass("completed");
+        },error: function (data) {
+            console.log("실패"+data);
+        }
+    })
+}
+
+/*$(function (){
+    $(".itemList").hover(function (){
+        console.log("hover걸렸어?");
+        $(".trash").css({
+            width:"40px",
+            opacity:"1.0"
+        },function () {
+            $(".trash").css({
+                width: "0",
+                opacity: "0"
+            })
+        });
+    })
+})*/
+/*
+.itemList:hover .trash {
+    width: 40px;
+    opacity: 1.0
+}*/

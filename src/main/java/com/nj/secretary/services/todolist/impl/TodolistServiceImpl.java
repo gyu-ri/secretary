@@ -33,7 +33,7 @@ public class TodolistServiceImpl implements TodolistService {
 
 
     @Override
-    public int doneTodo(int finishStatus) throws Exception {
-        return 0;
+    public int doneTodo(int todolistId) throws Exception {
+        return todolistDAO.doneTodo(todolistId);
     }
 }

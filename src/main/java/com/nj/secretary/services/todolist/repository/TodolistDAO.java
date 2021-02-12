@@ -12,6 +12,6 @@ public interface TodolistDAO {
 
     public int deleteTodo(int todolistId) throws Exception;
 
-    public int doneTodo(int finishStatus) throws Exception;
+    public int doneTodo(int todolistId) throws Exception;
 
 }

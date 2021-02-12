@@ -37,10 +37,10 @@
 
     </update>
 
-    <update id="doneTodo" parameterType="com.nj.secretary.services.todolist.domain.Todolist">
+    <update id="doneTodo" parameterType="integer">
 
         update todolist
-        set finish_status=#{finishStatus}
+        set finish_status='0'
         where todolist_id = #{todolistId}
 
     </update>

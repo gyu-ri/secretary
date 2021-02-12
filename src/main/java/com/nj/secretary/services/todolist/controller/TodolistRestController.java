@@ -38,7 +38,7 @@ public class TodolistRestController {
 
     @GetMapping("deleteTodo")
     public String deleteTodo(@RequestParam("todolistId") int todolistId) throws Exception {
-        System.out.println("todolistId"+todolistId);
+        System.out.println("삭제할 todolistId"+todolistId);
         int delete = todolistService.deleteTodo(todolistId);
         if (delete==0){
             return "failed";
@@ -48,10 +48,14 @@ public class TodolistRestController {
     }
 
     @GetMapping("doneTodo")
-    public String doneTodo(@RequestBody int finishStatus) throws Exception{
-        todolistService.doneTodo(finishStatus);
-        System.out.println("업데이트할거요"+finishStatus);
-        return "todolist";
+    public String doneTodo(@RequestParam("todolistId") int todolistId) throws Exception{
+        System.out.println("끝낸 todolistId가 뭐요?"+todolistId);
+        int doneTodo = todolistService.doneTodo(todolistId);
+        if (doneTodo==0){
+            return "failed";
+        }else{
+            return "success";
+        }
     }
 
 
