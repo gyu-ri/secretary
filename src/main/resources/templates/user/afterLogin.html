@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title>secretary</title>
 
-
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
@@ -116,10 +115,10 @@
         <!--            <p>This is the home page.</p>-->
         <!--        </div>-->
 
-        <a class="region bottom-right" id="todoContainer">
+        <a class="region" id="todoContainer">
             <h3 class="todolist">TODO</h3>
             <div class="todo">
-            <input type="text" id="addTodo" name="addTodo" placeholder="Add new Todo">
+                <label for="addTodo"></label><input type="text" id="addTodo" name="addTodo" placeholder="Add new Todo">
             <ul id="todo">
                 <li class="itemList"><span class="trash"><i class="fa fa-trash"></i> </span></li>
             </ul>

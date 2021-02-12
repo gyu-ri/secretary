@@ -57,6 +57,7 @@ $(document).ready(function(){
                 success:function (data) {
                     console.log("todo적용쓰"+data);
                     $('#todo').append("<li class='itemList'><span><i class='fa fa-trash'></i></span> " + $('#addTodo').val() + "</li>")
+                    $("#addTodo").val("");
                 },error: function (data) {
                     console.log("실패"+data);
                 }
