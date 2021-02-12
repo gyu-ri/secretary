@@ -22,14 +22,12 @@ $(function(){
                         $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
                             "<div class='social'><a href='#'><i onclick=\"deleteDiary("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i class='fas fa-trash-restore' onclick=\"recoverDiary("+item.diaryId+")\"></i></a></div>" +
                             "</div>" +
-                            "</a>"+
                             "</div>"+
                             "</div>"
                         )
@@ -37,14 +35,13 @@ $(function(){
                         $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
                             "<div class='social'><a href='#'><i onclick=\"deleteDiary("+item.diaryId+")\" class='fas fa-trash-alt'></i></a><a href='#'><i class='fas fa-trash-restore' onclick=\"recoverDiary("+item.diaryId+")\"></i></a></div>" +
                             "</div>" +
-                            "</a>"+
+
                             "</div>"+
                             "</div>"
 
@@ -88,14 +85,12 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
                             "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
                             "</div>" +
-                            "</a>"+
                             "</div>"+
                             "</div>"
                         )
@@ -103,14 +98,12 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
                             "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
                             "</div>" +
-                            "</a>"+
                             "</div>"+
                             "</div>"
 
@@ -147,14 +140,12 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'></div>" +
                             "</div>" +
-                            "</a>"+
                             "</div>"+
                             "</div>"
                         )
@@ -162,14 +153,12 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'></div>" +
                             "</div>" +
-                            "</a>"+
                             "</div>"+
                             "</div>"
 
@@ -212,20 +201,18 @@ $(function(){
                 success: function (list){
                     console.log(list);
                     $("div [name='listSet']").remove();
-                    $.each(list.reverse(),function(i,item){
+                    $.each(list,function(i,item){
                         console.log(item);
                         if (item.imageName!=null) {
                             $(".listDiary").append(
                                 "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                                 "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
-                                "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                                 "<div class='cover'>" +
-                                "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                                "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                                 "<p class='title'>"+item.diaryDate+"</p>" +
                                 "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                                "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                                "<div class='social'></div>" +
                                 "</div>" +
-                                "</a>"+
                                 "</div>"+
                                 "</div>"
                             )
@@ -233,14 +220,12 @@ $(function(){
                             $(".listDiary").append(
                                 "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                                 "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
-                                "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                                 "<div class='cover'>" +
-                                "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                                "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                                 "<p class='title'>"+item.diaryDate+"</p>" +
                                 "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                                "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                                "<div class='social'></div>" +
                                 "</div>" +
-                                "</a>"+
                                 "</div>"+
                                 "</div>"
 
@@ -306,14 +291,12 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
                             "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
                             "</div>" +
-                            "</a>"+
                             "</div>"+
                             "</div>"
                         )
@@ -321,14 +304,12 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
                             "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
                             "</div>" +
-                            "</a>"+
                             "</div>"+
                             "</div>"
 
@@ -473,25 +454,18 @@ function moveToBin(diaryId){
             success: function (list){
                 console.log(list);
                 $("div [name='listSet']").remove();
-                document.getElementById('fisrtTab').setAttribute('class', '');
-                document.getElementById('secondTab').setAttribute('class', '');
-                document.getElementById('thirdTab').setAttribute('class', '');
-                document.getElementById('deleteBtn').setAttribute('class', 'active');
-
-                $.each(list.reverse(),function(i,item){
+                $.each(list,function(i,item){
                     console.log(item);
                     if (item.imageName!=null) {
                         $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
                             "</div>" +
-                            "</a>"+
                             "</div>"+
                             "</div>"
                         )
@@ -499,14 +473,12 @@ function moveToBin(diaryId){
                         $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<a href='/diary/getDiary?diaryNo="+item.diaryId+"'>" +
                             "<div class='cover'>" +
-                            "<h3 class='name'>"+item.diaryTitle+"</h3>" +
+                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
                             "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i class='fa fa-facebook-official'></i></a><a href='#'><i class='fa fa-twitter'></i></a><a href='#'><i class='fa fa-instagram'></i></a></div>" +
+                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
                             "</div>" +
-                            "</a>"+
                             "</div>"+
                             "</div>"
 
@@ -519,7 +491,9 @@ function moveToBin(diaryId){
 
 }
 
-
+function getDiary(diaryId){
+    location.href= "/diary/getDiary?diaryNo="+diaryId;
+}
 
 function back(){
     history.go(-1);

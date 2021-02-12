@@ -1,13 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
 *{
     padding: 0;
     margin: 0;
+    font-family: 'Noto Sans TC', sans-serif;
 }
 
 body {
-    background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+    background-color: #dbdbdb;
     text-align: center;
     position: relative;
     width: 100%;
@@ -17,7 +17,7 @@ body {
 
 /*---------------- 제목 -----------------------*/
 .pageTitle {
-    position: fixed;
+    position: center;
     left: 0;
     top: 0px;
     padding-top: 50px;
@@ -25,7 +25,7 @@ body {
     height: 52px;
     line-height: 52px;
     text-align: center;
-    font-family: 'Lobster', cursive;
+    /*font-family: 'Lobster', cursive;*/
     font-size: 50px;
     letter-spacing: 10px;
     color: antiquewhite;
@@ -45,10 +45,10 @@ ul, li{
 }
 
 .text {
-    width: 62%;
+    width: 65%;
     height: 50%;
     margin: auto;
-    padding: 2%;
+    padding: 1%;
     background-color: #ffffff;
     background-color: rgba(255, 255, 255, 0.5)  ;
 }
@@ -62,7 +62,7 @@ ul, li{
 }
 
 .pageTitle {
-    position: fixed;
+    position: center;
     left: 0;
     top: 0;
     width: 100%;
@@ -93,7 +93,7 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
 
 /*----- Tabs -----*/
 .tabs {
-    width: 62%;
+    width: 65%;
     display: block;
     margin: 5px auto 16px;
     position: relative;
@@ -126,7 +126,7 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
     display:block;
     border-radius:3px 3px 3px 3px;
     background:#C2C2C2;
-    font-size:16px;
+    font-size:32px;
     color:#4C4C4C;
     transition:all linear 0.15s;
     box-sizing: border-box;
@@ -136,7 +136,7 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
 .tab-links a:hover{
     background:#a7cce5;
     text-decoration:none;
-    transform: rotate(5deg);
+    /*transform: rotate(5deg);*/
     transition: 0.5s;
     -webkit-transition: 0.5s;
     -webkit-animation-fill-mode: both;
@@ -384,4 +384,5 @@ li.active a, li.active a:hover {
     cursor: pointer;
     float: right;
     margin-left: 80%;
+    padding-bottom: 1%;
 }

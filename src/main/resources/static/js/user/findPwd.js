@@ -74,6 +74,8 @@ function passwordChange(){
 	                            alert(response);
 	                        }
 	                    });
+	                    
+	                  location.href="login";
 	                
 	                }else{
 	                    alert("입력하신 비밀번호가 일치하지 않습니다.")
