@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.domain.Question;
 import com.nj.secretary.services.monologue.service.MonologueService;
+import com.nj.secretary.services.user.domain.User;
 
 @Controller
 @RequestMapping("/monologue/*")
@@ -120,17 +121,17 @@ public class MonologueController {
     
 		monologue.setMonologueText(monologue.getMonologueText());
 		
-		session.setAttribute("userId", "gyuri");
+		//session.setAttribute("userId", "gyuri");
 		
-		String user=(String)session.getAttribute("userId");
+		//String user=(String)session.getAttribute("userId");
 		
-		monologue.setUserId(user);
+		//monologue.setUserId(user);
 
 		monologueService.addMonologue(monologue);
 		
 		System.out.println("monologueController   addMonologue:::::   " +monologue);
 		
-		System.out.println("monologueController   user:::::    " +user);
+		//System.out.println("monologueController   user:::::    " +user);
 
 		return "monologue/addMonologue";
 		
@@ -139,14 +140,15 @@ public class MonologueController {
 	@GetMapping("getMonologueList")
 	public String getMonologueList(Model model, HttpSession session, String questionText) throws Exception{
 		System.out.println("getMonologueList 시작해유");
+		  if(session.getAttribute("user")==null){
+	            return "user/login";
+	        }
 		
-		session.setAttribute("userId", "gyuri");
+		User user = (User)session.getAttribute("user");
 		
-		String userId=(String)session.getAttribute("userId");
+		System.out.println("getMonologueList에서 userId 확인이니이이이잉 :::"+user);
 		
-		System.out.println("getMonologueList에서 userId 확인이니이이이잉 :::"+userId);
-		
-		List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
+		List<Monologue> monologueList=monologueService.getMonologueList(user.getUserId());
 				
 		model.addAttribute("monologueList", monologueList);
 		
@@ -156,56 +158,65 @@ public class MonologueController {
 		
 	}
 	
-	@GetMapping("getShareMonologueList")
-	public String getShareMonologueList(Model model, HttpSession session) throws Exception{
-		System.out.println("getShareMonologueList 시작해유");
-		
-		session.setAttribute("userId", "hyoeun");
-		
-		String userId=(String)session.getAttribute("userId");
-		
-		System.out.println("getShareMonologueList에서 userId 확인이니이이이잉 :::"+userId);
-		
-		List<Monologue> shareMonologueList=monologueService.getShareMonologueList((session.getAttribute("userId")).toString());
-		
-		model.addAttribute("shareMonologueList", shareMonologueList);
-		
-		System.out.println("monologueController getShareMonologueList  ::  "+shareMonologueList);
-		
-		return "monologue/getShareMonologueList";
-		
-	}
+//	@GetMapping("getOtherMonologueList")
+//	public String getOtherMonologueList(Model model, HttpSession session) throws Exception{
+//		System.out.println("getOtherMonologueList 시작해유");
+//		
+//		//	session.setAttribute("userId", "gyuri");
+//		
+//		//String userId=(String)session.getAttribute("userId");
+//		if(session.getAttribute("user")==null){
+//			return "user/login";
+//		}
+//		
+//		User user = (User)session.getAttribute("user");
+//		
+//		System.out.println("getOtherMonologueList에서 userId 확인이니이이이잉 :::"+user);
+//		
+//		List<Monologue> otherMonologueList=monologueService.getShareMonologueList(user.getUserId());
+//		
+//		model.addAttribute("otherMonologueList", otherMonologueList);
+//		
+//		System.out.println("monologueController getOtherMonologueList  ::  "+otherMonologueList);
+//		
+//		return "monologue/getMonologueList";
+//		
+//	}
 	
-	@GetMapping("getOtherMonologueList")
-	public String getOtherMonologueList(Model model, HttpSession session) throws Exception{
-		System.out.println("getOtherMonologueList 시작해유");
-		
-		session.setAttribute("userId", "gyuri");
-		
-		String userId=(String)session.getAttribute("userId");
-		
-		System.out.println("getOtherMonologueList에서 userId 확인이니이이이잉 :::"+userId);
-		
-		List<Monologue> otherMonologueList=monologueService.getShareMonologueList((session.getAttribute("userId")).toString());
-		
-		model.addAttribute("otherMonologueList", otherMonologueList);
-		
-		System.out.println("monologueController getOtherMonologueList  ::  "+otherMonologueList);
-		
-		return "monologue/getOtherMonologueList";
-		
-	}
+	
+//	@GetMapping("getShareMonologueList")
+//	public String getShareMonologueList(Model model, HttpSession session) throws Exception{
+//		System.out.println("getShareMonologueList 시작해유");
+//		
+//		session.setAttribute("userId", "hyoeun");
+//		
+//		String userId=(String)session.getAttribute("userId");
+//		
+//		System.out.println("getShareMonologueList에서 userId 확인이니이이이잉 :::"+userId);
+//		
+//		List<Monologue> shareMonologueList=monologueService.getShareMonologueList((session.getAttribute("userId")).toString());
+//		
+//		model.addAttribute("shareMonologueList", shareMonologueList);
+//		
+//		System.out.println("monologueController getShareMonologueList  ::  "+shareMonologueList);
+//		
+//		return "monologue/getShareMonologueList";
+//		
+//	}
+	
 
 	@GetMapping("getMonologue")
-	public String getMonologueText(Model model, int monologueId) throws Exception{
+	public String getMonologue(Model model, int monologueId, int questionId) throws Exception{
 						
 		System.out.println("getMonologueText 시작합니다잉");
+		
+		System.out.println("getMonologue에서 monologueId 확인 :::  "+monologueId);
+		
+		System.out.println("getMonologue에서 questionId 확인 :::  "+questionId);
 		
 		Monologue monologue=monologueService.getMonologue(monologueId);
 		
 		model.addAttribute("monologue", monologue);
-		
-		System.out.println("getMonologue에서 monologueId 확인 :::  "+monologueId);
 		
 		System.out.println("getMonologue  확인 :::  "+monologue);
 		
@@ -217,13 +228,20 @@ public class MonologueController {
 	public String deleteMonologue( Model model, HttpSession session) throws Exception{
 		System.out.println("deleteMonologue GepMapping 시작 합니다잉~~");
 		
-		session.setAttribute("userId", "hyoeun");
+		  if(session.getAttribute("user")==null){
+	            return "user/login";
+	        }
 		
-		String userId=(String)session.getAttribute("userId");
+		User user = (User)session.getAttribute("user");
 		
-		System.out.println("deleteMonologue에서 userId 확인이니이이이잉 :::"+userId);
 		
-	    List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
+//		session.setAttribute("userId", "hyoeun");
+//		
+//		String userId=(String)session.getAttribute("userId");
+		
+		System.out.println("deleteMonologue에서 userId 확인이니이이이잉 :::"+user);
+		
+	    List<Monologue> monologueList=monologueService.getMonologueList(user.getUserId());
 		
 		model.addAttribute("monologueList", monologueList);
 		
@@ -240,7 +258,7 @@ public class MonologueController {
 		
 		System.out.println("deleteMonologue monologueId 확인 ::::  "+monologueId);
 		
-	    List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("userId")).toString());
+	    List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("user")).toString());
 		
 		model.addAttribute("monologueList", monologueList);
 		
@@ -251,7 +269,7 @@ public class MonologueController {
 
 	
 	@GetMapping("updateMonologue")
-	public String updateMonologue(@RequestParam("monologueId") int monologueId, Model model) throws Exception{
+	public String updateMonologue(@RequestParam("monologueId") int monologueId, Model model, HttpSession session) throws Exception{
 		System.out.println("updateMonologue 시작 합니다!");
 		
         Monologue monologue=monologueService.getMonologue(monologueId);
