@@ -261,7 +261,6 @@ public class UserController {
                 System.out.println(nick);
                 model.addAttribute("nickname",nickname.get("nickname"));
                 model.addAttribute("email",nick.get("email"));
-
                 return "user/kakao";
             } else {
                 JSONObject abc = (JSONObject) map.get("userInfo");
@@ -295,11 +294,8 @@ public class UserController {
                             return "user/afterLogin";
                         }
                     }
-
                 }
-
             }
-
         } catch (IOException e) {
             System.out.println("변환에 실패");
             e.printStackTrace();
