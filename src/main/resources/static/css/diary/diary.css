@@ -384,3 +384,7 @@ li.active a, li.active a:hover {
     margin-left: 80%;
     padding-bottom: 1%;
 }
+
+.container{
+    width: 100%;
+}
