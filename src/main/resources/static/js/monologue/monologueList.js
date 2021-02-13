@@ -61,19 +61,25 @@ $(function(){
 $("#getMonologueList").click(function(){
 
     $.ajax({
-        url : "/restMonologue/getOtherMonologueList",
+        url : "/restMonologue/getMonologueList",
         type : "GET",
         data :{userId:$("#userId").val()},
         success: function (list){
             console.log(list);
 
             $("div [name='listSet']").remove();
-            $("div [name='listSet']").remove();
             document.getElementById('fisrtTab').setAttribute('class', 'active');
             document.getElementById('secondTab').setAttribute('class', '');
             document.getElementById('thirdTab').setAttribute('class', '');
             $.each(list,function(i,item){
                    console.log(item);
+                   $(".monologueList").append(
+                   		"<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                   		"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;font-size:15px; height:20px; color:black;\">"+
+                   		item.questionText+
+                   		"</div>"+
+                   		"</div>"
+                   )
             })
         }
 })
@@ -83,8 +89,8 @@ $("#getMonologueList").click(function(){
     
 
 $("#getOthersMonologueList").on("click", function () {
-    var list = [];
-
+//    var list = [];
+    
     $.ajax({
         url: "/restMonologue/getOtherMonologueList",
         method: "get",
@@ -102,14 +108,53 @@ $("#getOthersMonologueList").on("click", function () {
             document.getElementById('thirdTab').setAttribute('class', '');
             $.each(list.reverse(),function(i,item){
                 console.log(item);
-                $("#monologueList").append(item.questionText);
-
+                $(".otherList").append(
+                		"<div name=\"listSet\" >"+
+                		"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;font-size:15px; height:20px; color:black;\">"+
+                		item.questionText+
+                		"</div>"+
+                		"</div>"
+                )
             })
         }
     
     });
-    return list;
+  /*  return list;*/
 });
+
+$("#deleteMonologue").click(function(){
+
+    $.ajax({
+        url : "/restMonologue/getMonologueList",
+        type : "GET",
+        data :{userId:$("#userId").val()},
+        success: function (list){
+            console.log(list);
+
+            $("div [name='listSet']").remove();
+            document.getElementById('fisrtTab').setAttribute('class', '');
+            document.getElementById('secondTab').setAttribute('class', '');
+            document.getElementById('thirdTab').setAttribute('class', 'active');
+            $.each(list,function(i,item){
+                   console.log(item);
+                   $(".monologueList").append(
+                   		"<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+                   		/*"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;font-size:15px; height:20px; color:black;\">"+*/
+                   		"<label>"+
+                   		item.questionText+
+                   		"<input type=\"checkbox\" name=\"delete\">"+
+                   		"</label>"+
+                   		
+                   		/*"</div>"+*/
+                   		"</div>"
+                   )
+            })
+            $(".monologueList").append(
+            "<input type=\"submit\" name=\"deleteMonologue\" value=\"삭제하기\">"
+            )
+        }
+})
+})
 
 })
 

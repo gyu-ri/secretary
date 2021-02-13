@@ -8,7 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/monologue/monologueList.js"></script>
-	<link rel="stylesheet" href='../../css/diary/diary.css' />
+ 	<!-- <link rel="stylesheet" href='../../css/diary/diary.css' /> -->
 	<link rel="stylesheet" href='../../css/monologue/monologue.css' />
     <link rel="stylesheet" href='../../css/main/menu.css' />
     <script src="../../js/main/main.js"></script>
@@ -83,16 +83,38 @@
 				<div class="monologueList">
 					<div name="listSet" class="col-md-4 col-lg-3 item" th:each="monologue : ${monologueList}" id="monologueList">
 						<!--                            <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left;" hidden/>-->
-						<div th:text="${monologue.questionText}" th:onclick="getMonologue([[${monologue.monologueId}]],[[${monologue.questionId}]])" style="cursor:pointer;"></div>
+						<div th:text="${monologue.questionText}" th:onclick="getMonologue([[${monologue.monologueId}]],[[${monologue.questionId}]])" style="cursor:pointer;">
 						<input type="hidden" th:value=${monologue.questionId} name="questionId"/>
-						
-						
 						<br>
+						</div>
 					</div>
 				</div>
+				
+		 		<div class="otherList">
+					<div name="listSet" class="col-md-4 col-lg-3 item" th:each="monologue : ${otherMonologueList}" >
+						                           <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left;" hidden/>
+						<div th:text="${monologue.questionText}" th:onclick="getMonologue([[${monologue.monologueId}]],[[${monologue.questionId}]])" style="cursor:pointer;">
+						<input type="hidden" th:value=${monologue.questionId} name="questionId"/>
+						<br>
+						</div>
+					</div>
+				</div> 
+				
+				<div class="deleteList">
+					<div name="listSet" class="col-md-4 col-lg-3 item" th:each="monologue : ${otherMonologueList}" >
+						                           <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left;" hidden/>
+						<div th:text="${monologue.questionText}" th:onclick="getMonologue([[${monologue.monologueId}]],[[${monologue.questionId}]])" style="cursor:pointer;">
+						<input type="hidden" th:value=${monologue.questionId} name="questionId"/>
+						<br>
+						</div>
+					</div>
+				</div> 
+				
+				
 			</div>
 		</div>
 		<input type="hidden" th:value=${user.userId} id="userId"/>
+		
 		
 </form>
 

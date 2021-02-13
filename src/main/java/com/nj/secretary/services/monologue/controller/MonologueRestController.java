@@ -195,14 +195,15 @@ public class MonologueRestController {
     @GetMapping("getOtherMonologueList")
 	public List<Monologue> getOtherMonologueList(@RequestParam("shareStatus") String shareStatus, @RequestParam("userId") String userId, Model model, HttpSession session) throws Exception{
 		System.out.println("getOtherMonologueList 시작해유");
-		  if(session.getAttribute("user")==null){
-	        }
+//		  if(session.getAttribute("user")==null){
+//	        }
 		
 		//User user = (User)session.getAttribute("user");
 		
 		System.out.println("getOtherMonologueList 확인이니이이이잉 :::" + shareStatus +":::::"+ userId);
 		
-		List<Monologue> otherMonologueList=monologueService.getShareMonologueList(userId);
+		List<Monologue> otherMonologueList=monologueService.getOtherMonologueList(userId);
+		
 		
 		model.addAttribute("otherMonologueList", otherMonologueList);
 		
