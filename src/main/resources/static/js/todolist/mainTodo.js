@@ -1,5 +1,9 @@
 $(document).ready(function(){
 
+    $(".todolist").click(function(){
+        $(".todo").fadeToggle();
+    });
+
     $.ajax({
         url: "/restTodolist/getTodo",
         type: "get",
@@ -15,17 +19,8 @@ $(document).ready(function(){
         }
     })
 
-
-    $("#todo").on("click", "span", function(event){
-        $(this).parent().fadeOut(500,function(){
-            $(this).remove();
-        });
-        event.stopPropagation();
-    });
-
     $('#addTodo').keypress(function(event){
         if(event.which === 13){
-            alert("enter");
             let addTodo ={todolist: $('#addTodo').val()};
             console.log('addTodo',addTodo);
             //$('#addTodo').val();
@@ -44,17 +39,6 @@ $(document).ready(function(){
             })
         }
     });
-
-
-    /*$(".fa-plus").click(function(){
-        $("#addTodo").fadeIn();
-    });*/
-
-
-    $(".todolist").click(function(){
-        $(".todo").fadeToggle();
-    });
-
 });
 
 function doneTodo(id){
@@ -86,8 +70,6 @@ function doneTodo(id){
             }
         })
     }
-
-
 }
 
 function deleteTodo(id){
@@ -108,23 +90,3 @@ function deleteTodo(id){
         }
     })
 }
-
-/*$(function (){
-    $(".itemList").hover(function (){
-        console.log("hover걸렸어?");
-        $(".trash").css({
-            width:"40px",
-            opacity:"1.0"
-        },function () {
-            $(".trash").css({
-                width: "0",
-                opacity: "0"
-            })
-        });
-    })
-})*/
-/*
-.itemList:hover .trash {
-    width: 40px;
-    opacity: 1.0
-}*/

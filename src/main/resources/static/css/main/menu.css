@@ -60,6 +60,10 @@ html {
     display: none;
 }
 
+.content a[id="todoContainer"]{
+    text-decoration: none;
+}
+
 .menu {
     list-style-type: none;
 }

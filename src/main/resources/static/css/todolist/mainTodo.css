@@ -1,50 +1,74 @@
+@font-face {
+    font-family: 'MapoGoldenPier';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #todo {
     list-style: none;
     margin: 0;
     padding: 0;
     width: 100%;
+    text-underline: none;
+    display: inline-block;
+    max-height: 550px;
+    overflow-y: auto;
+    background: #dbdbdb;
+    border-radius: 0 0 10px 10px;
 }
 
-h3 {
+.todo{
+    display: block;
+    width: 100%
+}
+
+h4 {
     float: right;
     color: white;
     margin: 0;
     padding: 10px 20px;
     text-transform: uppercase;
-    font-size: 24px;
-    font-weight: normal
+    font-size: 20px;
+    font-weight: normal;
+    text-shadow: black;
 }
 
 .region{
     position: absolute;
+    height: auto;
+    width: 320px;
     bottom: 8px;
-    right: 16px;
+    right: 10px;
 }
 
 
 li[name='itemList'] {
-    background: #fff;
-    height: 25px;
-    line-height: 30px;
-    color: #666;
+    background: #dbdbdb;
+    font-family: 'MapoGoldenPier';
+    height: 30px;
+    font-size: 15px;
+    line-height: 40px;
+    color: black;
     margin-bottom: 3px;
     width: 100%;
 }
 
-li[name='itemList']:nth-child(2n) {
+/*li[name='itemList']:nth-child(2n) {
     background: #f7f7f7
-}
+}*/
 
 .trash {
+    /*float: right;*/
     background: #e74c3c;
-    height: 25px;
+    height: 30px;
     margin-right: 20px;
     text-align: center;
     color: white;
     width: 0;
     display: inline-block;
     transition: 0.2s linear;
-    opacity: 0
+    opacity: 0;
 }
 
 li[name='itemList']:hover .trash {
@@ -53,28 +77,30 @@ li[name='itemList']:hover .trash {
 }
 
 #addTodo {
-    font-size: 18px;
+    font-size: 17px;
     color: #2980b9;
     background-color: #f7f7f7;
     width: 100%;
     padding: 13px 13px 13px 20px;
     box-sizing: border-box;
-    border: 3px solid rgba(0, 0, 0, 0)
+    margin-top: 0;
+    border: 3px solid rgba(0, 0, 0, 0);
+    border-radius: 8px 8px 0 0;
 }
 
 #addTodo:focus {
     background: #fff;
-    border: 3px solid #2980b9;
+    border: 3px solid #dbdbdb;
     outline: none
 }
 
-/*#todoContainer {*/
-/*    width: 360px;*/
-/*    background: #f7f7f7;*/
-/*    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1)*/
-/*}*/
+/*#todoContainer {
+    width: 360px;
+    background: #f7f7f7;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1)
+}*/
 
 .completed {
-    color: gray;
-    text-decoration: line-through
+    color: lightslategray;
+    text-decoration: line-through;
 }
