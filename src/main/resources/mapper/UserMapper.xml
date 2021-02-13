@@ -13,7 +13,7 @@
 		<result property="withdrawalReasonId" column="withdrawal_reason_id" jdbcType="INTEGER" />
 		<result property="motto" column="motto" jdbcType="VARCHAR" />
 		<result property="password" column="password" jdbcType="VARCHAR" />
-		<result property="role" column="role" jdbcType="VARCHAR" />
+		<result property="roles" column="roles" jdbcType="VARCHAR" />
 		<result property="isAlarmDiary" column="is_alarm_diary" jdbcType="CHAR" />
 		<result property="isAlarmMonologue" column="is_alarm_monologue" jdbcType="CHAR" />
 		<result property="userName" column="user_name" jdbcType="VARCHAR" />
@@ -51,7 +51,7 @@
 	<select id="getUser" parameterType="string"
 		resultType="com.nj.secretary.services.user.domain.User">
 
-		select user_name, user_id, password, nickname, email, motto, kakao
+		select user_name, user_id, password, roles, nickname, email, motto, kakao
 		from users
 		where user_Id=#{userId} AND withdrawal_status=0
 

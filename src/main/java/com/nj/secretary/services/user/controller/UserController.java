@@ -73,29 +73,34 @@ public class UserController {
             User login = (User)session.getAttribute("user");
             Monologue monologue = new Monologue();
             monologue.setUserId(login.getUserId());
-            if(monologueService.checkMonologue(login.getUserId())>0){
-                System.out.println("Already wrote Monologue");
-                Question question = new Question();
+            if(login.getRoles().trim().equals("ADMIN")){
                 model.addAttribute("user", login);
-                model.addAttribute("question", question);
-                return "user/afterLogin";
-            }else{
-                Random random = new Random();
-                System.out.println("didn't write Monologue");
-                while (true) {
-                    int ran = random.nextInt(100) + 1;
-                    monologue.setQuestionId(ran);
-                    if (monologueService.randomCheck(monologue) == 0) {
-                        model.addAttribute("question", monologueService.getQuestionText(ran));
-                        model.addAttribute("user", login);
-                        return "user/afterLogin";
-                    }
-                    if (monologueService.randomCheck(monologue) == 100) {
-                        Question question = new Question();
-                        model.addAttribute("user", login);
-                        model.addAttribute("question", question);
-                        model.addAttribute("user", login);
-                        return "user/afterLogin";
+                return "user/adminAfterLogin";
+            }else {
+                if (monologueService.checkMonologue(login.getUserId()) > 0) {
+                    System.out.println("Already wrote Monologue");
+                    Question question = new Question();
+                    model.addAttribute("user", login);
+                    model.addAttribute("question", question);
+                    return "user/afterLogin";
+                } else {
+                    Random random = new Random();
+                    System.out.println("didn't write Monologue");
+                    while (true) {
+                        int ran = random.nextInt(100) + 1;
+                        monologue.setQuestionId(ran);
+                        if (monologueService.randomCheck(monologue) == 0) {
+                            model.addAttribute("question", monologueService.getQuestionText(ran));
+                            model.addAttribute("user", login);
+                            return "user/afterLogin";
+                        }
+                        if (monologueService.randomCheck(monologue) == 100) {
+                            Question question = new Question();
+                            model.addAttribute("user", login);
+                            model.addAttribute("question", question);
+                            model.addAttribute("user", login);
+                            return "user/afterLogin";
+                        }
                     }
                 }
             }
@@ -112,32 +117,37 @@ public class UserController {
         System.out.println("count : "+monologueService.checkMonologue(dbUser.getUserId()));
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
-            if(monologueService.checkMonologue(dbUser.getUserId())>0){
-                System.out.println("Already wrote Monologue");
-                Question question = new Question();
+            if(dbUser.getRoles().trim().equals("ADMIN")){
                 model.addAttribute("user", dbUser);
-                model.addAttribute("question", question);
-                return "user/afterLogin";
-            }else{
-                System.out.println("didn't write Monologue");
-                while (true) {
-                    int ran = random.nextInt(100) + 1;
-                    monologue.setQuestionId(ran);
-                    if (monologueService.randomCheck(monologue) == 0) {
-                        model.addAttribute("question", monologueService.getQuestionText(ran));
-                        model.addAttribute("user", dbUser);
-                        return "user/afterLogin";
-                    }
-                    if (monologueService.randomCheck(monologue) == 100) {
-                        Question question = new Question();
-                        model.addAttribute("user", dbUser);
-                        model.addAttribute("question", question);
-                        model.addAttribute("user", dbUser);
-                        return "user/afterLogin";
+                return "user/adminAfterLogin";
+            }else {
+
+                if (monologueService.checkMonologue(dbUser.getUserId()) > 0) {
+                    System.out.println("Already wrote Monologue");
+                    Question question = new Question();
+                    model.addAttribute("user", dbUser);
+                    model.addAttribute("question", question);
+                    return "user/afterLogin";
+                } else {
+                    System.out.println("didn't write Monologue");
+                    while (true) {
+                        int ran = random.nextInt(100) + 1;
+                        monologue.setQuestionId(ran);
+                        if (monologueService.randomCheck(monologue) == 0) {
+                            model.addAttribute("question", monologueService.getQuestionText(ran));
+                            model.addAttribute("user", dbUser);
+                            return "user/afterLogin";
+                        }
+                        if (monologueService.randomCheck(monologue) == 100) {
+                            Question question = new Question();
+                            model.addAttribute("user", dbUser);
+                            model.addAttribute("question", question);
+                            model.addAttribute("user", dbUser);
+                            return "user/afterLogin";
+                        }
                     }
                 }
             }
-
         }
 //        // 수정한 부분 시작
 //        int alarmCount = alarmService.alarmCount("user02");
@@ -261,7 +271,6 @@ public class UserController {
                 System.out.println(nick);
                 model.addAttribute("nickname",nickname.get("nickname"));
                 model.addAttribute("email",nick.get("email"));
-
                 return "user/kakao";
             } else {
                 JSONObject abc = (JSONObject) map.get("userInfo");
@@ -295,11 +304,8 @@ public class UserController {
                             return "user/afterLogin";
                         }
                     }
-
                 }
-
             }
-
         } catch (IOException e) {
             System.out.println("변환에 실패");
             e.printStackTrace();
@@ -411,7 +417,7 @@ public class UserController {
 
 
     @PostMapping("updateUser")
-    public String updateuser(@RequestParam("userId") String userId, User user, Model model) throws Exception{
+    public String updateuser(@RequestParam("userId") String userId, User user, Model model,HttpSession session) throws Exception{
     	System.out.println("updateUser controller 시작 합니다");
     	
     	userService.updateUser(user);
@@ -419,6 +425,7 @@ public class UserController {
     	System.out.println("updateUser 확인::"+user);
         User user01=userService.getUser(userId);
         model.addAttribute("user",user01);
+        session.setAttribute("user",user01);
         if (user01.getKakao()==0){
             return "user/getUser";
         }else{

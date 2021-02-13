@@ -13,8 +13,6 @@ $(function geoFindMe() {
         getWeather(latitude, longitude);
 
     }
-
-
     function error() {
         status.textContent = 'Unable to retrieve your location';
     }
@@ -48,8 +46,6 @@ $(function geoFindMe() {
                 $('#img').attr("src", imgURL);
                 $('#weather').attr("value", imgURL);
             });
-
-
     }
 });
 

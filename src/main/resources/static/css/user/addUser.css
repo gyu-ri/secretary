@@ -14,8 +14,7 @@ img{
     height: auto;
 }
 
-/*
-#login-button{
+/*#login-button{
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -32,7 +31,7 @@ img{
     opacity: 0.4;
     box-shadow: 10px 10px 30px #000;}*/
 
-/* Login container */
+/* signUp container */
 #container{
     position: relative;
     top: 0;

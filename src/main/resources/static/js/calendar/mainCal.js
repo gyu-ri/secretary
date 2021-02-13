@@ -110,15 +110,9 @@ var calendar = $('#calendar').fullCalendar({
               margin:'4px',
               backgroundSize:'18%',
               backgroundRepeat:'no-repeat'
-
-
           });
-
           element.find(".fc-content").remove();
-
       }
-
-
     return filtering(event);
 
   },
