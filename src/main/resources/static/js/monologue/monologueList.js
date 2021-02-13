@@ -48,3 +48,68 @@ $(function geoFindMe() {
             });
     }
 });
+
+
+
+
+$(function(){
+	
+$("#getMonologueList").click(function(){
+
+    $.ajax({
+        url : "/restMonologue/getOtherMonologueList",
+        type : "GET",
+        data :{userId:$("#userId").val()},
+        success: function (list){
+            console.log(list);
+
+            $("div [name='listSet']").remove();
+            $("div [name='listSet']").remove();
+            document.getElementById('fisrtTab').setAttribute('class', 'active');
+            document.getElementById('secondTab').setAttribute('class', '');
+            document.getElementById('thirdTab').setAttribute('class', '');
+            $.each(list,function(i,item){
+                   console.log(item);
+            })
+        }
+})
+})
+
+                    	
+    
+
+$("#getOthersMonologueList").on("click", function () {
+    var list = [];
+
+    $.ajax({
+        url: "/restMonologue/getOtherMonologueList",
+        method: "get",
+        dataType: "json",
+        data : {shareStatus:"1",userId:$("#userId").val()},
+        headers: { //excess 제어요청 헤더, n : v 형식으로 헤더 추가하면 url의 request header에서 해당 헤더로 값을 얻어올 수 있다.
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        success: function (list){
+            console.log(list);
+            $("div [name='listSet']").remove();
+            document.getElementById('fisrtTab').setAttribute('class', '');
+            document.getElementById('secondTab').setAttribute('class', 'active');
+            document.getElementById('thirdTab').setAttribute('class', '');
+            $.each(list.reverse(),function(i,item){
+                console.log(item);
+                $("#monologueList").append(item.questionText);
+
+            })
+        }
+    
+    });
+    return list;
+});
+
+})
+
+
+function getMonologue(monologueId,questionId){
+    location.href= "/monologue/getMonologue?monologueId="+monologueId+'&questionId='+questionId;
+}

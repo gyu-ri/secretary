@@ -11,6 +11,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
 
+    
+       <link rel="stylesheet" href='../../css/main/menu.css' />
+    <script src="../../js/main/main.js"></script>
+
+
     <style type="text/css">
         body{
             background-image: url("https://source.unsplash.com/user/senbro/likes");
@@ -151,7 +156,7 @@
                     alert("신고사유는 한가지만 선택 가능합니다.")
                 }else{
                     let text = {
-                    	reportText : $("#textArea").val(),
+                       reportText : $("#textArea").val(),
                         reportId : new Number($("#reportId").val()),
                         reportReasonId : new Number($("input:checkbox[name='reason']:checked").val()),
                         monologueId : $("#monologueId").val()
@@ -179,6 +184,7 @@
 <h1>모노로그 상세보기</h1>
 
 
+<!-- <input type="text" name="questionId" th:value="${monologue.questionId}"/> -->
 
 
 <form action="updateMonologue" method="get">
@@ -187,8 +193,10 @@
 
     <div class="container">
 
+
         <span id="questionText" th:text="${monologue.questionText}"/>
         <h2 id="monologueText" th:text="${monologue.monologueText}"/>
+
 
         <input type="submit" id="modifyMonologue" value="&#128214; 수정~★">
 
@@ -234,13 +242,13 @@
                     <div class="col-xs-12">
                         <label class="cdl-xs-12">사유 선택</label>
                         <div class="col-xs-4">
-                          	<label>●성적인 컨텐츠<input type="checkbox" name="reason" value="1"> </label> 
-    						<label>●폭력적 또는 혐오스러운 컨텐츠<input type="checkbox" name="reason" value="2"></label>    	
-    						<label>●증오 또는 악의적인 컨텐츠<input type="checkbox" name="reason" value="3"></label>    	
-    						<label>●유해하거나 위험한 행위 <input type="checkbox" name="reason" value="4"></label>    	
-    						<label>●스팸 또는 오해의 소재가 있는 컨텐츠<input type="checkbox" name="reason" value="5"></label>    	
-    						<label>●권리침해 <input type="checkbox" name="reason" value="6"></label>    	
-    						<label>●기타 <input type="checkbox" name="reason" value="7"></label>
+                             <label>●성적인 컨텐츠<input type="checkbox" name="reason" value="1"> </label> 
+                      <label>●폭력적 또는 혐오스러운 컨텐츠<input type="checkbox" name="reason" value="2"></label>       
+                      <label>●증오 또는 악의적인 컨텐츠<input type="checkbox" name="reason" value="3"></label>       
+                      <label>●유해하거나 위험한 행위 <input type="checkbox" name="reason" value="4"></label>       
+                      <label>●스팸 또는 오해의 소재가 있는 컨텐츠<input type="checkbox" name="reason" value="5"></label>       
+                      <label>●권리침해 <input type="checkbox" name="reason" value="6"></label>       
+                      <label>●기타 <input type="checkbox" name="reason" value="7"></label>
                         </div>
                         <textarea id="textArea" class="col-xs-8" rows="8" cols="100"></textarea>
                     </div>
@@ -258,6 +266,26 @@
 
 <div class="modal hidden"></div>
 
+
+<input type="checkbox" id="menuToggler" class="input-toggler" />
+<label for="menuToggler" class="menu-toggler">
+    <span class="menu-toggler__line"></span>
+    <span class="menu-toggler__line"></span>
+    <span class="menu-toggler__line"></span>
+</label>
+<aside class="sidebar">
+    <ul class="menu">
+        <li class="menu__item"><a class="menu__link" href="/user/login">Home</a></li>
+        <li class="menu__item"><a class="menu__link" href="/user/getUser">Profile</a></li>
+        <li class="menu__item"><a class="menu__link" href="/diary/getDiaryList">Diary</a></li>
+        <li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
+        <li class="menu__item"><a class="menu__link" href="/monologue/getMonologueList">Monologue</a></li>
+        <li class="menu__item"><a class="menu__link" href="/user/logout">Logout</a></li>
+    </ul>
+
+
+</aside>
+
+
 </body>
 </html>
-
