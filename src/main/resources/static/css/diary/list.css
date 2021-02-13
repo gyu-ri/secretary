@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'MapoGoldenPier';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .team-grid {
     color:#313437;
 }
@@ -83,6 +90,7 @@
 
 .team-grid .social {
     font-size:18px;
+
 }
 
 .team-grid .social a {

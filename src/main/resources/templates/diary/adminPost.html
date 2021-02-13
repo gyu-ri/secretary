@@ -10,18 +10,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Single+Day&display=swap" rel="stylesheet">
 
     <style>
+        @font-face {
+            font-family: 'MapoGoldenPier';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+
         body {
             background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
             text-align: center;
+            font-family: 'MapoGoldenPier';
+            color: #314e52;
         }
 
         .text {
+            width: 60%;
             margin: 0px 20% 10px;
-            padding: 20px;
-            margin-top: 10px;
+            padding: 1%;
             border-radius: 3px;
             background-color: #ffffff;
             background-color: rgba(255, 255, 255, 0.5)  ;
@@ -30,7 +40,8 @@
         }
 
         .pageTitle{
-            font-family: 'Single Day', cursive;
+            font-family: 'MapoGoldenPier';
+            color: #314e52;
             font-size: 70px;
         }
 
@@ -42,6 +53,7 @@
             margin-left: auto;
             margin-right: auto;
             margin-top: 90px;
+            margin-bottom: -4px;
         }
 
         .tab-links{
@@ -54,14 +66,14 @@
         }
 
         #leftList{
-
+            height: 100%;
             width: 50%;
             float: left;
 
         }
 
         #rightList{
-
+            height: 100%;
             width: 50%;
             float: right;
 
@@ -73,24 +85,26 @@
 
         .tab-links li {
             margin:0px 0px;
-            padding-top: 3%;
             padding-bottom: 0%;
             list-style:none;
             align-content: center;
         }
 
-        .tab-links a {
-            width: 50%;
-            padding-left: 47%;
-            padding-right: 47%;
-            padding-top: 3%;
-            padding-bottom: 3%;
+        .tab-links li span {
+            float: right;
+            width: 100%;
+            height: 100%;
             border-radius:3px 3px 3px 3px;
             background:#C2C2C2;
             font-size:25px;
             font-weight:600;
             color:#4C4C4C;
+            padding-top: 5%;
+        }
 
+        .tab-links img{
+            width: 30px;
+            height: 30px;
         }
 
         .tab-links .tab.active{
@@ -102,7 +116,7 @@
             text-decoration:none;
         }
 
-        li.active a, li.active a:hover {
+        li.active span, li.active span:hover {
             background-color: rgba(255,255,255,0.5);
             color:#4c4c4c;
         }
@@ -143,7 +157,8 @@
             width: 80%;
             margin: auto;
             font-size: 20px;
-            font-family: 'Single Day', cursive;
+            font-family: 'MapoGoldenPier';
+            color: #314e52;
             border-top: 1px solid;
             border-left: none;
             border-right: none;
@@ -243,11 +258,10 @@
 
 <div class="tabs">
     <ul class="tab-links">
-        <li id="leftList" class="active"><a href="#" id="getReportedDiaryList" class="getReportedDiaryList" onclick="adminDiary()" style="text-decoration: none">&#128198;</a></li>
-        <li id="rightList"><a href="#" id="getReportedMonologueList" onclick="adminMonologue()" style="text-decoration: none">&#128172;</a></li>
+        <li id="leftList" class="active"><span href="#" id="getReportedDiaryList" class="getReportedDiaryList" onclick="adminDiary()" style="text-decoration: none">일기관리</span></li>
+        <li id="rightList"><span href="#" id="getReportedMonologueList" onclick="adminMonologue()" style="text-decoration: none">1문1답관리</span></li>
     </ul>
 </div>
-
 <div class="text">
     <p id="postList">
     <table id="table" border="1">

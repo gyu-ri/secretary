@@ -59,11 +59,19 @@
 <!-------------------- 알람 관련 끝------------------------>
 <p id = "status"></p>
 <a id = "map-link" target="_blank"></a>
-<div id="tempIcon" >	&#8451;</div> &nbsp;
-<div id="temparature"></div>
-<img src="" id="img"/>
-<div id="location" >&#127759;          </div>
+<div class="weathers" style="float: right; font-size: 20px;">
+    <span id="location"><img src="../../images/weather/plane.png" style="width: 20px; height: 20px; margin-right: 10px;"></span>
+    <img src="" id="img" width="20" height="20" />
+    <span id="temparature"></span>
+    <span id="tempIcon">   &#8451;</span> &nbsp;
+</div>
 
+<script>
+    function beforeLogin(){
+        alert("로그인 후 이용가능한 서비스입니다.");
+        e.preventDefault();
+    };
+</script>
 <div class="wrapper">
 
     <input type="checkbox" id="menuToggler" class="input-toggler" />
@@ -75,10 +83,10 @@
     <aside class="sidebar">
         <ul class="menu">
             <li class="menu__item"><a class="menu__link" href="#Home">Home</a></li>
-            <li class="menu__item"><a class="menu__link" href="#Blog">Profile</a></li>
-            <li class="menu__item"><a class="menu__link" href="#Portfolio">Diary</a></li>
-            <li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
-            <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
+            <li class="menu__item"><a class="menu__link" href="#Blog" onclick="beforeLogin()">Profile</a></li>
+            <li class="menu__item"><a class="menu__link" href="#Portfolio" onclick="beforeLogin()">Diary</a></li>
+            <li class="menu__item"><a class="menu__link" href="#Calendar" onclick="beforeLogin()">Calendar</a></li>
+            <li class="menu__item"><a class="menu__link" href="#Contact" onclick="beforeLogin()">Monologue</a></li>
         </ul>
          <a class="Logintooltip">
              <img src="../../images/main/userLogin1.png" style="width: 50px; height: 50px">
