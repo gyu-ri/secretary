@@ -61,6 +61,7 @@ html {
 }
 
 .content a[id="todoContainer"]{
+    text-decoration: none;
 }
 
 .menu {

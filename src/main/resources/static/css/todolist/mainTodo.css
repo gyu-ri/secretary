@@ -10,16 +10,28 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    text-underline: none;
+    display: inline-block;
+    max-height: 550px;
+    overflow-y: auto;
+    background: #dbdbdb;
+    border-radius: 0 0 10px 10px;
 }
 
-h5 {
+.todo{
+    display: block;
+    width: 100%
+}
+
+h4 {
     float: right;
     color: white;
     margin: 0;
     padding: 10px 20px;
     text-transform: uppercase;
-    font-size: 24px;
-    font-weight: normal
+    font-size: 20px;
+    font-weight: normal;
+    text-shadow: black;
 }
 
 .region{
@@ -37,7 +49,7 @@ li[name='itemList'] {
     height: 30px;
     font-size: 15px;
     line-height: 40px;
-    color: #666;
+    color: black;
     margin-bottom: 3px;
     width: 100%;
 }
@@ -56,7 +68,7 @@ li[name='itemList'] {
     width: 0;
     display: inline-block;
     transition: 0.2s linear;
-    opacity: 0
+    opacity: 0;
 }
 
 li[name='itemList']:hover .trash {
@@ -71,22 +83,24 @@ li[name='itemList']:hover .trash {
     width: 100%;
     padding: 13px 13px 13px 20px;
     box-sizing: border-box;
-    border: 3px solid rgba(0, 0, 0, 0)
+    margin-top: 0;
+    border: 3px solid rgba(0, 0, 0, 0);
+    border-radius: 8px 8px 0 0;
 }
 
 #addTodo:focus {
     background: #fff;
-    border: 3px solid #2e8fcf;
+    border: 3px solid #dbdbdb;
     outline: none
 }
 
-/*#todoContainer {*/
-/*    width: 360px;*/
-/*    background: #f7f7f7;*/
-/*    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1)*/
-/*}*/
+/*#todoContainer {
+    width: 360px;
+    background: #f7f7f7;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1)
+}*/
 
 .completed {
-    color: gray;
-    text-decoration: line-through
+    color: lightslategray;
+    text-decoration: line-through;
 }
