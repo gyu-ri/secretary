@@ -2,7 +2,19 @@
  * FullCalendar v3.9.0
  * Docs & License: https://fullcalendar.io/
  * (c) 2018 Adam Shaw
- */.fc button,
+ */
+@font-face {
+    font-family: 'MapoGoldenPier';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    font-family: MapoGoldenPier;
+    color: #314e52;
+}
+.fc button,
 .fc table,body
 .fc{font-size:1em}
 .fc-bg,

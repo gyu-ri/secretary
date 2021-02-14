@@ -25,23 +25,22 @@ body{
 
 
 #tempIcon{
-    float: right;
+
     padding-left: 10px;
     padding-right: 10px;
 }
 #temparature{
 
-    float: right;
     padding-left: 20px;
 
 }
 #img{
-    float: right;
+
     width:20px;
     height:20px;
 }
 #location{
-    float: right;
+
     padding-left: 10px;
     padding-right: 20px;
 }
