@@ -17,7 +17,7 @@ body{
 }
 
 #clock{
-    font-family: 'MapoGoldenPier';
+    font-family: 'Noto Sans TC', sans-serif;
     position: absolute;
     top: 15%;
     left: 35%;
