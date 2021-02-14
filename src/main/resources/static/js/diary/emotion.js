@@ -5,7 +5,7 @@ function goWrite(){
         alert("감정을 선택해주세요");
         return false;
     }else{
-        alert(emotion + "선택됨");
+        // alert(emotion + "선택됨");
         return true;
     }
 }
