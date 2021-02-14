@@ -193,14 +193,18 @@ public class DiaryController {
     @PostMapping("updateDiary")
     public String updateDiary(@ModelAttribute Diary diary, HttpSession session,Model model){
         System.out.println("shareStatus : " + diary.getShareStatus());
-        Diary diary2 = diaryService.getDiary(diary.getDiaryId());
+
         if(session.getAttribute("user")==null){
             return "user/login";
         }
         User user = (User)session.getAttribute("user");
-        if(diary.getShareStatus().trim().equals("0,1")) {
+        if(diary.getShareStatus().trim().equals("0,1") || diary.getShareStatus().trim().equals("1,1")) {
             diary.setShareStatus("1");
+        }else{
+            diary.setShareStatus("0");
         }
+        diaryService.updateDiary(diary);
+        Diary diary2 = diaryService.getDiary(diary.getDiaryId());
         if(user.getUserId().equals(diary2.getUserId())){ //본인
             model.addAttribute("user", "0");
         }else{ //타인
@@ -208,7 +212,7 @@ public class DiaryController {
         }
         System.out.println("diary : " + diary);
         System.out.println("다이어리 내용들 : " + diary.getDiaryTitle() + diary.getDiaryText());
-        diaryService.updateDiary(diary);
+        model.addAttribute("diary",diary2);
         System.out.println("다이어리 추가 완료");
 
         return "diary/getDiary";
