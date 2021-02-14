@@ -218,7 +218,13 @@ $(function (){
 })
 
 
-
+function button(){
+			const user="${user}";
+		   if(user=='0'){
+			   $("#reportModal").remove();
+		   }
+}
+	   
 
 
 

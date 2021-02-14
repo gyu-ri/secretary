@@ -22,17 +22,18 @@
 
 </head>
 
-<script type="text/javascript">
-$(function(){
-	   var user = [[${user}]];
+<!--  <script th:inline="javascript">
+${function(){
+	   var user ="${user}";
+	   
 	   if(user=='0'){
-		   $("#modifyMonologue").show();
+		   $("#reportModal").remove();
 	   }else(user=='1'){
-		   $("#reportModal").show();
+		   $("#modifyMonologue").remove();
 	   }
    });
    </script>
-
+ -->
 
 <script>
  $(function(){
@@ -119,7 +120,7 @@ $(function(){
    
 <body>
 
-<h1>모노로그 상세보기</h1>
+<h1>모노로그 보기</h1>
 
 
 <!-- <input type="text" name="questionId" th:value="${monologue.questionId}"/> -->
@@ -137,14 +138,14 @@ $(function(){
         <h2 id="monologueText" th:text="${monologue.monologueText}"/>
 
 
-        <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정">
+        <input type="submit" id="modifyMonologue"  value="&#128214; 수정" onclick="button()">
 
     </div>
 
 </form>
 
 
-        <button type="button" id="reportModal" style="display:none;">&#128680; 신고하기</button>
+        <button type="button" id="reportModal" >&#128680; 신고하기</button>
 
     
   
