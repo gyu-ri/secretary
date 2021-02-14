@@ -299,7 +299,7 @@ public class MonologueController {
 	public String updateMonologue(Monologue monologue, Model model) throws Exception{
 		
 		monologue.getShareStatus();
-		
+		System.out.println(monologue);
 		if(monologue.getShareStatus().trim().equals("0,1")) {
 			monologue.setShareStatus("1");
 		}

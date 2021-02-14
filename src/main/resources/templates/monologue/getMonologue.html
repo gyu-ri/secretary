@@ -10,93 +10,13 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href='../../css/monologue/getMonologue.css' />
+    <script src="../../js/monologue/getMonologue.js"></script>
 
     
        <link rel="stylesheet" href='../../css/main/menu.css' />
     <script src="../../js/main/main.js"></script>
-
-
-    <style type="text/css">
-        body{
-            background-image: url("https://source.unsplash.com/user/senbro/likes");
-            background-repeat:no-repeat;
-            background-size: cover;
-            font-family: 'Stylish', sans-serif;
-        }
-
-        h1{
-            text-align: center;
-            margin-top: 7%;
-            font-size: 80px;
-            color: white;
-            text-shadow: 1px 1px black;
-        }
-
-        .container{
-            display: grid;
-            grid-template-areas:
-                    "question question"
-                    "answer answer"
-                    "button1 button2";
-            gap: 50px;
-            align-items: stretch;
-            margin-top: 5%;
-        }
-
-        #questionText{
-            grid-area: question;
-            color: white;
-            font-size: 50px;
-            text-decoration: underline;
-            text-decoration-style: solid;
-            text-decoration-thickness: 1px;
-        }
-
-        #monologueText{
-            grid-area: answer;
-            color: white;
-            font-size: 40px;
-            border: 1px solid white;
-            border-radius: 3px;
-            height: 200px;
-        }
-
-        #modifyMonologue{
-            grid-area: button1;
-            color: white;
-            font-size: 25px;
-            display: block;
-            border: none;
-            width: 30%;
-            background-color: transparent;
-            margin-left: 75%;
-        }
-
-        #reportModal{
-            grid-area: button2;
-            color: white;
-            font-size: 25px;
-            display: block;
-            border: none;
-            width: 30%;
-            background-color: transparent;
-            margin-left: 5%;
-        }
-
-        .translateBtns{
-            margin-left: 46%;
-        }
-
-        .translateBtns span{
-            color: white;
-        }
-
-        #source, #target{
-            background-color: rgba(255, 255, 255, 0.5);
-            border: none;
-        }
-    </style>
-
 
 
 
@@ -106,9 +26,9 @@
 $(function(){
 	   var user = [[${user}]];
 	   if(user=='0'){
-		   $("#reportModal").remove();
+		   $("#modifyMonologue").show();
 	   }else(user=='1'){
-		   $("#modifyMonologue").remove();
+		   $("#reportModal").show();
 	   }
    });
    </script>
@@ -217,14 +137,14 @@ $(function(){
         <h2 id="monologueText" th:text="${monologue.monologueText}"/>
 
 
-        <input type="submit" id="modifyMonologue" value="&#128214; 수정~★">
+        <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정">
 
     </div>
 
 </form>
 
 
-        <button type="button" id="reportModal">&#128680; 신고하기</button>
+        <button type="button" id="reportModal" style="display:none;">&#128680; 신고하기</button>
 
     
   
