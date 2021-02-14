@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
 body{
-    background-image: url("https://source.unsplash.com/user/senbro/likes");
+    background-image: url("/images/background/1.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -15,32 +17,26 @@ body{
 }
 
 #clock{
-    font-family: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    position: absolute;
+    top: 15%;
+    left: 35%;
     font-size: 11rem;
     text-align: center;
     text-shadow: 1px 1px 2px #000000;
     color: whitesmoke;
-    top:50%;
 }
 
-
 #tempIcon{
-
-    padding-left: 10px;
     padding-right: 10px;
 }
 #temparature{
-
     padding-left: 20px;
-
 }
 #img{
-
     width:20px;
     height:20px;
 }
 #location{
-
     padding-left: 10px;
     padding-right: 20px;
 }
@@ -50,7 +46,6 @@ body{
     color: #bce8f1;
 }
 #question, .intro {
-    /*font-family: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;*/
     font-family: 'MapoGoldenPier';
     font-size: 4rem;
     text-align: center;
@@ -58,7 +53,6 @@ body{
     color: whitesmoke;
 }
 #answer{
-    /*font-family: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;*/
     font-family: 'MapoGoldenPier';
     font-size: 1.5rem;
     text-align: center;

@@ -150,9 +150,11 @@ document.addEventListener("DOMContentLoaded", function(){
     // alert("user 쫌생이다! user 쫌생이가 나타났다~!!")
     }
     if(user == '0'){
+        console.log(user);
         $("#like").remove();
         $("#report").remove();
     }else if(user=='1'){
+        console.log(user);
         $("#modifyDiary").remove();
     }
 

@@ -17,18 +17,19 @@ body {
 }
 
 .addInfo{
-    text-align: left;
+    text-align: right;
     width: 80%;
     margin: auto;
+}
+
+.addInfo span{
+    font-size: 100%
 }
 
 .addInfo img{
     width: 5%;
 }
 
-.diaryDate{
-    font-size: 100%
-}
 
 
 #pageTitle{
