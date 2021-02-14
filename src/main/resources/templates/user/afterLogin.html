@@ -20,8 +20,14 @@
     <script src="../../js/main/main.js"></script>
     <script src="../../js/main/menu.js"></script>
     <script src="https://use.fontawesome.com/b51c131c86.js"></script>
+
+    <!--todolist-->
     <script src="../../js/todolist/mainTodo.js"></script>
     <link rel="stylesheet" href="../../css/todolist/mainTodo.css"/>
+
+    <!--글꼴-->
+    <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
+
     <script th:inline="javascript">
         /*<![CDATA[*/
 
@@ -118,9 +124,9 @@
         <!--        </div>-->
 
         <a class="region" id="todoContainer">
-            <h3 class="todolist">TODO</h3>
+            <h4 class="todolist">TO-DO LIST</h4>
             <div class="todo">
-                <label for="addTodo"></label><input type="text" id="addTodo" name="addTodo" placeholder="Add new Todo">
+                <label for="addTodo"></label><input type="text" id="addTodo" name="addTodo" placeholder="Add new Todo" autocomplete="off">
             <ul id="todo">
             </ul>
             </div>

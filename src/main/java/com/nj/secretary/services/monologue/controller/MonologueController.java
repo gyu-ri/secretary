@@ -151,6 +151,7 @@ public class MonologueController {
 		List<Monologue> monologueList=monologueService.getMonologueList(user.getUserId());
 				
 		model.addAttribute("monologueList", monologueList);
+		model.addAttribute("user", user);
 		
 		System.out.println("monologueController getMonologueList  ::  " + monologueList);
 	

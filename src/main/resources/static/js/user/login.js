@@ -5,10 +5,6 @@ function loginWithKakao() {
 }
 
 function loginValiCheck(){
-    alert("로그인 체크를 실행해볼겁니다!");
-    /*let userId = $('#userId').val();
-    let password = $('#password').val();
-    let userName = $('#userName').val();*/
     $.ajax({
         url: '/restUser/loginCheck',
         method: 'get',
@@ -19,12 +15,7 @@ function loginValiCheck(){
         contentType: "application/json",
         success: function (data){
             console.log("로그인 가능합니다"+data);
-            alert("로그인 체크를 실행해볼겁니다!"+data);
             if (data == 0){
-                alert("if 체크를 실행해볼겁니다!"+data);
-                // $("#loginCheck").text("가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.");
-                // $("#loginCheck").css("color", "#ae0f11");
-                // $("#submit").attr("disabled", true);
                 $('#message').remove();
                 $('.check_font').append("<div id='message'>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</div>")
                 $('.check_font').css("color","#ae0f11")
@@ -91,8 +82,6 @@ $(function() {
 
             }
         })
-        //$("#updateUser").submit();
-        //location.href="/user/login";
 
     })
 

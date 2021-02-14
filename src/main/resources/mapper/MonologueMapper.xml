@@ -126,7 +126,7 @@
     </select>
     
     <select id="getMonologueList" parameterType="com.nj.secretary.services.monologue.domain.Monologue" resultMap="monologue">
-     	SELECT q.question_id, q.question_text, m.question_id, m.monologue_id, m.monologue_text
+     	SELECT q.question_id, q.question_text, m.question_id, m.monologue_id, m.monologue_text, m.share_status, m.user_id
      	FROM monologue m, questions q
      	WHERE q.question_id=m.question_id AND user_id=#{userId}
 	    ORDER BY monologue_date ASC
@@ -134,7 +134,7 @@
     </select>
     
 	<select id="getShareMonologueList" parameterType="com.nj.secretary.services.monologue.domain.Monologue" resultMap="monologue">
-	    SELECT q.question_id, q.question_text, m.question_id, m.monologue_id, m.monologue_text
+	    SELECT q.question_id, q.question_text, m.question_id, m.monologue_id, m.monologue_text, m.share_status
      	FROM monologue m, questions q
      	WHERE q.question_id=m.question_id AND user_id=#{userId} AND share_status=1
 	    ORDER BY monologue_date ASC
@@ -142,7 +142,7 @@
 	</select>
 	
 	<select id="getOtherMonologueList" parameterType="com.nj.secretary.services.monologue.domain.Monologue" resultMap="monologue">
-    	 SELECT q.question_id, q.question_text, m.question_id, m.monologue_id, m.monologue_text
+    	 SELECT q.question_id, q.question_text, m.question_id, m.monologue_id, m.monologue_text, m.share_status, m.user_id
 	     FROM monologue m, questions q
 	     WHERE q.question_id=m.question_id AND user_id NOT IN #{userId} AND share_status=1
 	     ORDER BY monologue_date ASC;
