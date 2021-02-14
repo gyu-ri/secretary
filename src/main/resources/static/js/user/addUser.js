@@ -131,6 +131,17 @@ function pwdCheck(){
     }
 }
 
+/*function close(){
+    alert("먹히니 이게?");
+    TweenMax.from("#container", .4, {scale: 1, ease: Sine.easeInOut});
+    TweenMax.to("#container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut});
+
+}*/
+
+function back(){
+    history.go(-1);
+}
+
 
 /*function validate(){
     let getUserId = RegExp()
@@ -167,18 +178,12 @@ $(document).ready(function (){
 })*/
 
 
-function close(){
+/*function close(){
     location.href="/user/login";
-}
+}*/
 
 
-/*$(".close-btn").click(function(){
-    TweenMax.from("#container", .4, { scale: 1, ease:Sine.easeInOut});
-    TweenMax.to("#container", .4, { left:"0px", scale: 0, ease:Sine.easeInOut});
-    $("#container, #forgotten-container").fadeOut(800, function(){
-        $("#login-button").fadeIn(800);
-    });
-});*/
+
 
 /* Forgotten Password */
 /*
