@@ -162,5 +162,6 @@ body{
 
 #welcomeText{
     position: absolute;
-    top:50%;
+    top:40%;
+    text-align: center;
 }
