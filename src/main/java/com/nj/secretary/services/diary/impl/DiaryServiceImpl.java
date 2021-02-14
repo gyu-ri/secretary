@@ -171,4 +171,9 @@ public class DiaryServiceImpl implements DiaryService {
     public int addLike(Diary diary) {
         return diaryDAO.addLike(diary);
     }
+
+    @Override
+    public int deleteTag(int diaryId) {
+        return diaryDAO.deleteTag(diaryId);
+    }
 }
