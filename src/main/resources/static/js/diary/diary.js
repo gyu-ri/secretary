@@ -118,7 +118,6 @@ $(function(){
         });
     })
 
-
     $("#getOthersDiaryList").on("click", function () {
         var list = [];
 
@@ -144,7 +143,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
+                            // "<input type='hidden' class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -158,7 +157,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
-                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
+                            // "<input type='hidden' class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -167,7 +166,6 @@ $(function(){
                             "</div>" +
                             "</div>"+
                             "</div>"
-
                         )
                     }
 
@@ -188,7 +186,6 @@ $(function(){
         });
         return list;
     });
-
 
     $('#deleteDiary').click(function (){
         var confirm_val = confirm("정말 삭제하시겠습니까?");
