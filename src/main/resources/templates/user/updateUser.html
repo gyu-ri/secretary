@@ -5,16 +5,14 @@
     <script src="../../js/user/passwordCheck.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script src="../../js/main/main.js"></script>
+	<script src="../../js/main/menu.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href='../../css/main/main.css'/>
+	<link rel="stylesheet" href='../../css/main/menu.css' />
     <title>내 정보 수정</title>
 
 	<style>
-		body {
-			background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
-			background-repeat: no-repeat;
-			background-attachment: fixed;
-			background-size: cover;
-		}
 
 		#container{
 			position: relative;
@@ -22,7 +20,7 @@
 			left: 0;
 			right: 0;
 			bottom: 0;
-			margin: 10% 30% 10%;
+			margin: 10% 33% 10%;
 			width: 600px;
 			height:660px;
 			border-radius: 5px;
@@ -49,8 +47,8 @@
 		}
 
 		img{
-			display: block;
-			margin: auto;
+			/*display: block;
+			margin: auto;*/
 			width: 100%;
 			height: auto;
 		}
@@ -63,9 +61,9 @@
 			margin-bottom: 15%;
 		}
 
-		a,
+
 		input, button{
-			font-family: 'Open Sans Condensed', sans-serif;
+			font-family: 'MapoGoldenPier';
 			text-decoration: none;
 			position: relative;
 			width: 60%;
@@ -86,10 +84,10 @@
 		}
 
 		h1{
-			font-family: 'Open Sans Condensed', sans-serif;
+			font-family: 'MapoGoldenPier';
 			position: relative;
-			margin-top: 0px;
-			margin-bottom: 100px;
+			margin-top: 20px;
+			margin-bottom: 20px;
 			text-align: center;
 			font-size: 40px;
 			color: #ddd;
@@ -113,8 +111,8 @@
 			color: #333;  }
 
 		/* Link */
-		a{
-			font-family: 'Open Sans Condensed', sans-serif;
+		/*a{
+			font-family: 'MapoGoldenPier';
 			text-align: center;
 			padding: 4px 8px;
 			background: rgb(125, 138, 172);
@@ -122,6 +120,13 @@
 
 		a:hover{
 			opacity: 0.7;
+		}*/
+
+		p{
+			font-family: 'MapoGoldenPier';
+			font-size: 17px;
+			color: #fff;
+			margin-left: 20px;
 		}
 
 		.buttons{
@@ -173,31 +178,52 @@ $("#password-modal-open").on("click",function(){
     
         });
 
+function back(){
+	history.go(-1);
+}
+
+
 </script>
 
 </head>
 <body>
+
+<p id = "status"></p>
+<a id = "map-link" target="_blank"></a>
+
+	<div class="weathers" style="float: right; font-size: 20px;">
+		<span id="location"><img src="../../images/weather/plane.png" style="width: 20px; height: 20px; margin-right: 10px;"></span>
+		<img src="" id="img" width="20" height="20" />
+		<span id="temparature"></span>
+		<span id="tempIcon">   &#8451;</span> &nbsp;
+	</div>
+
+<br>
+
 <div id="container">
-    <span class="close-btn">
+<br>
+<h1> 내 정보 수정</h1>
+<form action="updateUser" method="post">
+
+	 <span class="close-btn" id="close-btn"  onclick="back()">
         <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"></img>
       </span>
-<h1> 내  정보 수정</h1>
-<form action="updateUser" method="post">
+
 <input type="hidden" name="password" th:value="${user.password}"/>
 <input type="hidden" name="userId" th:value="${user.userId}" id="userId"/>
 
 	<div id="mainText">
-		<div class="details">이&nbsp;&nbsp;&nbsp;&nbsp;름 : <input type="text" th:value = "${user.userName}" name="userName"/></div></br>
-		<div class="details">닉네임 : <input type="text" th:value = "${user.nickname}" name="nickname"/></div></br>
-		<div class="details">이메일 : <input type="text" th:value = "${user.email}" name="email"></div></br>
-		<div class="details">좌우명 : <input type="text" th:value = "${user.motto}" name="motto"/></div></br>
+		<div class="details"><p>이&nbsp;&nbsp;름<input type="text" th:value = "${user.userName}" name="userName"/></div>
+		<div class="details"><p>닉네임<input type="text" th:value = "${user.nickname}" name="nickname"/></div>
+		<div class="details"><p>이메일<input type="text" th:value = "${user.email}" name="email"></div>
+		<div class="details"><p>좌우명<input type="text" th:value = "${user.motto}" name="motto"/></div>
 	</div>
-		<input class="buttons" type="submit" value="수정완료">
 
+	<input class="buttons" type="submit" value="수정완료">
 
 </form>
 
-<button type="button" class="buttons" id="password-modal-open">☆비밀번호변경☆</button>
+<button type="button" class="buttons" id="password-modal-open">비밀번호변경</button>
 <div id="password-modal" class="modal fade" tabindex="-1" role="dialog">
 <div class="modal-dialog" role="document">
 	<div class="modal-content">
@@ -228,7 +254,26 @@ $("#password-modal-open").on("click",function(){
 </form>
 
 <!-- <a href="./withdrawal">회원탈퇴</a> -->
+</div>
 
+<input type="checkbox" id="menuToggler" class="input-toggler" />
+<label for="menuToggler" class="menu-toggler">
+	<span class="menu-toggler__line"></span>
+	<span class="menu-toggler__line"></span>
+	<span class="menu-toggler__line"></span>
+</label>
+<aside class="sidebar">
+	<ul class="menu">
+		<li class="menu__item"><a class="menu__link" href="/user/login">Home</a></li>
+		<li class="menu__item"><a class="menu__link" href="/user/getUser">Profile</a></li>
+		<li class="menu__item"><a class="menu__link" href="/diary/getDiaryList">Diary</a></li>
+		<li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
+		<li class="menu__item"><a class="menu__link" href="/monologue/getMonologueList">Monologue</a></li>
+		<li class="menu__item"><a class="menu__link" href="/user/logout">Logout</a></li>
+	</ul>
+
+
+</aside>
 
 </body>
 
