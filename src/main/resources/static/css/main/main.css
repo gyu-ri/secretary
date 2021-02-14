@@ -17,6 +17,7 @@ body{
 }
 
 #clock{
+
     position: absolute;
     top: 15%;
     left: 35%;
@@ -24,6 +25,7 @@ body{
     text-align: center;
     text-shadow: 1px 1px 2px #000000;
     color: whitesmoke;
+
 }
 
 #tempIcon{
@@ -46,6 +48,7 @@ body{
     color: #bce8f1;
 }
 #question, .intro {
+
     font-family: 'MapoGoldenPier';
     font-size: 4rem;
     text-align: center;
@@ -53,6 +56,7 @@ body{
     color: whitesmoke;
 }
 #answer{
+
     font-family: 'MapoGoldenPier';
     font-size: 1.5rem;
     text-align: center;
@@ -71,8 +75,6 @@ body{
     border-right-color: transparent;
     border-top-color: transparent;
 }
-
-
 
 /*Alarm*/
 .nav-counter {
@@ -112,4 +114,48 @@ body{
     text-decoration: none;
     text-align: center;
     float: bottom;
+}
+
+.docbtn, #my_modal{
+    position: absolute;
+    bottom: 50px;
+    left: 20px;
+}
+
+#alarmLi{
+    font-family: 'MapoGoldenPier';
+    position: absolute;
+    bottom: 100px;
+    left: 50px;
+    background-color: whitesmoke;
+    border: 10px whitesmoke;
+    border-radius: 5px;
+    list-style: none;
+
+}
+
+#alarmLi li{
+    padding: 10px;
+    cursor: pointer;
+}
+
+#alarmLi img{
+    width: 15px;
+    height: 15px;
+    margin-right: 10px;
+}
+
+#alarmLi span{
+    float: right;
+    cursor: pointer;
+}
+
+#alarmLi span:hover, #alarmLi li:hover{
+    background-color: #dbdbdb;
+    border-radius: 3px;
+}
+
+.content{
+    font-family: 'MapoGoldenPier';
+    color: white;
 }

@@ -22,6 +22,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -35,6 +36,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -85,6 +87,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value='" + item.diaryText + "' hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -98,6 +101,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value='" + item.diaryText +"' hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -140,6 +144,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -153,6 +158,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -207,6 +213,7 @@ $(function(){
                             $(".listDiary").append(
                                 "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                                 "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                                "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                                 "<div class='cover'>" +
                                 "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                                 "<p class='title'>"+item.diaryDate+"</p>" +
@@ -220,6 +227,7 @@ $(function(){
                             $(".listDiary").append(
                                 "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                                 "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                                "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                                 "<div class='cover'>" +
                                 "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                                 "<p class='title'>"+item.diaryDate+"</p>" +
@@ -263,6 +271,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" id='thisTag' value='"+item.fileName+"' class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.fileName +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name'>#"+item.fileName+"</h3>" +
                             "</div>" +
@@ -291,6 +300,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -304,6 +314,7 @@ $(function(){
                         $(".listDiary").append(
                             "<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -396,14 +407,14 @@ $(function(){
 function filter(){
     var value, name, item, i;
     value = document.getElementById("value").value.toUpperCase();
-    item = document.getElementsByClassName("thumbnail");
+    item = document.getElementsByClassName("col-md-4");
     console.log(value);
     console.log(item);
 
     for(i=0; i< item.length; i++){
-        name = item[i].getElementsByClassName("diaryText");
+        name = item[i].getElementsByClassName('diaryText');
         if(name[0].value.toUpperCase().indexOf(value) > -1){
-            item[i].style.display = "flex";
+            item[i].style.display = "block";
         }else{
             item[i].style.display = "none";
         }
@@ -460,6 +471,7 @@ function moveToBin(diaryId){
                         $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
@@ -473,6 +485,7 @@ function moveToBin(diaryId){
                         $(".listDiary").append(
                             "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
                             "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                            "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
                             "<div class='cover'>" +
                             "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
                             "<p class='title'>"+item.diaryDate+"</p>" +
