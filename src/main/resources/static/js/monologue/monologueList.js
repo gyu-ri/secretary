@@ -119,18 +119,24 @@ $("#getOthersMonologueList").on("click", function () {
 });
 
 $("#deleteMonologue").click(function(){
+	const text={
+			monologueId : $("#monologueId").val()
+	}
 
     $.ajax({
         url : "/restMonologue/getMonologueList",
         type : "GET",
         data :{userId:$("#userId").val()},
         success: function (list){
-            console.log(list);
+        	console.log(list);
 
             $("div [name='listSet']").remove();
             document.getElementById('fisrtTab').setAttribute('class', '');
             document.getElementById('secondTab').setAttribute('class', '');
             document.getElementById('thirdTab').setAttribute('class', 'active');
+            $(".deleteList").append(
+            		"<input type=\"button\" value=\"삭제하기\" id=\"deleteMonologue\" onclick=\"deleteMonologue("+item.monologueId+")\">"
+            )
             $.each(list,function(i,item){
                    console.log(item);
                    $(".deleteList").append(
@@ -138,19 +144,42 @@ $("#deleteMonologue").click(function(){
                    		/*"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;font-size:15px; height:20px; color:black;\">"+*/
                    		"<label>"+
                    		item.questionText+
-                   		"<input type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
+                   		"<input type=\"checkbox\" name=\"delete\" id=\"monologueId\" >"+
                    		"</label>"+
                    		
                    		/*"</div>"+*/
                    		"</div>"
                    )
+                   
+                   
             })
+           
+          
+/*            $("input [name='deleteMonologue']").remove();
+                function deleteMonologue(monologueId){
+                	let deleteList={
+                			monologueId:$("#monologueId").val()
+                	};
+                	 $.ajax({
+             	        url : "/restMonologue/deleteMonologue",
+             	        type : "POST",
+             	        data : JSON.stringify(deleteList),
+             	        contentType: "application/json",
+             	        success: function (response){
+             	        	alert(response);
+             	        }
+                	 });
+        }*/
+        }
+             	        	
+             	
+            
 /*            $(".deleteList").append(
             "<input type=\"button\" value=\"삭제하기\" name=\"delete\">"
             		)*/
         
             
-        }
+        
 })
 })
 
@@ -162,9 +191,9 @@ function getMonologue(monologueId,questionId){
 }
 
 
-$(function (){
+$(function deleteMonologue(){
 
-$("#deleteList").on("click",function(){
+$("#deleteMonologue").on("click",function(){
  if($("input:checkbox[name='delete']:checked").length==0){
 	 alert("선택된 게시물이 없습니다.")
  }else{
