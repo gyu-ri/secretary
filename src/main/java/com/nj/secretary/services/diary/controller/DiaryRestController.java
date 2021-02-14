@@ -206,6 +206,7 @@ public class DiaryRestController {
                 return "신고하는데 문제가 생겼습니다.";
             }
             diaryService.addReport(report);
+
             return "신고되었습니다.";
         }
     }
@@ -240,6 +241,7 @@ public class DiaryRestController {
         User user =(User)session.getAttribute("user");
         diary.setUserId(user.getUserId());
         System.out.println(diary);
+        System.out.println("userId : ");
         if(diaryService.checkLike(diary) > 0){
             return "이미 좋아한 일기입니다..";
         }else{
@@ -247,6 +249,15 @@ public class DiaryRestController {
                 return "좋아하는데 문제가 발생했습니다.";
             }
             diaryService.addLike(diary);
+
+            Diary diary1 = diaryService.getDiary(diary.getDiaryId());
+            Alarm alarm = new Alarm();
+            alarm.setUserId(diary1.getUserId());
+            alarm.setDiaryId(diary.getDiaryId());
+            alarm.setAlarmType("1");
+            alarm.setAlarmText("좋아요를 받은 일기가 있어요!");
+            alarmService.blindDiaryAlarm(alarm);
+
             return "좋아합니다.";
         }
     }
