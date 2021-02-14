@@ -119,9 +119,6 @@ $("#getOthersMonologueList").on("click", function () {
 });
 
 $("#deleteMonologue").click(function(){
-	const text={
-			monologueId : $("#monologueId").val()
-	}
 
     $.ajax({
         url : "/restMonologue/getMonologueList",
@@ -134,9 +131,6 @@ $("#deleteMonologue").click(function(){
             document.getElementById('fisrtTab').setAttribute('class', '');
             document.getElementById('secondTab').setAttribute('class', '');
             document.getElementById('thirdTab').setAttribute('class', 'active');
-            $(".deleteList").append(
-            		"<input type=\"button\" value=\"삭제하기\" id=\"deleteMonologue\" onclick=\"deleteMonologue("+item.monologueId+")\">"
-            )
             $.each(list,function(i,item){
                    console.log(item);
                    $(".deleteList").append(
@@ -178,7 +172,9 @@ $("#deleteMonologue").click(function(){
             "<input type=\"button\" value=\"삭제하기\" name=\"delete\">"
             		)*/
         
-            
+        /*$(".deleteList").append(
+        		"<input type=\"button\" value=\"삭제하기\" id=\"deleteMonologue\" onclick=\"deleteMonologue("+item.monologueId+")\">"
+        )*/
         
 })
 })
