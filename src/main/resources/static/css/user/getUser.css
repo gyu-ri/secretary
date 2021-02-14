@@ -5,6 +5,13 @@ img{
     height: 100%;
 }
 
+@font-face {
+    font-family: 'MapoGoldenPier';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #login-button{
     cursor: pointer;
     position: absolute;
@@ -69,7 +76,7 @@ img{
 
 /* Heading */
 h2{
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'Noto Sans TC', sans-serif;
     position: relative;
     margin-top: 5px;
     text-align: center;
@@ -81,7 +88,7 @@ h2{
 /* Inputs */
 
 input{
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'MapoGoldenPier';
     text-decoration: none;
     position: relative;
     width: 80%;
@@ -198,6 +205,7 @@ a:hover{
 }
 
 .profile{
+    font-family: 'MapoGoldenPier';
     margin-top: 10%;
     text-align: center;
 }

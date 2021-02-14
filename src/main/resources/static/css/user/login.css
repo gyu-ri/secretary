@@ -7,14 +7,22 @@
     overflow: hidden;
 }*/
 
+@font-face {
+    font-family: 'MapoGoldenPier';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 img{
-    /*display: block;*/
-    /*margin: auto;*/
-    width: 130px;
+    display: block;
+    margin: auto;
+    width: 170px;
     height: 40px;
 }
 
 p{
+    font-family: 'MapoGoldenPier';
     color: whitesmoke;
     font-size: 11px;
 }
@@ -44,9 +52,9 @@ p{
     right: 0;
     bottom: 0;
     margin: auto;
-    width: 30%;
-    height: 50%;
-    border-radius: 5px;
+    width: 500px;
+    height: 500px;
+    border-radius: 8px;
     background: rgba(3,3,3,0.25);
     box-shadow: 1px 1px 50px #000;
     display: none;
@@ -76,7 +84,7 @@ p{
 
 /* Heading */
 h2{
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'MapoGoldenPier';
     position: relative;
     margin-top: 5px;
     text-align: center;
@@ -88,7 +96,7 @@ h2{
 /* Inputs */
 
 input{
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'MapoGoldenPier';
     text-decoration: none;
     position: relative;
     width: 80%;
@@ -125,15 +133,15 @@ input:focus{
 /* Link */
 
 .find_info .log{
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'MapoGoldenPier';
     text-decoration: none;
+    display: block;
+    margin: auto;
     position: relative;
     text-align: center;
     width: 100px;
     height: 20px;
     padding: 4px 8px;
-    display: block;
-    margin: 9px auto;
     font-size: 11.5px;
     color: #fff;
     border-radius: 6px;
@@ -155,6 +163,10 @@ input:focus{
 }
 #signUp:hover{
     color: rgba(255,255,255,.6);
+}
+
+#message{
+    font-family: 'MapoGoldenPier';
 }
 
 #custom-login-btn{

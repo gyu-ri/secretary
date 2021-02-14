@@ -6,6 +6,7 @@ import com.nj.secretary.services.monologue.domain.Monologue;
 import com.nj.secretary.services.monologue.service.MonologueService;
 import com.nj.secretary.services.user.domain.User;
 import com.nj.secretary.services.user.service.UserService;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,7 +94,7 @@ public class UserRestController {
 
                 messageHelper.setFrom("gydms741@gmail.com", "Secretary");
                 messageHelper.setSubject(userName + "님 아이디찾기 메일입니다.");//메일 제목
-                messageHelper.setText("아이디는" + userId + "입니다.");//메일 내용
+                messageHelper.setText(userName +"님의 아이디는" + userId + "입니다.");//메일 내용
                 messageHelper.setTo(email);
                 msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email));
                 mailSender.send(msg);

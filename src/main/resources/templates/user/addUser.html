@@ -10,17 +10,19 @@
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <!--    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+
 </head>
 
 <body>
 
 <div id="container" style="display: block; transform: matrix(1,0,0,1,0,0); left: 0px;">
-    <span class="close-btn" id="close-btn"  >
-    <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png" onclick="javascript:close()"/>
-  </span>
 
     <h2>회원가입</h2>
     <form th:action="@{signUp}" method="post" onsubmit="return submitCheck();">
+
+    <span class="close-btn" id="close-btn"  onclick="back()">
+        <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"/>
+    </span>
 
         <div class="form-group">
             <label for="userId"></label>
@@ -38,7 +40,7 @@
 
         <input type="password" class="input-lg form-control" id="password01" name="password"
                placeholder="비밀번호 대소문자와 숫자, 특수기호 조합" minlength="6"
-               maxlength="12" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,12}"
+               maxlength="12" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@#!%*?&])[A-Za-z\d$@#!%*?&]{6,12}"
                title="비밀번호 6자~12자 영문자,숫자,특수기호 조합"
                autocomplete="off" required></br>
 

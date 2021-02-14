@@ -409,6 +409,10 @@ public class UserController {
 
     @GetMapping("/getUser")
     public String getUser(String userId, Model model, HttpSession session) throws Exception {
+        if(session.getAttribute("user")==null){
+            return "user/login";
+        }
+
         System.out.println("getUser 내정보보기 Controller 시작");
 
         //session.setAttribute("userId", userId);
