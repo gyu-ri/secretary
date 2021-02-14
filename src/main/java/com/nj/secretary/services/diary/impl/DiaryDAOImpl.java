@@ -158,4 +158,9 @@ public class DiaryDAOImpl implements DiaryDAO {
     public int checkLike(Diary diary) {
         return sqlSession.selectOne("DiaryMapper.checkLike",diary);
     }
+
+    @Override
+    public int deleteTag(int diaryId) {
+        return sqlSession.delete("DiaryMapper.deleteTag",diaryId);
+    }
 }

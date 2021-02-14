@@ -168,7 +168,8 @@ public class DiaryRestController {
     public String deleteDiary(@RequestParam("diaryId") int diaryId){
         System.out.println(diaryId);
         int delete = diaryService.deleteDiary(diaryId);
-        if(delete==0){
+        int deleteTag = diaryService.deleteTag(diaryId);
+        if(delete==0 || deleteTag==0){
             return "failed";
         }else{
             return "success";

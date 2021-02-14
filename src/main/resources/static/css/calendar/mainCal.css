@@ -1,6 +1,7 @@
 body {
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
   padding: 0;
+  background-color:#dbdbdb;
 }
 
 .dropNewEvent {
@@ -106,7 +107,7 @@ body {
   text-transform: uppercase;
   font-size: 18px;
   font-weight: 600;
-  color: #505363;
+  color: #393734;
   line-height: 32px;
 }
 

@@ -79,6 +79,7 @@ li[name='itemList']:hover .trash {
 #addTodo {
     font-size: 17px;
     color: #2980b9;
+    font-family: 'MapoGoldenPier';
     background-color: #f7f7f7;
     width: 100%;
     padding: 13px 13px 13px 20px;

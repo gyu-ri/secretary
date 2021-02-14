@@ -22,7 +22,9 @@ public class CalendarController {
 
     @GetMapping("mainCalendar")
     public String mainCalendarView(HttpSession session){
-
+        if(session.getAttribute("user")==null){
+            return "user/login";
+        }
         return "calendar/index";
     }
 
