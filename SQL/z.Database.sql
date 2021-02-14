@@ -100,7 +100,7 @@ create table USERS
         primary key,
     PASSWORD             VARCHAR2(30)  not null,
     USER_NAME            VARCHAR2(30)  not null,
-    ROLE                 VARCHAR2(20) default 'USER',
+    ROLES                 VARCHAR2(20) default 'USER',
     NICKNAME             VARCHAR2(30),
     EMAIL                VARCHAR2(100) not null,
     WITHDRAWAL_REASON_ID NUMBER(8),

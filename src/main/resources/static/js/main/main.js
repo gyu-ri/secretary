@@ -355,8 +355,6 @@ $(function(){
                         }
                         $("#question").fadeOut("slow");
                         $("#answer").fadeOut("slow",complete);
-
-
                     }
                 })
             }else{
@@ -366,3 +364,5 @@ $(function(){
 
     });
 })
+
+

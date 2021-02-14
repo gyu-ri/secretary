@@ -14,6 +14,11 @@ img{
     height: 40px;
 }
 
+p{
+    color: whitesmoke;
+    font-size: 11px;
+}
+
 #login-button{
     cursor: pointer;
     position: absolute;
@@ -124,7 +129,7 @@ input:focus{
     text-decoration: none;
     position: relative;
     text-align: center;
-    width: 80px;
+    width: 100px;
     height: 20px;
     padding: 4px 8px;
     display: block;
@@ -133,7 +138,7 @@ input:focus{
     color: #fff;
     border-radius: 6px;
     border: none;
-    background: rgba(3,3,3,.1);
+    /*background: rgba(3,3,3,.1);*/
     -webkit-transition: all 2s ease-in-out;
     -moz-transition: all 2s ease-in-out;
     -o-transition: all 2s ease-in-out;
@@ -153,11 +158,11 @@ input:focus{
 }
 
 #custom-login-btn{
-    width: 75px;
+    width: 100px;
     height: 35px;
     border: 15px;
     padding: 15px;
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
 }
 
 a:hover{

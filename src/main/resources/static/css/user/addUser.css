@@ -1,11 +1,13 @@
-/*html {*/
-/*    background: url(http://cdn.magdeleine.co/wp-content/uploads/2014/05/3jPYgeVCTWCMqjtb7Dqi_IMG_8251-1400x933.jpg) no-repeat center center fixed;*/
-/*    -webkit-background-size: cover;*/
-/*    -moz-background-size: cover;*/
-/*    -o-background-size: cover;*/
-/*    background-size: cover;*/
-/*    overflow: hidden;*/
-/*}*/
+html {
+    overflow: auto;
+}
+
+@font-face {
+    font-family: 'MapoGoldenPier';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 img{
     display: block;
@@ -14,8 +16,7 @@ img{
     height: auto;
 }
 
-/*
-#login-button{
+/*#login-button{
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -32,7 +33,7 @@ img{
     opacity: 0.4;
     box-shadow: 10px 10px 30px #000;}*/
 
-/* Login container */
+/* signUp container */
 #container{
     position: relative;
     top: 0;
@@ -41,11 +42,10 @@ img{
     bottom: 0;
     margin: 2.5% 30% 10%;
     width: 600px;
-    height:770px;
+    height:800px;
     border-radius: 5px;
-    background: rgba(3, 3, 3, 0.25);
-    box-shadow: 1px 1px 50px #000;
-    display: none;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 1px 1px 50px #282727;
 }
 
 .close-btn{
@@ -76,9 +76,10 @@ img{
 
 /* Heading */
 h2{
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'MapoGoldenPier';
     position: relative;
-    margin-top: 0px;
+    margin-top: 10px;
+    padding-top: 20px;
     text-align: center;
     font-size: 40px;
     color: #ddd;
@@ -88,7 +89,7 @@ h2{
 /* Inputs */
 a,
 input{
-    font-family: 'Open Sans Condensed', sans-serif;
+    font-family: 'MapoGoldenPier';
     text-decoration: none;
     position: relative;
     width: 60%;
@@ -100,7 +101,7 @@ input{
     padding: 8px;
     border-radius: 6px;
     border: none;
-    background: rgba(3,3,3,.1);
+    background: rgba(3, 3, 3, 0.3);
     -webkit-transition: all 2s ease-in-out;
     -moz-transition: all 2s ease-in-out;
     -o-transition: all 2s ease-in-out;
@@ -124,14 +125,14 @@ input:focus{
     color: #333;  }
 
 /* Link */
-a{
-    font-family: 'Open Sans Condensed', sans-serif;
+a, #signUp{
+    font-family: 'MapoGoldenPier';
     text-align: center;
     padding: 4px 8px;
     background: rgb(125, 138, 172);
 }
 
-a:hover{
+a, #signUp:hover{
     opacity: 0.7;
 }
 

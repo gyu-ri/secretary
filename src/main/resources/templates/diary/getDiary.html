@@ -26,45 +26,73 @@
 
     <title>글쓰기</title>
     <style>
-        body {
-            background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-            text-align: center;
-            font-family: 'Stylish', sans-serif;
+        @font-face {
+            font-family: 'MapoGoldenPier';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
         }
+
+        .weathers{
+            font-size: 20px;
+        }
+
+        body {
+            background-color:#dbdbdb;
+            text-align: center;
+            font-family: 'MapoGoldenPier';
+
+        }
+
 
         #pageTitle{
             text-align: center;
             font-size: 80px;
             margin-top: 2%;
+            color: #314e52;
         }
 
         #diaryTitle{
-            grid-area: title;
-            font-size: 30px;
+            grid-column: 2/3;
+            grid-row: 1/2;
+            font-size: 50px;
         }
 
 
         .container{
             display: grid;
-            grid-template-areas:
-                        "side title"
-                        "side text";
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 4fr 1fr;
             gap: 20px;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 1);
             padding: 30px;
             border-radius: 3px;
-            align-items: center;
+            align-content: center;
+            background-color: transparent;
+            width: 80%;
+            border-top: 3px solid white;
+            border-bottom: 3px solid white;
         }
 
         .text{
-            grid-area: text;
+            font-size: 30px;
+            grid-column: 2/3;
+            grid-row: 2/3;
         }
 
         #image{
-            grid-area: side;
+            grid-column: 1/2;
+            grid-row: 1/4;
+        }
+
+        .translateSelect{
+            grid-column: 2/3;
+            grid-row: 3/4;
+            display: inline-block;
+            width: 500px;
+            height: 50px;
+            padding-top: 60px;
+            padding-left: 25%;
         }
 
         #image img{
@@ -74,35 +102,45 @@
         }
 
 
-        #modifyDiary, #report, #like{
+        #modifyDiary{
             background-color: transparent;
             border: none;
-            cursor: pointer;
-            text-shadow: 1px 1px 0px white;
         }
 
         .buttons{
             font-size: 20px;
-            text-shadow: 1px 1px 0px white;
         }
 
         #source, #target{
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: #f7f6e7;
             border: none;
-            margin-bottom: 10%;
+            place-items: center;
         }
 
         #forAdmin{
-            position: fixed;
+            display: inline-block;
+            height: 60px;
             bottom: 1%;
             left: 48%;
 
         }
 
         #back{
-            font-size: 60px;
-            color: rgba(255, 255, 255, 0.5);
+            font-size: 20px;
+            color: #314e52;
+            cursor: pointer;
         }
+
+        #modifyDiary, #report, #like{
+            cursor: pointer;
+            transition: 1s;
+        }
+        #modifyDiary:hover, #report:hover, #like:hover #back:hover{
+            transform: scale(1.2);
+            transition: 1s;
+        }
+
+
     </style>
     <script type="text/javascript">
 
@@ -219,7 +257,7 @@
                             alert("이미 번역되었습니다.");
                         }else{
                             $(".translatedText").remove();
-                            $("#text").after("<div class='translatedText'>"+JSON.parse(response).message.result.translatedText+"</div> ");
+                            $("#text").append("<div class='translatedText'>"+JSON.parse(response).message.result.translatedText+"</div> ");
                             $("#text").attr('name',$("#target option:selected").val());
                         }
 
@@ -257,7 +295,7 @@
            if(role == "admin"){
                //alert("admin이다! admin이 나타났다~!!");
                $("#forAdmin").append(
-                   "<a href='#' id='back' onclick='back()'>	&#11013;</a>"
+                   // "<a href='#' id='back' onclick='back()'>	확인</a>"
                )
            } else{
                // alert("user 쫌생이다! user 쫌생이가 나타났다~!!")
@@ -271,7 +309,18 @@
 
         });
 
-
+        $(function($) {
+            $("body").css("display", "none");
+            $("body").fadeIn(1000);
+            $("a.transition").click(function(event){
+                event.preventDefault();
+                linkLocation = this.href;
+                $("body").fadeOut(1000, redirectPage);
+            });
+            function redirectPage() {
+                window.location = linkLocation;
+            }
+        });
 
     </script>
 
@@ -283,7 +332,7 @@
 <form method="get" action="updateDiary">
     <p id = "status"></p>
     <a id = "map-link" target="_blank"></a>
-    <div style="float: right">
+    <div class="weathers" style="float: right">
         <span id="location" style="padding-left: 10px; padding-right: 20px;">&#127759;</span>
         <img src="" id="img" width="20" height="20" />
         <span id="temparature" style="padding-left: 20px"></span>
@@ -303,36 +352,38 @@
         <div id="image"></div>
         <div class="text" id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
         <input type="hidden" name="shareStatus" value="0">
+
+        <div class="translateSelect">
+            <select id="source">
+                <option value="ko">한국어</option>
+                <option value="en">영어</option>
+                <option value="ja">일본어</option>
+                <option value="zh-CN">중국어-간체</option>
+                <option value="zh-TW">중국어-번체</option>
+            </select> &#10145;
+
+            <select id="target">
+                <option value="ko">한국어</option>
+                <option value="en">영어</option>
+                <option value="ja">일본어</option>
+                <option value="zh-CN">중국어-간체</option>
+                <option value="zh-TW">중국어-번체</option>
+            </select>
+            <img class="translate" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
+        </div>
+
     </div>
 
         <br><br>
     <div class="buttons">
-        <input type="submit" id="modifyDiary" onclick="return onsubmit(this)" value="&#128214; 수정">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span id="report"> &#128680; 신고하기</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span id="like"> &#128147; 좋아요</span>
+        <input type="submit" id="modifyDiary" onclick="return onsubmit(this)" value="수정">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="report">신고하기</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id="like">좋아요</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span id='back' onclick='back()'>확인</span>
     </div>
 
-
-        <br><br>
-
-
 </form>
-<select id="source">
-    <option value="ko">한국어</option>
-    <option value="en">영어</option>
-    <option value="ja">일본어</option>
-    <option value="zh-CN">중국어-간체</option>
-    <option value="zh-TW">중국어-번체</option>
-</select> &#10145;
 
-<select id="target">
-    <option value="ko">한국어</option>
-    <option value="en">영어</option>
-    <option value="ja">일본어</option>
-    <option value="zh-CN">중국어-간체</option>
-    <option value="zh-TW">중국어-번체</option>
-</select>
-<img class="translate" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
 <br>
 <p  id="forAdmin" ></p>
 </body>
