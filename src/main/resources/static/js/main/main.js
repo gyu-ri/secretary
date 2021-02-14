@@ -43,26 +43,28 @@ function getAlarmList(){
         contentType : "application/json",
         success : function(alarmList) {
             console.log(alarmList);
-            if (document.querySelector('#alarmLi span') != null) {
+            if (document.getElementById('deleteAlarmList')) {
                 alert("지우기 있음")
                 document.querySelector('#alarmLi span').remove();
                 document.querySelector('#alarmLi li').remove();
+                $('#alarmLi li,#alarmLi span').remove();
             } else {
                 alert("지우기 없음")
-                $('#alarmLi li,span').remove();
-
+                $('#alarmLi li,#alarmLi span').remove();
+                $('#alarmLi').css("display", "none");
+                $('#alarmLi').fadeIn(1000);
                 $.each(alarmList, function (i, item) {
                     if (item.diaryId == 0 && item.monologueId == 0) {
                         $('#alarmLi').append(
-                            "<li id='getLimitReasons' value='" + item.userId + "'>" + item.userId + "님" + item.alarmText + "</li>"
+                            "<li id='getLimitReasons' value='" + item.userId + "'><img src='../../images/main/harrypotter.png'>" + item.userId + "님" + item.alarmText + "</li>"
                         )
                     } else if (item.monologueId == 0) {
                         $('#alarmLi').append(
-                            "<li id='getDiary' value='" + item.diaryId + "'>" + item.userId + "님!" + item.alarmText + "</li>"
+                            "<li id='getDiary' value='" + item.diaryId + "'><img src='../../images/main/harrypotter.png'>" + item.userId + "님!" + item.alarmText + "</li>"
                         )
                     } else {
                         $('#alarmLi').append(
-                            "<li id='getMonologue' value='" + item.monologueId + "'>" + item.userId + "님!" + item.alarmText + "</li>"
+                            "<li id='getMonologue' value='" + item.monologueId + "'><img src='../../images/main/harrypotter.png'>" + item.userId + "님!" + item.alarmText + "</li>"
                         )
                     }
                 })

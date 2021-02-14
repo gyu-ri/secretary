@@ -1,3 +1,357 @@
 .pageTitle{
     margin-bottom: 10%;
 }
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+body {
+    background-color: #dbdbdb;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/*---------------- �젣紐� -----------------------*/
+.pageTitle {
+    position: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+    /*font-family: 'Lobster', cursive;*/
+    font-size: 50px;
+    letter-spacing: 10px;
+}
+
+
+ul, li{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+}
+
+.text {
+    width: 65%;
+    height: 50%;
+    margin: auto;
+    padding: 1%;
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.5)  ;
+}
+
+.text:after{
+    content: '';
+    display: block;
+    clear: both;
+    height: 0;
+    visibility: hidden;
+}
+
+/* .pageTitle {
+    position: center;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 52px;
+    line-height: 52px;
+    text-align: center;
+}
+*/
+/* article {
+    padding: 52px 3% 0;
+    padding: 0;
+}
+article::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+article .col-md-4 {margin: 1%; padding: 1%; width: 31%; height: 200px; border: 0;  transition: 0.5s; -webkit-transition: 0.5s;}
+article .col-md-4:hover{
+    transform: scale(1.1, 1.1);
+    transition: 0.5s;
+    -webkit-transition: 0.5s;}
+
+article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  padding-top: 3%;
+    margin: 0; vertical-align: middle;} */
+/*line-height: 22px; color: #fff; font-size: 16px; font-weight: 600;*/
+/*article .block:nth-child(2n+1) {background-image: url("https://source.unsplash.com/227x140/?pastel")}*/
+/*article .block:nth-child(2n) {background-image: url("https://source.unsplash.com/227x140/?pastel")}*/
+
+/*----- Tabs -----*/
+.tabs {
+    width: 65%;
+    display: block;
+    margin: 5px auto 16px;
+    position: relative;
+    clear: both;
+}
+
+/*----- Tab Links -----*/
+
+.tab-links{
+    width: 100%;
+    height: 44px;
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.tab-links li {
+    width: 33.3%;
+    height: 50%;
+    margin:0px 0px;
+    float: left;
+    align-content: center;
+}
+
+
+.tab-links a {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 6px;
+    display:block;
+    border-radius:3px 3px 3px 3px;
+    background:#C2C2C2;
+    font-size:32px;
+    color:#4C4C4C;
+    transition:all linear 0.15s;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.tab-links a:hover{
+    background:#a7cce5;
+    text-decoration:none;
+    /*transform: rotate(5deg);*/
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -webkit-animation-fill-mode: both;
+}
+
+li.active a, li.active a:hover {
+    background-color: rgba(255,255,255,0.5);
+    color:#4c4c4c;
+}
+
+/*----- Content of Tabs -----*/
+.tab-content {
+    padding:15px;
+    border-radius:3px;
+    box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
+    background:#fff;
+}
+
+.tab {
+    display:none;
+}
+
+.tab.active {
+    display:block;
+}
+
+
+/*-----------------------------�궘�젣 踰꾪듉------------------------------*/
+.back {
+    width: 33%;
+    height: 200px;
+    margin-left: 33.5%;
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    counter-increment: bc;
+    padding: 0px 5px 5px 5px;
+}
+
+.back:before {
+    position: absolute;
+    padding: 10px;
+}
+
+
+.button_base {
+    margin: 0;
+    border: 0;
+    font-size: 18px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -100px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+.button_base:hover {
+    cursor: pointer;
+}
+
+
+.b07_3d_double_roll {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+.b07_3d_double_roll div {
+    position: absolute;
+    text-align: center;
+    padding: 10px;
+    border: white solid 3px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.b07_3d_double_roll div:nth-child(1) {
+    color: white;
+    background-color: transparent;
+    z-index: 0;
+    width: 100%;
+    height: 50px;
+    clip: rect(0px, 100px, 50px, 0px);
+    position: absolute;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b07_3d_double_roll div:nth-child(2) {
+    color: white;
+    background-color: transparent;
+    z-index: -1;
+    width: 100%;
+    height: 50px;
+    clip: rect(0px, 100px, 50px, 0px);
+    position: absolute;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b07_3d_double_roll div:nth-child(3) {
+    color: white;
+    background-color: transparent;
+    z-index: 0;
+    width: 100%;
+    height: 50px;
+    clip: rect(0px, 200px, 50px, 100px);
+    position: absolute;
+    transition: all 0.2s ease 0.1s;
+    -webkit-transition: all 0.2s ease 0.1s;
+    -moz-transition: all 0.2s ease 0.1s;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b07_3d_double_roll div:nth-child(4) {
+    color: white;
+    background-color: transparent;
+    z-index: -1;
+    width: 100%;
+    height: 50px;
+    clip: rect(0px, 200px, 50px, 100px);
+    position: absolute;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+    transition: all 0.2s ease 0.1s;
+    -webkit-transition: all 0.2s ease 0.1s;
+    -moz-transition: all 0.2s ease 0.1s;
+    transform-origin: 50% 50% -25px;
+    -webkit-transform-origin: 50% 50% -25px;
+    -moz-transform-origin: 50% 50% -25px;
+}
+
+.b07_3d_double_roll:hover div:nth-child(1) {
+    background-color: #000000;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+
+.b07_3d_double_roll:hover div:nth-child(2) {
+    color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.b07_3d_double_roll:hover div:nth-child(3) {
+    background-color: #000000;
+    transition: all 0.2s ease 0.1s;
+    -webkit-transition: all 0.2s ease 0.1s;
+    -moz-transition: all 0.2s ease 0.1s;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+}
+
+.b07_3d_double_roll:hover div:nth-child(4) {
+    color: #ffffff;
+    transition: all 0.2s ease 0.1s;
+    -webkit-transition: all 0.2s ease 0.1s;
+    -moz-transition: all 0.2s ease 0.1s;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+/* .monologueList {
+	z-index:-1;
+}
+
+.otherList {
+   z-index:-1;
+}
+ */

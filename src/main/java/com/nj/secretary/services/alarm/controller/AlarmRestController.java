@@ -3,6 +3,7 @@ package com.nj.secretary.services.alarm.controller;
 
 import com.nj.secretary.services.alarm.domain.Alarm;
 import com.nj.secretary.services.alarm.service.AlarmService;
+import com.nj.secretary.services.user.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +21,9 @@ public class AlarmRestController {
 
     @GetMapping("getAlarmList")
     public List<Alarm> getAlarmList(HttpSession session, Model model){
-        session.getAttribute("userId");
-        return alarmService.getAlarmList("user04 ");
+        User user = (User) session.getAttribute("user");
+        System.out.println("user : " + user);
+        return alarmService.getAlarmList(user.getUserId());
     }
 
     @PostMapping("seenDiaryAlarm")

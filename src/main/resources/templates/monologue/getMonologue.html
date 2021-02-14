@@ -99,7 +99,21 @@
 
 
 
+
 </head>
+
+<script type="text/javascript">
+$(function(){
+	   var user = [[${user}]];
+	   if(user=='0'){
+		   $("#reportModal").remove();
+	   }else(user=='1'){
+		   $("#modifyMonologue").remove();
+	   }
+   });
+   </script>
+
+
 <script>
  $(function(){
   $(".translate").on("click",function(){
@@ -179,6 +193,10 @@
     
     
    </script>
+
+   
+   
+   
 <body>
 
 <h1>모노로그 상세보기</h1>
@@ -190,6 +208,7 @@
 <form action="updateMonologue" method="get">
 <input type="hidden" th:value="${monologue.monologueId}" name="monologueId" id="monologueId"/>
 <input type="hidden" th:value="${monologue.questionId}" name="questionId"/>
+<input type="hidden" th:value="${monologue.userId}" name="userId"/>
 
     <div class="container">
 
@@ -200,12 +219,15 @@
 
         <input type="submit" id="modifyMonologue" value="&#128214; 수정~★">
 
+    </div>
 
 </form>
 
+
         <button type="button" id="reportModal">&#128680; 신고하기</button>
 
-    </div>
+    
+  
 
     <div class="translateBtns">
         <select id="source">

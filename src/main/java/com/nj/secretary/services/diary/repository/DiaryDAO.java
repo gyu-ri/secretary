@@ -49,6 +49,8 @@ public interface DiaryDAO {
 
     public int checkLike(Diary diary);
 
+    public int deleteTag(int diaryId);
+
 
 
 

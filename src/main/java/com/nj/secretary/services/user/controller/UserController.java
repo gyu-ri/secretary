@@ -74,10 +74,20 @@ public class UserController {
             Monologue monologue = new Monologue();
             monologue.setUserId(login.getUserId());
             if(login.getRoles().trim().equals("ADMIN")){
+                // 알람 시작
+                int alarmCount = alarmService.alarmCount(login.getUserId());
+                model.addAttribute("count", alarmCount);
+                System.out.println("count check : " + alarmCount);
+                // 알람 끝
                 model.addAttribute("user", login);
                 return "user/adminAfterLogin";
             }else {
                 if (monologueService.checkMonologue(login.getUserId()) > 0) {
+                    // 알람 시작
+                    int alarmCount = alarmService.alarmCount(login.getUserId());
+                    model.addAttribute("count", alarmCount);
+                    System.out.println("count check : " + alarmCount);
+                    // 알람 끝
                     System.out.println("Already wrote Monologue");
                     Question question = new Question();
                     model.addAttribute("user", login);
@@ -90,11 +100,21 @@ public class UserController {
                         int ran = random.nextInt(100) + 1;
                         monologue.setQuestionId(ran);
                         if (monologueService.randomCheck(monologue) == 0) {
+                            // 알람 시작
+                            int alarmCount = alarmService.alarmCount(login.getUserId());
+                            model.addAttribute("count", alarmCount);
+                            System.out.println("count check : " + alarmCount);
+                            // 알람 끝
                             model.addAttribute("question", monologueService.getQuestionText(ran));
                             model.addAttribute("user", login);
                             return "user/afterLogin";
                         }
                         if (monologueService.randomCheck(monologue) == 100) {
+                            // 알람 시작
+                            int alarmCount = alarmService.alarmCount(login.getUserId());
+                            model.addAttribute("count", alarmCount);
+                            System.out.println("count check : " + alarmCount);
+                            // 알람 끝
                             Question question = new Question();
                             model.addAttribute("user", login);
                             model.addAttribute("question", question);
@@ -118,11 +138,21 @@ public class UserController {
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
             if(dbUser.getRoles().trim().equals("ADMIN")){
+                // 알람 시작
+                int alarmCount = alarmService.alarmCount(dbUser.getUserId());
+                model.addAttribute("count", alarmCount);
+                System.out.println("count check : " + alarmCount);
+                // 알람 끝
                 model.addAttribute("user", dbUser);
                 return "user/adminAfterLogin";
             }else {
 
                 if (monologueService.checkMonologue(dbUser.getUserId()) > 0) {
+                    // 알람 시작
+                    int alarmCount = alarmService.alarmCount(dbUser.getUserId());
+                    model.addAttribute("count", alarmCount);
+                    System.out.println("count check : " + alarmCount);
+                    // 알람 끝
                     System.out.println("Already wrote Monologue");
                     Question question = new Question();
                     model.addAttribute("user", dbUser);
@@ -134,11 +164,21 @@ public class UserController {
                         int ran = random.nextInt(100) + 1;
                         monologue.setQuestionId(ran);
                         if (monologueService.randomCheck(monologue) == 0) {
+                            // 알람 시작
+                            int alarmCount = alarmService.alarmCount(dbUser.getUserId());
+                            model.addAttribute("count", alarmCount);
+                            System.out.println("count check : " + alarmCount);
+                            // 알람 끝
                             model.addAttribute("question", monologueService.getQuestionText(ran));
                             model.addAttribute("user", dbUser);
                             return "user/afterLogin";
                         }
                         if (monologueService.randomCheck(monologue) == 100) {
+                            // 알람 시작
+                            int alarmCount = alarmService.alarmCount(dbUser.getUserId());
+                            model.addAttribute("count", alarmCount);
+                            System.out.println("count check : " + alarmCount);
+                            // 알람 끝
                             Question question = new Question();
                             model.addAttribute("user", dbUser);
                             model.addAttribute("question", question);
@@ -149,10 +189,7 @@ public class UserController {
                 }
             }
         }
-//        // 수정한 부분 시작
-//        int alarmCount = alarmService.alarmCount("user02");
-//        model.addAttribute("count", alarmCount);
-//        System.out.println("count check : " + alarmCount);
+
 //        // 수정한 부분 끝
 //        return "user/login";
 //        //return "index";
