@@ -65,10 +65,9 @@
 
 	<div class="tabs">
 		<ul class="tab-links">
-			<li id="fisrtTab" class="active"><a href="#tab1" id="getMonologueList" >&#128198;</a></li>
-			<li id="secondTab"><a href="#" id="getOthersMonologueList" >&#128172;</a></li>
-			<li id="thirdTab"><a href="#"  id="deleteMonologue" >&#128107;</a></li>
-		</ul>
+			<li id="fisrtTab" class="active"><a href="#tab1" id="getMonologueList" ><img src="../../images/icon/diary/calendar-icon.png" style="width: 30px; height: 30px"><span style="font-size: 20px">&nbsp;&nbsp;&nbsp;날짜순으로보기</span></a></li>
+			<li id="secondTab"><a href="#" id="getOthersMonologueList" ><img src="../../images/icon/diary/people-icon.png" style="width: 30px; height: 30px"><span style="font-size: 20px">&nbsp;&nbsp;&nbsp;공유된모노로그보기</span></a></li>
+			<li id="thirdTab"><a href="#"  id="deleteMonologue" ><img src="../../images/icon/diary/bin-icon.png" style="width: 30px; height: 30px"><span style="font-size: 20px">&nbsp;&nbsp;&nbsp;휴지통</span></a></li>
 	</div>
 
 	<div class="text">
@@ -76,6 +75,7 @@
 
 		<div class="team-grid">
 			<div class="container">
+			
 				<!--                    <div class="intro">-->
 				<!--                        <h2 class="text-center">Team </h2>-->
 				<!--                        <p class="text-center">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet.  </p>-->
@@ -112,11 +112,11 @@
 		</div>
 		<input type="hidden" th:value=${user.userId} id="userId"/>
 		
+
 		
 </form>
 
-<!-- <input onclick="deleteMonologue()" id="deleteList"  type="button" value="삭제하기" > -->
-
+<button  id="deleteList"  type="button" onclick="deleteMonologue()" style="display:none;" >삭제하기</button>
 
 
 <input type="checkbox" id="menuToggler" class="input-toggler" />

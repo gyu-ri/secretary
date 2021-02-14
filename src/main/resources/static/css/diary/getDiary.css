@@ -12,8 +12,7 @@
 body {
     background-color:#dbdbdb;
     text-align: center;
-    font-family: 'MapoGoldenPier';
-
+    font-family: 'MapoGoldenPier' !important;
 }
 
 .addInfo{

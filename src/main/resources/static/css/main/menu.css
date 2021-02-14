@@ -10,11 +10,11 @@
 }
 
 html {
-    font-family: BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
     font-size: 0.8rem;
 }
 
 .wrapper {
+
     min-height: 80vh;
     min-width: 100vw;
     /*background: AliceBlue;*/
@@ -22,6 +22,7 @@ html {
 }
 
 .sidebar {
+    font-family: 'Noto Sans TC', sans-serif !important;
     width: var(--sidebar-width);
     height: 100%;
     transform: translateX(calc(var(--sidebar-width) * -1));
