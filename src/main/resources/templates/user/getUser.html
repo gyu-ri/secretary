@@ -18,6 +18,7 @@
 	<title>My Profile</title>
  
  <script>
+
 $(function(){
 $("#changeUser").on("click",function(){
 	$("#pwdCheck-modal").modal("show");
@@ -39,7 +40,6 @@ $("#changeUser").on("click",function(){
                         }
                     });
                     $("#updateUser").submit();
-                    //location.href="updateUser";
 
             })
     
@@ -86,9 +86,9 @@ $("#changeUser").on("click",function(){
 <div class="modal-dialog" role="document">
 	<div class="modal-content">
 	
-	<!--<p>비밀번호를 입력해주세요</p>-->
+	<p>비밀번호를 입력해주세요</p>
 	<input type="password" class="input-lg form-control"
-			name="password" id="password" placeholder="비밀번호를 입력해주세요" autocomplete="off" required>
+			name="password" id="password" placeholder="Password" autocomplete="off" required>
 	 <div class="password-modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 		<button type="button" class="btn btn-primary" data-dismiss="modal" id="sendPwdCheck">OK</button>
