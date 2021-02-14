@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8">
@@ -294,7 +294,7 @@
         })
 
         function back(){
-            history.go(-1);
+            location.href="/diary/getDiaryList";
         }
 
 
@@ -355,7 +355,7 @@
     <br><br>
 
     <input type="hidden" name="diaryId" id="diaryId" th:value="${diary.diaryId}"/>
-
+    <input type="hidden" name="userId" th:value="${diary.userId}"/>
 
     <h2 id="pageTitle">일기 보기</h2><br><br><br>
     <div class="addInfo">
@@ -366,7 +366,6 @@
     <div class="container">
 
         <div id="diaryTitle" th:text="${diary.diaryTitle}"/>
-
         <div id="image"></div>
         <div class="text" id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
         <input type="hidden" name="shareStatus" th:value="${diary.shareStatus}">
@@ -423,9 +422,10 @@
                     <div class="col-xs-12">
                         <label class="cdl-xs-12">신고</label>
                         <label class="col-xs-4">
-                            유해한 컨텐츠 <input type="checkbox" name="reason" value="1" checked></br>
-                            스팸,반복적인 컨텐츠<input type="checkbox" name="reason" value="2"></br>
-                            기타 <input type="checkbox" name="reason" value="3"></br>
+                            </br></br>
+                            유해한 컨텐츠 <input type="radio" name="reason" value="1" checked></br>
+                            스팸,반복적인 컨텐츠<input type="radio" name="reason" value="2"></br>
+                            기타 <input type="radio" name="reason" value="3"></br>
                         </label>
                         <textarea id="textArea" class="col-xs-8" rows="8" cols="100"></textarea>
                     </div>

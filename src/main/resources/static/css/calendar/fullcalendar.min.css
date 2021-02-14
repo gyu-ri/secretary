@@ -10,7 +10,7 @@
     font-style: normal;
 }
 
-*{
+*:not(.sidebar){
     font-family: MapoGoldenPier;
     color: #314e52;
 }

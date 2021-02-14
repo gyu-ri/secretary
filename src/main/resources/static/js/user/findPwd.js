@@ -1,5 +1,5 @@
 function emailCheck(){
-    let email = $("#email").val();
+    let email = $("#pwdEmail").val();
     if (email == "") {
         alert("메일 주소가 입력되지 않았습니다.");
     }else {
@@ -62,7 +62,7 @@ function passwordChange(){
 	                if($("#password01").val() == $("#password02").val()){
 	                	let text = {
 	                        	password : $("#password02").val(),
-	                        	userId : $("#userId").val()
+	                        	userId : $("#pwdUserId").val()
 	                        };
 	                    $.ajax({
 	                        url : "/restUser/changePassword",

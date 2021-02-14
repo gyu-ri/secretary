@@ -52,8 +52,9 @@ p{
     right: 0;
     bottom: 0;
     margin: auto;
+    margin-top: 10%;
     width: 500px;
-    height: 500px;
+    height: 650px;
     border-radius: 8px;
     background: rgba(3,3,3,0.25);
     box-shadow: 1px 1px 50px #000;
@@ -67,8 +68,6 @@ p{
     line-height: 18px;
     top: 3px;
     right: 3px;
-    width: 20px;
-    height: 20px;
     text-align: center;
     border-radius: 10px;
     opacity: .2;
@@ -76,6 +75,11 @@ p{
     -moz-transition: all 2s ease-in-out;
     -o-transition: all 2s ease-in-out;
     transition: all 0.2s ease-in-out;
+}
+
+.close-btn img{
+    width: 20px;
+    height: 20px;
 }
 
 .close-btn:hover{
@@ -132,7 +136,7 @@ input:focus{
 
 /* Link */
 
-.find_info .log{
+.find_info span{
     font-family: 'MapoGoldenPier';
     text-decoration: none;
     display: block;
@@ -152,8 +156,45 @@ input:focus{
     -o-transition: all 2s ease-in-out;
     transition: all 0.2s ease-in-out;
     float: left;
+    cursor: pointer;
 }
 
+.find_info p, .find_info #findUserInfo{
+    margin-left: 30%;
+}
+
+.find_info #signUp{
+    font-family: 'MapoGoldenPier';
+    text-decoration: none;
+    display: block;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    width: 100px;
+    height: 20px;
+    padding: 4px 8px;
+    font-size: 11.5px;
+    color: #fff;
+    border-radius: 6px;
+    border: none;
+    /*background: rgba(3,3,3,.1);*/
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    -o-transition: all 2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    float: left;
+    cursor: pointer;
+    margin-left: 40%;
+}
+#loginBtn{
+    transition: 1s;
+}
+
+#loginBtn:hover{
+    background-color: rgba(255,255,255,.6);
+    color: black;
+    transition: 1s;
+}
 
 #findId:hover{
     color: rgba(255,255,255,.6);
@@ -203,4 +244,85 @@ a:hover{
 
 .orange-btn{
     background: rgba(87,198,255,.5);
+}
+
+.modal{
+    font-family: 'MapoGoldenPier';
+}
+
+.modal p{
+    color: black;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.modal input{
+    color: rgba(0,0,0,0.9);
+}
+
+.modal input::placeholder{
+    color: rgba(0,0,0,0.5);
+}
+
+.modal .password-modal-footer{
+    margin-bottom: 20px;
+}
+
+.modal .modal-content{
+    text-align: center;
+}
+
+.modal a{
+    color: rgba(0,0,0,0.5);
+    text-underline: none;
+    transition: 1s;
+}
+.modal a:hover{
+    color: black;
+    text-underline: black;
+    transition: 1s;
+}
+
+.modal button{
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: rgba(0,0,0,0.5);
+    text-underline: none;
+    transition: 1s;
+}
+.modal button:hover{
+    background-color: rgba(0,0,0,0.6);
+    border: 1px solid rgba(0,0,0,0.6);
+    color: white;
+    text-underline: black;
+    transition: 1s;
+}
+
+.modal #password-modal-open{
+    color: rgba(0,0,0,0.5);
+}
+.modal #password-modal-open:hover{
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+}
+
+.close-btn{
+
+    position: absolute;
+    cursor: pointer;
+    font-family: 'Open Sans Condensed', sans-serif;
+    line-height: 18px;
+    top: 3px;
+    right: 3px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    border-radius: 10px;
+    opacity: .2;
+    -webkit-transition: all 2s ease-in-out;
+    -moz-transition: all 2s ease-in-out;
+    -o-transition: all 2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }

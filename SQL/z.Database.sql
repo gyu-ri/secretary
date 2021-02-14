@@ -90,7 +90,7 @@ create table LIKES
         primary key,
     DIARY_ID     NUMBER(8),
     MONOLOGUE_ID NUMBER(8),
-    LIKER_ID     NUMBER(8)
+    LIKER_ID     VARCHAR2(30)
 )
 
 

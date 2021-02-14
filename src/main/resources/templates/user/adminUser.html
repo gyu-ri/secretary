@@ -29,8 +29,9 @@
         }
 
         .text {
+            width: 60%;
             margin: 0px 20% 10px;
-            padding: 20px;
+            padding: 3% 0 3%;
             margin-top: 0px;
             border-radius: 3px;
             background-color: #ffffff;
@@ -55,7 +56,7 @@
             margin-left: auto;
             margin-right: auto;
             margin-top: 90px;
-
+            margin-bottom: -11px;
         }
 
         .tab-links{
@@ -144,8 +145,18 @@
         a:hover{color: salmon; }
         a:active{color: yellow;}
 
+        #back{
+            font-size: 30px;
+            color: #314e52;
+            cursor: pointer;
+        }
+
     </style>
     <script>
+        function back(){
+            history.go(-1);
+        }
+
         $(function geoFindMe() {
 
             function success(position) {
@@ -248,6 +259,8 @@
 
 
 </div>
+<br/><br/><br/>
+<div id="back" onclick="back()">뒤로</div>
 <script>
     function limitUser(){
         alert("getAdminUser")

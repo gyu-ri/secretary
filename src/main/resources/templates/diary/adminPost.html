@@ -19,7 +19,7 @@
 
 
         body {
-            background-image: url("https://cdn.pixabay.com/photo/2020/12/10/08/44/mountains-5819652_960_720.jpg");
+            background-image: url("https://source.unsplash.com/daily?nature");
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -69,14 +69,14 @@
             height: 100%;
             width: 50%;
             float: left;
-
+            cursor: pointer;
         }
 
         #rightList{
             height: 100%;
             width: 50%;
             float: right;
-
+            cursor: pointer;
         }
 
         /*----- Tab Links -----*/
@@ -88,6 +88,15 @@
             padding-bottom: 0%;
             list-style:none;
             align-content: center;
+        }
+
+        #leftList span, #rightList span{
+            transition: 1s;
+        }
+
+        #leftList span:hover, #rightList span:hover{
+            background-color: rgba(255,255,255,0.8);
+            transition: 1s;
         }
 
         .tab-links li span {
@@ -140,8 +149,9 @@
 
         #my_modal {
             display: none;
-            width: 300px;
+            width: 60%;
             padding: 20px 60px;
+            text-align: center;
             background-color: #fefefe;
             border: 1px solid #888;
             border-radius: 3px;
@@ -151,6 +161,12 @@
             position: absolute;
             top: 10px;
             right: 10px;
+            cursor: pointer;
+        }
+
+        #my_modal table{
+            width: 100%;
+            font-size: 20px;
         }
 
         #table{
@@ -176,13 +192,22 @@
         a:hover{color: salmon; }
         a:active{color: yellow;}
 
-
+        #back{
+            font-size: 30px;
+            color: #314e52;
+            cursor: pointer;
+        }
+        
     </style>
 
 
 
 
     <script>
+        function back(){
+            history.go(-1);
+        }
+
         $(function geoFindMe() {
 
             function success(position) {
@@ -285,8 +310,8 @@
     </table>
     </p>
 </div>
-
-
+<br/><br/><br/>
+<div id="back" onclick="back()">뒤로</div>
 
 <script>
 
