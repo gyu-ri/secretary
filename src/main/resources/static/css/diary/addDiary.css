@@ -15,6 +15,19 @@
 /*    background-size: cover;*/
 /*    text-align: center;*/
 /*}*/
+@font-face {
+    font-family: 'MapoGoldenPier';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+h2{
+    font-size: 80px;
+    font-family: "MapoGoldenPier";
+    color: #314e52;
+}
+
 #background_cover{
     background-color: rgb(55,66,09);
     background-repeat: no-repeat;
@@ -33,32 +46,32 @@
 }
 
 #diaryTitle{
+    font-family: 'MapoGoldenPier';
     border: none;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #314e52;
     display: inline-block;
     width: 100%;
     height: 43px;
     font-size: 15px;
+    color: #314e52;
     background: none;
     -webkit-writing-mode: horizontal-tb !important;
-    color: white;
-    text-shadow: 1px 1px 0px black;
 }
 #diaryTitle::placeholder{
-    color: white;
-    text-shadow: 1px 1px 0px black;
+    font-family: 'MapoGoldenPier';
+    color: #314e52;
 }
 
 #date{
     border: none;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #314e52;
     border-left: 30%;
     width: 40%;
-    color: white;
+    font-family: 'MapoGoldenPier';
+    color: #314e52;
     height: 43px;
     font-size: 15px;
     background: none;
-    text-shadow: 1px 1px 0px black;
 }
 #date::placeholder{
     color: white;
@@ -71,8 +84,8 @@
     float: right;
     margin-right: 20%;
     cursor: pointer;
-    color: white;
-    text-shadow: 1px 1px 0px black;
+    font-family: 'MapoGoldenPier';
+    color: #314e52;
 }
 
 ol{
@@ -87,25 +100,29 @@ ol{
 
 li{
     font-size: 0;
+    margin-bottom: 10px;
 }
 
 .tagText{
 
 
-    border: 1px solid white;
+    border: 1px solid #314e52;
     border-radius: 3px;
     height: 30px;
     font-size: 15px;
     background: none;
     width: 100%;
+    font-family: "MapoGoldenPier";
+    color: #314e52;
 }
 
 
 #deleteTag{
     font-size: 8px;
-    color: white;
-    font-family: 'Poor Story', cursive;
-    text-shadow: 1px 1px 0px black;
+    font-family: "MapoGoldenPier";
+    color: #314e52;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 
 
@@ -176,7 +193,8 @@ p.toggle {
 #shareGroup{
     margin-right: 20%;
     margin-top: 10px;
-    text-shadow: 1px 1px 0px black;
+    font-family: 'MapoGoldenPier';
+    color: #314e52;
 }
 
 #subBtn{
@@ -185,21 +203,21 @@ p.toggle {
     margin-left: 29%;
     margin-top: 30px;
     background-color: transparent;
-    color: white;
-    border: 1px solid white;
+    font-family: 'MapoGoldenPier';
+    color: #314e52;
+    border: 1px solid #314e52;
     border-radius: 3px;
     transition: 1s;
     -webkit-transition: 1s;
-    text-shadow: 1px 1px 0px black;
 }
 #subBtn:hover{
     width: 125px;
     height: 50px;
     margin-left: 29%;
     margin-top: 30px;
-    background-color: white;
-    color: black;
-    border: 1px solid white;
+    background-color: #314e52;
+    color: white;
+    border: 1px solid #314e52;
     border-radius: 3px;
     font-weight: bold;
     text-decoration: underline;
