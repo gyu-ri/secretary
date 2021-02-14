@@ -44,6 +44,20 @@
 
         }
 
+        .addInfo{
+            text-align: left;
+            width: 80%;
+            margin: auto;
+        }
+
+        .addInfo img{
+            width: 5%;
+        }
+
+        .diaryDate{
+            font-size: 100%
+        }
+
 
         #pageTitle{
             text-align: center;
@@ -167,7 +181,6 @@
                     longitude
                 };
                 var url = "https://api.openweathermap.org/data/2.5/weather?lat=" + latitude + "&lon="+ longitude + "&appid=7d9ec3e89f78fa3eef02069216cce88c&units=metric";
-
 
                 //saveCoords(coordsObj);
                 getWeather(latitude, longitude);
@@ -345,13 +358,18 @@
 
 
     <h2 id="pageTitle">일기 보기</h2><br><br><br>
+    <div class="addInfo">
+        <img class="diaryEmotion" th:src="${diary.emotionImg}">
+        <img class="diaryWeather" th:src="${diary.weather}">
+        <span class="diaryDate" th:text="${diary.diaryDate}"></span>
+    </div>
     <div class="container">
 
         <div id="diaryTitle" th:text="${diary.diaryTitle}"/>
 
         <div id="image"></div>
         <div class="text" id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
-        <input type="hidden" name="shareStatus" value="0">
+        <input type="hidden" name="shareStatus" th:value="${diary.shareStatus}">
 
         <div class="translateSelect">
             <select id="source">
@@ -405,9 +423,9 @@
                     <div class="col-xs-12">
                         <label class="cdl-xs-12">신고</label>
                         <label class="col-xs-4">
-                            1 <input type="checkbox" name="reason" value="1"></br>
-                            2 <input type="checkbox" name="reason" value="2"></br>
-                            3 <input type="checkbox" name="reason" value="3"></br>
+                            유해한 컨텐츠 <input type="checkbox" name="reason" value="1" checked></br>
+                            스팸,반복적인 컨텐츠<input type="checkbox" name="reason" value="2"></br>
+                            기타 <input type="checkbox" name="reason" value="3"></br>
                         </label>
                         <textarea id="textArea" class="col-xs-8" rows="8" cols="100"></textarea>
                     </div>
