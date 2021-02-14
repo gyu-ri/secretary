@@ -207,13 +207,24 @@ public class MonologueController {
 	
 
 	@GetMapping("getMonologue")
-	public String getMonologue(Model model, int monologueId, int questionId) throws Exception{
+	public String getMonologue(Model model, int monologueId, int questionId, HttpSession session) throws Exception{
 						
 		System.out.println("getMonologueText 시작합니다잉");
 		
 		System.out.println("getMonologue에서 monologueId 확인 :::  "+monologueId);
 		
 		System.out.println("getMonologue에서 questionId 확인 :::  "+questionId);
+		
+		User user=(User)session.getAttribute("user");
+		
+		System.out.println("getMonologue에서 user 확인 :::  "+user);
+		if(user.getUserId().equals(monologueService.getMonologue(monologueId).getUserId())) {
+			System.out.println(user.getUserId());
+			System.out.println(monologueService.getMonologue(monologueId).getUserId());
+			model.addAttribute("user", "0");
+		}else {
+			model.addAttribute("user", "1");
+		}
 		
 		Monologue monologue=monologueService.getMonologue(monologueId);
 		
@@ -242,31 +253,31 @@ public class MonologueController {
 		
 		System.out.println("deleteMonologue에서 userId 확인이니이이이잉 :::"+user);
 		
-	    List<Monologue> monologueList=monologueService.getMonologueList(user.getUserId());
+	    List<Monologue> monologueList02=monologueService.getMonologueList(user.getUserId());
 		
-		model.addAttribute("monologueList", monologueList);
+		model.addAttribute("monologueList", monologueList02);
 		
-		System.out.println("monologueController deleteMonologue  ::  "+monologueList);
-		
-		return "monologue/deleteMonologue";
-	}
-
-	@PostMapping("deleteMonologue")
-	public String deleteMonologue(@RequestParam("monologueId") int monologueId, Model model, HttpSession session) throws Exception{
-		System.out.println("deleteMonologue PostMapping 시작 합니다잉~~");
-		
-		monologueService.deleteMonologue(monologueId);
-		
-		System.out.println("deleteMonologue monologueId 확인 ::::  "+monologueId);
-		
-	    List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("user")).toString());
-		
-		model.addAttribute("monologueList", monologueList);
-		
-		System.out.println("monologueController deleteMonologue  ::  "+monologueList);
+		System.out.println("monologueController deleteMonologue  ::  "+monologueList02);
 		
 		return "monologue/getMonologueList";
 	}
+
+//	@PostMapping("deleteMonologue")
+//	public String deleteMonologue(@RequestParam("monologueId") int monologueId, Model model, HttpSession session) throws Exception{
+//		System.out.println("deleteMonologue PostMapping 시작 합니다잉~~");
+//		
+//		monologueService.deleteMonologue(monologueId);
+//		
+//		System.out.println("deleteMonologue monologueId 확인 ::::  "+monologueId);
+//		
+//	    List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("user")).toString());
+//		
+//		model.addAttribute("monologueList", monologueList);
+//		
+//		System.out.println("monologueController deleteMonologue  ::  "+monologueList);
+//		
+//		return "monologue/getMonologueList";
+//	}
 
 	
 	@GetMapping("updateMonologue")

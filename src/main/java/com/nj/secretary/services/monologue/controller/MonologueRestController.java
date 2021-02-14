@@ -224,4 +224,21 @@ public class MonologueRestController {
 		return monologueList;
 		
 	}
+    
+    @PostMapping("deleteMonologue")
+	public String deleteMonologue(@RequestParam("monologueId") int monologueId, Model model, HttpSession session) throws Exception{
+		System.out.println("deleteMonologue PostMapping 시작 합니다잉~~");
+		
+		monologueService.deleteMonologue(monologueId);
+		
+		System.out.println("deleteMonologue monologueId 확인 ::::  "+monologueId);
+		
+	  //  List<Monologue> monologueList=monologueService.getMonologueList((session.getAttribute("user")).toString());
+		
+		//model.addAttribute("monologueList", monologueList);
+		
+		//System.out.println("monologueController deleteMonologue  ::  "+monologueList);
+		
+		return "monologue/getMonologueList";
+	}
 }

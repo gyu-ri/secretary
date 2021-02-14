@@ -75,7 +75,7 @@ $("#getMonologueList").click(function(){
                    console.log(item);
                    $(".monologueList").append(
                    		"<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                   		"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;font-size:15px; height:20px; color:black;\">"+
+                   		"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;\">"+
                    		item.questionText+
                    		"</div>"+
                    		"</div>"
@@ -110,7 +110,7 @@ $("#getOthersMonologueList").on("click", function () {
                 console.log(item);
                 $(".otherList").append(
                 		"<div name=\"listSet\" >"+
-                		"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;font-size:15px; height:20px; color:black;\">"+
+                		"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;\">"+
                 		item.questionText+
                 		"</div>"+
                 		"</div>"
@@ -137,21 +137,23 @@ $("#deleteMonologue").click(function(){
             document.getElementById('thirdTab').setAttribute('class', 'active');
             $.each(list,function(i,item){
                    console.log(item);
-                   $(".monologueList").append(
+                   $(".deleteList").append(
                    		"<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
                    		/*"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;font-size:15px; height:20px; color:black;\">"+*/
                    		"<label>"+
                    		item.questionText+
-                   		"<input type=\"checkbox\" name=\"delete\">"+
+                   		"<input type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
                    		"</label>"+
                    		
                    		/*"</div>"+*/
                    		"</div>"
                    )
             })
-            $(".monologueList").append(
-            "<input type=\"submit\" name=\"deleteMonologue\" value=\"삭제하기\">"
-            )
+/*            $(".deleteList").append(
+            "<input type=\"button\" value=\"삭제하기\" name=\"delete\">"
+            		)*/
+        
+            
         }
 })
 })
@@ -162,3 +164,26 @@ $("#deleteMonologue").click(function(){
 function getMonologue(monologueId,questionId){
     location.href= "/monologue/getMonologue?monologueId="+monologueId+'&questionId='+questionId;
 }
+
+
+$(function (){
+
+$("#deleteList").on("click",function(){
+ if($("input:checkbox[name='delete']:checked").length==0){
+	 alert("선택된 게시물이 없습니다.")
+ }else{
+	 alert($("#monologueId").val());
+	 $.ajax({
+	        url : "/restMonologue/deleteMonologue",
+	        type : "POST",
+	        data : {monologueId : $("#monologueId").val()},
+	        contentType: "application/json",
+	        success: function (response){
+	        	alert(response);
+	        }
+	        	
+	
+	        });
+	 }
+	})
+});

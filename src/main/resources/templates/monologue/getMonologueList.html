@@ -92,31 +92,31 @@
 				
 		 		<div class="otherList">
 					<div name="listSet" class="col-md-4 col-lg-3 item" th:each="monologue : ${otherMonologueList}" >
-						                           <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left;" hidden/>
-						<div th:text="${monologue.questionText}" th:onclick="getMonologue([[${monologue.monologueId}]],[[${monologue.questionId}]])" style="cursor:pointer;">
+						<!-- <div th:text="${monologue.questionText}" th:onclick="getMonologue([[${monologue.monologueId}]],[[${monologue.questionId}]])" style="cursor:pointer;"> -->
 						<input type="hidden" th:value=${monologue.questionId} name="questionId"/>
 						<br>
 						</div>
 					</div>
-				</div> 
 				
-				<div class="deleteList">
-					<div name="listSet" class="col-md-4 col-lg-3 item" th:each="monologue : ${otherMonologueList}" >
-						                           <input type="checkbox" class="deleteActive" name="deleteActive" id="deleteActive" th:value="${diary.diaryId}" style=";float: left;" hidden/>
-						<div th:text="${monologue.questionText}" th:onclick="getMonologue([[${monologue.monologueId}]],[[${monologue.questionId}]])" style="cursor:pointer;">
-						<input type="hidden" th:value=${monologue.questionId} name="questionId"/>
+				
+					<div class="deleteList">
+					<div name="listSet" class="col-md-4 col-lg-3 item" th:each="monologue02 : ${monologueList02}" >
+						<!-- <div th:text="${monologue02.questionText}" style="cursor:pointer;"> -->
+						<input type="hidden" th:value=${monologue02.questionId} name="questionId"/>
+						<input type="hidden" th:value=${monologue02.monologueId} name="monologueId"/>
 						<br>
-						</div>
+					</div>
 					</div>
 				</div> 
-				
-				
-			</div>
+			</div> 
 		</div>
 		<input type="hidden" th:value=${user.userId} id="userId"/>
 		
 		
 </form>
+
+
+<input type="submit" id="deleteList" value="삭제하기">
 
 
 <input type="checkbox" id="menuToggler" class="input-toggler" />
