@@ -46,6 +46,21 @@ img{
     display: none;
 }
 
+#kakaoContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 30%;
+    height: 40%;
+    border-radius: 5px;
+    background: rgba(3,3,3,0.25);
+    box-shadow: 1px 1px 50px #000;
+    display: none;
+}
+
 .close-btn{
     position: absolute;
     cursor: pointer;
@@ -76,7 +91,7 @@ img{
 
 /* Heading */
 h2{
-    font-family: 'Noto Sans TC', sans-serif;
+    font-family: 'MapoGoldenPier';
     position: relative;
     margin-top: 5px;
     text-align: center;

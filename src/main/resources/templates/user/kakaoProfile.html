@@ -11,6 +11,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href='../../css/main/menu.css' />
     <script src="../../js/main/menu.js"></script>
+    <script src="../../js/main/main.js"></script>
     <title>My Profile</title>
 
 
@@ -50,22 +51,33 @@
 </head>
 
 <body>
-<div id="container" style="display: block; transform: matrix(1,0,0,1,0,0); left: 0px;">
-    <h2> My Profile</h2>
+<p id = "status"></p>
+<a id = "map-link" target="_blank"></a>
+
+<div class="weathers" style="float: right; font-size: 20px;">
+    <span id="location"><img src="../../images/weather/plane.png" style="width: 20px; height: 20px; margin-right: 10px;"></span>
+    <img src="" id="img" width="20" height="20" />
+    <span id="temparature"></span>
+    <span id="tempIcon">   &#8451;</span> &nbsp;
+</div>
+<br>
+
+<div id="kakaoContainer" style="display: block; transform: matrix(1,0,0,1,0,0); left: 0px;">
+    <br>
+    <h2> 내 정보 보기 </h2>
 
     <form action="updateUserView" method="post" id="updateUser">
 
         <div class="profile">
             이름 : <span th:text = "${user.userName}" name="userName" /></br>
             닉네임 : <span th:text = "${user.nickname}" name="nickname"/></br>
-            이메일 : <span th:text = "${user.email}" name="email" /></br>
             좌우명 : <span th:text = "${user.motto}" name="motto" /></br>
         </div>
 
 
     </form>
 
-    <input type="button" id="changeUser" value="☆내정보수정☆">
+    <input type="button" id="changeUser" value="내 정보 수정">
 
 </div>
 
@@ -73,7 +85,6 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
-            <p>이메일을 입력해주세요</p>
             <input type="email" class="input-lg form-control"
                    name="email" id="email" placeholder="이메일을 입력해주세요" autocomplete="off" required>
             <div class="password-modal-footer">
@@ -96,7 +107,7 @@
         <li class="menu__item"><a class="menu__link" href="/user/getUser">Profile</a></li>
         <li class="menu__item"><a class="menu__link" href="/diary/getDiaryList">Diary</a></li>
         <li class="menu__item"><a class="menu__link" href="/calendar/mainCalendar">Calendar</a></li>
-        <li class="menu__item"><a class="menu__link" href="#Contact">Monologue</a></li>
+        <li class="menu__item"><a class="menu__link" href="/monologue/getMonologueList">Monologue</a></li>
         <li class="menu__item"><a class="menu__link" href="/user/logout">Logout</a></li>
     </ul>
 
