@@ -215,7 +215,7 @@ a:hover{
 }
 
 #changeUser:hover{
-    background-color: rgb(125, 138, 172);;
+    background-color: rgba(0,0,0,0.6);
     transition: 1s;
 }
 

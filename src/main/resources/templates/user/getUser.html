@@ -64,16 +64,31 @@ $("#changeUser").on("click",function(){
 <br>
 
 	<h2> 내 정보 보기</h2>
+	<span class="close-btn" id="close-btn"  onclick="back()">
+        <img src="https://cdn4.iconfinder.com/data/icons/miu/22/circle_close_delete_-128.png"/>
+    </span>
 
 <form action="updateUserView" method="post" id="updateUser">
 
-<div class="profile">
-이름 : <span th:text = "${user.userName}" name="userName" /></br>
-닉네임 : <span th:text = "${user.nickname}" name="nickname"/></br>
-이메일 : <span th:text = "${user.email}" name="email" /></br>
-아이디 : <span th:text = "${user.userId}" name="userId"/></br>
-좌우명 : <span th:text = "${user.motto}" name="motto" /></br>
-</div>
+<table class="profile">
+	<tbody>
+	<tr>
+		<th>이름</th> <th><span th:text = "${user.userName}" name="userName" /></br></th>
+	</tr>
+	<tr>
+		<th>닉네임</th> <th><span th:text = "${user.nickname}" name="nickname"/></br></th>
+	</tr>
+	<tr>
+		<th>이메일</th> <th><span th:text = "${user.email}" name="email" /></br></th>
+	</tr>
+	<tr>
+		<th>아이디</th> <th><span th:text = "${user.userId}" name="userId"/></br></th>
+	</tr>
+	<tr>
+		<th>좌우명</th> <th><span th:text = "${user.motto}" name="motto" /></br></th>
+	</tr>
+	</tbody>
+</table>
 
 
 </form>
