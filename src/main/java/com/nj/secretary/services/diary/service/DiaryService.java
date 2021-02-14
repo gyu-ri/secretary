@@ -49,6 +49,8 @@ public interface DiaryService {
 
     public int addLike(Diary diary);
 
+    public int deleteTag(int diaryId);
+
 
 
 

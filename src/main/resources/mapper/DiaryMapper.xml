@@ -69,8 +69,8 @@
     </update>
 
     <select id="getDiary" parameterType="integer" resultType="com.nj.secretary.services.diary.domain.Diary">
-        SELECT * FROM DIARY
-        WHERE DIARY_ID=${diaryNo}
+        SELECT d.DIARY_TITLE,d.DIARY_ID,d.LOCATION,d.WEATHER,d.DIARY_DATE,a.IMAGE_NAME,d.DIARY_TEXT,e.emotion_img, d.SHARE_STATUS FROM DIARY d, IMAGE a, EMOTIONS e
+        WHERE d.DIARY_ID=${diaryNo} and d.DIARY_ID = a.DIARY_ID(+) and d.emotion_id = e.emotion_id
     </select>
 
     <update id="updateDiary" parameterType="com.nj.secretary.services.diary.domain.Diary">
@@ -178,6 +178,11 @@
         FROM LIKES
         WHERE DIARY_ID = #{diaryId} and LIKER_ID = #{userId}
     </select>
+
+    <delete id="deleteTag" parameterType="integer">
+        DELETE FROM ATTACHFILE
+        WHERE DIARY_ID = #{diaryId}
+    </delete>
 
 
 
