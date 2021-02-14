@@ -14,15 +14,19 @@
 
 	<style>
 
+		html {
+			overflow: auto;
+		}
+
 		#container{
 			position: relative;
 			top: 0;
 			left: 0;
 			right: 0;
 			bottom: 0;
-			margin: 10% 33% 10%;
+			margin: 5% 33% 10%;
 			width: 600px;
-			height:660px;
+			height:700px;
 			border-radius: 5px;
 			background: rgba(3, 3, 3, 0.25);
 			box-shadow: 1px 1px 50px #000;
@@ -144,6 +148,72 @@
 		#mainText{
 			padding-bottom: 5%;
 		}
+
+		.modal{
+			font-family: 'MapoGoldenPier';
+		}
+
+		.modal p{
+			color: black;
+			text-align: center;
+			font-size: 30px;
+			margin-top: 20px;
+			margin-bottom: 50px;
+		}
+
+		.modal input{
+			margin-left: 0px;
+			color: rgba(0,0,0,0.9);
+			box-sizing: border-box;
+		}
+
+		.modal input::placeholder{
+			color: rgba(0,0,0,0.5);
+		}
+
+		.modal .password-modal-footer{
+			margin-bottom: 20px;
+		}
+
+		.modal .modal-content{
+			text-align: center;
+		}
+
+		.modal a{
+			color: rgba(0,0,0,0.5);
+			text-underline: none;
+			transition: 1s;
+		}
+		.modal a:hover{
+			color: black;
+			text-underline: black;
+			transition: 1s;
+		}
+
+		.modal button{
+			background-color: transparent;
+			border: 1px solid #ccc;
+			color: rgba(0,0,0,0.5);
+			text-underline: none;
+			transition: 1s;
+		}
+
+		.modal button:hover{
+			background-color: rgba(0,0,0,0.6);
+			border: 1px solid rgba(0,0,0,0.6);
+			color: white;
+			text-underline: black;
+			transition: 1s;
+		}
+
+		.modal #password-modal-open{
+			color: rgba(0,0,0,0.5);
+		}
+		.modal #password-modal-open:hover{
+			background-color: rgba(0,0,0,0.6);
+			color: white;
+		}
+
 	</style>
      
 <script>
@@ -229,8 +299,11 @@ function back(){
 	<div class="modal-content">
 	
 	<p>비밀번호를 입력해주세요</p>
-	<input type="password" class="input-lg form-control" th:value=${password} 
-			name="password" id="password01" placeholder="새 비밀번호를 입력해주세요" autocomplete="off" required>
+	<input type="password" class="input-lg form-control"
+			name="password" id="password01" placeholder="새 비밀번호를 입력해주세요" minlength="6"
+		   maxlength="12" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@#!%*?&])[A-Za-z\d$@#!%*?&]{6,12}"
+		   title="비밀번호 6자~12자 대소문자,숫자,특수기호 조합"
+		   autocomplete="off" required>
 	<input type="password" class="input-lg form-control" onkeyup="pwdCheck()" id="password02"
 			placeholder="비밀번호를 재입력해주세요" autocomplete="off" required>
 	     <div class="row">
@@ -253,7 +326,6 @@ function back(){
 
 </form>
 
-<!-- <a href="./withdrawal">회원탈퇴</a> -->
 </div>
 
 <input type="checkbox" id="menuToggler" class="input-toggler" />
