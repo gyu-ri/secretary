@@ -87,6 +87,12 @@
         VALUES(image_seq.nextval, diary_seq.currval, #{fileName})
     </insert>
 
+    <update id="updateImage" parameterType="com.nj.secretary.services.diary.domain.Diary">
+        update IMAGE set IMAGE_NAME=#{fileName}
+        where DIARY_ID = #{diaryId}
+    </update>
+
+
     <select id="getTagDiaryList" parameterType="String" resultMap="diaryServiceMap">
         SELECT
             DISTINCT a.file_name AS file_name
@@ -178,6 +184,20 @@
 
     <delete id="deleteTag" parameterType="integer">
         DELETE FROM ATTACHFILE
+        WHERE DIARY_ID = #{diaryId}
+    </delete>
+
+    <select id="isThumb" parameterType="integer" resultType="integer">
+        SELECT COUNT(DIARY_ID) from IMAGE WHERE DIARY_ID = ${value}
+    </select>
+
+    <insert id="addThumb" parameterType="com.nj.secretary.services.diary.domain.Diary">
+        INSERT INTO IMAGE(IMAGE_ID, DIARY_ID, IMAGE_NAME)
+        VALUES(image_seq.nextval, #{diaryId}, #{fileName})
+    </insert>
+
+    <delete id="deleteThumb" parameterType="integer">
+        DELETE FROM IMAGE
         WHERE DIARY_ID = #{diaryId}
     </delete>
 
