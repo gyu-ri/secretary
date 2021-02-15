@@ -403,7 +403,6 @@ li.active a, li.active a:hover {
     font-family: 'MapoGoldenPier';
     color: #314e52;
     font-size: 20px;
-
     transition: 1s;
 }
 
@@ -417,6 +416,10 @@ li.active a, li.active a:hover {
     font-family: 'MapoGoldenPier';
     color: #314e52;
     font-size: 20px;
+}
+input[radio]:checked{
+    color: lightslategray;
+    text-decoration: line-through;
 }
 
 #deleteList{
@@ -436,3 +439,4 @@ li.active a, li.active a:hover {
     color: white;
     transition: 1s;
 }
+

@@ -140,7 +140,7 @@ $("#deleteMonologue").click(function(){
 
                    		"<label class='mList' name=\"deleteQuestion\">"+
                    		item.questionText+
-                   		"<input class='mList' type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
+                   		"<input class='mList' type=\"radio\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
                    		"</label>"+
                    		
                    		/*"</div>"+*/
@@ -175,14 +175,14 @@ function getMonologue(monologueId,questionId){
 $(function deleteMonologue(){
 
 $("#deleteList").on("click",function(){
- if($("input:checkbox[name='delete']:checked").length==0){
+ if($("input:radio[name='delete']:checked").length==0){
 	 alert("선택된 게시물이 없습니다.")
  }else{
 //	 alert($("input:checkbox[id='monologueId']:checked").val());
 	 $.ajax({
 	        url : "/restMonologue/deleteMonologue01",
 	        type : "get",
-	        data : {monologueId : $("input:checkbox[id='monologueId']:checked").val()},
+	        data : {monologueId : $("input:radio[id='monologueId']:checked").val()},
 	        contentType: "application/json",
 	        success: function (response){
 	        	alert(response);
@@ -205,9 +205,8 @@ $("#deleteList").on("click",function(){
 	                           		"<div  name=\"listSet\" class='col-md-4 col-lg-3 item monoList'>"+
 	                           		"<label class='mList' name=\"deleteQuestion\">"+
 	                           		item.questionText+
-	                           		"<input class='mList' type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
+	                           		"<input class='mList' type=\"radio\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
 	                           		"</label>"+
-	                           		
 	                           		/*"</div>"+*/
 	                           		"</div>"
 	                         )
