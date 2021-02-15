@@ -217,14 +217,16 @@ $(function (){
 	})
 })
 
-
-function button(){
-			const user="${user}";
-		   if(user=='0'){
-			   $("#reportModal").remove();
-		   }
-}
-	   
+//
+//function button(){
+//			const user="${user}";
+//		   if(user=='0'){
+//			   $("#reportModal").remove();
+//		   }else(user=='1'){
+//			   $("#modifyMonologue").remove();
+//		   }
+//}
+//	   
 
 
 

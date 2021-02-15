@@ -24,7 +24,10 @@ $("#changeUser").on("click",function(){
 	})
 
  $("#sendPwdCheck").on("click",function(e){
-
+	 const check={
+			 pwdCheck : $("#pwdCheck01")	 
+	 }
+	 alert(JSON.stringify(check));
                 	let text = {
                         	password : $("#password").val(),
                         	userId : $("span[name='userId']").val()
@@ -36,10 +39,24 @@ $("#changeUser").on("click",function(){
                         contentType: "application/json",
                         success: function (response){
                             alert(response);
-                        }
+                            if(check==0){
+                                  	$("#updateUser").submit();
+                                  }else{
+                                  	location.href="getUser";
+                                  }
+           
+                            	
+                            }
+                       
                     });
-                    $("#updateUser").submit();
-                    //location.href="updateUser";
+                    
+                  //  if(check==0){
+                  //  	$("#updateUser").submit();
+                  //  }else{
+                   // 	location.href="getUser";
+                   // }
+                    //$("#updateUser").submit();
+                    //location.href="getUser";
 
             })
     
