@@ -68,7 +68,7 @@ $(function() {
             contentType: "application/json",
             success: function (response) {
                 alert(response);
-                if (response=="0"){
+                if (response==="0"){
                     $('.check_info').append("<div id='message'>회원정보가 일치하지 않습니다.</div>")
                     $('.check_info').css("color", "#ae0f11")
                     $('#sendEmail').preventDefault();
@@ -78,8 +78,6 @@ $(function() {
                 }
             }, error: function () {
                 console.log("실패실패");
-                alert(response);
-
             }
         })
 
@@ -104,7 +102,7 @@ $(function() {
             contentType: "application/json",
             success: function (response) {
                 alert(response);
-                if (response=="0"){
+                if (response==="0"){
                     $('.check_info').append("<div id='message'>회원정보가 일치하지 않습니다.</div>")
                     $('.check_info').css("color", "#ae0f11")
                     $('#sendEmail').preventDefault();
