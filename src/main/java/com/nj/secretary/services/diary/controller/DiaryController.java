@@ -175,7 +175,7 @@ public class DiaryController {
         }
         System.out.println(diaryService.getDiary(diaryNo));
         model.addAttribute("diary",diaryService.getDiary(diaryNo));
-        model.addAttribute("role", "admin");
+        model.addAttribute("role", user.getRoles());
         return "diary/getDiary";
     }
 
@@ -244,6 +244,29 @@ public class DiaryController {
         model.addAttribute("monoList", monoList);
 
         return "diary/adminPost";
+    }
+
+    @PostMapping("deleteDiary")
+    public String deleteDiary(int diaryId, Model model,HttpSession session){
+        System.out.println(diaryId);
+        int delete = diaryService.deleteDiary(diaryId);
+        int deleteTag = diaryService.deleteTag(diaryId);
+        if(session.getAttribute("user")==null){
+            return "user/login";
+        }
+        System.out.println("listDiary start in controller");
+
+
+        User user = (User)session.getAttribute("user");
+        System.out.println(user);
+        List<Diary> list = diaryService.getDiaryList(user.getUserId());
+        System.out.println("list : " + list);
+        model.addAttribute("list", list);
+        model.addAttribute("user",user);
+        System.out.println("listDiary controller 완료");
+
+        return "diary/getDiaryList";
+
     }
 
 
