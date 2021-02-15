@@ -133,7 +133,7 @@
                     };
                     $.ajax({
                         url : "/restUser/withdrawal",
-                        type : "get",
+                        type : "Post",
                         data :JSON.stringify(password),
                         contentType: "application/json",
                         success: function (response){
