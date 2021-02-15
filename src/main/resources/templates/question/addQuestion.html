@@ -10,31 +10,35 @@
 
 
     <style type="text/css">
+        @font-face {
+            font-family: 'MapoGoldenPier';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
         body{
             width: 100%;
             height: 100%;
-            background-image:url("https://source.unsplash.com/1920x1080/?nature");
-            background-size: cover;
+            background-color: #dbdbdb;
             text-align: center;
         }
 
 
         #title{
-            font-family: 'Stylish', sans-serif;
+            font-family: 'MapoGoldenPier';
             font-size: 80px;
             margin-top: 10%;
-            color: #53d2ee;
-            text-shadow: 1px 1px white;
+            color: #314e52;
         }
 
         #text{
-            font-family: 'Stylish', sans-serif;
+            font-family: 'MapoGoldenPier';
             font-size: 40px;
             padding-top: 5%;
             padding-bottom: 5%;
             margin: 5% 20% 5%;
-            color: whitesmoke;
-            text-shadow: 1px 1px black;
+            color: #314e52;
             background-color: rgba(255, 255, 255, 0.4);
         }
 
@@ -47,28 +51,40 @@
             height: 40px;
         }
 
-        #save{
-            font-family: 'Stylish', sans-serif;
+        #save, #back{
+            font-family: 'MapoGoldenPier';
             background-color: transparent;
-            border: 1px solid;
+            border: none;
+            cursor: pointer;
             border-radius: 3px;
-            color: whitesmoke;
+            color: #314e52;
             padding: 15px 40px 15px;
             font-size: 20px;
-            text-shadow: 1px 1px black;
             margin-bottom: 5%;
+            width: 70px;
+            margin-left: 70px;
+        }
+
+        #btn{
+            text-align: center;
         }
 
     </style>
+    <script>
+        function back(){
+            history.go(-1);
+        }
+    </script>
 </head>
 <body>
 <div>
     <form action="addQuestion" method="post">
         <div id="title">1문 추가</div>
         <div id="text">
-            <span>question</span> <input type="text" name="questionText"> </br>
+            <span>question</span> <input type="text" name="questionText" required> </br>
         </div>
-        <input id="save" type="submit" value="저장">
+        <div id="btn"><input id="save" type="submit" value="저장"><a type="text" id="back" onclick="back()">뒤로</a></div>
+
     </form>
 </div>
 </body>

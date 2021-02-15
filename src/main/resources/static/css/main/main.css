@@ -156,11 +156,27 @@ body{
 }
 
 .content{
-    font-family: 'MapoGoldenPier';
+
     color: white;
 }
 
 #welcomeText{
+    font-family: 'MapoGoldenPier';
     position: absolute;
-    top:50%;
+    top:40%;
+    text-align: center;
+}
+.profile{
+    width: 100%;
+}
+
+.profile tbody, .profile tr{
+    width: 100%;
+}
+
+.profile th{
+    width: 30%;
+    padding-left: 10%;
+    padding-bottom: 5%;
+    font-weight: normal;
 }
