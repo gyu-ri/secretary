@@ -88,7 +88,6 @@ function emailCheck(){
 
 
 function checkCertificationNo() {
-    alert("인증번호 맞는지 확인할게욥")
 
     let checkKey = $('#check').val();
     if (checkKey == ""){

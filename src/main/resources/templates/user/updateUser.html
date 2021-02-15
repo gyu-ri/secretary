@@ -162,7 +162,8 @@
 		}
 
 		.modal input{
-			margin-left: 0px;
+			margin: auto;
+			width: 470px;
 			color: rgba(0,0,0,0.9);
 			box-sizing: border-box;
 		}
@@ -195,6 +196,7 @@
 			border: 1px solid #ccc;
 			color: rgba(0,0,0,0.5);
 			text-underline: none;
+			margin: auto;
 			transition: 1s;
 		}
 
@@ -306,11 +308,13 @@ function back(){
 		   autocomplete="off" required>
 	<input type="password" class="input-lg form-control" onkeyup="pwdCheck()" id="password02"
 			placeholder="비밀번호를 재입력해주세요" autocomplete="off" required>
+		<br>
 	     <div class="row">
             <div class="col-sm-12">
                 <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#2E2F34;">비밀번호 확인</span>
             </div>
         </div>
+		<br>
 	<div class="password-modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 		<button type="button" class="btn btn-primary" data-dismiss="modal" id="sendPassword">OK</button>

@@ -238,7 +238,10 @@ a:hover{
 }
 
 .modal input{
+    width: 470px;
     color: rgba(0,0,0,0.9);
+    margin: auto;
+    margin-bottom: 10px;
 }
 
 .modal input::placeholder{
