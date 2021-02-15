@@ -255,9 +255,9 @@
                 }
 
             })
-
+            const tranTarget = $("#text").text()
             $(".translate").on("click",function(){
-                let text = {text : $("#text").text(),
+                let text = {text : tranTarget,
                     source:$("#source option:selected").val(),
                     target:$("#target option:selected").val()};
                 $.ajax({
@@ -270,6 +270,9 @@
                             alert("이미 번역되었습니다.");
                         }else{
                             $(".translatedText").remove();
+                            if(JSON.parse(response).errorMessage != null){
+                                $("#text").attr('name',"");
+                            }
                             $("#text").append("<div class='translatedText'>"+JSON.parse(response).message.result.translatedText+"</div> ");
                             $("#text").attr('name',$("#target option:selected").val());
                         }
@@ -368,6 +371,7 @@
         <div id="diaryTitle" th:text="${diary.diaryTitle}"/>
         <div id="image"></div>
         <div class="text" id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
+
         <input type="hidden" name="shareStatus" th:value="${diary.shareStatus}">
 
         <div class="translateSelect">

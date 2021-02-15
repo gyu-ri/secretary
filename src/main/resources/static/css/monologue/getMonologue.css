@@ -1,58 +1,67 @@
-
+@font-face {
+    font-family: 'MapoGoldenPier';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
  body{
-            background-image: url("https://source.unsplash.com/user/senbro/likes");
-            background-repeat:no-repeat;
-            background-size: cover;
-            font-family: 'Stylish', sans-serif;
+            background-color:#dbdbdb;
+
         }
 
         h1{
             text-align: center;
             margin-top: 7%;
             font-size: 80px;
-            color: white;
-            text-shadow: 1px 1px black;
+            color: #333;
         }
 
-        .container{
-            display: grid;
-            grid-template-areas:
-                    "question question"
-                    "answer answer"
-                    "button1 button2";
-            gap: 50px;
-            align-items: stretch;
-            margin-top: 5%;
-        }
+ .container{
+     display: grid;
+     grid-template-columns: 0;
+     grid-template-rows: 1fr 4fr 1fr;
+     gap: 20px;
+     background-color: rgba(255, 255, 255, 1);
+     padding: 30px;
+     border-radius: 3px;
+     align-content: center;
+     background-color: transparent;
+     width: 80%;
+     border-top: 3px solid white;
+     border-bottom: 3px solid white;
+ }
+ #questionText{
+     font-family: 'MapoGoldenPier';
+     text-align: center;
+     font-size: 50px;
+ }
 
-        #questionText{
-            grid-area: question;
-            color: white;
-            font-size: 50px;
-            text-decoration: underline;
-            text-decoration-style: solid;
-            text-decoration-thickness: 1px;
-        }
+     .text{
+         font-size: 30px;
+         grid-column: 2/3;
+         grid-row: 2/3;
+         font-family: 'MapoGoldenPier';
+         width: 80%;
+         height: 100%;
+         margin: auto;
+         padding: 1%;
+         background-color: #ffffff;
+         background-color: rgba(255, 255, 255, 0.5)  ;
+     }
 
-        #monologueText{
-            grid-area: answer;
-            color: white;
-            font-size: 40px;
-            border: 1px solid white;
-            border-radius: 3px;
-            height: 200px;
-        }
+     .text:after{
+         font-family: 'MapoGoldenPier';
+         content: '';
+         display: block;
+         clear: both;
+         height: 0;
+         visibility: hidden;
+     }
 
-        #modifyMonologue{
-            grid-area: button1;
-            color: white;
-            font-size: 25px;
-            display: block;
-            border: none;
-            width: 30%;
-            background-color: transparent;
-            margin-left: 75%;
-        }
+     .translateSelect{
+         text-align: center;
+     }
+
 
         #reportModal{
             grid-area: button2;

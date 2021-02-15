@@ -339,7 +339,7 @@ $(function(){
         };
         if (event.keyCode === 13){
             if (!event.shiftKey){
-                alert("enter");
+                // alert("enter");
                 console.log(monologue);
                 event.preventDefault();
                 $.ajax({
@@ -366,5 +366,9 @@ $(function(){
 
     });
 })
+
+function back(){
+    history.go(-1);
+}
 
 
