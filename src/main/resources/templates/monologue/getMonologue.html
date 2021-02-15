@@ -19,21 +19,21 @@
     <script src="../../js/main/main.js"></script>
 
 
-
-</head>
-
-<!--  <script th:inline="javascript">
-${function(){
-	   var user ="${user}";
-	   
-	   if(user=='0'){
-		   $("#reportModal").remove();
-	   }else(user=='1'){
-		   $("#modifyMonologue").remove();
+   <script>
+   
+$(function(){
+	   var check =[[${user}]];
+	   if(check=='0'){
+		   $("#modifyMonologue").show();
+	   }else if(check=='1'){
+		   $("#reportModal").show();
 	   }
    });
    </script>
- -->
+
+</head>
+
+
 
 <script>
  $(function(){
@@ -149,11 +149,10 @@ ${function(){
                 <option value="zh-TW">중국어-번체</option>
             </select> &#10145;
 
-        <span id="questionText" th:text="${monologue.questionText}"/>
-        <h2 id="monologueText" th:text="${monologue.monologueText}"/>
+ <!--        <span id="questionText" th:text="${monologue.questionText}"/>
+        <h2 id="monologueText" th:text="${monologue.monologueText}"/> -->
 
 
-        <input type="submit" id="modifyMonologue"  value="&#128214; 수정">
 
             <select id="target">
                 <option value="ko">한국어</option>
@@ -163,15 +162,15 @@ ${function(){
                 <option value="zh-TW">중국어-번체</option>
             </select>
             <img class="translate" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
+       <br>  <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정">
         </div>
-        <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정">
+         <!-- <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정"> -->
     </div>
 
 </form>
 
 
-        <button type="button" id="reportModal" >&#128680; 신고하기</button>
-        <button type="button" id="reportModal" style="display:none;">&#128680; 신고하기</button>
+        <button type="button" id="reportModal" style="display:none;" >&#128680; 신고하기</button>
 
 
 <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">

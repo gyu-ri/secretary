@@ -132,7 +132,7 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
 .tab-links{
 	font-family: 'MapoGoldenPier';
     width: 100%;
-    height: 40px;
+    height: 43px;
     display: block;
     margin: 0;
     padding: 0;
@@ -141,7 +141,7 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
 .tab-links li {
 	font-family: 'MapoGoldenPier';
     width: 33.3%;
-    height: 45%;
+    height: 43%;
     margin:0px 0px;
     float: left;
     align-content: center;

@@ -25,10 +25,6 @@ $("#changeUser").on("click",function(){
 	})
 
  $("#sendPwdCheck").on("click",function(e){
-	 const check={
-			 pwdCheck : $("#pwdCheck01")	 
-	 }
-	 alert(JSON.stringify(check));
                 	let text = {
                         	password : $("#password").val(),
                         	userId : $("span[name='userId']").val()
@@ -38,31 +34,14 @@ $("#changeUser").on("click",function(){
                         type : "POST",
                         data :JSON.stringify(text),
                         contentType: "application/json",
-                        success: function (response){
-                            alert(response);
+                        success: function (check){
                             if(check==0){
                                   	$("#updateUser").submit();
                                   }else{
-                                  	location.href="getUser";
+                            	alert("비밀번호가 일치하지 않습니다.")
                                   }
-           
-                            	
                             }
-                       
                     });
-
-                    
-                  //  if(check==0){
-                  //  	$("#updateUser").submit();
-                  //  }else{
-                   // 	location.href="getUser";
-                   // }
-                    //$("#updateUser").submit();
-                    //location.href="getUser";
-
-                    $("#updateUser").submit();
-
-
             })
     
         });
