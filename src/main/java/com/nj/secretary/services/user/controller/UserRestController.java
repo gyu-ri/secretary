@@ -124,6 +124,7 @@ public class UserRestController {
         	//model.addAttribute("user", "1");
         	return 1;
         }
+        //진행중~~
      
 //        System.out.println("findPwd restController"+email);
     	//userService.findUserPwd(userName);
