@@ -300,8 +300,10 @@ public class MonologueController {
 		
 		monologue.getShareStatus();
 		System.out.println(monologue);
-		if(monologue.getShareStatus().trim().equals("0,1")) {
+		if(monologue.getShareStatus().trim().equals("0,1")||monologue.getShareStatus().trim().equals("1,1")) {
 			monologue.setShareStatus("1");
+		}else{
+			monologue.setShareStatus("0");
 		}
 		
 		monologueService.updateMonologue(monologue);
