@@ -13,7 +13,7 @@
 	<script src="../../js/main/main.js"></script>
 	<script src="../../js/main/menu.js"></script>
 	<script src="https://use.fontawesome.com/b51c131c86.js"></script>
-
+	<link rel="shortcut icon" href="../../images/icon/favicon.ico" type="image/x-icon">
 
 	<title>My Profile</title>
  
@@ -25,7 +25,6 @@ $("#changeUser").on("click",function(){
 	})
 
  $("#sendPwdCheck").on("click",function(e){
-
                 	let text = {
                         	password : $("#password").val(),
                         	userId : $("span[name='userId']").val()
@@ -35,12 +34,14 @@ $("#changeUser").on("click",function(){
                         type : "POST",
                         data :JSON.stringify(text),
                         contentType: "application/json",
-                        success: function (response){
-                            alert(response);
-                        }
+                        success: function (check){
+                            if(check==0){
+                                  	$("#updateUser").submit();
+                                  }else{
+                            	alert("비밀번호가 일치하지 않습니다.")
+                                  }
+                            }
                     });
-                    $("#updateUser").submit();
-
             })
     
         });

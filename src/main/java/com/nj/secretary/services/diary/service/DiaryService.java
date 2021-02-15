@@ -51,6 +51,14 @@ public interface DiaryService {
 
     public int deleteTag(int diaryId);
 
+    public void updateImage(Diary diary);
+
+    public void addThumb(Diary diary);
+
+    public int isThumb(int diaryId);
+
+    public void deleteThumb(int diaryId);
+
 
 
 
