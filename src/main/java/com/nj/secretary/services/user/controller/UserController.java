@@ -198,6 +198,39 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session) throws Exception {
+        if(session.getAttribute("accessToken") !=null){
+            String reqURL = "https://kapi.kakao.com/v1/user/unlink";
+            String access_Token = (String) session.getAttribute("accessToken");
+            try {
+                URL url = new URL(reqURL);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+
+                //    요청에 필요한 Header에 포함될 내용
+                conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+
+                int responseCode = conn.getResponseCode();
+                System.out.println("responseCode02 : " + responseCode);
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                String line = "";
+                String result = "";
+
+                while ((line = br.readLine()) != null) {
+                    result += line;
+                }
+                System.out.println("response body : " + result);
+
+                JSONObject jsonObject = new JSONObject(result);
+                System.out.println(jsonObject);
+
+                System.out.println(jsonObject.get("id"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         session.invalidate();
         return "user/login";
     }
@@ -300,6 +333,7 @@ public class UserController {
             model.addAttribute("accessToken", jsonObject.get("access_token"));
             HashMap map = getUserInfo((String) jsonObject.get("access_token"));
             if ((int) map.get("check") == 0) {
+                session.setAttribute("accessToken",jsonObject.get("access_token"));
                 JSONObject abc = (JSONObject) map.get("userInfo");
                 JSONObject nick = (JSONObject)abc.get("kakao_account");
                 JSONObject nickname = (JSONObject) nick.get("profile");
@@ -310,6 +344,7 @@ public class UserController {
                 model.addAttribute("email",nick.get("email"));
                 return "user/kakao";
             } else {
+                session.setAttribute("accessToken",jsonObject.get("access_token"));
                 JSONObject abc = (JSONObject) map.get("userInfo");
                 User dbUser = userService.getUser(""+abc.get("id"));
                 session.setAttribute("user", dbUser);
