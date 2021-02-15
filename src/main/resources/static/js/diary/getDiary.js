@@ -161,15 +161,20 @@ document.addEventListener("DOMContentLoaded", function(){
     } else{
     // alert("user 쫌생이다! user 쫌생이가 나타났다~!!")
     }
-    if(user == '0'){
+    if(user === '0'){
         console.log(user);
         $("#like").remove();
         $("#report").remove();
         $("#delete").remove();
-    }else if(user=='1'){
+    }else if(user==='1'){
         console.log(user);
         $("#modifyDiary").remove();
         $("#delete").remove();
+    }else if(user==='2'){
+        $("#like").remove();
+        $("#report").remove();
+        $("#delete").remove();
+        $("#modifyDiary").remove();
     }
 
 });

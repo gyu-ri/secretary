@@ -62,6 +62,7 @@ public class DiaryController {
         System.out.println("다이어리 내용들 : " + diary.getDiaryTitle() + diary.getDiaryText());
 
         diaryService.addDiary(diary);
+        diary.setEmotionImg(diaryService.getEmotion(diary.getEmotionNo()));
         System.out.println("tag : " + tag_text);
         if(tag_text == null) {
             System.out.println("값이 null임");
@@ -90,9 +91,7 @@ public class DiaryController {
             System.out.println(diary.getFileName());
             diaryService.addImage(diary);
         }
-        model.addAttribute("user", "0");
-
-
+        model.addAttribute("user", "2");
 
         System.out.println("다이어리 추가 완료");
 

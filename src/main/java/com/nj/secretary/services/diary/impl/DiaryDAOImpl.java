@@ -181,6 +181,11 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
+    public String getEmotion(int emotionId) {
+        return sqlSession.selectOne("DiaryMapper.getEmotion",emotionId);
+    }
+
+    @Override
     public int isThumb(int diaryId) {
         return sqlSession.selectOne("DiaryMapper.isThum",diaryId);
     }

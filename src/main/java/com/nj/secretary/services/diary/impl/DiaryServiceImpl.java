@@ -201,4 +201,9 @@ public class DiaryServiceImpl implements DiaryService {
     public void deleteThumb(int diaryId) {
         diaryDAO.deleteThumb(diaryId);
     }
+
+    @Override
+    public String getEmotion(int emotionId) {
+        return diaryDAO.getEmotion(emotionId);
+    }
 }
