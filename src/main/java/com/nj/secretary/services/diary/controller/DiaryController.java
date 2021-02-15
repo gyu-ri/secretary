@@ -2,6 +2,9 @@ package com.nj.secretary.services.diary.controller;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.nj.secretary.services.alarm.domain.Alarm;
+import com.nj.secretary.services.alarm.service.AlarmService;
+import com.nj.secretary.services.diary.domain.AttachFile;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.service.DiaryService;
 import com.google.gson.JsonObject;
@@ -171,6 +174,9 @@ public class DiaryController {
             model.addAttribute("user", "1");
         }
         System.out.println(diaryService.getDiary(diaryNo));
+        List<AttachFile> list = diaryService.getTags(diaryNo);
+        System.out.println("tags list : " + list);
+        model.addAttribute("tagList", list);
         model.addAttribute("diary",diaryService.getDiary(diaryNo));
         model.addAttribute("role", user.getRoles());
         return "diary/getDiary";

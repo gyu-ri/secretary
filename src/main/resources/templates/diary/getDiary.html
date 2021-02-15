@@ -76,7 +76,7 @@
         .container{
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 4fr 1fr;
+            grid-template-rows: 1fr 4fr 1fr 1fr;
             gap: 20px;
             background-color: rgba(255, 255, 255, 1);
             padding: 30px;
@@ -96,17 +96,25 @@
 
         #image{
             grid-column: 1/2;
-            grid-row: 1/4;
+            grid-row: 1/5;
         }
 
         .translateSelect{
             grid-column: 2/3;
-            grid-row: 3/4;
+            grid-row: 4/5;
             display: inline-block;
             width: 500px;
             height: 50px;
             padding-top: 60px;
             padding-left: 25%;
+        }
+
+        .tags{
+            grid-column: 2/3;
+            grid-row: 3/4;
+            font-size: 15px;
+            float: left;
+            color: grey;
         }
 
         #image img{
@@ -126,8 +134,9 @@
         }
 
         #source, #target{
-            background-color: #f7f6e7;
-            border: none;
+            background-color: transparent;
+            border: 1px solid grey;
+            border-radius: 3px;
             place-items: center;
         }
 
@@ -154,7 +163,16 @@
             transition: 1s;
         }
 
+        .addInfo{
+            float: right;
+            width: 1000px;
+            text-align: right;
+            margin-right: 11%;
+        }
 
+        .addInfo img, .addInfo span{
+            margin-right: 40px;
+        }
     </style>
     <script type="text/javascript">
 
@@ -379,7 +397,11 @@
         <div id="diaryTitle" th:text="${diary.diaryTitle}"/>
         <div id="image"></div>
         <div class="text" id="text" name="0" th:utext="${diary.diaryText}">일기 내용입니다.</div>
-
+    <div class="tags">
+        <span th:each="tags : ${tagList}">
+            <span>#</span><span class="tag" th:text='${tags.fileName}'>#</span>&nbsp;&nbsp;&nbsp;
+        </span>
+    </div>
         <input type="hidden" name="shareStatus" th:value="${diary.shareStatus}">
 
         <div class="translateSelect">
@@ -412,6 +434,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <span id='back' onclick='back()'>확인</span>
     </div>
+
 
 </form>
 

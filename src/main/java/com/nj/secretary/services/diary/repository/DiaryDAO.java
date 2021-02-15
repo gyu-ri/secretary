@@ -2,6 +2,7 @@ package com.nj.secretary.services.diary.repository;
 
 import com.nj.secretary.services.calendar.domain.Calendar;
 import com.nj.secretary.services.calendar.domain.IsDiary;
+import com.nj.secretary.services.diary.domain.AttachFile;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.domain.Report;
 
@@ -51,7 +52,10 @@ public interface DiaryDAO {
 
     public int deleteTag(int diaryId);
 
+    public List<AttachFile> getTags(int diaryId);
+
     public void updateImage(Diary diary);
+
 
     public int isThumb(int diaryId);
 

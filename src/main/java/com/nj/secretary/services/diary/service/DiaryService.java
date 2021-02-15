@@ -2,6 +2,7 @@ package com.nj.secretary.services.diary.service;
 
 import com.nj.secretary.services.calendar.domain.Calendar;
 import com.nj.secretary.services.calendar.domain.IsDiary;
+import com.nj.secretary.services.diary.domain.AttachFile;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.domain.Report;
 import org.apache.ibatis.annotations.Mapper;
@@ -51,6 +52,9 @@ public interface DiaryService {
 
     public int deleteTag(int diaryId);
 
+
+    public List<AttachFile> getTags(int diaryId);
+
     public void updateImage(Diary diary);
 
     public void addThumb(Diary diary);
@@ -58,6 +62,7 @@ public interface DiaryService {
     public int isThumb(int diaryId);
 
     public void deleteThumb(int diaryId);
+
 
 
 
