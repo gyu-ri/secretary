@@ -52,7 +52,6 @@ public interface DiaryService {
 
     public int deleteTag(int diaryId);
 
-
     public List<AttachFile> getTags(int diaryId);
 
     public void updateImage(Diary diary);
@@ -63,7 +62,7 @@ public interface DiaryService {
 
     public void deleteThumb(int diaryId);
 
-
+    public String getEmotion(int emotionId);
 
 
 

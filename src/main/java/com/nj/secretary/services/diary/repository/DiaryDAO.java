@@ -56,6 +56,7 @@ public interface DiaryDAO {
 
     public void updateImage(Diary diary);
 
+    public String getEmotion(int emotionId);
 
     public int isThumb(int diaryId);
 

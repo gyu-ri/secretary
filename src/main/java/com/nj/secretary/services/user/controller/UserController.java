@@ -469,7 +469,10 @@ public class UserController {
     @PostMapping("updateUser")
     public String updateuser(@RequestParam("userId") String userId, User user, Model model,HttpSession session) throws Exception{
     	System.out.println("updateUser controller 시작 합니다");
-    	
+        User user4 = (User)session.getAttribute("user");
+    	if(user4.getKakao()==1){
+    	    user.setEmail(user4.getEmail());
+        }
     	userService.updateUser(user);
     	System.out.println("updateUser controller 시작 합니다2");
     	System.out.println("updateUser 확인::"+user);

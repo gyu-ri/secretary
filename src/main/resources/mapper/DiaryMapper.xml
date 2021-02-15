@@ -77,6 +77,11 @@
         WHERE d.DIARY_ID=${diaryNo} and d.DIARY_ID = a.DIARY_ID(+) and d.emotion_id = e.emotion_id
     </select>
 
+    <select id="getEmotion" parameterType="integer" resultType="string">
+        SELECT EMOTION_IMG FROM EMOTIONS WHERE EMOTION_ID = #{emotionId}
+    </select>
+
+
     <update id="updateDiary" parameterType="com.nj.secretary.services.diary.domain.Diary">
         update DIARY set DIARY_TITLE=#{diaryTitle}
                           ,DIARY_TEXT=#{diaryText}

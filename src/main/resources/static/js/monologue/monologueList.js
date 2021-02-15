@@ -138,9 +138,9 @@ $("#deleteMonologue").click(function(){
                    		"<div name=\"listSet\" class='col-md-4 col-lg-3 item monoList'>"+
                    		/*"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;font-size:15px; height:20px; color:black;\">"+*/
 
-                   		"<label name=\"deleteQuestion\">"+
+                   		"<label class='mList' name=\"deleteQuestion\">"+
                    		item.questionText+
-                   		"<input type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
+                   		"<input class='mList' type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
                    		"</label>"+
                    		
                    		/*"</div>"+*/
@@ -202,10 +202,10 @@ $("#deleteList").on("click",function(){
 	                    $.each(list,function(i,item){
 	                           console.log(item);
 	                           $(".deleteList").append(
-	                           		"<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-	                           		"<label name=\"deleteQuestion\">"+
+	                           		"<div  name=\"listSet\" class='col-md-4 col-lg-3 item monoList'>"+
+	                           		"<label class='mList' name=\"deleteQuestion\">"+
 	                           		item.questionText+
-	                           		"<input type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
+	                           		"<input class='mList' type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
 	                           		"</label>"+
 	                           		
 	                           		/*"</div>"+*/

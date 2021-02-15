@@ -55,20 +55,22 @@
 <!-- <input type="button" id="test" value="확인"/> -->
 
 <form method="get" action="">
-	<div id="tempIcon" style="float: right; padding-left: 10px; padding-right: 10px; font-size: 20px">   &#8451;</div> &nbsp;
-	<div id="temparature" style="float: right; padding-left: 20px; font-size: 20px"></div>
-	<img src="" id="img" width="30px" height="30px" style="float: right; font-size: 20px"/>
-	<div id="location" style="float: right; padding-left: 10px; padding-right: 20px; font-size: 20px">&#127759;          </div>
+	<div class="weathers" style="float: right; font-size: 20px;">
+		<span id="location"><img src="../../images/weather/plane.png" style="width: 20px; height: 20px; margin-right: 10px;"></span>
+		<img src="" id="img" width="20" height="20" />
+		<span id="temparature"></span>
+		<span id="tempIcon">   &#8451;</span> &nbsp;
+	</div>
 
 	<br><br>
-	<h1 class="pageTitle">Monologue</h1>
+	<h1 class="pageTitle">1문1답</h1>
 	<br><br>
 
 	<div class="tabs">
 		<ul class="tab-links">
 			<li id="fisrtTab" class="active"><a href="#tab1" id="getMonologueList" ><img src="../../images/icon/diary/calendar-icon.png" style="width: 30px; height: 30px"><span style="font-size: 20px">&nbsp;&nbsp;&nbsp;날짜순으로보기</span></a></li>
-			<li id="secondTab"><a href="#" id="getOthersMonologueList" ><img src="../../images/icon/diary/people-icon.png" style="width: 30px; height: 30px"><span style="font-size: 20px">&nbsp;&nbsp;&nbsp;공유된모노로그보기</span></a></li>
-			<li id="thirdTab"><a href="#"  id="deleteMonologue" ><img src="../../images/icon/diary/bin-icon.png" style="width: 30px; height: 30px"><span style="font-size: 20px">&nbsp;&nbsp;&nbsp;휴지통</span></a></li>
+			<li id="secondTab"><a href="#" id="getOthersMonologueList" ><img src="../../images/icon/diary/people-icon.png" style="width: 30px; height: 30px"><span style="font-size: 20px">&nbsp;&nbsp;&nbsp;공유된1문1답보기</span></a></li>
+			<li id="thirdTab"><a href="#"  id="deleteMonologue" ><img src="../../images/icon/diary/bin-icon.png" style="width: 30px; height: 30px"><span style="font-size: 20px">&nbsp;&nbsp;&nbsp;삭제하기</span></a></li>
 	</div>
 
 	<div class="text">

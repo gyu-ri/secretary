@@ -338,13 +338,18 @@
                    // "<a href='#' id='back' onclick='back()'>	확인</a>"
                )
            } else{
-               if(user == '0'){
+               if(user === '0'){
                    $("#like").remove();
                    $("#report").remove();
                    $("#delete").remove();
-               }else if(user=='1'){
+               }else if(user==='1'){
                    $("#modifyDiary").remove();
                    $("#delete").remove();
+               }else if(user==='2'){
+                   $("#like").remove();
+                   $("#report").remove();
+                   $("#delete").remove();
+                   $("#modifyDiary").remove();
                }
            }
 
@@ -374,11 +379,11 @@
 <form id="formTag" method="get" action="updateDiary">
     <p id = "status"></p>
     <a id = "map-link" target="_blank"></a>
-    <div class="weathers" style="float: right">
-        <span id="location" style="padding-left: 10px; padding-right: 20px;">&#127759;</span>
+    <div class="weathers" style="float: right; font-size: 20px;">
+        <span id="location"><img src="../../images/weather/plane.png" style="width: 20px; height: 20px; margin-right: 10px;"></span>
         <img src="" id="img" width="20" height="20" />
-        <span id="temparature" style="padding-left: 20px"></span>
-        <span id="tempIcon" style="padding-left: 10px; padding-right: 10px;">   &#8451;</span> &nbsp;
+        <span id="temparature"></span>
+        <span id="tempIcon">   &#8451;</span> &nbsp;
     </div>
 
     <br><br>

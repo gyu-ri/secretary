@@ -60,14 +60,16 @@ public class DiaryController {
         }
         System.out.println("diary : " + diary);
         System.out.println("다이어리 내용들 : " + diary.getDiaryTitle() + diary.getDiaryText());
-
         diaryService.addDiary(diary);
+        diary.setEmotionImg(diaryService.getEmotion(diary.getEmotionNo()));
         System.out.println("tag : " + tag_text);
         if(tag_text == null) {
             System.out.println("값이 null임");
         }else{
             String[] tags = tag_text.split(",");
             List<String> tagsList = new ArrayList<String>();
+            List<AttachFile> attachList = new ArrayList<AttachFile>();
+
             for (String tag : tags) {
                 if (tag.trim() == "" || tag.trim() == null || tag.trim().length() == 0) {
                 } else {
@@ -75,10 +77,17 @@ public class DiaryController {
                 }
             }
             for (String tag : tagsList) {
+                AttachFile attachFile = new AttachFile();
                 diaryService.addTag(tag);
                 System.out.println("들어가는 태그 : " + tag);
+                attachFile.setFileName(tag);
+                attachList.add(attachFile);
+                System.out.println(attachFile);
+                System.out.println(attachList);
             }
             System.out.println("tagsList : " + tagsList);
+            System.out.println(attachList);
+            model.addAttribute("tagList",attachList);
         }
 
         if(diary.getDiaryText().contains("src=")){
@@ -90,9 +99,7 @@ public class DiaryController {
             System.out.println(diary.getFileName());
             diaryService.addImage(diary);
         }
-        model.addAttribute("user", "0");
-
-
+        model.addAttribute("user", "2");
 
         System.out.println("다이어리 추가 완료");
 
