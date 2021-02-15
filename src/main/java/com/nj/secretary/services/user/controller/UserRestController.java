@@ -109,6 +109,26 @@ public class UserRestController {
         return "0";
         //return "user/emailSuccess";
     }
+    
+    @PostMapping("/findPwd")
+    public int findPwd(@RequestBody String userId,  @RequestBody String email,  User user, Model model) throws Exception {
+        System.out.println("userController findPwd 찾기 시작");
+       System.out.println("findPwd restController"+userId);
+        
+        //User user01=new User();
+        if(user.getUserId().equals(userId) && user.getEmail().equals(email)) {
+        	userService.findUserPwd(user.getUserId());
+        	//model.addAttribute("user", "0");
+        	return 0;
+        }else {
+        	//model.addAttribute("user", "1");
+        	return 1;
+        }
+     
+//        System.out.println("findPwd restController"+email);
+    	//userService.findUserPwd(userName);
+        //return "user/changePwd";
+    }
 
     //아이디 찾기 회원정보 일치여부
     @ResponseBody

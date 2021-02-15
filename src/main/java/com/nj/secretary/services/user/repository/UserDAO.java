@@ -21,7 +21,7 @@ public interface UserDAO {
     public int userInfoCheck(User user) throws Exception;
 
     //Select One : 비밀번호 찾기
-    public User findUserPwd(String userName) throws Exception;
+    public int findUserPwd(String userId) throws Exception;
 
     public int loginCheck(User user);
 
