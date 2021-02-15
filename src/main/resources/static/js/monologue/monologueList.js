@@ -135,7 +135,6 @@ $("#deleteMonologue").click(function(){
                    console.log(item);
                    $(".deleteList").append(
                    		"<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                   		/*"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;font-size:15px; height:20px; color:black;\">"+*/
                    		"<label name=\"deleteQuestion\">"+
                    		item.questionText+
                    		"<input type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
@@ -184,13 +183,37 @@ $("#deleteList").on("click",function(){
 	        contentType: "application/json",
 	        success: function (response){
 	        	alert(response);
-	        		$("p [name='questionText']").remove();
-	        	
-	        }
-	        	
-	
-	        });
-	 }
+	        		//$("#monologueList"+"input:checkbox[id='monologueId']:checked").remove();
+	        		///$("#monologueList").remove();
+	            $.ajax({
+	                url : "/restMonologue/getMonologueList",
+	                type : "GET",
+	                data :{userId:$("#userId").val()},
+	                success: function (list){
+	                    console.log(list);
+
+	                    $("div [name='listSet']").remove();
+	                    document.getElementById('fisrtTab').setAttribute('class', '');
+	                    document.getElementById('secondTab').setAttribute('class', '');
+	                    document.getElementById('thirdTab').setAttribute('class', 'active');
+	                    $.each(list,function(i,item){
+	                           console.log(item);
+	                           $(".deleteList").append(
+	                           		"<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
+	                           		"<label name=\"deleteQuestion\">"+
+	                           		item.questionText+
+	                           		"<input type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
+	                           		"</label>"+
+	                           		
+	                           		/*"</div>"+*/
+	                           		"</div>"
+	                         )
+	                    })
+	                }
+     	        })
+            }
+	    });
+	  }
 	})
 });
 

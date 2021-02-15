@@ -19,19 +19,20 @@
     <script src="../../js/main/main.js"></script>
 
 
-
-</head>
-
-<script type="text/javascript">
+   <script>
+   
 $(function(){
-	   var user = [[${user}]];
-	   if(user=='0'){
+	   var check =[[${user}]];
+	   if(check=='0'){
 		   $("#modifyMonologue").show();
-	   }else(user=='1'){
+	   }else if(check=='1'){
 		   $("#reportModal").show();
 	   }
    });
    </script>
+
+</head>
+
 
 
 <script>
@@ -121,7 +122,7 @@ $(function(){
    
 <body>
 
-<h1>모노로그 상세보기</h1>
+<h1>모노로그 보기</h1>
 
 
 <!-- <input type="text" name="questionId" th:value="${monologue.questionId}"/> -->
@@ -148,6 +149,11 @@ $(function(){
                 <option value="zh-TW">중국어-번체</option>
             </select> &#10145;
 
+ <!--        <span id="questionText" th:text="${monologue.questionText}"/>
+        <h2 id="monologueText" th:text="${monologue.monologueText}"/> -->
+
+
+
             <select id="target">
                 <option value="ko">한국어</option>
                 <option value="en">영어</option>
@@ -156,12 +162,15 @@ $(function(){
                 <option value="zh-TW">중국어-번체</option>
             </select>
             <img class="translate" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
+       <br>  <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정">
         </div>
-        <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정">
+         <!-- <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정"> -->
     </div>
 
 </form>
-        <button type="button" id="reportModal" style="display:none;">&#128680; 신고하기</button>
+
+
+        <button type="button" id="reportModal" style="display:none;" >&#128680; 신고하기</button>
 
 
 <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">
