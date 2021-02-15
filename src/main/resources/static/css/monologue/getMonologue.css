@@ -10,10 +10,11 @@
         }
 
         h1{
+            font-family: 'MapoGoldenPier';
             text-align: center;
             margin-top: 7%;
             font-size: 80px;
-            color: #333;
+            color: #314e52;
         }
 
  .container{
