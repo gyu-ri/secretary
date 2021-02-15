@@ -244,11 +244,13 @@ public class UserController {
     }
 
     @PostMapping("/findPwd")
-    public String findPwd01(String userName, @ModelAttribute User user) throws Exception {
+    public String findPwd01(String userId, @ModelAttribute User user) throws Exception {
         System.out.println("userController findPwd 찾기 시작");
         //User user01=new User();
         userService.findUserPwd(user.getUserId());
-        //if(user.getUserId().equals(anObject))
+        if(user.getUserId().equals(userId)) {
+        	
+        }
     	
     	//userService.findUserPwd(userName);
         return "user/changePwd";
