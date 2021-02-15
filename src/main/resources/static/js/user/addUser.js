@@ -88,11 +88,12 @@ function emailCheck(){
 
 
 function checkCertificationNo() {
-
     let checkKey = $('#check').val();
-    if (checkKey == ""){
+    if ($('#certificationNo').val() == ""){
         alert("인증번호를 입력해주세요")
-    }else if ($("#certificationNo").val() == checkKey) { //인증 키 값의 비교를 위해 텍스트인풋과 벨류를 비교
+    }else if(checkKey == ""){
+        alert("인증번호를 입력해주세요")
+    } else if ($("#certificationNo").val() == checkKey) { //인증 키 값의 비교를 위해 텍스트인풋과 벨류를 비교
         console.log("key" + checkKey);
         $("#certificationNo").text("인증완료").css("color", "blue");
         alert("인증이 완료되었습니다.")
