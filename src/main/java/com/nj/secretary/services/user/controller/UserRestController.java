@@ -72,7 +72,6 @@ public class UserRestController {
     @PostMapping("findId")
     public String findId(@RequestBody Map<String, Object> paramMap, User user)
             throws Exception {
-
         System.out.println(paramMap+"paramMap입니다.");
         String userName = (String) paramMap.get("userName");
         String email = (String) paramMap.get("email");
@@ -81,7 +80,7 @@ public class UserRestController {
         user.setUserName(userName);
         user.setEmail(email);
         User dbUser = userService.findUserId(user);
-        System.out.println(dbUser);
+        System.out.println("dbUser1"+dbUser);
         if (dbUser==null){
             return "0";
         }
@@ -101,8 +100,8 @@ public class UserRestController {
             } catch (MessagingException e) {
                 System.out.println("MessagingException");
                 e.printStackTrace();
-            }return "이메일 전송이 완료되었습니다.";
-        } else {
+            }return "1";
+        }else {
             System.out.println("일치하는 정보 없음");
         }
         System.out.println("일치하는 정보 없음");

@@ -9,15 +9,19 @@ function idCheck() {
         contentType: "application/json",
         success: function (data) {
             console.log("1=중복/0=중복아님" + data);
-            if (data == 1) {
+            if (data === 1) {
                 $("#idCheck").text("이미 존재하는 아이디입니다.");
                 $("#idCheck").css("color", "#ae0f11");
                 $("#submit").attr("disabled", true);
-            } else {
+            } else if(data === 0 && userId.length>=5){
                 $("#idCheck").text("사용 가능한 아이디입니다.");
                 $("#idCheck").css("color", "#0029a4");
                 $("#submit").attr("disabled", true);
+            } else if(userId === ""){
+                $("#idCheck").text("아이디를 작성해주세요.");
+                $("#idCheck").css("color", "#ae0f11");
             }
+
         }, error: function () {
             console.log("실패");
         }
@@ -27,7 +31,7 @@ function idCheck() {
 
 function emailCheck(){
     let email = $("#email").val();
-    if (email == "") {
+    if (email === "") {
         alert("메일 주소가 입력되지 않았습니다.");
     }else {
     $.ajax({
@@ -37,7 +41,7 @@ function emailCheck(){
         contentType: "application/json",
         success: function (data) {
             console.log("1=중복/0=중복아님" + data);
-            if (data == 1) {
+            if (data === 1) {
                 alert("이미 가입된 이메일입니다.")
                 $("#submit").attr("disabled", true);
             } else {
@@ -57,9 +61,7 @@ function emailCheck(){
             console.log("실패");
         }
     });
-
     }
-
 }
 
 
@@ -89,18 +91,19 @@ function emailCheck(){
 
 function checkCertificationNo() {
     let checkKey = $('#check').val();
-    if ($('#certificationNo').val() == ""){
+    let certificationNo = $('#certificationNo').val();
+    if(checkKey === "" && certificationNo=== ""){
         alert("인증번호를 입력해주세요")
-    }else if(checkKey == ""){
-        alert("인증번호를 입력해주세요")
-    } else if ($("#certificationNo").val() == checkKey) { //인증 키 값의 비교를 위해 텍스트인풋과 벨류를 비교
-        console.log("key" + checkKey);
-        $("#certificationNo").text("인증완료").css("color", "blue");
+    } else if ($("#certificationNo").val() === checkKey) { //인증 키 값의 비교를 위해 텍스트인풋과 벨류를 비교
+        // console.log("key" + checkKey);
+        isCertification = true;//인증성공여부 check
+        $("#certificationNo").css("color", "#0029a4");
+        $("#certificationNo").text("인증완료");
         alert("인증이 완료되었습니다.")
-        isCertification = true; //인증성공여부 check
     } else {
-        $("#certificationNo").text("불일치").css("color", "red");
         isCertification = false; //인증실패
+        $("#certificationNo").text("불일치");
+        $("#certificationNo").css("color", "#ae0f11");
         alert("인증이 실패했습니다.")
     }
 }
@@ -131,64 +134,7 @@ function pwdCheck(){
     }
 }
 
-/*function close(){
-    alert("먹히니 이게?");
-    TweenMax.from("#container", .4, {scale: 1, ease: Sine.easeInOut});
-    TweenMax.to("#container", .4, {left: "0px", scale: 0, ease: Sine.easeInOut});
-
-}*/
 
 function back(){
     history.go(-1);
 }
-
-
-/*function validate(){
-    let getUserId = RegExp()
-    let getPwd = RegExp()
-}*/
-
-//Kakao.init('b924b1b6cefccb2c71d88231552b32a8');
-/*
-$(document).ready(function (){
-    Kakao.init('b924b1b6cefccb2c71d88231552b32a8');
-        alert("test");
-        const token = $("#token").val();
-        console.log(token)
-        Kakao.Auth.setAccessToken(token)
-        Kakao.API.request({
-            url: '/v2/user/me',
-            success: function(response) {
-                /!*alert(JSON.stringify(response));
-                alert(JSON.stringify(authObj));
-                console.log(response.id);
-                console.log(response.email);
-                console.log(authObj.accessToken);*!/
-                console.log(JSON.stringify(response));
-                $("#userId").attr('value',response.id);
-                $("#password01").attr('value',response.id);
-                $("#userName").attr('value',response.properties.nickname);
-                $("#email").attr('value',response.kakao_account.email);
-            },
-            fail: function(error) {
-                alert(JSON.stringify(error));
-                console.log(error);
-            }
-        });
-})*/
-
-
-/*function close(){
-    location.href="/user/login";
-}*/
-
-
-
-
-/* Forgotten Password */
-/*
-$('#forgotten').click(function(){
-    $("#container").fadeOut(function(){
-        $("#forgotten-container").fadeIn();
-    });
-});*/
