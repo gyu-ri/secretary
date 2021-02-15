@@ -131,6 +131,11 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
+    public void deleteThumb(int diaryId) {
+        sqlSession.delete("DiaryMapper.deleteThumb",diaryId);
+    }
+
+    @Override
     public List<Diary> getDiaryReportReason(int diaryId) {
         return sqlSession.selectList("DiaryMapper.getDiaryReportReason", diaryId);
     }
@@ -169,5 +174,19 @@ public class DiaryDAOImpl implements DiaryDAO {
     public List<AttachFile> getTags(int diaryId) {
         List<AttachFile> list = sqlSession.selectList("DiaryMapper.getTags", diaryId);
         return list;
+    }
+    @Override
+    public void updateImage(Diary diary) {
+        sqlSession.update("DiaryMapper.updateImage",diary);
+    }
+
+    @Override
+    public int isThumb(int diaryId) {
+        return sqlSession.selectOne("DiaryMapper.isThum",diaryId);
+    }
+
+    @Override
+    public void addThumb(Diary diary) {
+        sqlSession.insert("DiaryMapper.addThumb",diary);
     }
 }

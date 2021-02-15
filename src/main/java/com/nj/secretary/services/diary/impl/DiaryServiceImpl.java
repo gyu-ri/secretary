@@ -182,4 +182,23 @@ public class DiaryServiceImpl implements DiaryService {
     public List<AttachFile> getTags(int diaryId) {
         return diaryDAO.getTags(diaryId);
     }
+    @Override
+    public void updateImage(Diary diary) {
+        diaryDAO.updateImage(diary);
+    }
+
+    @Override
+    public void addThumb(Diary diary) {
+        diaryDAO.addThumb(diary);
+    }
+
+    @Override
+    public int isThumb(int diaryId) {
+        return diaryDAO.isThumb(diaryId);
+    }
+
+    @Override
+    public void deleteThumb(int diaryId) {
+        diaryDAO.deleteThumb(diaryId);
+    }
 }

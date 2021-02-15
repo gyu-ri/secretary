@@ -54,18 +54,12 @@ public interface DiaryDAO {
 
     public List<AttachFile> getTags(int diaryId);
 
+    public void updateImage(Diary diary);
 
 
+    public int isThumb(int diaryId);
 
-
-
-
-
-
-
-
-
-
+    public void addThumb(Diary diary);
 
     public int deleteDiary(int diaryId);
 
@@ -76,4 +70,6 @@ public interface DiaryDAO {
     public int addReport(Report report);
 
     public int checkReporter(Report report);
+
+    public void deleteThumb(int diaryId);
 }

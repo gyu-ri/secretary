@@ -274,14 +274,14 @@ public class UserRestController {
     }
     
     @PostMapping("pwdCheck")
-    public String pwdCheck(@RequestBody User user, HttpSession session) throws Exception{
+    public int pwdCheck(@RequestBody User user, HttpSession session, Model model) throws Exception{
     	System.out.println("UserRestController pwdCheck 시작"+user);
     	User user01 = (User)session.getAttribute("user");
         user01 = userService.getUser(user01.getUserId());
     	if(user.getPassword().equals(user01.getPassword())){
-    	    return "비밀번호 확인 되었습니다.";
+    	    return 0;
         }else{
-    	    return "비밀번호가 틀립니다.";
+    	    return 1;
         }
     }
     
