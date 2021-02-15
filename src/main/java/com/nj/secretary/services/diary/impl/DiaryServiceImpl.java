@@ -2,6 +2,7 @@ package com.nj.secretary.services.diary.impl;
 
 import com.nj.secretary.services.calendar.domain.Calendar;
 import com.nj.secretary.services.calendar.domain.IsDiary;
+import com.nj.secretary.services.diary.domain.AttachFile;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.domain.Report;
 import com.nj.secretary.services.diary.repository.DiaryDAO;
@@ -175,5 +176,10 @@ public class DiaryServiceImpl implements DiaryService {
     @Override
     public int deleteTag(int diaryId) {
         return diaryDAO.deleteTag(diaryId);
+    }
+
+    @Override
+    public List<AttachFile> getTags(int diaryId) {
+        return diaryDAO.getTags(diaryId);
     }
 }

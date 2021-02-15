@@ -370,17 +370,25 @@ li.active a, li.active a:hover {
  */
 
 /*------------list---------------*/
-.container div{
+.mList{
+    display: inline;
     font-family: 'MapoGoldenPier';
     color: #314e52;
     font-size: 20px;
-    margin-bottom: 20px;
+
     transition: 1s;
 }
 
-.container div:hover{
-    color: white;
+.mList:hover{
+    border-bottom: 1px solid #314e52;
     transition: 1s;
+}
+
+.monoList{
+    margin-bottom: 20px;
+    font-family: 'MapoGoldenPier';
+    color: #314e52;
+    font-size: 20px;
 }
 
 #deleteList{

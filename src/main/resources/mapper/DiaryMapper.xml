@@ -39,6 +39,13 @@
         <result property="imageUrl" column="EMOTION_IMG" jdbcType="VARCHAR"/>
         <result property="start" column="DIARY_DATE" jdbcType="DATE"/>
     </resultMap>
+    
+    <resultMap id="attachFile" type="com.nj.secretary.services.diary.domain.AttachFile">
+        <result property="fileId" column="FILE_ID" jdbcType="NUMERIC"/>
+        <result property="diaryId" column="DIARY_ID" jdbcType="NUMERIC"/>
+        <result property="fileName" column="FILE_NAME" jdbcType="VARCHAR"/>
+        <result property="fileStatus" column="FILE_STATUS" jdbcType="CHAR"/>
+    </resultMap>
 
     <insert id="addDiary" parameterType="com.nj.secretary.services.diary.domain.Diary">
 
@@ -181,7 +188,10 @@
         WHERE DIARY_ID = #{diaryId}
     </delete>
 
-
+    <select id="getTags" resultMap="attachFile" parameterType="integer">
+        SELECT * FROM ATTACHFILE
+        WHERE DIARY_ID=#{value}
+    </select>
 
 
 
