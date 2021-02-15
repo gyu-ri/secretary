@@ -224,3 +224,65 @@ a:hover{
     margin-top: 10%;
     text-align: center;
 }
+
+.modal{
+    font-family: 'MapoGoldenPier';
+}
+
+.modal p{
+    color: black;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.modal input{
+    color: rgba(0,0,0,0.9);
+}
+
+.modal input::placeholder{
+    color: rgba(0,0,0,0.5);
+}
+
+.modal .password-modal-footer{
+    margin-bottom: 20px;
+}
+
+.modal .modal-content{
+    text-align: center;
+}
+
+.modal a{
+    color: rgba(0,0,0,0.5);
+    text-underline: none;
+    transition: 1s;
+}
+.modal a:hover{
+    color: black;
+    text-underline: black;
+    transition: 1s;
+}
+
+.modal button{
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: rgba(0,0,0,0.5);
+    text-underline: none;
+    transition: 1s;
+}
+.modal button:hover{
+    background-color: rgba(0,0,0,0.6);
+    border: 1px solid rgba(0,0,0,0.6);
+    color: white;
+    text-underline: black;
+    transition: 1s;
+}
+
+.modal #password-modal-open{
+    color: rgba(0,0,0,0.5);
+}
+.modal #password-modal-open:hover{
+    background-color: rgba(0,0,0,0.6);
+    color: white;
+}

@@ -93,6 +93,7 @@ $(function(){
     })
 
     $(".translate").on("click",function(){
+
         let text = {text : $("#text").text(),
             source:$("#source option:selected").val(),
             target:$("#target option:selected").val()};
@@ -106,10 +107,15 @@ $(function(){
                     alert("이미 번역되었습니다.");
                 }else{
                     $(".translatedText").remove();
-                    $("#text").append("<div class='translatedText'>"+JSON.parse(response).message.result.translatedText+"</div> ");
+                    if(JSON.parse(response).errorMessage != null){
+                        $("#text").attr('name',"");
+                        return;
+                    }
+                    $(".tran").append("<div class='translatedText'>"+JSON.parse(response).message.result.translatedText+"</div> ");
                     $("#text").attr('name',$("#target option:selected").val());
                 }
-
+            },error(err){
+                $("#text").attr('name',"");
             }
         });
     })
