@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="../../images/icon/favicon.ico" type="image/x-icon">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href='../../css/main/main.css'/>
     <link rel="stylesheet" href='../../css/main/menu.css'/>
@@ -133,11 +134,11 @@
                     };
                     $.ajax({
                         url : "/restUser/withdrawal",
-                        type : "get",
+                        type : "post",
                         data :JSON.stringify(password),
                         contentType: "application/json",
                         success: function (response){
-                            alert(response);
+                            location.href("/user/"+ response);
                         }
                     });
                     $("#eventModal").modal("show");
@@ -164,6 +165,7 @@
                         contentType: "application/json",
                         success: function (response){
                             alert(response);
+                            location.href = "/user/login"
                         }
                     });
                 }

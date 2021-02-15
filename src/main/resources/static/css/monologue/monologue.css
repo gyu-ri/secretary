@@ -14,10 +14,12 @@
 *{
     padding: 0;
     margin: 0;
+    
     font-family: 'MapoGoldenPier';
 }
 
 body {
+	font-family: 'MapoGoldenPier';
     background-color: #dbdbdb;
     text-align: center;
     position: relative;
@@ -29,6 +31,10 @@ body {
 
 /*---------------- �젣紐� -----------------------*/
 .pageTitle {
+	font-family: 'MapoGoldenPier';
+    position: center;
+    left: 0;
+    top: 0;
     position: relative;
     margin-top: 5%;
     margin-bottom: 5%;
@@ -36,6 +42,8 @@ body {
     height: 52px;
     line-height: 52px;
     text-align: center;
+    font-family: 'MapoGoldenPier';
+    font-size: 50px;
     font-size: 80px;
     letter-spacing: 10px;
     font-family: 'MapoGoldenPier';
@@ -44,6 +52,7 @@ body {
 
 
 ul, li{
+	
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -52,9 +61,11 @@ ul, li{
     margin-inline-start: 0;
     margin-inline-end: 0;
     padding-inline-start: 0;
+    font-family: 'MapoGoldenPier';
 }
 
 .text {
+	font-family: 'MapoGoldenPier';
     width: 65%;
     height: 50%;
     margin: auto;
@@ -62,14 +73,17 @@ ul, li{
 
     background-color: #ffffff;
     background-color: rgba(255, 255, 255, 0.5)  ;
+    
 }
 
 .text:after{
+	font-family: 'MapoGoldenPier';
     content: '';
     display: block;
     clear: both;
     height: 0;
     visibility: hidden;
+    
 }
 
 /* .pageTitle {
@@ -105,6 +119,7 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
 
 /*----- Tabs -----*/
 .tabs {
+	font-family: 'MapoGoldenPier';
     width: 65%;
     display: block;
     margin: 5px auto 16px;
@@ -115,19 +130,22 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
 /*----- Tab Links -----*/
 
 .tab-links{
+	font-family: 'MapoGoldenPier';
     width: 100%;
-    height: 44px;
+    height: 43px;
     display: block;
     margin: 0;
     padding: 0;
 }
 
 .tab-links li {
+	font-family: 'MapoGoldenPier';
     width: 33.3%;
-    height: 50%;
+    height: 43%;
     margin:0px 0px;
     float: left;
     align-content: center;
+    
 }
 
 #firstTab a span, #secondTab a span, #thirdTab a span{
@@ -135,6 +153,7 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
 }
 
 .tab-links a {
+	font-family: 'MapoGoldenPier';
     width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -146,8 +165,10 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
     transition:all linear 0.15s;
     box-sizing: border-box;
     text-align: center;
+    font-family: 'MapoGoldenPier';
     text-decoration: none;
 }
+
 
 .tab-links a:hover{
     background:#314e52;
@@ -157,15 +178,18 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
     transition: 0.5s;
     -webkit-transition: 0.5s;
     -webkit-animation-fill-mode: both;
+    font-family: 'MapoGoldenPier';
 }
 
 li.active a, li.active a:hover {
+	font-family: 'MapoGoldenPier';
     background-color: rgba(255,255,255,0.5);
     color:#4c4c4c;
 }
 
 /*----- Content of Tabs -----*/
 .tab-content {
+	font-family: 'MapoGoldenPier';
     padding:15px;
     border-radius:3px;
     box-shadow:-1px 1px 1px rgba(0,0,0,0.15);
@@ -360,6 +384,10 @@ li.active a, li.active a:hover {
     -moz-transform: rotateX(0deg);
 }
 
+.container{
+	font-family: 'MapoGoldenPier';
+}
+
 /* .monologueList {
 	z-index:-1;
 }
@@ -370,17 +398,28 @@ li.active a, li.active a:hover {
  */
 
 /*------------list---------------*/
-.container div{
+.mList{
+    display: inline;
     font-family: 'MapoGoldenPier';
     color: #314e52;
     font-size: 20px;
-    margin-bottom: 20px;
     transition: 1s;
 }
 
-.container div:hover{
-    color: white;
+.mList:hover{
+    border-bottom: 1px solid #314e52;
     transition: 1s;
+}
+
+.monoList{
+    margin-bottom: 20px;
+    font-family: 'MapoGoldenPier';
+    color: #314e52;
+    font-size: 20px;
+}
+input[radio]:checked{
+    color: lightslategray;
+    text-decoration: line-through;
 }
 
 #deleteList{
@@ -400,3 +439,4 @@ li.active a, li.active a:hover {
     color: white;
     transition: 1s;
 }
+

@@ -23,7 +23,7 @@ body {
     padding: 0;
 }
 
-/*---------------- 제목 -----------------------*/
+/*---------------- �젣紐� -----------------------*/
 .pageTitle {
     font-family: 'MapoGoldenPier';
     position: center;
@@ -213,7 +213,7 @@ li.active a, li.active a:hover {
 }
 
 
-/*-----------------------------삭제 버튼------------------------------*/
+/*-----------------------------�궘�젣 踰꾪듉------------------------------*/
 .back {
     width: 33%;
     height: 200px;
@@ -398,8 +398,4 @@ li.active a, li.active a:hover {
     float: right;
     margin-left: 80%;
     padding-bottom: 1%;
-}
-
-.container{
-    width: 100%;
 }

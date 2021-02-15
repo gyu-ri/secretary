@@ -133,13 +133,19 @@ $(function(){
         });
 
     })
+
+
 })
 
 function back(){
     history.go(-1);
 }
 
-
+function deleteDiary(diaryId){
+    console.log("deleteDiary Start");
+    $("#formTag").method("POST").action("diary/deleteDiary");
+    $(this).submit;
+}
 
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -147,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var user = [[${user}]];
     console.log("role : "+role);
     console.log("user : "+user);
-    if(role == "admin"){
+    if(role == "ADMIN"){
         //alert("admin이다! admin이 나타났다~!!");
         $("#forAdmin").append(
         "<a href='#' id='back' onclick='back()'>	&#11013;</a>"
@@ -155,12 +161,19 @@ document.addEventListener("DOMContentLoaded", function(){
     } else{
     // alert("user 쫌생이다! user 쫌생이가 나타났다~!!")
     }
-    if(user == '0'){
+    if(user === '0'){
         console.log(user);
         $("#like").remove();
         $("#report").remove();
-    }else if(user=='1'){
+        $("#delete").remove();
+    }else if(user==='1'){
         console.log(user);
+        $("#modifyDiary").remove();
+        $("#delete").remove();
+    }else if(user==='2'){
+        $("#like").remove();
+        $("#report").remove();
+        $("#delete").remove();
         $("#modifyDiary").remove();
     }
 
