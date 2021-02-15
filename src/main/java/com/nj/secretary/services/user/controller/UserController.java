@@ -70,10 +70,10 @@ public class UserController {
     @GetMapping("/login")
     public String login(HttpSession session, Model model) throws Exception {
         if (session.getAttribute("user") != null) {
-            User login = (User)session.getAttribute("user");
+            User login = (User) session.getAttribute("user");
             Monologue monologue = new Monologue();
             monologue.setUserId(login.getUserId());
-            if(login.getRoles().trim().equals("ADMIN")){
+            if (login.getRoles().trim().equals("ADMIN")) {
                 // 알람 시작
                 int alarmCount = alarmService.alarmCount(login.getUserId());
                 model.addAttribute("count", alarmCount);
@@ -81,7 +81,7 @@ public class UserController {
                 // 알람 끝
                 model.addAttribute("user", login);
                 return "user/adminAfterLogin";
-            }else {
+            } else {
                 if (monologueService.checkMonologue(login.getUserId()) > 0) {
                     // 알람 시작
                     int alarmCount = alarmService.alarmCount(login.getUserId());
@@ -134,10 +134,13 @@ public class UserController {
         User dbUser = userService.getUser(user.getUserId());
         Random random = new Random();
         System.out.println(user + " : " + monologue);
-        System.out.println("count : "+monologueService.checkMonologue(dbUser.getUserId()));
+        if(userService.getUser(user.getUserId())==null){ //탈퇴아이디 로그인 x
+            return "/user/login";
+        }
+        System.out.println("count : " + monologueService.checkMonologue(dbUser.getUserId()));
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
-            if(dbUser.getRoles().trim().equals("ADMIN")){
+            if (dbUser.getRoles().trim().equals("ADMIN")) {
                 // 알람 시작
                 int alarmCount = alarmService.alarmCount(dbUser.getUserId());
                 model.addAttribute("count", alarmCount);
@@ -145,7 +148,7 @@ public class UserController {
                 // 알람 끝
                 model.addAttribute("user", dbUser);
                 return "user/adminAfterLogin";
-            }else {
+            } else {
 
                 if (monologueService.checkMonologue(dbUser.getUserId()) > 0) {
                     // 알람 시작
@@ -195,7 +198,7 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(HttpSession session) throws Exception {
 
-        if(session.getAttribute("accessToken") !=null){
+        if (session.getAttribute("accessToken") != null) {
             String reqURL = "https://kapi.kakao.com/v1/user/unlink";
             String access_Token = (String) session.getAttribute("accessToken");
 
@@ -234,33 +237,6 @@ public class UserController {
         return "user/login";
     }
 
-
-                //    요청에 필요한 Header에 포함될 내용
-                conn.setRequestProperty("Authorization", "Bearer " + access_Token);
-
-                int responseCode = conn.getResponseCode();
-                System.out.println("responseCode02 : " + responseCode);
-
-                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-                String line = "";
-                String result = "";
-
-                while ((line = br.readLine()) != null) {
-                    result += line;
-                }
-                System.out.println("response body : " + result);
-                JSONObject jsonObject = new JSONObject(result);
-                System.out.println(jsonObject);
-                System.out.println(jsonObject.get("id"));
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        session.invalidate();
-        return "user/login";
-    }
 
     @GetMapping("/findPwd")
     public String findPwd() throws Exception {
