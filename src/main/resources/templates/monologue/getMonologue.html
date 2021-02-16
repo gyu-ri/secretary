@@ -22,10 +22,11 @@
    <script>
    
 $(function(){
-	   var check =[[${user}]];
-	   if(check=='0'){
-		   $("#modifyMonologue").show();
-	   }else if(check=='1'){
+	const check =[[${user}]];
+	   if(check=='1'){
+		   $("#modifyMonologue").remove();
+	   }
+	    if(check=='1'){
 		   $("#reportModal").show();
 	   }
    });
@@ -162,7 +163,7 @@ $(function(){
                 <option value="zh-TW">중국어-번체</option>
             </select>
             <img class="translate" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
-       <br>  <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정">
+       <br>  <input type="submit" id="modifyMonologue" value="&#128214; 수정">
         </div>
          <!-- <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정"> -->
     </div>

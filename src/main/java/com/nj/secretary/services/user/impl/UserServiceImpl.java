@@ -57,8 +57,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserPwd(String userName) throws Exception {
-        return userDAO.findUserPwd(userName);
+    public int findUserPwd(String userId) throws Exception {
+        return userDAO.findUserPwd(userId);
     }
 
     @Override

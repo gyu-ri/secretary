@@ -243,11 +243,26 @@ public class UserController {
         return "user/findPwd";
     }
 
-    @PostMapping("/findPwd")
-    public String findPwd01(String userName) throws Exception {
-        userService.findUserPwd(userName);
-        return "user/changePwd";
-    }
+//    @PostMapping("/findPwd")
+//    public String findPwd01(String userId, String email,@ModelAttribute User user, Model model) throws Exception {
+//        System.out.println("userController findPwd 찾기 시작");
+//        //User user01=new User();
+//        userService.findUserPwd(user.getUserId());
+//        if(user.getUserId().equals(userId)) {
+//        	model.addAttribute("user", "0");
+//        }else {
+//        	model.addAttribute("user", "1");
+//        }
+//        
+//        if(user.getEmail().equals(email)) {
+//        	model.addAttribute("user", "3");
+//        }else {
+//        	model.addAttribute("user", "4");
+//        }
+//    	
+//    	//userService.findUserPwd(userName);
+//        return "user/changePwd";
+//    }
 
 
     @GetMapping("/kakaologin")
