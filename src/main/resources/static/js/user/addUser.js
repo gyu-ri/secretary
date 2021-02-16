@@ -31,13 +31,15 @@ function idCheck() {
 
 function emailCheck(){
     let email = $("#email").val();
+    let userId = $("#userId").val();
+    let mailCheck = {email:email,userId:userId};
     if (email === "") {
         alert("메일 주소가 입력되지 않았습니다.");
     }else {
     $.ajax({
         url: '/restUser/emailCheck',
         type: 'get',
-        data: {email: email},
+        data: mailCheck,
         contentType: "application/json",
         success: function (data) {
             console.log("1=중복/0=중복아님" + data);

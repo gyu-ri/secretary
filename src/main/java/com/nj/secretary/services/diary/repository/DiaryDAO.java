@@ -73,4 +73,6 @@ public interface DiaryDAO {
     public int checkReporter(Report report);
 
     public void deleteThumb(int diaryId);
+
+    public void updateTag(AttachFile attachFile);
 }

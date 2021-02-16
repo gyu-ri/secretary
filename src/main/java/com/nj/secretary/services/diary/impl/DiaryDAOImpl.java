@@ -136,6 +136,11 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
+    public void updateTag(AttachFile attachFile) {
+        sqlSession.insert("DiaryMapper.updateTag",attachFile);
+    }
+
+    @Override
     public List<Diary> getDiaryReportReason(int diaryId) {
         return sqlSession.selectList("DiaryMapper.getDiaryReportReason", diaryId);
     }

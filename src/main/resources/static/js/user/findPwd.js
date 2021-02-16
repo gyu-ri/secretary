@@ -1,31 +1,42 @@
-function emailCheck(){
-    let email = $("#pwdEmail").val();
-    if (email == "") {
-        alert("메일 주소가 입력되지 않았습니다.");
-    }else {
-    $.ajax({
-        url: '/restUser/emailCheck',
-        type: 'get',
-        data: {email: email},
-        contentType: "application/json",
-        success: function (data) {
-                $.ajax({
-                    type: 'post',
-                    url: '/restUser/sendMail',
-                    data: {email: email},
-                    dataType: 'json',
-                    success: function (key) {
-                        alert("인증번호가 전송되었습니다.")
-                        $('#check').attr("value", key);
-                    }
-                });
-
-        }, error: function () {
-            console.log("실패");
+$(function (){
+    $("#checkEmail").on("click",function (){
+        let email = {
+            email:$("#pwdEmail").val(),
+            userId:$("#pwdUserId").val()
         }
-    });
-    }
-}
+        if (email == "") {
+            alert("메일 주소가 입력되지 않았습니다.");
+        }else {
+            $.ajax({
+                url: '/restUser/emailCheck',
+                type: 'get',
+                data: email,
+                contentType: "application/text",
+                success: function (data) {
+                    if(data===0){
+                        $.ajax({
+                            type: 'post',
+                            url: '/restUser/sendMail',
+                            data: email,
+                            dataType: 'json',
+                            success: function (key) {
+                                alert("인증번호가 전송되었습니다.")
+                                $('#check').attr("value", key);
+                            }
+                        });
+                    }else{
+                        alert("등록되지 않은 이메일입니다.");
+                    }
+
+
+                }, error: function () {
+                    console.log("실패");
+                }
+            });
+        }
+    })
+})
+
 
 function checkCertificationNo() {
     alert("인증번호 맞는지 확인할게욥")
@@ -87,23 +98,5 @@ function passwordChange(){
 		}
 }
 
-
-function userCheck(){
-	let text = {
-			userId : $("#pwdUserId").val(),
-        	email : $("#pwdEmail").val()
-        };
-	 $.ajax({
-	        url: '/restUser/findPwd',
-	        type: 'post',
-	        data: JSON.stringify(text),
-	        contentType: "application/json",
-	        success: function (data) {
-	        	alert(data)
-	        }
-	                
-	                });
-	
-}
 
 

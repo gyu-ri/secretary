@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
@@ -44,11 +46,13 @@ public class UserController {
     @Autowired
     private MonologueService monologueService;
 
+
     @GetMapping("/signUp")
     public String signUp() throws Exception {
 
         return "user/addUser";
     }
+
 
     @PostMapping("signUp")
     public String signUp01(@Valid User user, Errors errors, Model model) throws Exception {
@@ -519,6 +523,22 @@ public class UserController {
     	System.out.println("withdrawal controller 시작 합니다");
     	
     	return "user/withdrawal";
+
+    }
+
+    @GetMapping("getAllUser")
+    public String getAllUser(HttpSession session,Model model) throws Exception{
+        User user = (User)session.getAttribute("user");
+        User user01 = userService.getUser(user.getUserId());
+        System.out.println(user +" : "+user01);
+        if(user01.getRoles().equals("ADMIN")){
+            List list = userService.getAllUser();
+            System.out.println("ALLUSER : "+list);
+            model.addAttribute("user",list);
+            return "user/getAllUser";
+        }else{
+            return "user/login";
+        }
 
     }
     

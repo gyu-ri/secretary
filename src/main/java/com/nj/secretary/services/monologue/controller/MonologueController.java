@@ -307,7 +307,7 @@ public class MonologueController {
 		}
 		
 		monologueService.updateMonologue(monologue);
-		
+		model.addAttribute("monologue",monologue);
 		System.out.println("updateMonologue 확인합니다" +monologue);
 		
 		return "monologue/getMonologue";

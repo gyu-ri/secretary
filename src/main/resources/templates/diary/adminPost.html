@@ -317,7 +317,7 @@
 
 
     function adminDiary(){
-        alert("getReportedDiaryList")
+
         var diaryList = [];
         console.log(this);
         $.ajax({
@@ -382,7 +382,6 @@
                 data : {diaryId:$(this).attr('class'),
                         userId:$(this).attr('value')},
                 success : function (data){
-                    alert("성공" + data);
                     adminDiary();
                     // const di = "#" + $("#setDiaryBlind").attr('value');
                     // $("#setDiaryBlind").remove();
@@ -395,10 +394,8 @@
 
 
     function adminMonologue(){
-        alert("getReportedMonologueList")
         var diaryList = [];
         console.log(this);
-        alert("checkConsole")
         $.ajax({
             url : "/restMonologue/getReportedMonologueList",
             type : "GET",
@@ -452,7 +449,7 @@
 
 
     $(document).on("click", "#setMonologueBlind", function () {
-        alert("블라인드 처리 하시겠습니까?휴먼?");
+        alert("블라인드 처리 하시겠습니까?");
         $.ajax({
             url : "/restMonologue/setBlindMonologue",
             method : "POST",
@@ -461,7 +458,6 @@
             data : {MonologueId:$(this).attr('value'),
                     userId:$(this).attr('class')},
             success : function (data){
-                alert("성공" + data);
                 adminMonologue();
                 // $("#setMonologueBlind").remove();
                 // $("#setMonologueBlind2").append("처리완료");
@@ -471,7 +467,6 @@
     });
 
     $(document).on("click", "#navigateDiary", function (){
-        alert("다이어리 상세보기로 간드아~");
         self.location="/diary/getDiary?diaryNo="+$(this).attr("class");
     });
 
