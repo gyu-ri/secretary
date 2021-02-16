@@ -149,6 +149,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getAllUser() throws Exception {
+        return userDAO.getAllUser();
+    }
+
+    @Override
 	public void withdrawal(User user) throws Exception {
 		userDAO.withdrawal(user);
 		

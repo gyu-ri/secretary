@@ -21,7 +21,7 @@
  .container{
      display: grid;
      grid-template-columns: 1fr;
-     grid-template-rows: 1fr 4fr 1fr;
+     grid-template-rows: 1fr 4fr 0fr;
      gap: 20px;
      background-color: rgba(255, 255, 255, 1);
      padding: 30px;
@@ -62,14 +62,26 @@
      }
 
 
-     #modifyMonologue{
-         width: 10%;
-         height: 30%;
-         align-content: center;
-         margin-left: 42.5%;
-         margin-top: 5%;
-         margin-bottom: 5%;
-     }
+    #modifyMonologue{
+        font-family: 'MapoGoldenPier';
+        color: #314e52;
+        width: 10%;
+        height: 30%;
+        font-size: 20px;
+        align-content: center;
+        margin-left: 45%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: 1s;
+    }
+
+    #modifyMonologue:hover{
+        transform: scale(1.2);
+        transition: 1s;
+    }
 
 
 

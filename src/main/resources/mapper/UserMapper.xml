@@ -175,9 +175,14 @@
 		(withdrawalreasons_seq.NEXTVAL,#{withdrawalReasonType},#{withdrawalReasonText})
 	</insert>
 
-<select id="loginCheck" resultType="Integer" parameterType="com.nj.secretary.services.user.domain.User">
-        SELECT COUNT(*)
-        FROM users
-        WHERE user_id = #{userId} AND password = #{password}
-</select>
+	<select id="loginCheck" resultType="Integer" parameterType="com.nj.secretary.services.user.domain.User">
+			SELECT COUNT(*)
+			FROM users
+			WHERE user_id = #{userId} AND password = #{password}
+	</select>
+
+	<select id="getAllUser" resultMap="userSelectMap">
+		SELECT * FROM USERS
+	</select>
+
 </mapper>

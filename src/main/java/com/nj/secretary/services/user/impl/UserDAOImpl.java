@@ -128,6 +128,11 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public List<User> getAllUser() throws Exception {
+        return sqlSession.selectList("UserMapper.getAllUser");
+    }
+
+    @Override
 	public void withdrawal(User user) throws Exception {
 		// TODO Auto-generated method stub
 		sqlSession.update("UserMapper.withdrawal", user);

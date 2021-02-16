@@ -525,5 +525,21 @@ public class UserController {
     	return "user/withdrawal";
 
     }
+
+    @GetMapping("getAllUser")
+    public String getAllUser(HttpSession session,Model model) throws Exception{
+        User user = (User)session.getAttribute("user");
+        User user01 = userService.getUser(user.getUserId());
+        System.out.println(user +" : "+user01);
+        if(user01.getRoles().equals("ADMIN")){
+            List list = userService.getAllUser();
+            System.out.println("ALLUSER : "+list);
+            model.addAttribute("user",list);
+            return "user/getAllUser";
+        }else{
+            return "user/login";
+        }
+
+    }
     
 }

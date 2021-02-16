@@ -84,4 +84,6 @@ public interface UserService{
     public List<User> getWithdrawalReasonList();
 
     void addKakaoUser(User user) throws Exception;
+
+    public List<User> getAllUser() throws Exception;
 }

@@ -71,4 +71,6 @@ public interface UserDAO {
 
     void addKakaoUser(User user) throws Exception;
 
+    public List<User> getAllUser() throws Exception;
+
 }

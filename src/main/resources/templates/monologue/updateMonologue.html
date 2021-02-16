@@ -27,10 +27,11 @@
     <div class="container">
 
         <div id="questionText" th:text="${monologue.questionText}"/>
+        <input type="hidden" name="questionText" th:value="${monologue.questionText}"/>
         <input type="text" class="text" id="text" name="monologueText" th:value="${monologue.monologueText}"/>
         <!-- <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정"> -->
     </div>
-    <input type="submit" id="modifyMonologue" value="&#128214; 수정완료">
+    <input type="submit" id="modifyMonologue" value="수정완료">
 </form>
 
 <script type="text/javascript">
