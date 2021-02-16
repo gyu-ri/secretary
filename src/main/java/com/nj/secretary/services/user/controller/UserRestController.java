@@ -46,8 +46,13 @@ public class UserRestController {
 
     @ResponseBody//서버로 보낸 json데이터를 자바 객체로 매핑
     @GetMapping("/emailCheck")
-    public int emailCheck(@RequestParam("email") String email) throws Exception{
-        return userService.emailCheck(email);
+    public int emailCheck(@RequestParam("email") String email,@RequestParam("userId") String userId) throws Exception{
+        User user = userService.getUser(userId);
+        if(user.getEmail().equals(email)){
+            return 0;
+        }else{
+            return 1;
+        }
     }
 
     @ResponseBody
