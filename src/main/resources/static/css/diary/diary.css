@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap');
 
+@font-face {
+    font-family: 'MapoGoldenPier';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 *{
     padding: 0;
     margin: 0;
-    font-family: 'Noto Sans TC', sans-serif;
+
 }
 
 body {
+
     background-color: #dbdbdb;
     text-align: center;
     position: relative;
@@ -17,16 +25,19 @@ body {
 
 /*---------------- �젣紐� -----------------------*/
 .pageTitle {
+    font-family: 'MapoGoldenPier';
     position: center;
     left: 0;
-    top: 0;
+    top: 0px;
+    padding-top: 50px;
     width: 100%;
     height: 52px;
     line-height: 52px;
     text-align: center;
     /*font-family: 'Lobster', cursive;*/
-    font-size: 50px;
+    font-size: 80px;
     letter-spacing: 10px;
+    color: #314e52;
 }
 
 
@@ -42,6 +53,7 @@ ul, li{
 }
 
 .text {
+    font-family: 'MapoGoldenPier';
     width: 65%;
     height: 50%;
     margin: auto;
@@ -51,6 +63,7 @@ ul, li{
 }
 
 .text:after{
+    font-family: 'MapoGoldenPier';
     content: '';
     display: block;
     clear: both;
@@ -59,6 +72,7 @@ ul, li{
 }
 
 .pageTitle {
+    font-family: 'MapoGoldenPier';
     position: center;
     left: 0;
     top: 0;
@@ -90,6 +104,7 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
 
 /*----- Tabs -----*/
 .tabs {
+    font-family: 'MapoGoldenPier';
     width: 65%;
     display: block;
     margin: 5px auto 16px;
@@ -131,7 +146,7 @@ article .col-md-4 p {position: relative; top: 25%; width: 100%; height: 90%;  pa
 }
 
 .tab-links a:hover{
-    background:#a7cce5;
+    background:rgba(50, 79, 83, 0.6);
     text-decoration:none;
     /*transform: rotate(5deg);*/
     transition: 0.5s;
@@ -163,13 +178,13 @@ li.active a, li.active a:hover {
 
 /*------------------searchBox--------------------*/
 .searchbox{
-    width: 50%;
+    width: 30%;
     display: block;
     margin-top: 90px;
     float:right;
     border: none;
     margin-bottom: 10px;
-
+    margin-right: 10%;
 }
 .searchbox:hover > #value{
     border: 3px solid white;

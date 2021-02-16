@@ -160,10 +160,9 @@
 		WHERE user_id=#{userId}
 	</update>
 
-	<update id="withdrawal"
-		parameterType="com.nj.secretary.services.user.domain.User">
+	<update id="withdrawal" parameterType="com.nj.secretary.services.user.domain.User">
 		UPDATE users
-		SET withdrawal_status=1, withdrawal_DATE=SYSDATE
+		SET withdrawal_status='1', withdrawal_DATE=SYSDATE
 		WHERE user_id=#{userId} AND password=#{password}
 	</update>
 

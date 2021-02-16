@@ -10,6 +10,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href='../../css/main/main.css'/>
 	<link rel="stylesheet" href='../../css/main/menu.css' />
+	<link rel="shortcut icon" href="../../images/icon/favicon.ico" type="image/x-icon">
     <title>내 정보 수정</title>
 
 	<style>
@@ -98,6 +99,23 @@
 			text-shadow: 3px 3px 10px #000;
 		}
 
+		#email{
+			font-family: 'MapoGoldenPier';
+			text-decoration: none;
+			position: relative;
+			width: 60%;
+			display: inline-block;
+			margin-left: 8%;
+			margin-top: 9px;
+			margin-bottom: 15px;
+			font-size: 17px;
+			color: #fff;
+			padding: 8px;
+			border-radius: 6px;
+			border: none;
+			background: rgba(3,3,3,.1);
+		}
+
 		input:focus{
 			outline: none;
 			box-shadow: 3px 3px 10px #333;
@@ -114,17 +132,6 @@
 		:-ms-input-placeholder {
 			color: #333;  }
 
-		/* Link */
-		/*a{
-			font-family: 'MapoGoldenPier';
-			text-align: center;
-			padding: 4px 8px;
-			background: rgb(125, 138, 172);
-		}
-
-		a:hover{
-			opacity: 0.7;
-		}*/
 
 		p{
 			font-family: 'MapoGoldenPier';
@@ -251,7 +258,7 @@ $("#password-modal-open").on("click",function(){
         });
 
 function back(){
-	history.go(-1);
+	location.href="/user/getUser";
 }
 
 
@@ -287,7 +294,7 @@ function back(){
 	<div id="mainText">
 		<div class="details"><p>이&nbsp;&nbsp;름<input type="text" th:value = "${user.userName}" name="userName"/></div>
 		<div class="details"><p>닉네임<input type="text" th:value = "${user.nickname}" name="nickname"/></div>
-		<div class="details"><p>이메일<input type="text" th:value = "${user.email}" name="email"></div>
+		<div class="details"><p>이메일<span id="email" th:text = "${user.email}"/></div>
 		<div class="details"><p>좌우명<input type="text" th:value = "${user.motto}" name="motto"/></div>
 	</div>
 

@@ -70,10 +70,10 @@ public class UserController {
     @GetMapping("/login")
     public String login(HttpSession session, Model model) throws Exception {
         if (session.getAttribute("user") != null) {
-            User login = (User)session.getAttribute("user");
+            User login = (User) session.getAttribute("user");
             Monologue monologue = new Monologue();
             monologue.setUserId(login.getUserId());
-            if(login.getRoles().trim().equals("ADMIN")){
+            if (login.getRoles().trim().equals("ADMIN")) {
                 // 알람 시작
                 int alarmCount = alarmService.alarmCount(login.getUserId());
                 model.addAttribute("count", alarmCount);
@@ -81,7 +81,7 @@ public class UserController {
                 // 알람 끝
                 model.addAttribute("user", login);
                 return "user/adminAfterLogin";
-            }else {
+            } else {
                 if (monologueService.checkMonologue(login.getUserId()) > 0) {
                     // 알람 시작
                     int alarmCount = alarmService.alarmCount(login.getUserId());
@@ -134,10 +134,13 @@ public class UserController {
         User dbUser = userService.getUser(user.getUserId());
         Random random = new Random();
         System.out.println(user + " : " + monologue);
-        System.out.println("count : "+monologueService.checkMonologue(dbUser.getUserId()));
+        if(userService.getUser(user.getUserId())==null){ //탈퇴아이디 로그인 x
+            return "/user/login";
+        }
+        System.out.println("count : " + monologueService.checkMonologue(dbUser.getUserId()));
         if (user.getPassword().equals(dbUser.getPassword())) {
             session.setAttribute("user", dbUser);
-            if(dbUser.getRoles().trim().equals("ADMIN")){
+            if (dbUser.getRoles().trim().equals("ADMIN")) {
                 // 알람 시작
                 int alarmCount = alarmService.alarmCount(dbUser.getUserId());
                 model.addAttribute("count", alarmCount);
@@ -145,7 +148,7 @@ public class UserController {
                 // 알람 끝
                 model.addAttribute("user", dbUser);
                 return "user/adminAfterLogin";
-            }else {
+            } else {
 
                 if (monologueService.checkMonologue(dbUser.getUserId()) > 0) {
                     // 알람 시작
@@ -189,54 +192,51 @@ public class UserController {
                 }
             }
         }
-
-//        // 수정한 부분 끝
-//        return "user/login";
-//        //return "index";
         return "/user/login";
     }
 
     @GetMapping("/logout")
     public String logout(HttpSession session) throws Exception {
+
+        if (session.getAttribute("accessToken") != null) {
+            String reqURL = "https://kapi.kakao.com/v1/user/unlink";
+            String access_Token = (String) session.getAttribute("accessToken");
+
+            try {
+                URL url = new URL(reqURL);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("POST");
+
+
+                //    요청에 필요한 Header에 포함될 내용
+                conn.setRequestProperty("Authorization", "Bearer " + access_Token);
+
+                int responseCode = conn.getResponseCode();
+                System.out.println("responseCode02 : " + responseCode);
+
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+                String line = "";
+                String result = "";
+
+                while ((line = br.readLine()) != null) {
+                    result += line;
+                }
+                System.out.println("response body : " + result);
+
+                JSONObject jsonObject = new JSONObject(result);
+                System.out.println(jsonObject);
+
+                System.out.println(jsonObject.get("id"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         session.invalidate();
         return "user/login";
     }
 
-    /*@GetMapping("/findId")
-    public String findId() throws Exception {
-        return "user/findId";
-    }
-
-    @PostMapping("findId")
-    public String findIdMailSend(@RequestParam Map<String, Object> paramMap, User user)
-            throws Exception {
-
-        String userName = (String) paramMap.get("userName");
-        String email = (String) paramMap.get("email");
-        System.out.println(userName);
-        User dbUser = userService.findUserId(user);
-        System.out.println(dbUser);
-        if (email.equals(dbUser.getEmail())) {
-            String userId = dbUser.getUserId();
-            System.out.println(userId);
-            try {
-                MimeMessage msg = mailSender.createMimeMessage();
-                MimeMessageHelper messageHelper = new MimeMessageHelper(msg, true, "UTF-8");
-
-                messageHelper.setSubject(userName + "님 아이디찾기 메일입니다.");//메일 제목
-                messageHelper.setText("아이디는" + userId + "입니다.");//메일 내용
-                messageHelper.setTo(email);
-                msg.setRecipients(MimeMessage.RecipientType.TO, InternetAddress.parse(email));
-                mailSender.send(msg);
-            } catch (MessagingException e) {
-                System.out.println("MessagingException");
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println("일치하는 정보 없음");
-        }
-        return "user/emailSuccess";
-    }*/
 
     @GetMapping("/findPwd")
     public String findPwd() throws Exception {
@@ -315,6 +315,9 @@ public class UserController {
             model.addAttribute("accessToken", jsonObject.get("access_token"));
             HashMap map = getUserInfo((String) jsonObject.get("access_token"));
             if ((int) map.get("check") == 0) {
+
+                session.setAttribute("accessToken",jsonObject.get("access_token"));
+
                 JSONObject abc = (JSONObject) map.get("userInfo");
                 JSONObject nick = (JSONObject)abc.get("kakao_account");
                 JSONObject nickname = (JSONObject) nick.get("profile");
@@ -325,6 +328,9 @@ public class UserController {
                 model.addAttribute("email",nick.get("email"));
                 return "user/kakao";
             } else {
+
+                session.setAttribute("accessToken",jsonObject.get("access_token"));
+
                 JSONObject abc = (JSONObject) map.get("userInfo");
                 User dbUser = userService.getUser(""+abc.get("id"));
                 session.setAttribute("user", dbUser);
@@ -467,15 +473,21 @@ public class UserController {
         User user = (User)session.getAttribute("user");
         User user01 = userService.getUser(user.getUserId());
         model.addAttribute("user",user01);
-
-        return "user/updateUser";
+        if (user.getKakao()==0){
+            return "user/updateUser";
+        }else{
+            return "user/kakaoUpdate";
+        }
     }
 
 
     @PostMapping("updateUser")
     public String updateuser(@RequestParam("userId") String userId, User user, Model model,HttpSession session) throws Exception{
     	System.out.println("updateUser controller 시작 합니다");
-    	
+        User user4 = (User)session.getAttribute("user");
+    	if(user4.getKakao()==1){
+    	    user.setEmail(user4.getEmail());
+        }
     	userService.updateUser(user);
     	System.out.println("updateUser controller 시작 합니다2");
     	System.out.println("updateUser 확인::"+user);

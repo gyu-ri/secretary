@@ -4,6 +4,7 @@ package com.nj.secretary.services.diary.controller;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.nj.secretary.services.alarm.domain.Alarm;
 import com.nj.secretary.services.alarm.service.AlarmService;
+import com.nj.secretary.services.diary.domain.AttachFile;
 import com.nj.secretary.services.diary.domain.Diary;
 import com.nj.secretary.services.diary.service.DiaryService;
 import com.google.gson.JsonObject;
@@ -24,7 +25,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -60,14 +60,16 @@ public class DiaryController {
         }
         System.out.println("diary : " + diary);
         System.out.println("다이어리 내용들 : " + diary.getDiaryTitle() + diary.getDiaryText());
-
         diaryService.addDiary(diary);
+        diary.setEmotionImg(diaryService.getEmotion(diary.getEmotionNo()));
         System.out.println("tag : " + tag_text);
         if(tag_text == null) {
             System.out.println("값이 null임");
         }else{
             String[] tags = tag_text.split(",");
             List<String> tagsList = new ArrayList<String>();
+            List<AttachFile> attachList = new ArrayList<AttachFile>();
+
             for (String tag : tags) {
                 if (tag.trim() == "" || tag.trim() == null || tag.trim().length() == 0) {
                 } else {
@@ -75,10 +77,17 @@ public class DiaryController {
                 }
             }
             for (String tag : tagsList) {
+                AttachFile attachFile = new AttachFile();
                 diaryService.addTag(tag);
                 System.out.println("들어가는 태그 : " + tag);
+                attachFile.setFileName(tag);
+                attachList.add(attachFile);
+                System.out.println(attachFile);
+                System.out.println(attachList);
             }
             System.out.println("tagsList : " + tagsList);
+            System.out.println(attachList);
+            model.addAttribute("tagList",attachList);
         }
 
         if(diary.getDiaryText().contains("src=")){
@@ -90,9 +99,7 @@ public class DiaryController {
             System.out.println(diary.getFileName());
             diaryService.addImage(diary);
         }
-        model.addAttribute("user", "0");
-
-
+        model.addAttribute("user", "2");
 
         System.out.println("다이어리 추가 완료");
 
@@ -174,8 +181,11 @@ public class DiaryController {
             model.addAttribute("user", "1");
         }
         System.out.println(diaryService.getDiary(diaryNo));
+        List<AttachFile> list = diaryService.getTags(diaryNo);
+        System.out.println("tags list : " + list);
+        model.addAttribute("tagList", list);
         model.addAttribute("diary",diaryService.getDiary(diaryNo));
-        model.addAttribute("role", "admin");
+        model.addAttribute("role", user.getRoles());
         return "diary/getDiary";
     }
 
@@ -202,6 +212,21 @@ public class DiaryController {
             diary.setShareStatus("1");
         }else{
             diary.setShareStatus("0");
+        }
+        if(diary.getDiaryText().contains("src=")){
+            if(diary.getDiaryText().contains("jpeg")){
+                diary.setFileName(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("src=")+65));
+            }else{
+                diary.setFileName(diary.getDiaryText().substring(diary.getDiaryText().indexOf("src=")+5,diary.getDiaryText().indexOf("src=")+64));
+            }
+            if(diaryService.isThumb(diary.getDiaryId()) == 0){
+                diaryService.addThumb(diary);
+            }else{
+                diaryService.updateImage(diary);
+            }
+            System.out.println(diary.getFileName());
+        }else{
+            diaryService.deleteThumb(diary.getDiaryId());
         }
         diaryService.updateDiary(diary);
         Diary diary2 = diaryService.getDiary(diary.getDiaryId());
@@ -244,6 +269,29 @@ public class DiaryController {
         model.addAttribute("monoList", monoList);
 
         return "diary/adminPost";
+    }
+
+    @PostMapping("deleteDiary")
+    public String deleteDiary(int diaryId, Model model,HttpSession session){
+        System.out.println(diaryId);
+        int delete = diaryService.deleteDiary(diaryId);
+        int deleteTag = diaryService.deleteTag(diaryId);
+        if(session.getAttribute("user")==null){
+            return "user/login";
+        }
+        System.out.println("listDiary start in controller");
+
+
+        User user = (User)session.getAttribute("user");
+        System.out.println(user);
+        List<Diary> list = diaryService.getDiaryList(user.getUserId());
+        System.out.println("list : " + list);
+        model.addAttribute("list", list);
+        model.addAttribute("user",user);
+        System.out.println("listDiary controller 완료");
+
+        return "diary/getDiaryList";
+
     }
 
 

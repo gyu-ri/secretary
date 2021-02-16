@@ -70,8 +70,8 @@ $("#getMonologueList").click(function(){
             $.each(list,function(i,item){
                    console.log(item);
                    $(".monologueList").append(
-                   		"<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                   		"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;\">"+
+                   		"<div name=\"listSet\" class='col-md-4 col-lg-3 item monoList'>"+
+                   		"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" class=\"mList\" style=\"cursor:pointer;\">"+
                    		item.questionText+
                    		"</div>"+
                    		"</div>"
@@ -105,8 +105,8 @@ $("#getOthersMonologueList").on("click", function () {
             $.each(list.reverse(),function(i,item){
                 console.log(item);
                 $(".otherList").append(
-                		"<div name=\"listSet\" >"+
-                		"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;\">"+
+                		"<div name=\"listSet\" class='monoList'>"+
+                		"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" class=\"mList\" style=\"cursor:pointer;\">"+
                 		item.questionText+
                 		"</div>"+
                 		"</div>"
@@ -134,10 +134,13 @@ $("#deleteMonologue").click(function(){
             $.each(list,function(i,item){
                    console.log(item);
                    $(".deleteList").append(
-                   		"<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-                   		"<label name=\"deleteQuestion\">"+
+
+                   		"<div name=\"listSet\" class='col-md-4 col-lg-3 item monoList'>"+
+                   		/*"<div onclick=\"getMonologue("+item.monologueId+","+item.questionId+")\" style=\"cursor:pointer;font-size:15px; height:20px; color:black;\">"+*/
+
+                   		"<label class='mList' name=\"deleteQuestion\">"+
                    		item.questionText+
-                   		"<input type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
+                   		"<input class='mList' type=\"radio\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
                    		"</label>"+
                    		
                    		/*"</div>"+*/
@@ -172,14 +175,14 @@ function getMonologue(monologueId,questionId){
 $(function deleteMonologue(){
 
 $("#deleteList").on("click",function(){
- if($("input:checkbox[name='delete']:checked").length==0){
+ if($("input:radio[name='delete']:checked").length==0){
 	 alert("선택된 게시물이 없습니다.")
  }else{
 //	 alert($("input:checkbox[id='monologueId']:checked").val());
 	 $.ajax({
 	        url : "/restMonologue/deleteMonologue01",
 	        type : "get",
-	        data : {monologueId : $("input:checkbox[id='monologueId']:checked").val()},
+	        data : {monologueId : $("input:radio[id='monologueId']:checked").val()},
 	        contentType: "application/json",
 	        success: function (response){
 	        	alert(response);
@@ -199,12 +202,11 @@ $("#deleteList").on("click",function(){
 	                    $.each(list,function(i,item){
 	                           console.log(item);
 	                           $(".deleteList").append(
-	                           		"<div name=\"listSet\" class='col-md-4 col-lg-3 item'>"+
-	                           		"<label name=\"deleteQuestion\">"+
+	                           		"<div  name=\"listSet\" class='col-md-4 col-lg-3 item monoList'>"+
+	                           		"<label class='mList' name=\"deleteQuestion\">"+
 	                           		item.questionText+
-	                           		"<input type=\"checkbox\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
+	                           		"<input class='mList' type=\"radio\" name=\"delete\" id=\"monologueId\" value="+item.monologueId+">"+
 	                           		"</label>"+
-	                           		
 	                           		/*"</div>"+*/
 	                           		"</div>"
 	                         )

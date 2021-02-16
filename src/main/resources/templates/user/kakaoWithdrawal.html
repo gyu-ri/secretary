@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="../../images/icon/favicon.ico" type="image/x-icon">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href='../../css/main/main.css'/>
     <link rel="stylesheet" href='../../css/main/menu.css'/>
@@ -128,18 +127,17 @@
         $(function(){
             $("#withdrawal").on("click",function(){
                 if($("#password").val()==$("#dbpassword").val()){
-                    let password={
+                    let text={
                         password : $("#password").val(),
                         userId : $("#userId").val()
                     };
                     $.ajax({
                         url : "/restUser/withdrawal",
-                        type : "Post",
-
-                        data :JSON.stringify(password),
+                        type : "post",
+                        data :JSON.stringify(text),
                         contentType: "application/json",
                         success: function (response){
-                            location.href("/user/"+ response);
+                            alert(response);
                         }
                     });
                     $("#eventModal").modal("show");
@@ -166,7 +164,6 @@
                         contentType: "application/json",
                         success: function (response){
                             alert(response);
-                            location.href = "/user/login"
                         }
                     });
                 }
@@ -178,6 +175,7 @@
         function back(){
             history.go(-1);
         }
+
 
     </script>
 
@@ -198,8 +196,6 @@
         <input type="hidden" name="userId" th:value="${userId}" id="userId"/>
         <input type="hidden" name="password" th:value="${user.password}" id="dbpassword"/>
         <div id="pwCheck"><input type="text" placeholder="비밀번호를 입력해주세요." name="password" id="password"/></div>
-
-
     </form>
     <input type="button" class="btn btn-primary" id="withdrawal" value="탈퇴">
 </div>
