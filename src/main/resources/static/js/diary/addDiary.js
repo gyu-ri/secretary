@@ -169,6 +169,10 @@ function goWrite(frm) {
         }
 
     }
+    if(title.length > 20){
+        alert("제목이 너무 깁니다.");
+        return false;
+    }
     // if (tag.trim() == ''){
     //     alert("태그를 입력해주세요");
     //     return false;

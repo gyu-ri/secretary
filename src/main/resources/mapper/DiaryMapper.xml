@@ -94,6 +94,11 @@
         VALUES(attachfile_seq.nextval, diary_seq.currval, #{value}, '0')
     </insert>
 
+    <insert id="updateTag" parameterType="com.nj.secretary.services.diary.domain.AttachFile">
+        INSERT INTO AttachFile(file_id, diary_id, file_name, file_status)
+        VALUES(attachfile_seq.nextval, #{diaryId}, #{fileName}, '0')
+    </insert>
+
     <insert id="addImage" parameterType="com.nj.secretary.services.diary.domain.Diary">
         INSERT INTO IMAGE(IMAGE_ID, DIARY_ID, IMAGE_NAME)
         VALUES(image_seq.nextval, diary_seq.currval, #{fileName})

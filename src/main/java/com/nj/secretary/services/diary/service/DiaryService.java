@@ -64,7 +64,7 @@ public interface DiaryService {
 
     public String getEmotion(int emotionId);
 
-
+    public void updateTag(AttachFile attachFile);
 
 
 

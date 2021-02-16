@@ -53,11 +53,17 @@ public class UserRestController {
     @GetMapping("/emailCheck")
     public int emailCheck(@RequestParam("email") String email,@RequestParam("userId") String userId) throws Exception{
         User user = userService.getUser(userId);
-        if(user.getEmail().equals(email)){
-            return 0;
-        }else{
+        System.out.print(user);
+        if(user == null){
             return 1;
+        }else{
+            if(user.getEmail().equals(email)){
+                return 0;
+            }else{
+                return 1;
+            }
         }
+
     }
 
     @ResponseBody

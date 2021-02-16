@@ -144,7 +144,7 @@
 
 	<update id="updateUser" parameterType="com.nj.secretary.services.user.domain.User">
 		UPDATE users
-		SET user_name=#{userName},nickname=#{nickname},email=#{email},motto=#{motto}
+		SET user_name=#{userName},nickname=#{nickname},motto=#{motto}
 		WHERE user_id=#{userId}
 	</update>
 	

@@ -206,4 +206,9 @@ public class DiaryServiceImpl implements DiaryService {
     public String getEmotion(int emotionId) {
         return diaryDAO.getEmotion(emotionId);
     }
+
+    @Override
+    public void updateTag(AttachFile attachFile) {
+        diaryDAO.updateTag(attachFile);
+    }
 }

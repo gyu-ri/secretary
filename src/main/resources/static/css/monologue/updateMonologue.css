@@ -15,12 +15,13 @@
             margin-top: 7%;
             font-size: 80px;
             color: #314e52;
+            font-weight: 500;
         }
 
  .container{
      display: grid;
-     grid-template-columns: 0;
-     grid-template-rows: 1fr 2fr 1fr;
+     grid-template-columns: 1fr;
+     grid-template-rows: 1fr 4fr 1fr;
      gap: 20px;
      background-color: rgba(255, 255, 255, 1);
      padding: 30px;
@@ -30,6 +31,7 @@
      width: 80%;
      border-top: 3px solid white;
      border-bottom: 3px solid white;
+     margin-left: 7.5%;
  }
  #questionText{
      font-family: 'MapoGoldenPier';
@@ -39,11 +41,11 @@
 
      .text{
          font-size: 30px;
-         grid-column: 2/3;
+         grid-column: 1/2;
          grid-row: 2/3;
          font-family: 'MapoGoldenPier';
          width: 80%;
-         height: 100%;
+         height: 50%;
          margin: auto;
          padding: 1%;
          background-color: #ffffff;
@@ -59,32 +61,15 @@
          visibility: hidden;
      }
 
-     .translateSelect{
-         text-align: center;
+
+     #modifyMonologue{
+         width: 10%;
+         height: 30%;
+         align-content: center;
+         margin-left: 42.5%;
+         margin-top: 5%;
+         margin-bottom: 5%;
      }
 
 
-        #reportModal{
-            grid-area: button2;
-            color: white;
-            font-size: 25px;
-            display: block;
-            border: none;
-            width: 30%;
-            background-color: transparent;
-            margin-left: 5%;
-        }
-
-        .translateBtns{
-            margin-left: 46%;
-        }
-
-        .translateBtns span{
-            color: white;
-        }
-
-        #source, #target{
-            background-color: rgba(255, 255, 255, 0.5);
-            border: none;
-        }
 
