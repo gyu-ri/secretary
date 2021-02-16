@@ -17,6 +17,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
@@ -44,11 +46,13 @@ public class UserController {
     @Autowired
     private MonologueService monologueService;
 
+
     @GetMapping("/signUp")
     public String signUp() throws Exception {
 
         return "user/addUser";
     }
+
 
     @PostMapping("signUp")
     public String signUp01(@Valid User user, Errors errors, Model model) throws Exception {

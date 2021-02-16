@@ -56,7 +56,8 @@ $(function() {
     $('#findId').on("click", function () {
         $("#findId-modal").modal("show");
     })
-    $("#sendEmail").on("click",function(e){
+
+    $("#sendEmail").on("click",function(){
         let text = {
             userName : $("#userName").val(),
             email : $("#email").val()
@@ -71,7 +72,7 @@ $(function() {
                 if (response==="0"){
                     $('.check_info').append("<div id='message'>회원정보가 일치하지 않습니다.</div>")
                     $('.check_info').css("color", "#ae0f11")
-                    $('#sendEmail').preventDefault();
+
                 } else {
                     $('#message').remove();
                     alert("이메일이 전송되었습니다.")

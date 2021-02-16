@@ -99,22 +99,4 @@ function passwordChange(){
 }
 
 
-function userCheck(){
-	let text = {
-			userId : $("#pwdUserId").val(),
-        	email : $("#pwdEmail").val()
-        };
-	 $.ajax({
-	        url: '/restUser/findPwd',
-	        type: 'post',
-	        data: JSON.stringify(text),
-	        contentType: "application/json",
-	        success: function (data) {
-	        	alert(data)
-	        }
-	                
-	                });
-	
-}
-
 
