@@ -364,77 +364,89 @@ function filter(){
 
 function deleteDiary(diaryId){
     let test = {diaryId:diaryId};
-    $.ajax({
-        url: "/restDiary/deleteDiary",
-        method: "get",
-        dataType: "json",
-        data : test,
-        contentType : "application/text",
-        success: function (response){
-            $("#"+diaryId).remove();
-        }
+    let isDelete = confirm("정말 삭제하시겠습니까?")
+    if(isDelete){
+        $.ajax({
+            url: "/restDiary/deleteDiary",
+            method: "get",
+            dataType: "json",
+            data : test,
+            contentType : "application/text",
+            success: function (response){
+                $("#"+diaryId).remove();
+            }
 
-    });
+        });
+    }
+
 }
 function recoverDiary(diaryId){
     let test = {diaryId:diaryId};
-    $.ajax({
-        url: "/restDiary/recoverDiary",
-        method: "get",
-        dataType: "json",
-        data : test,
-        contentType : "application/text",
-        success: function (response){
-            $("#"+diaryId).remove();
-        }
+    let isRecover = confirm("복구하시겠습니까?")
+    if(isRecover){
+        $.ajax({
+            url: "/restDiary/recoverDiary",
+            method: "get",
+            dataType: "json",
+            data : test,
+            contentType : "application/text",
+            success: function (response){
+                $("#"+diaryId).remove();
+            }
 
-    });
+        });
+    }
+
 }
 function moveToBin(diaryId){
     let test = {diaryId : diaryId};
-    $(function(){
-        $.ajax({
-            url : "/restDiary/moveToBin",
-            type : "POST",
-            data : JSON.stringify(test),
-            contentType : "application/json",
-            success: function (list){
-                $("div [name='listSet']").remove();
-                $.each(list,function(i,item){
-                    if (item.imageName!=null) {
-                        $(".listDiary").append(
-                            "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
-                            "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
-                            // "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
-                            "<div class='cover'>" +
-                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
-                            "<p class='title'>"+item.diaryDate+"</p>" +
-                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
-                            "</div>" +
-                            "</div>"+
-                            "</div>"
-                        )
-                    }else{
-                        $(".listDiary").append(
-                            "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
-                            "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
-                            // "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
-                            "<div class='cover'>" +
-                            "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
-                            "<p class='title'>"+item.diaryDate+"</p>" +
-                            "<img src='"+item.weather+"' width='30px' height='30px'/>" +
-                            "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
-                            "</div>" +
-                            "</div>"+
-                            "</div>"
+    let isMove = confirm("휴지통으로 보내시겠습니까?")
+    if(isMove){
+        $(function(){
+            $.ajax({
+                url : "/restDiary/moveToBin",
+                type : "POST",
+                data : JSON.stringify(test),
+                contentType : "application/json",
+                success: function (list){
+                    $("div [name='listSet']").remove();
+                    $.each(list,function(i,item){
+                        if (item.imageName!=null) {
+                            $(".listDiary").append(
+                                "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
+                                "<div class='box' style=\"background-image:url("+item.imageName+"); background-repeat:no-repeat; background-size: cover;\">" +
+                                // "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
+                                "<div class='cover'>" +
+                                "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
+                                "<p class='title'>"+item.diaryDate+"</p>" +
+                                "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                                "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
+                                "</div>" +
+                                "</div>"+
+                                "</div>"
+                            )
+                        }else{
+                            $(".listDiary").append(
+                                "<div id='"+item.diaryId+"' name='listSet' class='col-md-4 col-lg-3 item'>"+
+                                "<div class='box' style=\"background-image:url('/images/icon/book.png'); background-repeat:no-repeat; background-size: cover;\">" +
+                                // "<input type=\"text\" class=\"diaryText\"  value=\"" + item.diaryText +"\" hidden style=\"position: absolute\">" +
+                                "<div class='cover'>" +
+                                "<h3 class='name' onclick=\"getDiary("+item.diaryId+")\">"+item.diaryTitle+"</h3>" +
+                                "<p class='title'>"+item.diaryDate+"</p>" +
+                                "<img src='"+item.weather+"' width='30px' height='30px'/>" +
+                                "<div class='social'><a href='#'><i onclick=\"moveToBin("+item.diaryId+")\" class='fas fa-trash-alt'></i></a></div>" +
+                                "</div>" +
+                                "</div>"+
+                                "</div>"
 
-                        )
-                    }
-                })
-            }
-        });
-    })
+                            )
+                        }
+                    })
+                }
+            });
+        })
+    }
+
 
 }
 
