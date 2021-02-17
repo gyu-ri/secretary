@@ -164,10 +164,12 @@
 <input type="hidden" th:value="${monologue.questionId}" name="questionId"/>
 <input type="hidden" th:value="${monologue.userId}" name="userId"/>
 
-
+    <img th:if="${monologue.shareStatus}==1" src="../../images/icon/diary/share-alt-solid.svg" style="width: 2%; margin-left: 85%; margin-bottom: 1%">
     <div class="container">
 
         <div id="questionText" th:text="${monologue.questionText}"/>
+
+
         <div id="image"></div>
         <div class="text" id="text" name="0" th:utext="${monologue.monologueText}">1답 내용입니다.</div>
         <div></div>
