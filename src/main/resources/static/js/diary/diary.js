@@ -137,7 +137,7 @@ $(function(){
                 document.getElementById('secondTab').setAttribute('class', '');
                 document.getElementById('deleteBtn').setAttribute('class', '');
                 document.getElementById('thirdTab').setAttribute('class', 'active');
-                $.each(list.reverse(),function(i,item){
+                $.each(list,function(i,item){
                     console.log(item);
                     if (item.imageName!=null) {
                         $(".listDiary").append(
