@@ -19,19 +19,40 @@
     <script src="../../js/main/main.js"></script>
 
 
-   <script>
-   
-$(function(){
-	const check =[[${user}]];
-	   if(check=='1'){
-		   $("#modifyMonologue").remove();
-	   }
-	    if(check=='1'){
-		   $("#reportModal").show();
-	   }
-   });
-   </script>
 
+    <script th:inline="javascript">
+        document.addEventListener("DOMContentLoaded", function(){
+            var role = [[${role}]];
+            var user = [[${user}]];
+            console.log("role : "+role);
+            console.log("user : "+user);
+            if(role == "ADMIN"){
+                //alert("admin이다! admin이 나타났다~!!");
+                $("#forAdmin").append(
+                    // "<a href='#' id='back' onclick='back()'>	확인</a>"
+                )
+            } else{
+                if(user === '0'){
+
+                    $("#modifyMonologue").show();
+                    $("#deleteMonologue").show();
+                    $("#reportModal").remove();
+                }else if(user==='1'){
+                    $("#modifyMonologue").remove();
+                    $("#deleteMonologue").remove();
+                    $("#reportModal").show();
+                }else if(user==='2'){
+                    $("#like").remove();
+                    $("#report").remove();
+                    $("#delete").remove();
+                    $("#modifyDiary").remove();
+                }
+            }
+
+
+        });
+
+    </script>
 </head>
 
 
@@ -87,6 +108,9 @@ $(function(){
             $("#reportModal").on("click",function(){
                 $("#eventModal").modal("show");
             })
+            $("#commit").on("click",function(){
+                location.href="/monologue/getMonologueList"
+            })
 
             $("#send").on("click",function(e){
 
@@ -106,20 +130,26 @@ $(function(){
                         contentType: "application/json",
                         success: function (response){
                             alert(response);
+                            location.href="/monologue/getMonologueList"
                         }
                     });
                 }
 
             })
+
+            $("#deleteMonologue").on("click",function(){
+                let isDelete = confirm("삭제하시겠습니까?");
+                if(isDelete){
+                    alert("삭제되었습니다.");
+                    $("form").attr("action","/monologue/deleteMonologue").attr("method","post").submit();
+                }
+
+            })
+
     
         });
     
-    
-    
    </script>
-
-   
-   
    
 <body>
 
@@ -134,10 +164,12 @@ $(function(){
 <input type="hidden" th:value="${monologue.questionId}" name="questionId"/>
 <input type="hidden" th:value="${monologue.userId}" name="userId"/>
 
-
+    <img th:if="${monologue.shareStatus}==1" src="../../images/icon/diary/share-alt-solid.svg" style="width: 2%; margin-left: 85%; margin-bottom: 1%">
     <div class="container">
 
         <div id="questionText" th:text="${monologue.questionText}"/>
+
+
         <div id="image"></div>
         <div class="text" id="text" name="0" th:utext="${monologue.monologueText}">1답 내용입니다.</div>
         <div></div>
@@ -170,11 +202,13 @@ $(function(){
          <!-- <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정"> -->
     </div>
     <input type="submit" id="modifyMonologue" value="수정">
-
+    <input type="button"  id="deleteMonologue" value="삭제">
+    <input type="button"  id="commit" value="확인">
+    <button type="button" id="reportModal" style="display:none;" >&#128680; 신고하기</button>
 </form>
 
 
-        <button type="button" id="reportModal" style="display:none;" >&#128680; 신고하기</button>
+
 
 
 <div class="modal fade" tabindex="-1" role="dialog" id="eventModal">

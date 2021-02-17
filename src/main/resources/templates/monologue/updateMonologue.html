@@ -11,6 +11,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../../images/icon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href='../../css/monologue/updateMonologue.css' />
+    <script>
+        $(function(){
+            var check = $("input[type='checkbox']");
+            check.click(function(){
+                $("p.toggle").toggle();
+                if($("input[type='checkbox']").val()==1){
+                    $("input[type='checkbox']").val(0)
+                }else{
+                    $("input[type='checkbox']").val(1)
+                }
+                console.log($("input[type='checkbox']").val());
+                // $('#checkbox').is("checked").attr("value", 1);
+
+            });
+
+            // const check=$("input[type='checkbox']");
+            // check.click(function(){
+            //     $("p.toggle").toggle();
+            //
+            // });
+        })
+    </script>
 
 
 </head>
@@ -30,18 +52,23 @@
         <input type="hidden" name="questionText" th:value="${monologue.questionText}"/>
         <input type="text" class="text" id="text" name="monologueText" th:value="${monologue.monologueText}"/>
         <!-- <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정"> -->
+        <span style="float: right" id="shareGroup">
+            <span id="shareBtn">&#9964; 일기공유</span> &nbsp;&nbsp;
+
+            <label class="switch">
+                <input type="checkbox" name="shareStatus" class="checkbox" width="20" height="10" value=0>
+
+                <span class="slider round"></span>
+            </label>
+                <p class="toggle" value="0">OFF</p>
+                <p class="toggle" style="display:none;" value="1">ON</p>
+        </span>
     </div>
+
     <input type="submit" id="modifyMonologue" value="수정완료">
 </form>
 
-<script type="text/javascript">
-const check=$("input[type='checkbox']");
-check.click(function(){
-	$("p.toggle").toggle();
-	
-});
 
-</script>
 
 
 

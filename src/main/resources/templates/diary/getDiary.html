@@ -22,7 +22,7 @@
 
     <!--글꼴-->
     <link href="https://fonts.googleapis.com/css2?family=Stylish&display=swap" rel="stylesheet">
-
+    <script src="https://use.fontawesome.com/b51c131c86.js"></script>
 
     <title>글쓰기</title>
     <style>
@@ -76,7 +76,7 @@
         .container{
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 4fr 1fr 1fr;
+            grid-template-rows: 1fr 4fr 1fr 1fr 1fr;
             gap: 20px;
             background-color: rgba(255, 255, 255, 1);
             padding: 30px;
@@ -394,8 +394,11 @@
     <h2 id="pageTitle">일기 보기</h2><br><br><br>
     <div class="addInfo">
         <img class="diaryEmotion" th:src="${diary.emotionImg}">
+        <span class="diaryDate" th:text="${diary.location}"></span>
         <img class="diaryWeather" th:src="${diary.weather}">
         <span class="diaryDate" th:text="${diary.diaryDate}"></span>
+        <img th:if="${diary.shareStatus}==1" src="../../images/icon/diary/share-alt-solid.svg" style="width: 3%">
+
     </div>
     <div class="container">
 
@@ -410,6 +413,7 @@
         <input type="hidden" name="shareStatus" th:value="${diary.shareStatus}">
 
         <div class="translateSelect">
+
             <select id="source">
                 <option value="ko">한국어</option>
                 <option value="en">영어</option>
@@ -426,6 +430,7 @@
                 <option value="zh-TW">중국어-번체</option>
             </select>
             <img class="translate" src="../../images/icon/translateIcon.png" width="25px" height="25px" style="cursor: pointer">
+
         </div>
 
     </div>
