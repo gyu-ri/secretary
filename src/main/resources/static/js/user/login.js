@@ -18,7 +18,10 @@ function loginValiCheck(){
             if (data == 0){
                 $('#message').remove();
                 $('.check_font').append("<div id='message'>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</div>")
-                $('.check_font').css("color","#ae0f11")
+                $('.check_font').css({
+                    color:"rgb(243 55 58)",
+                    textAlign:"center"
+                })
                 $('#login').preventDefault();
                 return false;
             }else{

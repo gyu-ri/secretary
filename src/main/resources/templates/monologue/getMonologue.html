@@ -75,6 +75,11 @@
      if($("#text").attr('name') == $("#target option:selected").val()){
       alert("이미 번역되었습니다.");
      }else{
+         $(".translatedMonologue").remove();
+         if(JSON.parse(response).errorMessage != null){
+             $("#text").attr('name',"");
+             return;
+         }
       $(".translatedMonologue").remove();
       $("#text").append("<div class='translatedMonologue'>"+JSON.parse(response).message.result.translatedText+"</div> ");
       $("#text").attr('name',$("#target option:selected").val());
@@ -91,6 +96,11 @@
      if($("#questionText").attr('name') == $("#target option:selected").val()){
       alert("이미 번역되었습니다.");
      }else{
+         $(".translatedQuestion").remove();
+         if(JSON.parse(response).errorMessage != null){
+             $("#questionText").attr('name',"");
+             return;
+         }
       $(".translatedQuestion").remove();
       $("#questionText").append("<div class='translatedQuestion'>"+JSON.parse(response).message.result.translatedText+"</div> ");
       $("#questionText").attr('name',$("#target option:selected").val());

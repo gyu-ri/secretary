@@ -37,7 +37,8 @@ public class DiaryController {
     MonologueService monologueService;
     @Autowired
     UserService userService;
-
+    int startNumber = 0;
+    int endNumber = startNumber+12;
     @GetMapping("addDiary")
     public String addDiary(){
         System.out.println("addDiary Start");
@@ -152,10 +153,13 @@ public class DiaryController {
             return "user/login";
         }
         System.out.println("listDiary start in controller");
-
         User user = (User)session.getAttribute("user");
+        Diary diary = new Diary();
+        diary.setUserId(user.getUserId());
+        diary.setStartNum(startNumber);
+        diary.setEndNum(endNumber);
         System.out.println(user);
-       List<Diary> list = diaryService.getDiaryList(user.getUserId());
+       List<Diary> list = diaryService.getDiaryList(diary);
        System.out.println("list : " + list);
         model.addAttribute("list", list);
         model.addAttribute("user",user);
@@ -299,10 +303,13 @@ public class DiaryController {
         }
         System.out.println("listDiary start in controller");
 
-
+        Diary diary = new Diary();
+        diary.setStartNum(0);
+        diary.setEndNum(12);
         User user = (User)session.getAttribute("user");
+        diary.setUserId(user.getUserId());
         System.out.println(user);
-        List<Diary> list = diaryService.getDiaryList(user.getUserId());
+        List<Diary> list = diaryService.getDiaryList(diary);
         System.out.println("list : " + list);
         model.addAttribute("list", list);
         model.addAttribute("user",user);

@@ -177,8 +177,12 @@
     <script type="text/javascript">
 
         window.onload = function(){
+
             var temp = $('.text img').detach();
+            if($('.text').has())
+            var vid = $('.text iframe').detach();
             $('#image').html(temp);
+            $('#image').append(vid);
         }
 
 
