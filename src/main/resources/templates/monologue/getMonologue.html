@@ -51,6 +51,7 @@
 
 
         });
+
     </script>
 </head>
 
@@ -107,6 +108,9 @@
             $("#reportModal").on("click",function(){
                 $("#eventModal").modal("show");
             })
+            $("#commit").on("click",function(){
+                location.href="/monologue/getMonologueList"
+            })
 
             $("#send").on("click",function(e){
 
@@ -126,6 +130,7 @@
                         contentType: "application/json",
                         success: function (response){
                             alert(response);
+                            location.href="/monologue/getMonologueList"
                         }
                     });
                 }
@@ -143,13 +148,8 @@
 
     
         });
-
-    
     
    </script>
-
-   
-   
    
 <body>
 
@@ -203,6 +203,7 @@
     </div>
     <input type="submit" id="modifyMonologue" value="수정">
     <input type="button"  id="deleteMonologue" value="삭제">
+    <input type="button"  id="commit" value="확인">
     <button type="button" id="reportModal" style="display:none;" >&#128680; 신고하기</button>
 </form>
 

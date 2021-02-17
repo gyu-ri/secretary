@@ -87,14 +87,14 @@
             background-color: rgba(255, 255, 255, 0.5);
             border: none;
         }
-    #modifyMonologue, #reportModal, #deleteMonologue{
+    #modifyMonologue, #reportModal, #deleteMonologue, #commit{
         font-family: 'MapoGoldenPier';
         color: #314e52;
         width: 10%;
         height: 30%;
         font-size: 20px;
         align-content: center;
-        margin-left: 25%;
+        margin-left: 18%;
         margin-top: 5%;
         margin-bottom: 5%;
         background-color: transparent;
@@ -103,7 +103,7 @@
         transition: 1s;
     }
 
-    #modifyMonologue:hover, #reportModal:hover, #deleteMonologue:hover{
+    #modifyMonologue:hover, #reportModal:hover, #deleteMonologue:hover, #commit:hover {
         transform: scale(1.2);
         transition: 1s;
     }
