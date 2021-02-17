@@ -153,7 +153,6 @@ public class DiaryController {
         }
         System.out.println("listDiary start in controller");
 
-
         User user = (User)session.getAttribute("user");
         System.out.println(user);
        List<Diary> list = diaryService.getDiaryList(user.getUserId());
