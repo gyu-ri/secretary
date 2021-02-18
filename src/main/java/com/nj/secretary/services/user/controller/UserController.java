@@ -139,6 +139,7 @@ public class UserController {
         Random random = new Random();
         System.out.println(user + " : " + monologue);
         if(userService.getUser(user.getUserId())==null){ //탈퇴아이디 로그인 x
+            model.addAttribute("withdrawal","0");
             return "/user/login";
         }
         System.out.println("count : " + monologueService.checkMonologue(dbUser.getUserId()));

@@ -52,7 +52,10 @@
         <input type="hidden" name="questionText" th:value="${monologue.questionText}"/>
         <input type="text" class="text" id="text" name="monologueText" th:value="${monologue.monologueText}"/>
         <!-- <input type="submit" id="modifyMonologue" style="display:none;" value="&#128214; 수정"> -->
-        <span style="float: right" id="shareGroup">
+
+    </div>
+    <input type="submit" id="modifyMonologue" value="수정완료">
+    <span style="float: right" id="shareGroup">
             <span id="shareBtn">&#9964; 일기공유</span> &nbsp;&nbsp;
 
             <label class="switch">
@@ -63,9 +66,6 @@
                 <p class="toggle" value="0">OFF</p>
                 <p class="toggle" style="display:none;" value="1">ON</p>
         </span>
-    </div>
-
-    <input type="submit" id="modifyMonologue" value="수정완료">
 </form>
 
 

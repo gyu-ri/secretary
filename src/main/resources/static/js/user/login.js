@@ -14,7 +14,6 @@ function loginValiCheck(){
                 )},
         contentType: "application/json",
         success: function (data){
-            console.log("로그인 가능합니다"+data);
             if (data == 0){
                 $('#message').remove();
                 $('.check_font').append("<div id='message'>가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.</div>")
@@ -75,7 +74,6 @@ $(function() {
             data: JSON.stringify(text),
             contentType: "application/json",
             success: function (response) {
-                alert(response);
                 if (response==="0"){
                     $('#message').remove();
                     $('.check_info').append("<div id='message'>회원정보가 일치하지 않습니다.</div>")
@@ -83,7 +81,7 @@ $(function() {
 
                 } else {
                     $('#message').remove();
-                    alert("이메일이 전송되었습니다.")
+                    Swal.fire('이메일이 전송되었습니다!', '', 'success')
                 }
             }, error: function () {
                 console.log("실패실패");
@@ -98,3 +96,4 @@ $(function() {
 function back(){
     history.go(-1);
 }
+

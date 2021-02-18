@@ -9,6 +9,12 @@
 </style>
     <meta name="x-apple-disable-message-reformatting" />
     <style type="text/css">
+        @font-face {
+            font-family: 'MapoGoldenPier';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoGoldenPierA.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
 .main {
   margin: 0;
   padding: 0;
@@ -18,6 +24,7 @@ table {
   table-layout: fixed;
 }
 * {
+    font-family: 'MapoGoldenPier';
   line-height: inherit;
 }
 [x-apple-data-detectors] {
@@ -490,7 +497,7 @@ div.preheader {
             
               <div style="Margin-left: 20px;Margin-right: 20px;">
       <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
-        <h1 style="Margin-top: 0;Margin-bottom: 20px;font-style: normal;font-weight: normal;color: #363f49;font-size: 40px;line-height: 47px;font-family: Oswald,Avenir Next Condensed,Arial Narrow,MS UI Gothic,sans-serif;">Your ID is here</h1> <!--제목-->
+        <h1 style="Margin-top: 0;Margin-bottom: 20px;font-style: normal;font-weight: normal;color: #363f49;font-size: 40px;line-height: 47px;font-family: Oswald,Avenir Next Condensed,Arial Narrow,MS UI Gothic,sans-serif;">Secretary에서 등록하신 아이디를 알려드립니다.</h1> <!--제목-->
       </div>
     </div>
             
@@ -529,8 +536,10 @@ div.preheader {
         
             <div style="Margin-left: 20px;Margin-right: 20px;">
       <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;"> <!--내용-->
-        <p style="Margin-top: 0;Margin-bottom: 20px;">Don't forget your ID again!</p>
-        <p style="Margin-top: 0;Margin-bottom: 20px;">This is your ID : <span th:text="${key}"></span></p>
+        <p style="Margin-top: 0;Margin-bottom: 20px;">아이디는 <span th:text="${key}"></span>입니다.</p><br>
+        <p style="Margin-top: 0;Margin-bottom: 20px;">아이디를 입력하시고 로그인해주세요.</p><br>
+          <p style="Margin-top: 0;Margin-bottom: 20px;">Secretary를 이용해 주셔서 감사합니다.</p>
+          <p style="Margin-top: 0;Margin-bottom: 20px;"> 더욱 편리한 서비스를 제공하기 위해 항상 최선을 다하겠습니다.</p>
 
       </div>
     </div>

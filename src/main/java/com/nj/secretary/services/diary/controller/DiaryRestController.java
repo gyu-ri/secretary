@@ -68,8 +68,10 @@ public class DiaryRestController {
         User user = (User)session.getAttribute("user");
         String userId = user.getUserId();
 
-
         System.out.println("삭제하기 위한 diary 객체 : " + diary.getDiaryId());
+        diary.setUserId(userId);
+        diary.setStartNum(0);
+        diary.setEndNum(12);
         diaryService.moveToBin(diary.getDiaryId());
         List<Diary> list = diaryService.getDiaryList(diary);
 
@@ -195,7 +197,9 @@ public class DiaryRestController {
     @GetMapping("binDiaryList")
     public List<Diary> binDiaryList(HttpSession session,Model model){
         User user = (User)session.getAttribute("user");
+
         List<Diary> list = diaryService.getBinList(user.getUserId());
+        System.out.println(list);
         return list;
     }
 
@@ -275,7 +279,7 @@ public class DiaryRestController {
             alarm.setAlarmText("좋아요를 받은 일기가 있어요!");
             alarmService.blindDiaryAlarm(alarm);
 
-            return "좋아합니다.";
+            return "좋아요를 눌렀습니다!";
         }
     }
 
