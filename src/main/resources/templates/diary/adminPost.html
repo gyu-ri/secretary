@@ -375,7 +375,7 @@
 
         $(document).on("click", "#setDiaryBlind", function () {
             Swal.fire({
-                title: '블라인드처리 하시겠습니까?',
+                title: '블라인드 처리 하시겠습니까?',
                 text: "",
                 icon: 'warning',
                 showCancelButton: true,
@@ -383,25 +383,28 @@
                 cancelButtonColor: '#d33',
                 confirmButtonText: '처리'
             }).then((result) => {
-
-                $.ajax({
-                    url : "/restDiary/setBlindDiary",
-                    method : "POST",
-                    dataType : "json",
-                    cache : false,
-                    data : {diaryId:$(this).attr('class'),
-                        userId:$(this).attr('value')},
-                    success : function (data){
-                        adminDiary();
-                        // const di = "#" + $("#setDiaryBlind").attr('value');
-                        // $("#setDiaryBlind").remove();
-                        // $('+di+').append("처리완료");
-                    }
-                });
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        '처리되었습니다!',
+                        '',
+                        'success'
+                    )
+                    $.ajax({
+                        url : "/restDiary/setBlindDiary",
+                        method : "POST",
+                        dataType : "json",
+                        cache : false,
+                        data : {diaryId:$(this).attr('class'),
+                            userId:$(this).attr('value')},
+                        success : function (data){
+                            adminDiary();
+                            // const di = "#" + $("#setDiaryBlind").attr('value');
+                            // $("#setDiaryBlind").remove();
+                            // $('+di+').append("처리완료");
+                        }
+                    });
+                }
             })
-
-
-
 
 
         });
@@ -465,7 +468,7 @@
 
     $(document).on("click", "#setMonologueBlind", function () {
         Swal.fire({
-            title: '블라인드처리 하시겠습니까?',
+            title: '블라인드 처리 하시겠습니까?',
             text: "",
             icon: 'warning',
             showCancelButton: true,
@@ -473,20 +476,26 @@
             cancelButtonColor: '#d33',
             confirmButtonText: '처리'
         }).then((result) => {
-
-            $.ajax({
-                url : "/restMonologue/setBlindMonologue",
-                method : "POST",
-                dataType : "json",
-                cache : false,
-                data : {MonologueId:$(this).attr('value'),
-                    userId:$(this).attr('class')},
-                success : function (data){
-                    adminMonologue();
-                    // $("#setMonologueBlind").remove();
-                    // $("#setMonologueBlind2").append("처리완료");
-                }
-            });
+            if (result.isConfirmed) {
+                Swal.fire(
+                    '처리되었습니다!',
+                    '',
+                    'success'
+                )
+                $.ajax({
+                    url : "/restMonologue/setBlindMonologue",
+                    method : "POST",
+                    dataType : "json",
+                    cache : false,
+                    data : {MonologueId:$(this).attr('value'),
+                        userId:$(this).attr('class')},
+                    success : function (data){
+                        adminMonologue();
+                        // $("#setMonologueBlind").remove();
+                        // $("#setMonologueBlind2").append("처리완료");
+                    }
+                });
+            }
         })
 
 

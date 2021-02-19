@@ -128,12 +128,12 @@
         {
             CALL
             BEGIN
-            UPDATE (SELECT d.diary_id AS diary_id, u.user_id AS user_id, u.blind_count AS blind_count, d.blind_status AS blind_status
+            UPDATE (SELECT d.diary_id AS diary_id, u.user_id AS user_id, u.blind_count AS blind_count, d.blind_status AS blind_status, d.share_status AS share_status
             FROM diary d, users u
             WHERE d.user_id = u.user_id AND d.diary_id = #{value}) d
-            SET d.blind_status = '1';
+            SET d.blind_status = '1', d.share_status = '0';
             MERGE INTO users u
-            USING (SELECT d.diary_id AS diary_id, u.user_id AS user_id, u.blind_count AS blind_count, d.blind_status AS blind_status
+            USING (SELECT d.diary_id AS diary_id, u.user_id AS user_id, u.blind_count AS blind_count, d.blind_status AS blind_status, d.share_status AS share_status
             FROM diary d, users u
             WHERE d.user_id = u.user_id AND d.diary_id = #{value}) d
             ON (u.user_id = d.user_id)
