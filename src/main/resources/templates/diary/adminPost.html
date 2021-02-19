@@ -19,11 +19,12 @@
 
 
         body {
-            background-image: url("https://source.unsplash.com/daily?nature");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
+            background-color: #dbdbdb;
             text-align: center;
+            position: relative;
+            width: 100%;
+            margin: 0;
+            padding: 0;
             font-family: 'MapoGoldenPier';
             color: #314e52;
         }
@@ -43,6 +44,7 @@
             font-family: 'MapoGoldenPier';
             color: #314e52;
             font-size: 70px;
+            margin: 7% auto 3%;
         }
 
         /*----- Tabs -----*/
@@ -349,7 +351,7 @@
                             "                                   <td><a href='/diary/getDiary?diaryNo=" + item.diaryId + "'  th:class='" + item.diaryId +"'>" + item.diaryId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
                             "                                   <td><a href='#' id='getDiaryReportReason' class='" + item.diaryId + "' value='" + item.diaryId + "'>신고사유보기</a> </td>" +
-                            "                                   <td id='setDiaryBlind2'><a href='#' id='setDiaryBlind' class='"+item.diaryId+"' value='" + item.userId + "'>블라인드처리2</a> </td>\n" +
+                            "                                   <td id='setDiaryBlind2'><a href='#' id='setDiaryBlind' class='"+item.diaryId+"' value='" + item.userId + "'>블라인드처리</a> </td>\n" +
                             "                               </tr>\n"
                         )
                     }else{
@@ -359,7 +361,7 @@
                             "                                   <td><a href='/diary/getDiary?diaryNo=" + item.diaryId + "' th:class='" + item.diaryId +"'>" + item.diaryId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
                             "                                   <td><a href='#' id='getDiaryReportReason' class='" + item.diaryId + "' value='" + item.diaryId + "'>신고사유보기</a> </td>" +
-                            "                                   <td>처리완료2</td>\n" +
+                            "                                   <td>처리완료</td>\n" +
                             "                               </tr>\n"
                         )
                     }
@@ -425,7 +427,7 @@
                             "                                   <td><a href='/monologue/getMonologue?monologueId=" + item.monologueId + "&questionId=" + item.questionId + "'  th:class='" + item.monologueId +"'>" + item.monologueId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
                             "                                   <td><a href='#' id='getMonologueReportReason' class='" + item.monologueId + "' value='" + item.monologueId + "'>신고사유보기</a> </td>" +
-                            "                                   <td id='setMonologueBlind2'><a href='#' id='setMonologueBlind' class='" + item.userId + "' value='"+item.monologueId+"'>블라인드처리3</a> </td>\n" +
+                            "                                   <td id='setMonologueBlind2'><a href='#' id='setMonologueBlind' class='" + item.userId + "' value='"+item.monologueId+"'>블라인드처리</a> </td>\n" +
                             "                               </tr>\n"
                         )
                     }else{
@@ -436,7 +438,7 @@
                             "                                   <td><a href='/monologue/getMonologue?monologueId=" + item.monologueId + "&questionId=" + item.questionId + "' th:class='" + item.monologueId +"'>" + item.monologueId + "</a></td>\n" +
                             "                                   <td>" + item.reportCount + "</td>\n" +
                             "                                   <td><a href='#' id='getMonologueReportReason' class='" + item.monologueId + "' value='" + item.monologueId + "'>신고사유보기</a> </td>" +
-                            "                                   <td>처리완료3</td>\n" +
+                            "                                   <td>처리완료</td>\n" +
                             "                               </tr>\n"
                         )
                     }
