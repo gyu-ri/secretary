@@ -426,8 +426,8 @@ public class UserController {
         session.setAttribute("user",user);
         Monologue monologue = new Monologue();
         monologue.setUserId(user.getUserId());
-        monologue.setQuestionId(1);
-        model.addAttribute("question", monologueService.getQuestionText(1));
+        monologue.setQuestionId(7);
+        model.addAttribute("question", monologueService.getQuestionText(7));
 
         return "user/afterLogin";
     }
