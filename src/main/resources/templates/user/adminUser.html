@@ -143,10 +143,14 @@
             border-right: none;
         }
 
-        a:link{color: skyblue; text-decoration: none;}
-        a:visited{color: purple;}
-        a:hover{color: salmon; }
-        a:active{color: yellow;}
+        /*a:link{color: purple; text-decoration: none;}*/
+        /*a:visited{color: purple;}*/
+        /*a:hover{color: salmon; }*/
+        /*a:active{color: mediumpurple;}*/
+
+        a{
+            text-decoration: none;
+        }
 
         #back{
             font-size: 30px;
@@ -289,7 +293,7 @@
                         "                               <tr>\n" +
                         "                                   <td>" + item.userId + "</td>\n" +
                         "                                   <td>" + item.blindCount + "</td>\n" +
-                        "                                   <td><a href='#' id='setUserShareStatus' value='"+item.blindCount + "' class='"+item.userId+"'>처리1</a> </td>\n" +
+                        "                                   <td><a href='#' id='setUserShareStatus' value='"+item.blindCount + "' class='"+item.userId+"'>처리</a> </td>\n" +
                         "                               </tr>\n"
                     )
                 })
