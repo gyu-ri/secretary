@@ -10,7 +10,6 @@
 
 		<result property="userId" column="user_id" jdbcType="VARCHAR" />
 		<result property="kakao" column="kakao" jdbcType="INTEGER" />
-		<result property="nickname" column="nickname" jdbcType="INTEGER" />
 		<result property="withdrawalReasonId" column="withdrawal_reason_id" jdbcType="INTEGER" />
 		<result property="motto" column="motto" jdbcType="VARCHAR" />
 		<result property="password" column="password" jdbcType="VARCHAR" />
@@ -183,7 +182,9 @@
 	</select>
 
 	<select id="getAllUser" resultMap="userSelectMap">
+
 		SELECT USER_ID,USER_NAME,NICKNAME,EMAIL,MOTTO,BLIND_COUNT,WITHDRAWAL_STATUS,to_char(WITHDRAWAL_DATE,'YYYY-MM-DD') WITHDRAWAL_DATE,to_char(LIMIT_START_DATE, 'YYYY-MM-DD') LIMIT_START_DATE,to_char(LIMIT_END_DATE,'YYYY-MM-DD') LIMIT_START_DATE FROM USERS
+
 	</select>
 
 </mapper>
