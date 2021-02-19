@@ -55,7 +55,7 @@ public class UserRestController {
         User user = userService.getUser(userId);
         System.out.print(user);
         if(user == null){
-            return 1;
+            return 0;
         }else{
             if(user.getEmail().equals(email)){
                 return 0;
@@ -355,6 +355,7 @@ public class UserRestController {
     	
     	
     	System.out.println("withdrawal restController 시작합니다");
+        System.out.println(user);
     	userService.withdrawal(user);
 
     	return "";
@@ -362,10 +363,10 @@ public class UserRestController {
     
     
     @PostMapping("withdrawalReason")
-    public String withdrawalReason(@RequestBody User user) throws Exception {
+    public String withdrawalReason(@RequestBody User user,HttpSession session) throws Exception {
     	//user.setWithdrawalReasonId(withdrawalReasonId);
     	userService.withdrawalReason(user);
-    	    	
+    	session.invalidate();
     	System.out.println("restController에서 탈퇴사유 확이이이인::::"+user);
     	return "탈퇴가 완료 되었습니다.";
     	

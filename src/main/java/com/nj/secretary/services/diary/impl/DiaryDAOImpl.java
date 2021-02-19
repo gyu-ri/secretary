@@ -27,11 +27,11 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public List<Diary> getDiaryList(String userId) {
+    public List<Diary> getDiaryList(Diary diary) {
 
         System.out.println("getDiaryList in DiaryDAOImpl start");
 
-        List<Diary> list = sqlSession.selectList("DiaryMapper.getDiaryList", userId);
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getDiaryList", diary);
 
 
         return list;
@@ -46,9 +46,9 @@ public class DiaryDAOImpl implements DiaryDAO {
     }
 
     @Override
-    public List<Diary> getOthersDiaryList(String userId) {
+    public List<Diary> getOthersDiaryList(Diary diary) {
 
-        List<Diary> list = sqlSession.selectList("DiaryMapper.getOthersDiaryList",userId);
+        List<Diary> list = sqlSession.selectList("DiaryMapper.getOthersDiaryList",diary);
 
         return list;
     }
