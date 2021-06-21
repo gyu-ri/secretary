@@ -22,6 +22,6 @@ Secret  + Diary = Secretary
 - Build Tool : Gradle
 - DB : Oracle 10g
 - Open API : Kakao, fullCalendar, OpenWeatherMap, geolocation, summernote, papago
-- 개발환경 : IntelliJ, Eclipse, Postman, Git, GitHub
+- 개발환경 : Eclipse, , GitHub
 
 ---
