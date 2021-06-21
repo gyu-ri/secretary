@@ -9,6 +9,7 @@ Secret + Diary = Secretary
 일기작성을 하고 타인과 공유도 가능합니다.
 캘린더를 통해 일정관리를 할 수 있습니다.
 메인화면에서 매일 다른 질문에 답하며 나를 돌아볼 수 있는 회고록을 기록할 수 있습니다.
+
 👏 사용기술
 Java, JavaScript
 Spring Boot : 2.4.1
